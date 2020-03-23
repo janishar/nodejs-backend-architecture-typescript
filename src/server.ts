@@ -1,5 +1,5 @@
 import express, { Request, Response, NextFunction, Errback } from 'express';
-import logger from 'morgan';
+import Logger from './utils/logger';
 import bodyParser from 'body-parser';
 import http from 'http';
 import cors from 'cors';
@@ -18,5 +18,5 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 http.createServer(app).listen(port, () => {
-	console.info(`server running on port : ${port}`);
+	Logger.info(`server running on port : ${port}`);
 });
