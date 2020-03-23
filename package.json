@@ -4,7 +4,15 @@
   "description": "The architecture for nodejs backend application. It is build on top of expressjs using typescript.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run build && npm run serve",
+    "serve": "node -r dotenv/config build/server.js",
+    "build": "npm run build-ts",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "watch-node": "nodemon -r dotenv/config build/server.js",
+    "build-ts": "tsc",
+    "watch-ts": "tsc -w",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "test": "TODO"
   },
   "repository": {
     "type": "git",
@@ -39,6 +47,7 @@
     "@types/node": "^13.9.3",
     "@types/supertest": "^2.0.8",
     "colors": "^1.4.0",
+    "dotenv": "^8.2.0",
     "mocha": "^7.1.1",
     "nodemon": "^2.0.2",
     "supertest": "^4.0.2",
