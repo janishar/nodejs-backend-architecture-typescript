@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/afteracademy/<repo-name>.git"
+    "url": "https://github.com/afteracademy/nodejs-backend-architecture-typescript.git"
   },
   "author": "AfterAcademy",
   "license": "Apache-2.0",
