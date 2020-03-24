@@ -10,4 +10,13 @@ export const db = {
 	password: process.env.DB_PWD,
 };
 
+export const corsUrl = process.env.CORS_URL;
+
+export const tokenInfo = {
+	accessTokenValidityDays: parseInt(process.env.ACCESS_TOKEN_VALIDITY_DAYS),
+	refreshTokenValidityDays: parseInt(process.env.REFRESH_TOKEN_VALIDITY_DAYS),
+	issuer: process.env.TOKEN_ISSUER,
+	audience: process.env.TOKEN_AUDIENCE,
+};
+
 export const logDirectory = process.env.LOG_DIR;

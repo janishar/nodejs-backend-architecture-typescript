@@ -5,7 +5,7 @@ import { IUser } from '../model/User';
 export default class KeystoreRepository {
 
 	public static findforKey(client: IUser, key: string): Promise<IKeystore> {
-		return Keystore.findOne({ client: client, primaryKey: key }).exec();
+		return Keystore.findOne({ client: client, primaryKey: key, status: true }).exec();
 	}
 
 	public static remove(id: Types.ObjectId): Promise<IKeystore> {
