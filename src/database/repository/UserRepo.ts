@@ -20,7 +20,7 @@ export default class UserRepository {
 	}
 
 	public static findByEmail(email: string): Promise<IUser> {
-		return User.findOne({ email: email })
+		return User.findOne({ email: email, status: true })
 			.select('+email +password')
 			.populate({
 				path: 'roles',
