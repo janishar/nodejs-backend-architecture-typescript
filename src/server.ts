@@ -23,6 +23,9 @@ http.createServer(app).listen(port, () => {
 	Logger.info(`server running on port : ${port}`);
 });
 
+// Routes
+app.use('/v1', require('./routes/v1'));
+
 // catch 404 and forward to error handler
 app.use((req: Request, res: Response, next: NextFunction) => next(new NotFoundError()));
 

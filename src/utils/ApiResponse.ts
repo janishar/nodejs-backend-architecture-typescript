@@ -33,6 +33,7 @@ abstract class ApiResponse {
 		const clone: T = <T>{};
 		Object.assign(clone, response);
 		// delete {some_field};
+		delete clone.status;
 		for (const i in clone) if (typeof clone[i] === 'undefined') delete clone[i];
 		return clone;
 	}
