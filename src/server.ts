@@ -5,6 +5,9 @@ import http from 'http';
 import cors from 'cors';
 import { port } from './config';
 
+// initialize database
+import './database';
+
 const app = express();
 
 app.use(bodyParser.json({ limit: '10mb' }));
