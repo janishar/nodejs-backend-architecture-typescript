@@ -7,6 +7,7 @@ const app = express();
 app.use('/', require('../../auth/apiValidation'));
 /*-------------------------------------------------------------------------*/
 
+app.use('/signup', require('./access/signup'));
 app.use('/login', require('./access/login'));
 app.use('/token', require('./access/token'));
 app.use('/blogs', require('./blog/blogList'));

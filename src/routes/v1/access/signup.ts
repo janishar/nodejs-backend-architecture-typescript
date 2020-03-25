@@ -14,7 +14,7 @@ import _ from 'lodash';
 
 const router = express.Router();
 
-router.post('/mindorks', validator(schema.signup),
+router.post('/basic', validator(schema.signup),
 	asyncHandler(async (req: RoleRequest, res, next) => {
 		const user = await UserRepo.findByEmail(req.body.email);
 		if (!user) throw new BadRequestError('User already registered');
