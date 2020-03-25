@@ -3,7 +3,7 @@ import Logger from './utils/Logger';
 import bodyParser from 'body-parser';
 import http from 'http';
 import cors from 'cors';
-import { port, corsUrl } from './config';
+import { port, corsUrl, environment } from './config';
 import './database'; // initialize database
 import { NotFoundError, ApiError, InternalError } from './utils/ApiError';
 
@@ -23,6 +23,10 @@ app.use((req: Request, res: Response, next: NextFunction) => next(new NotFoundEr
 
 // Middleware Error Handler
 app.use((err: Errback, req: Request, res: Response, next: NextFunction) => {
-	if (err instanceof ApiError) ApiError.handle(err, res);
-	else ApiError.handle(new InternalError(), res);
+	if (err instanceof ApiError) {
+		ApiError.handle(err, res);
+	} else {
+		if (environment === 'development') return res.status(500).json(err);
+		ApiError.handle(new InternalError(), res);
+	}
 });

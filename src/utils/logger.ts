@@ -1,10 +1,11 @@
 import { createLogger, transports, format } from 'winston';
 import fs from 'fs';
+import path from 'path';
 import DailyRotateFile from 'winston-daily-rotate-file';
 import { environment, logDirectory } from '../config';
 
 let dir = logDirectory;
-if (!dir) dir = process.env.PWD + '/logs';
+if (!dir) dir = path.resolve('logs');
 
 // create directory if it is not present
 if (!fs.existsSync(dir)) {
