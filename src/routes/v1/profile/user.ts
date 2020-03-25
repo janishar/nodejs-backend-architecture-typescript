@@ -20,7 +20,7 @@ router.get('/public/id/:id', validator(schema.userId, ValidationSource.PARAM),
 
 /*-------------------------------------------------------------------------*/
 // Below all APIs are private APIs protected for Access Token
-router.use('/', require('../../../auth/Authentication'));
+router.use('/', require('../../../auth/authentication'));
 /*-------------------------------------------------------------------------*/
 
 router.get('/my',

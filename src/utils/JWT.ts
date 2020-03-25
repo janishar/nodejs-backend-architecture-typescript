@@ -24,7 +24,7 @@ export default class JWT {
 	}
 
 	public static async encode(payload: JwtPayload): Promise<string> {
-		const cert = await JWT.readPrivateKey();
+		const cert = await this.readPrivateKey();
 		if (!cert)
 			throw new InternalError('Token generation failure');
 		// @ts-ignore
@@ -35,7 +35,7 @@ export default class JWT {
 	 * This method checks the token and returns the decoded data when token is valid in all respect
 	 */
 	public static async validate(token: string, validations: ValidationParams): Promise<JwtPayload> {
-		const cert = await JWT.readPublicKey();
+		const cert = await this.readPublicKey();
 		try {
 			// @ts-ignore
 			return await promisify(verify)(token, cert, validations);
@@ -50,7 +50,7 @@ export default class JWT {
 	 * This method checks the token and returns the decoded data even when the token is expired
 	 */
 	public static async decode(token: string, validations: ValidationParams): Promise<JwtPayload> {
-		const cert = await JWT.readPublicKey();
+		const cert = await this.readPublicKey();
 		try {
 			// token is verified if it was encrypted by the private key
 			// and if is still not expired then get the payload

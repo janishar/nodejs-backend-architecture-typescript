@@ -8,7 +8,7 @@ const router = express.Router();
 
 /*-------------------------------------------------------------------------*/
 // Below all APIs are private APIs protected for Access Token
-router.use('/', require('../../../auth/Authentication'));
+router.use('/', require('../../../auth/authentication'));
 /*-------------------------------------------------------------------------*/
 
 router.delete('/',

@@ -11,7 +11,7 @@ export default {
 	}),
 	auth: Joi.object().keys({
 		'x-access-token': Joi.string().required().min(1),
-		'x-user-id': JoiObjectId,
+		'x-user-id': JoiObjectId(),
 	}).unknown(true),
 	signup: Joi.object().keys({
 		name: Joi.string().required().min(3),

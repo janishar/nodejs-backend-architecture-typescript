@@ -3,7 +3,7 @@ import { JoiObjectId } from '../../../helpers/validator';
 
 export default {
 	userId: Joi.object().keys({
-		id: JoiObjectId
+		id: JoiObjectId()
 	}),
 	profile: Joi.object().keys({
 		name: Joi.string().optional().min(1).max(200),

@@ -33,7 +33,7 @@ router.post('/basic', validator(schema.signup),
 
 		const tokens = await createTokens(createdUser, keystore.primaryKey, keystore.secondaryKey);
 		new SuccessResponse('Signup Successful', {
-			user: _.pick(createdUser, ['name', 'email', 'roles', 'profilePicUrl']),
+			user: _.pick(createdUser, ['_id', 'name', 'email', 'roles', 'profilePicUrl']),
 			tokens: tokens,
 		}).send(res);
 	}));

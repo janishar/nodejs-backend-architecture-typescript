@@ -29,7 +29,7 @@ router.post('/basic', validator(schema.userCredential),
 		const tokens = await createTokens(user, accessTokenKey, refreshTokenKey);
 
 		new SuccessResponse('Login Success', {
-			user: _.pick(user, ['name', 'email']),
+			user: _.pick(user, ['_id', 'name', 'roles', 'profilePicUrl']),
 			tokens: tokens
 		}).send(res);
 	}));

@@ -11,7 +11,7 @@ export enum ValidationSource {
 	PARAM = 'params'
 }
 
-export const JoiObjectId = () => Joi.string().custom((value: string, helpers) => {
+export const JoiObjectId = () => Joi.string().required().custom((value: string, helpers) => {
 	if (!Types.ObjectId.isValid(value))
 		return helpers.error('any.invalid');
 	return value;

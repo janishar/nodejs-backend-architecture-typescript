@@ -6,7 +6,7 @@ export default {
 		url: Joi.string().required().uri()
 	}),
 	blogId: Joi.object().keys({
-		id: JoiObjectId
+		id: JoiObjectId()
 	}),
 	blogTag: Joi.object().keys({
 		tag: Joi.string().required().min(1)
@@ -16,7 +16,7 @@ export default {
 		pageItemCount: Joi.number().required().integer().min(1),
 	}),
 	authorId: Joi.object().keys({
-		id: JoiObjectId
+		id: JoiObjectId()
 	}),
 	blogCreate: Joi.object().keys({
 		title: Joi.string().required().min(3).max(500),

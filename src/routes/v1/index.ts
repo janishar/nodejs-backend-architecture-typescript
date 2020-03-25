@@ -9,6 +9,7 @@ app.use('/', require('../../auth/apikey'));
 
 app.use('/signup', require('./access/signup'));
 app.use('/login', require('./access/login'));
+app.use('/logout', require('./access/logout'));
 app.use('/token', require('./access/token'));
 app.use('/blogs', require('./blog/blogList'));
 app.use('/blog', require('./blog/blogDetail'));

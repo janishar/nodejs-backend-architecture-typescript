@@ -15,9 +15,9 @@ const router = express.Router();
 /*-------------------------------------------------------------------------*/
 // Below all APIs are private APIs protected for Access Token and Editor's Role
 router.use('/',
-	require('../../../auth/Authentication'),
+	require('../../../auth/authentication'),
 	(req: RoleRequest, res, next) => { req.currentRoleCode = RoleCode.EDITOR; next(); },
-	require('../../../auth/Authorization'));
+	require('../../../auth/authorization'));
 /*-------------------------------------------------------------------------*/
 
 router.put('/publish/:id', validator(schema.blogId, ValidationSource.PARAM),
