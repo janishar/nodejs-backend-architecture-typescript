@@ -9,8 +9,8 @@ import asyncHandler from '../helpers/asyncHandler';
 
 const router = express.Router();
 
-router.use(validator(schema.apiKey, ValidationSource.HEADER), asyncHandler(
-	async (req: PublicRequest, res, next) => {
+router.use(validator(schema.apiKey, ValidationSource.HEADER),
+	asyncHandler(async (req: PublicRequest, res, next) => {
 
 		req.apiKey = req.headers['x-api-key'].toString();
 
@@ -20,6 +20,6 @@ router.use(validator(schema.apiKey, ValidationSource.HEADER), asyncHandler(
 		if (!apiKey) throw new ForbiddenError();
 		return next();
 	}
-));
+	));
 
 module.exports = router;

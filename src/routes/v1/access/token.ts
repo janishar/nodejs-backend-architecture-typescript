@@ -16,48 +16,48 @@ import { tokenInfo } from '../../../config';
 const router = express.Router();
 
 router.post('/refresh',
-	validator(schema.auth, ValidationSource.HEADER), validator(schema.refreshToken), asyncHandler(
-		async (req: ProtectedRequest, res, next) => {
-			req.accessToken = req.headers['x-access-token'].toString();
+	validator(schema.auth, ValidationSource.HEADER), validator(schema.refreshToken),
+	asyncHandler(async (req: ProtectedRequest, res, next) => {
+		req.accessToken = req.headers['x-access-token'].toString();
 
-			const user = await UserRepo.findById(new Types.ObjectId(req.headers['x-user-id'].toString()));
-			if (!user) throw new AuthFailureError('User not registered');
-			req.user = user;
+		const user = await UserRepo.findById(new Types.ObjectId(req.headers['x-user-id'].toString()));
+		if (!user) throw new AuthFailureError('User not registered');
+		req.user = user;
 
-			const accessTokenPayload = await validateTokenData(
-				await JWT.decode(req.accessToken,
-					new ValidationParams(
-						tokenInfo.issuer,
-						tokenInfo.audience,
-						req.user._id.toHexString())),
-				req.user._id
-			);
+		const accessTokenPayload = await validateTokenData(
+			await JWT.decode(req.accessToken,
+				new ValidationParams(
+					tokenInfo.issuer,
+					tokenInfo.audience,
+					req.user._id.toHexString())),
+			req.user._id
+		);
 
-			const refreshTokenPayload = await validateTokenData(
-				await JWT.validate(req.body.refreshToken,
-					new ValidationParams(
-						tokenInfo.issuer,
-						tokenInfo.audience,
-						req.user._id.toHexString())),
-				req.user._id
-			);
+		const refreshTokenPayload = await validateTokenData(
+			await JWT.validate(req.body.refreshToken,
+				new ValidationParams(
+					tokenInfo.issuer,
+					tokenInfo.audience,
+					req.user._id.toHexString())),
+			req.user._id
+		);
 
-			const keystore = await KeystoreRepo.find(
-				req.user._id,
-				accessTokenPayload.param(),
-				refreshTokenPayload.param()
-			);
+		const keystore = await KeystoreRepo.find(
+			req.user._id,
+			accessTokenPayload.param(),
+			refreshTokenPayload.param()
+		);
 
-			if (!keystore) throw new AuthFailureError('Invalid access token');
-			await KeystoreRepo.remove(keystore._id);
+		if (!keystore) throw new AuthFailureError('Invalid access token');
+		await KeystoreRepo.remove(keystore._id);
 
-			const accessTokenKey = crypto.randomBytes(64).toString('hex');
-			const refreshTokenKey = crypto.randomBytes(64).toString('hex');
+		const accessTokenKey = crypto.randomBytes(64).toString('hex');
+		const refreshTokenKey = crypto.randomBytes(64).toString('hex');
 
-			await KeystoreRepo.create(req.user._id, accessTokenKey, refreshTokenKey);
-			const tokens = await createTokens(req.user, accessTokenKey, refreshTokenKey);
+		await KeystoreRepo.create(req.user._id, accessTokenKey, refreshTokenKey);
+		const tokens = await createTokens(req.user, accessTokenKey, refreshTokenKey);
 
-			new TokenRefreshResponse('Token Issued', tokens.accessToken, tokens.refreshToken).send(res);
-		}));
+		new TokenRefreshResponse('Token Issued', tokens.accessToken, tokens.refreshToken).send(res);
+	}));
 
 module.exports = router;

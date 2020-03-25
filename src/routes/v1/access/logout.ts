@@ -11,8 +11,8 @@ const router = express.Router();
 router.use('/', require('../../../auth/Authentication'));
 /*-------------------------------------------------------------------------*/
 
-router.delete('/', asyncHandler(
-	async (req: ProtectedRequest, res, next) => {
+router.delete('/',
+	asyncHandler(async (req: ProtectedRequest, res, next) => {
 		const keystore = await KeystoreRepo.remove(req.keystore._id);
 		new SuccessMsgResponse('Logout success').send(res);
 	}));

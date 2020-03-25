@@ -6,8 +6,8 @@ import asyncHandler from '../helpers/asyncHandler';
 
 const router = express.Router();
 
-router.use(asyncHandler(
-	async (req: ProtectedRequest, res, next) => {
+router.use(
+	asyncHandler(async (req: ProtectedRequest, res, next) => {
 		if (!req.user || !req.user.roles || !req.currentRoleCode)
 			throw new AuthFailureError('Permission denied');
 
@@ -21,7 +21,6 @@ router.use(asyncHandler(
 			throw new AuthFailureError('Permission denied');
 
 		return next();
-	}
-));
+	}));
 
 module.exports = router;

@@ -13,8 +13,8 @@ import asyncHandler from '../helpers/asyncHandler';
 
 const router = express.Router();
 
-router.use(validator(schema.auth, ValidationSource.HEADER), asyncHandler(
-	async (req: ProtectedRequest, res, next) => {
+router.use(validator(schema.auth, ValidationSource.HEADER),
+	asyncHandler(async (req: ProtectedRequest, res, next) => {
 		req.accessToken = req.headers['x-access-token'].toString();
 
 		const user = await UserRepo.findById(new Types.ObjectId(req.headers['x-user-id'].toString()));
@@ -40,6 +40,6 @@ router.use(validator(schema.auth, ValidationSource.HEADER), asyncHandler(
 			throw e;
 		}
 	}
-));
+	));
 
 module.exports = router;
