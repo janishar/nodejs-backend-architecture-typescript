@@ -10,7 +10,7 @@ export default class UserRepository {
 	// contains critical information of the user
 	public static findById(id: Types.ObjectId): Promise<IUser> {
 		return User.findOne({ _id: id, status: true })
-			.select('+email +password')
+			.select('+email +password +roles')
 			.populate({
 				path: 'roles',
 				match: { status: true }
@@ -21,7 +21,7 @@ export default class UserRepository {
 
 	public static findByEmail(email: string): Promise<IUser> {
 		return User.findOne({ email: email, status: true })
-			.select('+email +password')
+			.select('+email +password +roles')
 			.populate({
 				path: 'roles',
 				match: { status: true },
@@ -33,6 +33,7 @@ export default class UserRepository {
 
 	public static findProfileById(id: Types.ObjectId): Promise<IUser> {
 		return User.findOne({ _id: id, status: true })
+			.select('+roles')
 			.populate({
 				path: 'roles',
 				match: { status: true },
@@ -40,6 +41,10 @@ export default class UserRepository {
 			})
 			.lean<IUser>()
 			.exec();
+	}
+
+	public static findPublicProfileById(id: Types.ObjectId): Promise<IUser> {
+		return User.findOne({ _id: id, status: true }).lean<IUser>().exec();
 	}
 
 	public static async create(user: IUser, accessTokenKey: string, refreshTokenKey: string, roleCode: string)
