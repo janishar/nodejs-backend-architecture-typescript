@@ -52,7 +52,7 @@ export default class UserRepository {
 		const now = new Date();
 
 		const role = await Role.findOne({ code: roleCode }).select('+email +password').lean<IRole>().exec();
-		if (!role) throw new InternalError();
+		if (!role) throw new InternalError('Role must be defined');
 
 		user.roles = [role._id];
 		user.createdAt = user.updatedAt = now;
