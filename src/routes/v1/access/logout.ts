@@ -1,4 +1,4 @@
-import express, { Response, NextFunction } from 'express';
+import express from 'express';
 import KeystoreRepo from '../../../database/Repository/KeystoreRepo';
 import { ProtectedRequest } from 'app-request';
 import { SuccessMsgResponse } from '../../../utils/ApiResponse';
@@ -12,7 +12,7 @@ router.use('/', require('../../../auth/Authentication'));
 /*-------------------------------------------------------------------------*/
 
 router.delete('/', asyncHandler(
-	async (req: ProtectedRequest, res: Response, next: NextFunction) => {
+	async (req: ProtectedRequest, res, next) => {
 		const keystore = await KeystoreRepo.remove(req.keystore._id);
 		new SuccessMsgResponse('Logout success').send(res);
 	}));

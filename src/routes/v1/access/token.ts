@@ -1,4 +1,4 @@
-import express, { Response, NextFunction } from 'express';
+import express from 'express';
 import { TokenRefreshResponse } from '../../../utils/ApiResponse';
 import { ProtectedRequest } from 'app-request';
 import { Types } from 'mongoose';
@@ -17,7 +17,7 @@ const router = express.Router();
 
 router.post('/refresh',
 	validator(schema.auth, ValidationSource.HEADER), validator(schema.refreshToken), asyncHandler(
-		async (req: ProtectedRequest, res: Response, next: NextFunction) => {
+		async (req: ProtectedRequest, res, next) => {
 			req.accessToken = req.headers['x-access-token'].toString();
 
 			const user = await UserRepo.findById(new Types.ObjectId(req.headers['x-user-id'].toString()));

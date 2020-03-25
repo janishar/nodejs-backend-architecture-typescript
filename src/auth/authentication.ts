@@ -1,4 +1,4 @@
-import express, { NextFunction, Response } from 'express';
+import express from 'express';
 import { ProtectedRequest, Tokens } from 'app-request';
 import UserRepo from '../database/repository/UserRepo';
 import { AuthFailureError, AccessTokenError, TokenExpiredError } from '../utils/ApiError';
@@ -14,7 +14,7 @@ import asyncHandler from '../helpers/asyncHandler';
 const router = express.Router();
 
 router.use(validator(schema.auth, ValidationSource.HEADER), asyncHandler(
-	async (req: ProtectedRequest, res: Response, next: NextFunction) => {
+	async (req: ProtectedRequest, res, next) => {
 		req.accessToken = req.headers['x-access-token'].toString();
 
 		const user = await UserRepo.findById(new Types.ObjectId(req.headers['x-user-id'].toString()));

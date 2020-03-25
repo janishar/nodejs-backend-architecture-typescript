@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from 'express';
+import express from 'express';
 import { SuccessResponse } from '../../../utils/ApiResponse';
 import crypto from 'crypto';
 import UserRepo from '../../../database/repository/UserRepo';
@@ -14,7 +14,7 @@ import _ from 'lodash';
 const router = express.Router();
 
 router.post('/basic', validator(schema.userCredential), asyncHandler(
-	async (req: Request, res: Response, next: NextFunction) => {
+	async (req, res, next) => {
 
 		const user = await UserRepo.findByEmail(req.body.email);
 		if (!user) throw new BadRequestError('User not registered');

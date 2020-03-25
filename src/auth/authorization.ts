@@ -1,14 +1,13 @@
-import { NextFunction, Response } from 'express';
+import express from 'express';
 import { ProtectedRequest } from 'app-request';
 import { AuthFailureError } from '../utils/ApiError';
 import RoleRepository from '../database/repository/RoleRepo';
-import express from 'express';
 import asyncHandler from '../helpers/asyncHandler';
 
 const router = express.Router();
 
 router.use(asyncHandler(
-	async (req: ProtectedRequest, res: Response, next: NextFunction) => {
+	async (req: ProtectedRequest, res, next) => {
 		if (!req.user || !req.user.roles || !req.currentRoleCode)
 			throw new AuthFailureError('Permission denied');
 
