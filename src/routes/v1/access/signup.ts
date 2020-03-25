@@ -1,67 +1,44 @@
-import express, { Request, Response, NextFunction } from 'express';
-import { RoleRequest } from 'app-request';
+import express, { Response, NextFunction } from 'express';
 import { SuccessResponse } from '../../../utils/ApiResponse';
+import { RoleRequest } from 'app-request';
 import crypto from 'crypto';
 import UserRepo from '../../../database/repository/UserRepo';
 import { BadRequestError } from '../../../utils/ApiError';
-import KeystoreRepo from '../../../database/repository/KeystoreRepo';
-import { IUser } from '../../database/common/models/User';
-import { Tokens } from 'app-request';
-import { createTokens } from './auth/AuthUtils';
-import Log from '../../utils/Log';
-import { IKeystore } from '../../database/common/models/Keystore';
-
-const config = require('../../../config');
+import { IUser } from '../../../database/model/User';
+import { createTokens } from '../../../auth/authUtils';
+import Logger from '../../../utils/Logger';
+import validator from '../../../helpers/validator';
+import schema from './schema';
+import asyncHandler from '../../../helpers/asyncHandler';
+import bcrypt from 'bcrypt';
+import _ from 'lodash';
 
 const router = express.Router();
 
-router.post('/mindorks',
-	(req: RoleRequest, res: Response, next: NextFunction) => {
-		new ValidationBuilder()
-			.emptyFieldValidation(req.body.name, 'Name')
-			.emailFieldValidation(req.body.email, 'Email')
-			.emptyFieldValidation(req.body.password, 'Password')
-			.build()
-			.validate()
-			.then(() => {
-				if (req.body.password.toString().length < 6)
-					return new BadRequestResponse('Password should atleast contain 6 characters').send(res)
-				next()
-			})
-			.catch(err => new BadRequestResponse(err).send(res));
-	},
-	(req: RoleRequest, res: Response, next: NextFunction) => {
-		let registeredUser: IUser;
-		UserRepo.findUserByEmail(req.body.email)
-			.then(user => {
-				if (user !== undefined && user !== null) throw new BadRequestError('User already registered');
+router.post('/mindorks', validator(schema.signup), asyncHandler(
+	async (req: RoleRequest, res: Response, next: NextFunction) => {
 
-				const accessTokenKey = crypto.randomBytes(64).toString('hex');
-				const refreshTokenKey = crypto.randomBytes(64).toString('hex');
-				const encryptedPwd = Utils.getEncryptedPassword(req.body.password, config.SALT);
+		const user = await UserRepo.findByEmail(req.body.email);
+		if (!user) throw new BadRequestError('User already registered');
 
-				return UserRepo.create(<IUser>{
-					name: req.body.name,
-					email: req.body.email,
-					password: encryptedPwd,
-				}, accessTokenKey, refreshTokenKey, req.CURRENT_ROLE_CODE)
-			})
-			.then(({ user, keystore }: { user: IUser, keystore: IKeystore }) => {
-				Log.d("ALI HERE 2", user, keystore)
-				registeredUser = user;
-				return createTokens(registeredUser, keystore.primaryKey, keystore.secondaryKey);
-			})
-			.then((tokens: Tokens) => new LoginResponse(
-				"Signup Successful",
-				registeredUser,
-				tokens.accessToken,
-				tokens.refreshToken,
-				registeredUser.roles
-			).send(res))
-			.catch(err => {
-				Log.d(err)
-				next(err)
-			})
-	})
+		const accessTokenKey = crypto.randomBytes(64).toString('hex');
+		const refreshTokenKey = crypto.randomBytes(64).toString('hex');
+		const passwordHash = await bcrypt.hash(req.body.password, 10);
+
+		const { user: createdUser, keystore } = await UserRepo.create(<IUser>{
+			name: req.body.name,
+			email: req.body.email,
+			password: passwordHash,
+		}, accessTokenKey, refreshTokenKey, req.currentRoleCode);
+
+		Logger.debug(user);
+		Logger.debug(keystore);
+
+		const tokens = await createTokens(createdUser, keystore.primaryKey, keystore.secondaryKey);
+		new SuccessResponse('Signup Successful', {
+			user: _.pick(user, ['name', 'email', 'roles']),
+			tokens: tokens,
+		});
+	}));
 
 module.exports = router;
