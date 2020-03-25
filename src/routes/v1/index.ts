@@ -4,7 +4,7 @@ const app = express();
 
 /*-------------------------------------------------------------------------*/
 // Below all APIs are public APIs protected by api-key
-app.use('/', require('../../auth/apiValidation'));
+app.use('/', require('../../auth/apikey'));
 /*-------------------------------------------------------------------------*/
 
 app.use('/signup', require('./access/signup'));

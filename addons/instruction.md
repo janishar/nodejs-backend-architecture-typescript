@@ -1,0 +1,1 @@
+# The resouces provided in this directory can be used to setup the project

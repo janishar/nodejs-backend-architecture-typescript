@@ -18,12 +18,12 @@ export const JoiObjectId = () => Joi.string().custom((value: string, helpers) =>
 }, 'Object Id Validation');
 
 
-export default (schema: Joi.Schema, source: ValidationSource = ValidationSource.BODY) =>
+export default (schema: Joi.ObjectSchema, source: ValidationSource = ValidationSource.BODY) =>
 	(req: Request, res: Response, next: NextFunction) => {
 		try {
 			const { error } = schema.validate(req[source]);
 
-			if (error === null) return next();
+			if (!error) return next();
 
 			const { details } = error;
 			const message = details.map(i => i.message.replace(/['"]+/g, '')).join(',');

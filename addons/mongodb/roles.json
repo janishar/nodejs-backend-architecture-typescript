@@ -1,0 +1,4 @@
+{"_id":{"$oid":"5e7b8acad7aded2407e078d7"},"code":"LEARNER","status":true,"createdAt":{"$date":{"$numberLong":"1585161000000"}},"updatedAt":{"$date":{"$numberLong":"1585161000000"}}}
+{"_id":{"$oid":"5e7b8c22d347fc2407c564a6"},"code":"WRITER","status":true,"createdAt":{"$date":{"$numberLong":"1585161000000"}},"updatedAt":{"$date":{"$numberLong":"1585161000000"}}}
+{"_id":{"$oid":"5e7b8c2ad347fc2407c564a7"},"code":"EDITOR","status":true,"createdAt":{"$date":{"$numberLong":"1585161000000"}},"updatedAt":{"$date":{"$numberLong":"1585161000000"}}}
+{"_id":{"$oid":"5e7b8c32d347fc2407c564a8"},"code":"ADMIN","status":true,"createdAt":{"$date":{"$numberLong":"1585161000000"}},"updatedAt":{"$date":{"$numberLong":"1585161000000"}}}

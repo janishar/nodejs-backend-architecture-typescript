@@ -1,0 +1,1 @@
+{"_id":{"$oid":"5e7b8e40d347fc2407c564a9"},"metadata":"To be used by the xyz vendor","key":"GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj","version":{"$numberInt":"1"},"status":true,"createdAt":{"$date":{"$numberLong":"1585141250000"}},"updatedAt":{"$date":{"$numberLong":"1585141250000"}}}

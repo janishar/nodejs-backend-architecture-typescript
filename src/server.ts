@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction, Errback } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import Logger from './utils/Logger';
 import bodyParser from 'body-parser';
 import http from 'http';
@@ -19,14 +19,17 @@ http.createServer(app).listen(port, () => { Logger.info(`server running on port 
 app.use('/v1', require('./routes/v1'));
 
 // catch 404 and forward to error handler
-app.use((req: Request, res: Response, next: NextFunction) => next(new NotFoundError()));
+app.use((req, res, next) => next(new NotFoundError()));
 
 // Middleware Error Handler
-app.use((err: Errback, req: Request, res: Response, next: NextFunction) => {
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 	if (err instanceof ApiError) {
 		ApiError.handle(err, res);
 	} else {
-		if (environment === 'development') return res.status(500).json(err);
+		if (environment === 'development') {
+			Logger.error(err);
+			return res.status(500).send(err.message);
+		}
 		ApiError.handle(new InternalError(), res);
 	}
 });

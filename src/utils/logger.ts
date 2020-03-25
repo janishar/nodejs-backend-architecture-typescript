@@ -13,7 +13,7 @@ if (!fs.existsSync(dir)) {
 	fs.mkdirSync(dir);
 }
 
-const logLevel = environment === 'development' ? 'debug' : 'info';
+const logLevel = environment === 'development' ? 'debug' : 'warn';
 
 const options = {
 	file: {
@@ -26,8 +26,9 @@ const options = {
 		humanReadableUnhandledException: true,
 		prettyPrint: true,
 		json: true,
-		maxsize: 5242880, // 5MB
+		maxSize: '20m',
 		colorize: true,
+		maxFiles: '14d'
 	}
 };
 
@@ -35,8 +36,12 @@ export default createLogger({
 	transports: [
 		new transports.Console({
 			level: logLevel,
-			format: format.combine(format.colorize(), format.simple())
-		})
+			format: format.combine(
+				format.colorize(),
+				format.metadata(),
+				format.errors({ stack: true }),
+				format.prettyPrint())
+		}),
 	],
 	exceptionHandlers: [
 		new DailyRotateFile(options.file),
