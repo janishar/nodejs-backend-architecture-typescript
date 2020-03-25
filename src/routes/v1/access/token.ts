@@ -7,7 +7,7 @@ import { AuthFailureError, } from '../../../utils/ApiError';
 import JWT, { ValidationParams } from '../../../utils/JWT';
 import KeystoreRepo from '../../../database/repository/KeystoreRepo';
 import crypto from 'crypto';
-import { validateTokenData, createTokens } from '../../../auth/AuthUtils';
+import { validateTokenData, createTokens } from '../../../auth/_authUtils';
 import validator, { ValidationSource } from '../../../helpers/validator';
 import schema from './schema';
 import asyncHandler from '../../../helpers/asyncHandler';

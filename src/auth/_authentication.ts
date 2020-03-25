@@ -5,7 +5,7 @@ import { AuthFailureError, AccessTokenError, TokenExpiredError } from '../utils/
 import JWT, { ValidationParams } from '../utils/JWT';
 import KeystoreRepo from '../database/repository/KeystoreRepo';
 import { Types } from 'mongoose';
-import { validateTokenData } from './AuthUtils';
+import { validateTokenData } from './_authUtils';
 import { tokenInfo } from '../config';
 import validator, { ValidationSource } from '../helpers/validator';
 import schema from './schema';

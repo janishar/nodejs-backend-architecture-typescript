@@ -4,7 +4,7 @@ import crypto from 'crypto';
 import UserRepo from '../../../database/repository/UserRepo';
 import { BadRequestError, AuthFailureError, InternalError } from '../../../utils/ApiError';
 import KeystoreRepo from '../../../database/repository/KeystoreRepo';
-import { createTokens } from '../../../auth/AuthUtils';
+import { createTokens } from '../../../auth/_authUtils';
 import validator from '../../../helpers/validator';
 import schema from './schema';
 import asyncHandler from '../../../helpers/asyncHandler';
