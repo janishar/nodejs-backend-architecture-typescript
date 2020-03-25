@@ -3,10 +3,13 @@ import fs from 'fs';
 import DailyRotateFile from 'winston-daily-rotate-file';
 import { environment, logDirectory } from '../config';
 
+let dir = logDirectory;
+if (!dir) dir = process.env.PWD + '/logs';
+
 // create directory if it is not present
-if (!fs.existsSync(logDirectory)) {
+if (!fs.existsSync(dir)) {
 	// Create the directory if it does not exist
-	fs.mkdirSync(logDirectory);
+	fs.mkdirSync(dir);
 }
 
 const logLevel = environment === 'development' ? 'debug' : 'info';
@@ -14,7 +17,7 @@ const logLevel = environment === 'development' ? 'debug' : 'info';
 const options = {
 	file: {
 		level: logLevel,
-		filename: logDirectory + '/%DATE%-logsDemo.log',
+		filename: dir + '/%DATE%.log',
 		datePattern: 'YYYY-MM-DD',
 		zippedArchive: true,
 		timestamp: true,

@@ -27,7 +27,7 @@ export interface IBlog extends Document {
 	updatedAt?: Date;
 }
 
-const blogSchema = new Schema(
+const schema = new Schema(
 	{
 		title: {
 			type: Schema.Types.String,
@@ -143,7 +143,6 @@ const blogSchema = new Schema(
 		{ weights: { title: 3, description: 1 }, background: false }
 	);
 
-const Blog = model<IBlog>(DOCUMENT_NAME, blogSchema, COLLECTION_NAME);
-Blog.createIndexes(err => Logger.error(err));
+const Blog = model<IBlog>(DOCUMENT_NAME, schema, COLLECTION_NAME);
 
 export default Blog;

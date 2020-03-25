@@ -14,7 +14,7 @@ export interface IKeystore extends Document {
 	updatedAt?: Date;
 }
 
-const keystoreSchema = new Schema(
+const schema = new Schema(
 	{
 		client: {
 			type: Schema.Types.ObjectId,
@@ -47,7 +47,6 @@ const keystoreSchema = new Schema(
 		versionKey: false
 	});
 
-const Keystore = model<IKeystore>(DOCUMENT_NAME, keystoreSchema, COLLECTION_NAME);
-Keystore.createIndexes(err => Logger.error(err));
+const Keystore = model<IKeystore>(DOCUMENT_NAME, schema, COLLECTION_NAME);
 
 export default Keystore;

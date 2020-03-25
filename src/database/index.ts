@@ -9,10 +9,9 @@ const dbURI = `mongodb://${db.user}:${encodeURIComponent(db.password)}@${db.host
 const options = {
 	useNewUrlParser: true,
 	useCreateIndex: true,
+	useUnifiedTopology: true,
 	useFindAndModify: false,
-	autoIndex: false, // Don't build indexes
-	reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
-	reconnectInterval: 500, // Reconnect every 500ms
+	autoIndex: true,
 	poolSize: 10, // Maintain up to 10 socket connections
 	// If not connected, return errors immediately rather than waiting for reconnect
 	bufferMaxEntries: 0,
@@ -33,7 +32,7 @@ mongoose.connection.on('connected', () => {
 
 // If the connection throws an error
 mongoose.connection.on('error', err => {
-	Logger.info('Mongoose default connection error: ' + err);
+	Logger.error('Mongoose default connection error: ' + err);
 });
 
 // When the connection is disconnected

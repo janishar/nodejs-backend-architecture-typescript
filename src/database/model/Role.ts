@@ -18,7 +18,7 @@ export interface IRole extends Document {
 	updatedAt?: Date;
 }
 
-const roleSchema = new Schema(
+const schema = new Schema(
 	{
 		code: {
 			type: Schema.Types.String,
@@ -49,7 +49,6 @@ const roleSchema = new Schema(
 		versionKey: false
 	});
 
-const Role = model<IRole>(DOCUMENT_NAME, roleSchema, COLLECTION_NAME);
-Role.createIndexes(err => Logger.error(err));
+const Role = model<IRole>(DOCUMENT_NAME, schema, COLLECTION_NAME);
 
 export default Role;

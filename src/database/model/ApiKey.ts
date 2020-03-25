@@ -51,6 +51,5 @@ const schema = new Schema(
 	});
 
 const ApiKey = model<IApiKey>(DOCUMENT_NAME, schema, COLLECTION_NAME);
-ApiKey.createIndexes(err => Logger.error(err));
 
 export default ApiKey;

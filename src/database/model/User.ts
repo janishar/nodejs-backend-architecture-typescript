@@ -17,7 +17,7 @@ export interface IUser extends Document {
 	updatedAt?: Date;
 }
 
-const userSchema = new Schema(
+const schema = new Schema(
 	{
 		name: {
 			type: Schema.Types.String,
@@ -71,7 +71,6 @@ const userSchema = new Schema(
 		versionKey: false
 	});
 
-const User = model<IUser>(DOCUMENT_NAME, userSchema, COLLECTION_NAME);
-User.createIndexes(err => Logger.error(err));
+const User = model<IUser>(DOCUMENT_NAME, schema, COLLECTION_NAME);
 
 export default User;

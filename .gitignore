@@ -6,6 +6,7 @@
 .vs
 
 # ignore logs
+/logs
 *.log
 
 # ignore 3rd party lib
