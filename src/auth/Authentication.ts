@@ -8,12 +8,12 @@ import { Types } from 'mongoose';
 import { validateTokenData } from './AuthUtils';
 import { tokenInfo } from '../config';
 import validator, { ValidationSource } from '../helpers/validator';
-import { authSchema } from './schema';
+import schema from './schema';
 import asyncHandler from '../helpers/asyncHandler';
 
 const router = express.Router();
 
-router.use(validator(authSchema, ValidationSource.HEADER), asyncHandler(
+router.use(validator(schema.auth, ValidationSource.HEADER), asyncHandler(
 	async (req: ProtectedRequest, res: Response, next: NextFunction) => {
 		req.accessToken = req.headers['x-access-token'].toString();
 

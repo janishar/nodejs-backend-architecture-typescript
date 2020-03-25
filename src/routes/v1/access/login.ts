@@ -6,14 +6,14 @@ import { BadRequestError, AuthFailureError, InternalError } from '../../../utils
 import KeystoreRepo from '../../../database/repository/KeystoreRepo';
 import { createTokens } from '../../../auth/AuthUtils';
 import validator from '../../../helpers/validator';
-import { userCredentialSchema } from './schema';
+import schema from './schema';
 import asyncHandler from '../../../helpers/asyncHandler';
 import bcrypt from 'bcrypt';
 import _ from 'lodash';
 
 const router = express.Router();
 
-router.post('/basic', validator(userCredentialSchema), asyncHandler(
+router.post('/basic', validator(schema.userCredential), asyncHandler(
 	async (req: Request, res: Response, next: NextFunction) => {
 
 		const user = await UserRepo.findByEmail(req.body.email);
