@@ -1,5 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
-import Logger from './utils/Logger2';
+import Logger from './utils/Logger';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { corsUrl, environment } from './config';

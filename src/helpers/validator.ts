@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi';
 import { Request, Response, NextFunction } from 'express';
-import Logger from '../utils/Logger2';
+import Logger from '../utils/Logger';
 import { BadRequestError } from '../utils/ApiError';
 import { Types } from 'mongoose';
 

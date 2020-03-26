@@ -1,6 +1,5 @@
 import { model, Schema, Document, Types } from 'mongoose';
 import { IRole } from './Role';
-import Logger from '../../utils/Logger2';
 
 export const DOCUMENT_NAME = 'User';
 export const COLLECTION_NAME = 'users';

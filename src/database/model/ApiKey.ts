@@ -1,5 +1,4 @@
 import { Schema, model, Document, Types } from 'mongoose';
-import Logger from '../../utils/Logger2';
 
 export const DOCUMENT_NAME = 'ApiKey';
 export const COLLECTION_NAME = 'api_keys';
