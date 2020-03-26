@@ -9,11 +9,11 @@ export default {
 		id: JoiObjectId().required()
 	}),
 	blogTag: Joi.object().keys({
-		tag: Joi.string().required().min(1)
+		tag: Joi.string().required()
 	}),
 	pagination: Joi.object().keys({
-		pageNumber: Joi.number().required().integer().min(1),
-		pageItemCount: Joi.number().required().integer().min(1),
+		pageNumber: Joi.number().required().integer(),
+		pageItemCount: Joi.number().required().integer(),
 	}),
 	authorId: Joi.object().keys({
 		id: JoiObjectId().required()
@@ -25,7 +25,7 @@ export default {
 		blogUrl: JoiUrlEndpoint().required().max(200),
 		imgUrl: Joi.string().optional().uri().max(200),
 		score: Joi.number().optional().min(0).max(1),
-		tags: Joi.array().optional().items(Joi.string().uppercase().min(1)),
+		tags: Joi.array().optional().items(Joi.string().uppercase()),
 	}),
 	blogUpdate: Joi.object().keys({
 		title: Joi.string().optional().min(3).max(500),
@@ -34,6 +34,6 @@ export default {
 		blogUrl: JoiUrlEndpoint().required().max(200),
 		imgUrl: Joi.string().optional().uri().max(200),
 		score: Joi.number().optional().min(0).max(1),
-		tags: Joi.array().optional().items(Joi.string().uppercase().min(1))
+		tags: Joi.array().optional().items(Joi.string().uppercase())
 	})
 };
