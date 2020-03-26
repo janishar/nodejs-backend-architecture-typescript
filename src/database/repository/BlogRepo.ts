@@ -60,6 +60,10 @@ export default class BlogRepository {
 			.exec();
 	}
 
+	public static findUrlIfExists(blogUrl: string): Promise<IBlog> {
+		return Blog.findOne({ blogUrl: blogUrl }).lean<IBlog>().exec();
+	}
+
 	public static findByTagAndPaginated(tag: string, pageNumber: number, limit: number): Promise<IBlog[]> {
 		return Blog.find({ tag: tag, status: true, isPublished: true })
 			.skip(limit * (pageNumber - 1))
