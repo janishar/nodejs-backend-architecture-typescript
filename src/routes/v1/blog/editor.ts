@@ -81,7 +81,7 @@ router.get('/id/:id', validator(schema.blogId, ValidationSource.PARAM),
 	asyncHandler(async (req: ProtectedRequest, res, next) => {
 		const blog = await BlogRepo.findBlogAllDataById(new Types.ObjectId(req.params.id));
 
-		if (blog == null) throw new BadRequestError('Blog does not exists');
+		if (!blog) throw new BadRequestError('Blog does not exists');
 		if (!blog.isSubmitted && !blog.isPublished) throw new ForbiddenError('This blog is private');
 
 		new SuccessResponse('success', blog).send(res);
