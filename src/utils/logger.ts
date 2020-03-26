@@ -38,9 +38,8 @@ export default createLogger({
 			level: logLevel,
 			format: format.combine(
 				format.colorize(),
-				format.metadata(),
 				format.errors({ stack: true }),
-				format.prettyPrint())
+				format.simple())
 		}),
 	],
 	exceptionHandlers: [
