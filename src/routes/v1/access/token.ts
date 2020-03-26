@@ -44,8 +44,8 @@ router.post('/refresh',
 
 		const keystore = await KeystoreRepo.find(
 			req.user._id,
-			accessTokenPayload.param(),
-			refreshTokenPayload.param()
+			accessTokenPayload.prm,
+			refreshTokenPayload.prm
 		);
 
 		if (!keystore) throw new AuthFailureError('Invalid access token');

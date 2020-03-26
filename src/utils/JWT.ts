@@ -100,11 +100,4 @@ export class JwtPayload {
 		this.exp = this.iat + (validity * 24 * 60 * 60);
 		this.prm = param;
 	}
-
-	public issuer(): string { return this.iss; }
-	public subject(): string { return this.sub; }
-	public audience(): string { return this.aud; }
-	public issuedAt(): number { return this.iat; }
-	public expiresIn(): number { return this.exp; }
-	public param(): string { return this.prm; }
 }
