@@ -15,7 +15,7 @@ router.get('/public/id/:id', validator(schema.userId, ValidationSource.PARAM),
 	asyncHandler(async (req: ProtectedRequest, res, next) => {
 		const user = await UserRepo.findPublicProfileById(new Types.ObjectId(req.params.id));
 		if (user == null) throw new BadRequestError('User not registered');
-		return new SuccessResponse('success', _.pick(user, ['name', 'profilePicUrl']));
+		return new SuccessResponse('success', _.pick(user, ['name', 'profilePicUrl'])).send(res);
 	}));
 
 /*-------------------------------------------------------------------------*/
@@ -27,7 +27,7 @@ router.get('/my',
 	asyncHandler(async (req: ProtectedRequest, res, next) => {
 		const user = await UserRepo.findProfileById(req.user._id);
 		if (user == null) throw new BadRequestError('User not registered');
-		return new SuccessResponse('success', _.pick(user, ['name', 'profilePicUrl', 'roles']));
+		return new SuccessResponse('success', _.pick(user, ['name', 'profilePicUrl', 'roles'])).send(res);
 	}));
 
 router.put('/', validator(schema.profile),
@@ -39,7 +39,7 @@ router.put('/', validator(schema.profile),
 		if (req.body.profilePicUrl) user.profilePicUrl = req.body.profilePicUrl;
 
 		await UserRepo.updateInfo(user);
-		return new SuccessResponse('Profile updated', _.pick(user, ['name', 'profilePicUrl', 'roles']));
+		return new SuccessResponse('Profile updated', _.pick(user, ['name', 'profilePicUrl', 'roles'])).send(res);
 	}));
 
 module.exports = router;
