@@ -1,9 +1,9 @@
 import express from 'express';
-import { SuccessResponse } from '../../../utils/ApiResponse';
+import { SuccessResponse } from '../../../core/ApiResponse';
 import { RoleRequest } from 'app-request';
 import crypto from 'crypto';
 import UserRepo from '../../../database/repository/UserRepo';
-import { BadRequestError } from '../../../utils/ApiError';
+import { BadRequestError } from '../../../core/ApiError';
 import { IUser } from '../../../database/model/User';
 import { createTokens } from '../../../auth/authUtils';
 import validator from '../../../helpers/validator';

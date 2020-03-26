@@ -1,7 +1,7 @@
 import Joi from '@hapi/joi';
 import { Request, Response, NextFunction } from 'express';
-import Logger from '../utils/Logger';
-import { BadRequestError } from '../utils/ApiError';
+import Logger from '../core/Logger';
+import { BadRequestError } from '../core/ApiError';
 import { Types } from 'mongoose';
 
 export enum ValidationSource {

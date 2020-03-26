@@ -1,6 +1,6 @@
 import { Schema, model, Document } from 'mongoose';
 import { IUser } from './User';
-import Logger from '../../utils/Logger';
+import Logger from '../../core/Logger';
 
 export const DOCUMENT_NAME = 'Blog';
 export const COLLECTION_NAME = 'blogs';

@@ -1,10 +1,10 @@
 import express, { Request, Response, NextFunction } from 'express';
-import Logger from './utils/Logger';
+import Logger from './core/Logger';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { corsUrl, environment } from './config';
 import './database'; // initialize database
-import { NotFoundError, ApiError, InternalError } from './utils/ApiError';
+import { NotFoundError, ApiError, InternalError } from './core/ApiError';
 
 const app = express();
 

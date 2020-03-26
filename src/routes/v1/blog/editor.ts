@@ -1,7 +1,7 @@
 import express from 'express';
-import { BadRequestResponse, SuccessResponse, SuccessMsgResponse } from '../../../utils/ApiResponse';
+import { BadRequestResponse, SuccessResponse, SuccessMsgResponse } from '../../../core/ApiResponse';
 import { ProtectedRequest, RoleRequest } from 'app-request';
-import { BadRequestError, ForbiddenError } from '../../../utils/ApiError';
+import { BadRequestError, ForbiddenError } from '../../../core/ApiError';
 import BlogRepo from '../../../database/repository/BlogRepo';
 import { RoleCode } from '../../../database/model/Role';
 import { Types } from 'mongoose';

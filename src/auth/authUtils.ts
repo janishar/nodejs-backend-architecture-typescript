@@ -1,6 +1,6 @@
 import { Tokens } from 'app-request';
-import { AuthFailureError, InternalError } from '../utils/ApiError';
-import JWT, { JwtPayload } from '../utils/JWT';
+import { AuthFailureError, InternalError } from '../core/ApiError';
+import JWT, { JwtPayload } from '../core/JWT';
 import { Types } from 'mongoose';
 import { IUser } from '../database/model/User';
 import { tokenInfo } from '../config';

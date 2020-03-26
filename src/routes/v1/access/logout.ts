@@ -1,7 +1,7 @@
 import express from 'express';
 import KeystoreRepo from '../../../database/Repository/KeystoreRepo';
 import { ProtectedRequest } from 'app-request';
-import { SuccessMsgResponse } from '../../../utils/ApiResponse';
+import { SuccessMsgResponse } from '../../../core/ApiResponse';
 import asyncHandler from '../../../helpers/asyncHandler';
 
 const router = express.Router();

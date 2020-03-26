@@ -1,7 +1,7 @@
 import express from 'express';
-import { SuccessResponse, SuccessMsgResponse } from '../../../utils/ApiResponse'
+import { SuccessResponse, SuccessMsgResponse } from '../../../core/ApiResponse'
 import { ProtectedRequest, RoleRequest } from 'app-request';
-import { BadRequestError, ForbiddenError } from '../../../utils/ApiError';
+import { BadRequestError, ForbiddenError } from '../../../core/ApiError';
 import BlogRepo from '../../../database/repository/BlogRepo';
 import { IBlog } from '../../../database/model/Blog';
 import { RoleCode } from '../../../database/model/Role';

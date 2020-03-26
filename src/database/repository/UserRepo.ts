@@ -1,6 +1,6 @@
 import User, { IUser } from '../model/User';
 import Role, { IRole } from '../model/Role';
-import { InternalError } from '../../utils/ApiError';
+import { InternalError } from '../../core/ApiError';
 import { Types } from 'mongoose';
 import KeystoreRepo from './KeystoreRepo';
 import { IKeystore } from '../model/Keystore';

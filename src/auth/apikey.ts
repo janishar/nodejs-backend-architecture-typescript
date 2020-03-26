@@ -1,7 +1,7 @@
 import express from 'express';
 import ApiKeyRepo from '../database/repository/ApiKeyRepo';
-import { ForbiddenError } from '../utils/ApiError';
-import Logger from '../utils/Logger';
+import { ForbiddenError } from '../core/ApiError';
+import Logger from '../core/Logger';
 import { PublicRequest } from 'app-request';
 import schema from './schema';
 import validator, { ValidationSource } from '../helpers/validator';
