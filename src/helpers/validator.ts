@@ -17,7 +17,7 @@ export const JoiObjectId = () => Joi.string().custom((value: string, helpers) =>
 }, 'Object Id Validation');
 
 export const JoiUrlEndpoint = () => Joi.string().custom((value: string, helpers) => {
-	if (!value.startsWith('/')) return helpers.error('any.invalid');
+	if (value.includes('://')) return helpers.error('any.invalid');
 	return value;
 }, 'Url Endpoint Validation');
 

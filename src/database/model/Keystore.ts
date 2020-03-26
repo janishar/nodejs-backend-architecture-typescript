@@ -37,10 +37,14 @@ const schema = new Schema(
 			default: true
 		},
 		createdAt: {
-			type: Date
+			type: Date,
+			required: true,
+			select: false
 		},
 		updatedAt: {
-			type: Date
+			type: Date,
+			required: true,
+			select: false
 		}
 	},
 	{

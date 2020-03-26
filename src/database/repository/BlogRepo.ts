@@ -65,7 +65,7 @@ export default class BlogRepository {
 	}
 
 	public static findByTagAndPaginated(tag: string, pageNumber: number, limit: number): Promise<IBlog[]> {
-		return Blog.find({ tag: tag, status: true, isPublished: true })
+		return Blog.find({ tags: tag, status: true, isPublished: true })
 			.skip(limit * (pageNumber - 1))
 			.limit(limit)
 			.populate('author', this.AUTHOR_DETAIL)
