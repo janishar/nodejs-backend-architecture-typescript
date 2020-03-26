@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Logger from '../utils/Logger';
+import Logger from '../utils/Logger2';
 import { db } from '../config';
 
 // Build the connection string
