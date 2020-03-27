@@ -1,14 +1,11 @@
 import app from '../../src/app';
 import supertest, { SuperTest } from 'supertest';
-import ApiKeyRepo from '../../src/database/repository/ApiKeyRepo';
-import UserRepo from '../../src/database/repository/UserRepo';
 import { IUser } from '../../src/database/model/User';
 import { Types } from 'mongoose';
 import { mockFindApiKey, API_KEY } from './apikey.test';
 import JWT, { ValidationParams, JwtPayload } from '../../src/core/JWT';
 import { BadTokenError } from '../../src/core/ApiError';
 import { IKeystore } from '../../src/database/model/Keystore';
-import KeystoreRepo from '../../src/database/repository/KeystoreRepo';
 
 export const ACCESS_TOKEN = 'xyz';
 
@@ -28,24 +25,37 @@ const mockJwtValidate = jest.fn(
 const mockKeystoreFindForKey = jest.fn(
 	async (client: IUser, key: string): Promise<IKeystore> => (<IKeystore>{ client: client, primaryKey: key }));
 
+const mockValidateTokenData =
+	jest.fn(async (payload: JwtPayload, userId: Types.ObjectId): Promise<JwtPayload> => payload);
+
 jest.mock('../../src/auth/authUtils', () => ({
-	get validateTokenData() {
-		return jest.fn(async (payload: JwtPayload, userId: Types.ObjectId): Promise<JwtPayload> => payload);
-	}
+	get validateTokenData() { return mockValidateTokenData; }
 }));
+
+jest.mock('../../src/database/repository/UserRepo', () => ({
+	get findById() { return mockUserFindById; }
+}));
+
+jest.mock('../../src/database/repository/ApiKeyRepo', () => ({
+	get findByKey() { return mockFindApiKey; }
+}));
+
+jest.mock('../../src/database/repository/KeystoreRepo', () => ({
+	get findforKey() { return mockKeystoreFindForKey; }
+}));
+
+JWT.validate = mockJwtValidate;
 
 describe('authentication validation', () => {
 
 	const endpoint = '/v1/profile/my/test';
 	const request = supertest(app);
 
-	UserRepo.findById = mockUserFindById;
-	ApiKeyRepo.findByKey = mockFindApiKey;
-	JWT.validate = mockJwtValidate;
-	KeystoreRepo.findforKey = mockKeystoreFindForKey;
 
 	beforeEach(() => {
+		mockValidateTokenData.mockClear();
 		mockUserFindById.mockClear();
+		mockFindApiKey.mockClear();
 		mockJwtValidate.mockClear();
 		mockKeystoreFindForKey.mockClear();
 	});
@@ -91,6 +101,7 @@ describe('authentication validation', () => {
 		expect(response.status).toBe(401);
 		expect(response.body.message).toMatch(/token/i);
 		expect(mockUserFindById).toBeCalledTimes(1);
+		expect(mockJwtValidate).toBeCalledTimes(1);
 	});
 
 	it('Should response with 404 if correct x-access-token and x-user-id header are provided', async () => {
@@ -101,6 +112,8 @@ describe('authentication validation', () => {
 		expect(response.body.message).not.toMatch(/token/i);
 		expect(response.status).toBe(404);
 		expect(mockUserFindById).toBeCalledTimes(1);
+		expect(mockValidateTokenData).toBeCalledTimes(1);
+		expect(mockJwtValidate).toBeCalledTimes(1);
 	});
 });
 

@@ -1,6 +1,5 @@
 import app from '../../src/app';
 import supertest from 'supertest';
-import ApiKeyRepo from '../../src/database/repository/ApiKeyRepo';
 import { IApiKey } from '../../src/database/model/ApiKey';
 
 export const API_KEY = 'abc';
@@ -10,12 +9,14 @@ export const mockFindApiKey = jest.fn(async (key: string) => {
 	else return null;
 });
 
+jest.mock('../../src/database/repository/ApiKeyRepo', () => ({
+	get findByKey() { return mockFindApiKey; }
+}));
+
 describe('apikey validation', () => {
 
 	const endpoint = '/v1/dummy/test';
 	const request = supertest(app);
-
-	ApiKeyRepo.findByKey = mockFindApiKey;
 
 	beforeEach(() => {
 		mockFindApiKey.mockClear();

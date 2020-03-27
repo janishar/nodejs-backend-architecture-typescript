@@ -44,7 +44,7 @@ export default class JWT {
 			if (e && e.name === 'TokenExpiredError') throw new TokenExpiredError();
 			throw new BadTokenError();
 		}
-	};
+	}
 
 	/**
 	 * This method checks the token and returns the decoded data even when the token is expired
