@@ -10,21 +10,21 @@ import writer from './blog/writer';
 import editor from './blog/editor';
 import user from './profile/user';
 
-const app = express();
+const router = express.Router();
 
 /*-------------------------------------------------------------------------*/
 // Below all APIs are public APIs protected by api-key
-app.use('/', apikey);
+router.use('/', apikey);
 /*-------------------------------------------------------------------------*/
 
-app.use('/signup', signup);
-app.use('/login', login);
-app.use('/logout', logout);
-app.use('/token', token);
-app.use('/blogs', blogList);
-app.use('/blog', blogDetail);
-app.use('/writer/blog', writer);
-app.use('/editor/blog', editor);
-app.use('/profile', user);
+router.use('/signup', signup);
+router.use('/login', login);
+router.use('/logout', logout);
+router.use('/token', token);
+router.use('/blogs', blogList);
+router.use('/blog', blogDetail);
+router.use('/writer/blog', writer);
+router.use('/editor/blog', editor);
+router.use('/profile', user);
 
-export default app;
+export default router;

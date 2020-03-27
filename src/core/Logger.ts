@@ -39,7 +39,7 @@ export default createLogger({
 			format: format.combine(
 				format.colorize(),
 				format.errors({ stack: true }),
-				format.simple())
+				format.json())
 		}),
 	],
 	exceptionHandlers: [
