@@ -59,4 +59,4 @@ router.get('/similar/id/:id', validator(schema.blogId, ValidationSource.PARAM),
 		return new SuccessResponse('success', blogs).send(res);
 	}));
 
-module.exports = router;
+export default router;

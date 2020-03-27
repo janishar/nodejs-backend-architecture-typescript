@@ -60,4 +60,4 @@ router.post('/refresh',
 		new TokenRefreshResponse('Token Issued', tokens.accessToken, tokens.refreshToken).send(res);
 	}));
 
-module.exports = router;
+export default router;

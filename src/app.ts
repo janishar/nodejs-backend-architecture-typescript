@@ -5,6 +5,7 @@ import cors from 'cors';
 import { corsUrl, environment } from './config';
 import './database'; // initialize database
 import { NotFoundError, ApiError, InternalError } from './core/ApiError';
+import routesV1 from './routes/v1';
 
 const app = express();
 
@@ -13,7 +14,7 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: true, parameterLimit: 5
 app.use(cors({ origin: corsUrl, optionsSuccessStatus: 200 }));
 
 // Routes
-app.use('/v1', require('./routes/v1'));
+app.use('/v1', routesV1);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => next(new NotFoundError()));

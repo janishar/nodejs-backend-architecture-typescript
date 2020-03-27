@@ -8,6 +8,7 @@ import validator, { ValidationSource } from '../../../helpers/validator';
 import schema from './schema';
 import asyncHandler from '../../../helpers/asyncHandler';
 import _ from 'lodash';
+import authentication from '../../../auth/authentication';
 
 const router = express.Router();
 
@@ -20,7 +21,7 @@ router.get('/public/id/:id', validator(schema.userId, ValidationSource.PARAM),
 
 /*-------------------------------------------------------------------------*/
 // Below all APIs are private APIs protected for Access Token
-router.use('/', require('../../../auth/authentication'));
+router.use('/', authentication);
 /*-------------------------------------------------------------------------*/
 
 router.get('/my',
@@ -42,4 +43,4 @@ router.put('/', validator(schema.profile),
 		return new SuccessResponse('Profile updated', _.pick(user, ['name', 'profilePicUrl', 'roles'])).send(res);
 	}));
 
-module.exports = router;
+export default router;

@@ -38,4 +38,4 @@ router.post('/basic', validator(schema.signup),
 		}).send(res);
 	}));
 
-module.exports = router;
+export default router;

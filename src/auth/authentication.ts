@@ -13,7 +13,7 @@ import asyncHandler from '../helpers/asyncHandler';
 
 const router = express.Router();
 
-router.use(validator(schema.auth, ValidationSource.HEADER),
+export default router.use(validator(schema.auth, ValidationSource.HEADER),
 	asyncHandler(async (req: ProtectedRequest, res, next) => {
 		req.accessToken = req.headers['x-access-token'].toString();
 
@@ -39,7 +39,4 @@ router.use(validator(schema.auth, ValidationSource.HEADER),
 			if (e instanceof TokenExpiredError) throw new AccessTokenError(e.message);
 			throw e;
 		}
-	}
-	));
-
-module.exports = router;
+	}));

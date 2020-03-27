@@ -10,15 +10,15 @@ import validator, { ValidationSource } from '../../../helpers/validator';
 import schema from './schema';
 import asyncHandler from '../../../helpers/asyncHandler';
 import _ from 'lodash';
+import authentication from '../../../auth/authentication';
+import authorization from '../../../auth/authorization';
+import role from '../../../helpers/role';
 
 const router = express.Router();
 
 /*-------------------------------------------------------------------------*/
 // Below all APIs are private APIs protected for writer's role
-router.use('/',
-	require('../../../auth/authentication'),
-	(req: RoleRequest, res, next) => { req.currentRoleCode = RoleCode.WRITER; next(); },
-	require('../../../auth/authorization'));
+router.use('/', authentication, role(RoleCode.WRITER), authorization);
 /*-------------------------------------------------------------------------*/
 
 const formatEndpoint = (endpoint: string) => endpoint.replace(/\s/g, '').replace(/\//g, '-');
@@ -142,4 +142,4 @@ router.get('/id/:id', validator(schema.blogId, ValidationSource.PARAM),
 		new SuccessResponse('success', blog).send(res);
 	}));
 
-module.exports = router;
+export default router;

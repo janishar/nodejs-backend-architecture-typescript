@@ -1,6 +1,6 @@
 import express from 'express';
-import { BadRequestResponse, SuccessResponse, SuccessMsgResponse } from '../../../core/ApiResponse';
-import { ProtectedRequest, RoleRequest } from 'app-request';
+import { SuccessResponse, SuccessMsgResponse } from '../../../core/ApiResponse';
+import { ProtectedRequest } from 'app-request';
 import { BadRequestError, ForbiddenError } from '../../../core/ApiError';
 import BlogRepo from '../../../database/repository/BlogRepo';
 import { RoleCode } from '../../../database/model/Role';
@@ -9,15 +9,15 @@ import validator, { ValidationSource } from '../../../helpers/validator';
 import schema from './schema';
 import asyncHandler from '../../../helpers/asyncHandler';
 import _ from 'lodash';
+import authentication from '../../../auth/authentication';
+import authorization from '../../../auth/authorization';
+import role from '../../../helpers/role';
 
 const router = express.Router();
 
 /*-------------------------------------------------------------------------*/
 // Below all APIs are private APIs protected for Access Token and Editor's Role
-router.use('/',
-	require('../../../auth/authentication'),
-	(req: RoleRequest, res, next) => { req.currentRoleCode = RoleCode.EDITOR; next(); },
-	require('../../../auth/authorization'));
+router.use('/', authentication, role(RoleCode.EDITOR), authorization);
 /*-------------------------------------------------------------------------*/
 
 router.put('/publish/:id', validator(schema.blogId, ValidationSource.PARAM),
@@ -87,4 +87,4 @@ router.get('/id/:id', validator(schema.blogId, ValidationSource.PARAM),
 		new SuccessResponse('success', blog).send(res);
 	}));
 
-module.exports = router;
+export default router;

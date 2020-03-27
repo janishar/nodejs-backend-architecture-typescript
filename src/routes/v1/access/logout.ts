@@ -3,12 +3,13 @@ import KeystoreRepo from '../../../database/Repository/KeystoreRepo';
 import { ProtectedRequest } from 'app-request';
 import { SuccessMsgResponse } from '../../../core/ApiResponse';
 import asyncHandler from '../../../helpers/asyncHandler';
+import authentication from '../../../auth/authentication';
 
 const router = express.Router();
 
 /*-------------------------------------------------------------------------*/
 // Below all APIs are private APIs protected for Access Token
-router.use('/', require('../../../auth/authentication'));
+router.use('/', authentication);
 /*-------------------------------------------------------------------------*/
 
 router.delete('/',
@@ -17,4 +18,4 @@ router.delete('/',
 		new SuccessMsgResponse('Logout success').send(res);
 	}));
 
-module.exports = router;
+export default router;
