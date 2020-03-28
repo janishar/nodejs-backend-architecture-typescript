@@ -37,9 +37,9 @@ export default createLogger({
 		new transports.Console({
 			level: logLevel,
 			format: format.combine(
-				format.colorize(),
 				format.errors({ stack: true }),
-				format.json())
+				format.prettyPrint()
+			)
 		}),
 	],
 	exceptionHandlers: [

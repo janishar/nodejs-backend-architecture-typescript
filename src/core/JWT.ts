@@ -38,7 +38,7 @@ export default class JWT {
 		const cert = await this.readPublicKey();
 		try {
 			// @ts-ignore
-			return await promisify(verify)(token, cert, validations);
+			return <JwtPayload>await promisify(verify)(token, cert, validations);
 		} catch (e) {
 			Logger.debug(e);
 			if (e && e.name === 'TokenExpiredError') throw new TokenExpiredError();
@@ -58,11 +58,11 @@ export default class JWT {
 			return <JwtPayload>await promisify(verify)(token, cert, validations);
 		} catch (e) {
 			Logger.debug(e);
-			if (e.name === 'TokenExpiredError') {
+			if (e && e.name === 'TokenExpiredError') {
 				// if the token has expired but was encryped by the private key
 				// then decode it to get the payload
 				// @ts-ignore
-				return <JwtPayload>await promisify(decode)(token);
+				return <JwtPayload>decode(token);
 			}
 			else {
 				// throws error if the token has not been encrypted by the private key
