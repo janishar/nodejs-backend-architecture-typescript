@@ -1,17 +1,6 @@
-import app from '../../src/app';
+import { API_KEY, mockFindApiKey } from './mock'; // mock should be imported on the top
+import app from '../../../src/app';
 import supertest from 'supertest';
-import { IApiKey } from '../../src/database/model/ApiKey';
-
-export const API_KEY = 'abc';
-
-export const mockFindApiKey = jest.fn(async (key: string) => {
-	if (key == API_KEY) return <IApiKey>{ key: API_KEY };
-	else return null;
-});
-
-jest.mock('../../src/database/repository/ApiKeyRepo', () => ({
-	get findByKey() { return mockFindApiKey; }
-}));
 
 describe('apikey validation', () => {
 
