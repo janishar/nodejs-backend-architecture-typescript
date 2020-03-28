@@ -1,11 +1,16 @@
-import { ACCESS_TOKEN_KEY } from './mock';
-import { validateTokenData } from '../../../src/auth/authUtils';
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from './mock';
+import { validateTokenData, createTokens } from '../../../src/auth/authUtils';
 import { JwtPayload } from '../../../src/core/JWT';
 import { tokenInfo } from '../../../src/config';
 import { Types } from 'mongoose';
 import { AuthFailureError } from '../../../src/core/ApiError';
+import { IUser } from '../../../src/database/model/User';
 
 describe('authUtils validateTokenData tests', () => {
+
+	beforeAll(() => {
+		jest.resetAllMocks();
+	});
 
 	it('Should throw error when user is different', async () => {
 
@@ -60,5 +65,23 @@ describe('authUtils validateTokenData tests', () => {
 		const validatedPayload = await validateTokenData(payload, userId);
 
 		expect(validatedPayload).toMatchObject(payload);
+	});
+});
+
+
+describe('authUtils createTokens function', () => {
+
+	beforeAll(() => {
+		jest.resetAllMocks();
+	});
+
+	it('Should process and return accessToken and refreshToken', async () => {
+
+		const userId = new Types.ObjectId('553f8a4286f5c759f36f8e5b'); // Random Key
+
+		const tokens = await createTokens(<IUser>{ _id: userId }, ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY);
+
+		expect(tokens).toHaveProperty('accessToken');
+		expect(tokens).toHaveProperty('refreshToken');
 	});
 });
