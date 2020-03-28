@@ -26,4 +26,5 @@ build/**/*
 /coverage
 
 # Environment varibles
-.env
+*.env
+*.env.*
