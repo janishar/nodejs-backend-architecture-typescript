@@ -2,7 +2,7 @@ import Blog, { IBlog } from '../model/Blog';
 import { Types } from 'mongoose';
 import { IUser } from '../model/User';
 
-export default class BlogRepository {
+export default class BlogRepo {
 
 	private static AUTHOR_DETAIL = 'name profilePicUrl';
 	private static BLOG_INFO_ADDITIONAL = '+isSubmitted +isDraft +isPublished +createdBy +updatedBy';

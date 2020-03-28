@@ -5,7 +5,7 @@ import { Types } from 'mongoose';
 import KeystoreRepo from './KeystoreRepo';
 import { IKeystore } from '../model/Keystore';
 
-export default class UserRepository {
+export default class UserRepo {
 
 	// contains critical information of the user
 	public static findById(id: Types.ObjectId): Promise<IUser> {

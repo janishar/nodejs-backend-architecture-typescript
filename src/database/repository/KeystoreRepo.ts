@@ -2,7 +2,7 @@ import Keystore, { IKeystore } from '../model/Keystore';
 import { Types } from 'mongoose';
 import { IUser } from '../model/User';
 
-export default class KeystoreRepository {
+export default class KeystoreRepo {
 
 	public static findforKey(client: IUser, key: string): Promise<IKeystore> {
 		return Keystore.findOne({ client: client, primaryKey: key, status: true }).exec();
