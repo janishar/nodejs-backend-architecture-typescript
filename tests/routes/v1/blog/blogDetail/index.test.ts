@@ -36,7 +36,7 @@ describe('BlogDetail by URL route', () => {
 		expect(mockBlogFindByUrl).not.toBeCalled();
 	});
 
-	it('Should send error when blog do not exists', async () => {
+	it('Should send error when blog do not exists for url', async () => {
 		const response = await addHeaders(request.get(endpoint)
 			.query({ endpoint: 'xyz' })
 		);
@@ -46,7 +46,7 @@ describe('BlogDetail by URL route', () => {
 		expect(mockBlogFindByUrl).toBeCalledWith('xyz');
 	});
 
-	it('Should send data when blog exists', async () => {
+	it('Should send data when blog exists for url', async () => {
 		const response = await addHeaders(request.get(endpoint)
 			.query({ endpoint: BLOG_URL })
 		);
@@ -75,7 +75,7 @@ describe('BlogDetail by id route', () => {
 		expect(mockFindInfoWithTextById).not.toBeCalled();
 	});
 
-	it('Should send error when blog do not exists', async () => {
+	it('Should send error when blog do not exists for id', async () => {
 		const response = await addHeaders(
 			request.get(endpoint + new Types.ObjectId().toHexString())
 		);
@@ -84,7 +84,7 @@ describe('BlogDetail by id route', () => {
 		expect(mockFindInfoWithTextById).toBeCalledTimes(1);
 	});
 
-	it('Should send data when blog exists', async () => {
+	it('Should send data when blog exists for id', async () => {
 		const response = await addHeaders(
 			request.get(endpoint + BLOG_ID.toHexString())
 		);
