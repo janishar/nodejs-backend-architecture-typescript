@@ -20,7 +20,7 @@ export const mockUserFindByIdForWriter = jest.fn(async (id: Types.ObjectId) => {
 	else return null;
 });
 
-export const mockRoleRepoyFindByCode = jest.fn(
+export const mockRoleRepoFindByCode = jest.fn(
 	async (code: string): Promise<IRole> => {
 		switch (code) {
 			case RoleCode.WRITER: return <IRole>{
@@ -47,5 +47,5 @@ jest.mock('../../../src/database/repository/UserRepo', () => ({
 }));
 
 jest.mock('../../../src/database/repository/RoleRepo', () => ({
-	get findByCode() { return mockRoleRepoyFindByCode; }
+	get findByCode() { return mockRoleRepoFindByCode; }
 }));
