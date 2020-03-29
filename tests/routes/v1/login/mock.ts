@@ -11,6 +11,8 @@ export const USER_PASSWORD_HASH = bcrypt.hashSync(USER_PASSWORD, 10);
 
 export const createTokensSpy = jest.spyOn(authUtils, 'createTokens');
 
+export const bcryptCompareSpy = jest.spyOn(bcrypt, 'compare');
+
 export const mockKeystoreCreate =
 	jest.fn(
 		async (client: IUser, primaryKey: string, secondaryKey: string): Promise<IKeystore> => {
@@ -44,4 +46,4 @@ jest.mock('../../../../src/database/repository/UserRepo', () => ({
 	get findByEmail() { return mockUserFindByEmail; }
 }));
 
-jest.unmock('../../../../src/auth/authUtils');
+jest.unmock('../../../../src/auth/authUtils'); // remove any override made anywhere

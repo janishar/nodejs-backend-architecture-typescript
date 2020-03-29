@@ -3,13 +3,13 @@ import { addHeaders } from '../../../auth/authentication/mock';
 // the mock for this class should be below all other mock imports
 import {
 	mockKeystoreCreate, mockUserFindByEmail, createTokensSpy,
-	USER_EMAIL, USER_PASSWORD
+	bcryptCompareSpy, USER_EMAIL, USER_PASSWORD, USER_PASSWORD_HASH
 } from './mock';
 
 import supertest from 'supertest';
 import app from '../../../../src/app';
 
-describe('Login Route', () => {
+describe('Login basic route', () => {
 
 	const endpoint = '/v1/login/basic';
 	const request = supertest(app);
@@ -17,6 +17,7 @@ describe('Login Route', () => {
 	beforeEach(() => {
 		mockKeystoreCreate.mockClear();
 		mockUserFindByEmail.mockClear();
+		bcryptCompareSpy.mockClear();
 		createTokensSpy.mockClear();
 	});
 
@@ -24,6 +25,7 @@ describe('Login Route', () => {
 		const response = await addHeaders(request.post(endpoint));
 		expect(response.status).toBe(400);
 		expect(mockUserFindByEmail).not.toBeCalled();
+		expect(bcryptCompareSpy).not.toBeCalled();
 		expect(mockKeystoreCreate).not.toBeCalled();
 		expect(createTokensSpy).not.toBeCalled();
 	});
@@ -35,6 +37,7 @@ describe('Login Route', () => {
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/password/);
 		expect(mockUserFindByEmail).not.toBeCalled();
+		expect(bcryptCompareSpy).not.toBeCalled();
 		expect(mockKeystoreCreate).not.toBeCalled();
 		expect(createTokensSpy).not.toBeCalled();
 	});
@@ -46,6 +49,7 @@ describe('Login Route', () => {
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/email/);
 		expect(mockUserFindByEmail).not.toBeCalled();
+		expect(bcryptCompareSpy).not.toBeCalled();
 		expect(mockKeystoreCreate).not.toBeCalled();
 		expect(createTokensSpy).not.toBeCalled();
 	});
@@ -57,6 +61,7 @@ describe('Login Route', () => {
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/valid email/);
 		expect(mockUserFindByEmail).not.toBeCalled();
+		expect(bcryptCompareSpy).not.toBeCalled();
 		expect(mockKeystoreCreate).not.toBeCalled();
 		expect(createTokensSpy).not.toBeCalled();
 	});
@@ -71,6 +76,7 @@ describe('Login Route', () => {
 		expect(response.body.message).toMatch(/password length/);
 		expect(response.body.message).toMatch(/6 char/);
 		expect(mockUserFindByEmail).not.toBeCalled();
+		expect(bcryptCompareSpy).not.toBeCalled();
 		expect(mockKeystoreCreate).not.toBeCalled();
 		expect(createTokensSpy).not.toBeCalled();
 	});
@@ -84,6 +90,7 @@ describe('Login Route', () => {
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/not registered/);
 		expect(mockUserFindByEmail).toBeCalledTimes(1);
+		expect(bcryptCompareSpy).not.toBeCalled();
 		expect(mockKeystoreCreate).not.toBeCalled();
 		expect(createTokensSpy).not.toBeCalled();
 	});
@@ -97,6 +104,7 @@ describe('Login Route', () => {
 		expect(response.status).toBe(401);
 		expect(response.body.message).toMatch(/authentication failure/i);
 		expect(mockUserFindByEmail).toBeCalledTimes(1);
+		expect(bcryptCompareSpy).toBeCalledTimes(1);
 		expect(mockKeystoreCreate).not.toBeCalled();
 		expect(createTokensSpy).not.toBeCalled();
 	});
@@ -122,6 +130,9 @@ describe('Login Route', () => {
 
 		expect(mockUserFindByEmail).toBeCalledTimes(1);
 		expect(mockKeystoreCreate).toBeCalledTimes(1);
+		expect(bcryptCompareSpy).toBeCalledTimes(1);
 		expect(createTokensSpy).toBeCalledTimes(1);
+
+		expect(bcryptCompareSpy).toBeCalledWith(USER_PASSWORD, USER_PASSWORD_HASH);
 	});
 });
