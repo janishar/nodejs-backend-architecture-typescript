@@ -14,7 +14,7 @@ describe('apikey validation', () => {
 	it('Should response with 400 if api-key header is not passed', async () => {
 		const response = await request.get(endpoint);
 		expect(response.status).toBe(400);
-		expect(mockFindApiKey).toBeCalledTimes(0);
+		expect(mockFindApiKey).not.toBeCalled();
 	});
 
 	it('Should response with 403 if wrong api-key header is passed', async () => {

@@ -23,7 +23,7 @@ describe('authentication validation', () => {
 			.set('x-user-id', USER_ID.toHexString());
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/x-access-token/);
-		expect(mockUserFindById).toBeCalledTimes(0);
+		expect(mockUserFindById).not.toBeCalled();
 	});
 
 	it('Should response with 400 if x-user-id header is not passed', async () => {
@@ -31,7 +31,7 @@ describe('authentication validation', () => {
 			.set('x-access-token', ACCESS_TOKEN);
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/x-user-id/);
-		expect(mockUserFindById).toBeCalledTimes(0);
+		expect(mockUserFindById).not.toBeCalled();
 	});
 
 	it('Should response with 400 if x-user-id header is not mongoose id', async () => {
@@ -40,7 +40,7 @@ describe('authentication validation', () => {
 			.set('x-user-id', '123');
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/x-user-id/);
-		expect(mockUserFindById).toBeCalledTimes(0);
+		expect(mockUserFindById).not.toBeCalled();
 	});
 
 	it('Should response with 401 if wrong x-user-id header is provided', async () => {
