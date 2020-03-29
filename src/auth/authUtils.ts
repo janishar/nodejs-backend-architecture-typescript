@@ -6,11 +6,11 @@ import { IUser } from '../database/model/User';
 import { tokenInfo } from '../config';
 
 export const validateTokenData = async (payload: JwtPayload, userId: Types.ObjectId): Promise<JwtPayload> => {
-	// if (!payload || !payload.iss || !payload.sub || !payload.aud || !payload.prm
-	// 	|| payload.iss !== tokenInfo.issuer
-	// 	|| payload.aud !== tokenInfo.audience
-	// 	|| payload.sub !== userId.toHexString())
-	// 	throw new AuthFailureError('Invalid Access Token');
+	if (!payload || !payload.iss || !payload.sub || !payload.aud || !payload.prm
+		|| payload.iss !== tokenInfo.issuer
+		|| payload.aud !== tokenInfo.audience
+		|| payload.sub !== userId.toHexString())
+		throw new AuthFailureError('Invalid Access Token');
 	return payload;
 };
 

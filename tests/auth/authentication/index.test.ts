@@ -63,9 +63,7 @@ describe('authentication validation', () => {
 	});
 
 	it('Should response with 404 if correct x-access-token and x-user-id header are provided', async () => {
-		const response = await addHeaders(request.get(endpoint))
-			.set('x-access-token', ACCESS_TOKEN)
-			.set('x-user-id', USER_ID.toHexString());
+		const response = await addAuthHeaders(request.get(endpoint));
 		expect(response.body.message).not.toMatch(/not registered/);
 		expect(response.body.message).not.toMatch(/token/i);
 		expect(response.status).toBe(404);

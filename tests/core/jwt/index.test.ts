@@ -1,4 +1,4 @@
-import { readFileSpy, ACCESS_TOKEN } from './mock';
+import { readFileSpy } from './mock';
 import JWT, { JwtPayload, ValidationParams } from '../../../src/core/JWT';
 import { BadTokenError, TokenExpiredError } from '../../../src/core/ApiError';
 
