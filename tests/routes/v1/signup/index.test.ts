@@ -24,7 +24,7 @@ describe('Signup basic route', () => {
 		createTokensSpy.mockClear();
 	});
 
-	it('Should throw error when empty body is sent', async () => {
+	it('Should send error when empty body is sent', async () => {
 		const response = await addHeaders(request.post(endpoint));
 		expect(response.status).toBe(400);
 		expect(mockUserFindByEmail).not.toBeCalled();
@@ -33,7 +33,7 @@ describe('Signup basic route', () => {
 		expect(createTokensSpy).not.toBeCalled();
 	});
 
-	it('Should throw error when email is not sent', async () => {
+	it('Should send error when email is not sent', async () => {
 		const response = await addHeaders(request.post(endpoint)
 			.send({
 				name: USER_NAME,
@@ -50,7 +50,7 @@ describe('Signup basic route', () => {
 		expect(createTokensSpy).not.toBeCalled();
 	});
 
-	it('Should throw error when password is not sent', async () => {
+	it('Should send error when password is not sent', async () => {
 		const response = await addHeaders(request.post(endpoint)
 			.send({
 				email: email,
@@ -67,7 +67,7 @@ describe('Signup basic route', () => {
 		expect(createTokensSpy).not.toBeCalled();
 	});
 
-	it('Should throw error when name is not sent', async () => {
+	it('Should send error when name is not sent', async () => {
 		const response = await addHeaders(request.post(endpoint)
 			.send({
 				email: email,
@@ -84,7 +84,7 @@ describe('Signup basic route', () => {
 		expect(createTokensSpy).not.toBeCalled();
 	});
 
-	it('Should throw error when email is not valid format', async () => {
+	it('Should send error when email is not valid format', async () => {
 		const response = await addHeaders(request.post(endpoint)
 			.send({
 				email: 'abc',
@@ -101,7 +101,7 @@ describe('Signup basic route', () => {
 		expect(createTokensSpy).not.toBeCalled();
 	});
 
-	it('Should throw error when password is not valid format', async () => {
+	it('Should send error when password is not valid format', async () => {
 		const response = await addHeaders(request.post(endpoint)
 			.send({
 				email: email,
@@ -119,7 +119,7 @@ describe('Signup basic route', () => {
 		expect(createTokensSpy).not.toBeCalled();
 	});
 
-	it('Should throw error when user is registered for email', async () => {
+	it('Should send error when user is registered for email', async () => {
 		const response = await addHeaders(request.post(endpoint)
 			.send({
 				email: USER_EMAIL,

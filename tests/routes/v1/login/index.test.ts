@@ -21,7 +21,7 @@ describe('Login basic route', () => {
 		createTokensSpy.mockClear();
 	});
 
-	it('Should throw error when empty body is sent', async () => {
+	it('Should send error when empty body is sent', async () => {
 		const response = await addHeaders(request.post(endpoint));
 		expect(response.status).toBe(400);
 		expect(mockUserFindByEmail).not.toBeCalled();
@@ -30,7 +30,7 @@ describe('Login basic route', () => {
 		expect(createTokensSpy).not.toBeCalled();
 	});
 
-	it('Should throw error when email is only sent', async () => {
+	it('Should send error when email is only sent', async () => {
 		const response = await addHeaders(request.post(endpoint)
 			.send({ email: USER_EMAIL })
 		);
@@ -42,7 +42,7 @@ describe('Login basic route', () => {
 		expect(createTokensSpy).not.toBeCalled();
 	});
 
-	it('Should throw error when password is only sent', async () => {
+	it('Should send error when password is only sent', async () => {
 		const response = await addHeaders(request.post(endpoint)
 			.send({ password: USER_PASSWORD })
 		);
@@ -54,7 +54,7 @@ describe('Login basic route', () => {
 		expect(createTokensSpy).not.toBeCalled();
 	});
 
-	it('Should throw error when email is not valid format', async () => {
+	it('Should send error when email is not valid format', async () => {
 		const response = await addHeaders(request.post(endpoint)
 			.send({ email: '123' })
 		);
@@ -66,7 +66,7 @@ describe('Login basic route', () => {
 		expect(createTokensSpy).not.toBeCalled();
 	});
 
-	it('Should throw error when password is not valid format', async () => {
+	it('Should send error when password is not valid format', async () => {
 		const response = await addHeaders(request.post(endpoint)
 			.send({
 				email: '123@abc.com',
@@ -81,7 +81,7 @@ describe('Login basic route', () => {
 		expect(createTokensSpy).not.toBeCalled();
 	});
 
-	it('Should throw error when user not registered for email', async () => {
+	it('Should send error when user not registered for email', async () => {
 		const response = await addHeaders(request.post(endpoint)
 			.send({
 				email: '123@abc.com',
@@ -95,7 +95,7 @@ describe('Login basic route', () => {
 		expect(createTokensSpy).not.toBeCalled();
 	});
 
-	it('Should throw error for wrong password', async () => {
+	it('Should send error for wrong password', async () => {
 		const response = await addHeaders(request.post(endpoint)
 			.send({
 				email: USER_EMAIL,
