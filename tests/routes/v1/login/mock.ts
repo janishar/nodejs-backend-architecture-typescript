@@ -3,10 +3,13 @@ import { IKeystore } from '../../../../src/database/model/Keystore';
 import { IUser } from '../../../../src/database/model/User';
 import { Types } from 'mongoose';
 import bcrypt from 'bcrypt';
+import * as authUtils from '../../../../src/auth/authUtils';
 
 export const USER_EMAIL = 'random@test.com';
 export const USER_PASSWORD = 'abc123';
 export const USER_PASSWORD_HASH = bcrypt.hashSync(USER_PASSWORD, 10);
+
+export const createTokensSpy = jest.spyOn(authUtils, 'createTokens');
 
 export const mockKeystoreCreate =
 	jest.fn(
