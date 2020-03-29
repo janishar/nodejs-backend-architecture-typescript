@@ -4,13 +4,16 @@ import { addAuthHeaders } from '../../../../auth/authentication/mock';
 import { USER_ID_WRITER } from '../../../../auth/authorization/mock';
 
 import {
-	mockBlogCreate, mockBlogFindUrlIfExists, BLOG_ID, BLOG_URL
+	BLOG_ID, BLOG_URL, BLOG_ID_2,
+	mockBlogCreate, mockBlogFindUrlIfExists,
+	mockFindBlogAllDataById, mockBlogUpdate,
 } from './mock';
 
 import supertest from 'supertest';
 import app from '../../../../../src/app';
+import { Types } from 'mongoose';
 
-describe('Writer blog routes', () => {
+describe('Writer blog create routes', () => {
 
 	beforeEach(() => {
 		mockBlogCreate.mockClear();
@@ -195,6 +198,194 @@ describe('Writer blog routes', () => {
 		expect(response.body.message).toMatch(/created success/i);
 		expect(mockBlogFindUrlIfExists).toBeCalledTimes(1);
 		expect(mockBlogCreate).toBeCalledTimes(1);
+		expect(response.body.data).toMatchObject({ _id: BLOG_ID.toHexString() });
+	});
+});
+
+describe('Writer blog submit routes', () => {
+
+	beforeEach(() => {
+		mockFindBlogAllDataById.mockClear();
+		mockBlogUpdate.mockClear();
+	});
+
+	const request = supertest(app);
+	const endpoint = '/v1/writer/blog/submit/';
+
+	it('Should send error if submit blog id is not valid', async () => {
+		const response = await addAuthHeaders(
+			request.put(endpoint + 'abc'),
+			USER_ID_WRITER
+		);
+		expect(response.status).toBe(400);
+		expect(response.body.message).toMatch(/id/i);
+		expect(response.body.message).toMatch(/invalid/i);
+		expect(mockFindBlogAllDataById).not.toBeCalled();
+		expect(mockBlogUpdate).not.toBeCalled();
+	});
+
+	it('Should send error if submit blog do not exist for id', async () => {
+		const response = await addAuthHeaders(
+			request.put(endpoint + new Types.ObjectId().toHexString()),
+			USER_ID_WRITER
+		);
+		expect(response.status).toBe(400);
+		expect(response.body.message).toMatch(/not exists/i);
+		expect(mockFindBlogAllDataById).toBeCalledTimes(1);
+		expect(mockBlogUpdate).not.toBeCalled();
+	});
+
+	it('Should send success if submit blog for id exists', async () => {
+		const response = await addAuthHeaders(
+			request.put(endpoint + BLOG_ID.toHexString()),
+			USER_ID_WRITER
+		);
+		expect(response.status).toBe(200);
+		expect(response.body.message).toMatch(/submitted success/i);
+		expect(mockFindBlogAllDataById).toBeCalledTimes(1);
+		expect(mockBlogUpdate).toBeCalledTimes(1);
+	});
+});
+
+describe('Writer blog withdraw routes', () => {
+
+	beforeEach(() => {
+		mockFindBlogAllDataById.mockClear();
+		mockBlogUpdate.mockClear();
+	});
+
+	const request = supertest(app);
+	const endpoint = '/v1/writer/blog/withdraw/';
+
+	it('Should send error if withdraw blog id is not valid', async () => {
+		const response = await addAuthHeaders(
+			request.put(endpoint + 'abc'),
+			USER_ID_WRITER
+		);
+		expect(response.status).toBe(400);
+		expect(response.body.message).toMatch(/id/i);
+		expect(response.body.message).toMatch(/invalid/i);
+		expect(mockFindBlogAllDataById).not.toBeCalled();
+		expect(mockBlogUpdate).not.toBeCalled();
+	});
+
+	it('Should send error if withdraw blog do not exist for id', async () => {
+		const response = await addAuthHeaders(
+			request.put(endpoint + new Types.ObjectId().toHexString()),
+			USER_ID_WRITER
+		);
+		expect(response.status).toBe(400);
+		expect(response.body.message).toMatch(/not exists/i);
+		expect(mockFindBlogAllDataById).toBeCalledTimes(1);
+		expect(mockBlogUpdate).not.toBeCalled();
+	});
+
+	it('Should send success if withdraw blog for id exists', async () => {
+		const response = await addAuthHeaders(
+			request.put(endpoint + BLOG_ID.toHexString()),
+			USER_ID_WRITER
+		);
+		expect(response.status).toBe(200);
+		expect(response.body.message).toMatch(/withdrawn success/i);
+		expect(mockFindBlogAllDataById).toBeCalledTimes(1);
+		expect(mockBlogUpdate).toBeCalledTimes(1);
+	});
+});
+
+describe('Writer blog delete routes', () => {
+
+	beforeEach(() => {
+		mockFindBlogAllDataById.mockClear();
+		mockBlogUpdate.mockClear();
+	});
+
+	const request = supertest(app);
+	const endpoint = '/v1/writer/blog/id/';
+
+	it('Should send error if deleting blog id is not valid', async () => {
+		const response = await addAuthHeaders(
+			request.delete(endpoint + 'abc'),
+			USER_ID_WRITER
+		);
+		expect(response.status).toBe(400);
+		expect(response.body.message).toMatch(/id/i);
+		expect(response.body.message).toMatch(/invalid/i);
+		expect(mockFindBlogAllDataById).not.toBeCalled();
+		expect(mockBlogUpdate).not.toBeCalled();
+	});
+
+	it('Should send error if deleting blog do not exist for id', async () => {
+		const response = await addAuthHeaders(
+			request.delete(endpoint + new Types.ObjectId().toHexString()),
+			USER_ID_WRITER
+		);
+		expect(response.status).toBe(400);
+		expect(response.body.message).toMatch(/not exists/i);
+		expect(mockFindBlogAllDataById).toBeCalledTimes(1);
+		expect(mockBlogUpdate).not.toBeCalled();
+	});
+
+	it('Should send success if deleting blog for id exists', async () => {
+		const response = await addAuthHeaders(
+			request.delete(endpoint + BLOG_ID.toHexString()),
+			USER_ID_WRITER
+		);
+		expect(response.status).toBe(200);
+		expect(response.body.message).toMatch(/deleted success/i);
+		expect(mockFindBlogAllDataById).toBeCalledTimes(1);
+		expect(mockBlogUpdate).toBeCalledTimes(1);
+	});
+});
+
+describe('Writer blog get by id routes', () => {
+
+	beforeEach(() => {
+		mockFindBlogAllDataById.mockClear();
+	});
+
+	const request = supertest(app);
+	const endpoint = '/v1/writer/blog/id/';
+
+	it('Should send error if fetching blog id is not valid', async () => {
+		const response = await addAuthHeaders(
+			request.get(endpoint + 'abc'),
+			USER_ID_WRITER
+		);
+		expect(response.status).toBe(400);
+		expect(response.body.message).toMatch(/id/i);
+		expect(response.body.message).toMatch(/invalid/i);
+		expect(mockFindBlogAllDataById).not.toBeCalled();
+	});
+
+	it('Should send error if fetching blog do not exist for id', async () => {
+		const response = await addAuthHeaders(
+			request.get(endpoint + new Types.ObjectId().toHexString()),
+			USER_ID_WRITER
+		);
+		expect(response.status).toBe(400);
+		expect(response.body.message).toMatch(/not exists/i);
+		expect(mockFindBlogAllDataById).toBeCalledTimes(1);
+	});
+
+	it('Should send error if author is different', async () => {
+		const response = await addAuthHeaders(
+			request.get(endpoint + BLOG_ID_2.toHexString()),
+			USER_ID_WRITER
+		);
+		expect(response.status).toBe(403);
+		expect(response.body.message).toMatch(/don't have/i);
+		expect(response.body.message).toMatch(/permission/i);
+		expect(mockFindBlogAllDataById).toBeCalledTimes(1);
+	});
+
+	it('Should send success if fetching blog for id exists', async () => {
+		const response = await addAuthHeaders(
+			request.get(endpoint + BLOG_ID.toHexString()),
+			USER_ID_WRITER
+		);
+		expect(response.status).toBe(200);
+		expect(response.body.message).toMatch(/success/i);
+		expect(mockFindBlogAllDataById).toBeCalledTimes(1);
 		expect(response.body.data).toMatchObject({ _id: BLOG_ID.toHexString() });
 	});
 });
