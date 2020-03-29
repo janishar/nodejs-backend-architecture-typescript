@@ -2,7 +2,7 @@ import { addAuthHeaders } from '../authentication/mock';
 
 // import the mock for the current test after all other mock imports
 // this will prevent the different implementations by the other mock
-import { mockRoleRepoFindByCode, mockUserFindByIdForWriter } from './mock';
+import { mockRoleRepoFindByCode, mockUserFindById, USER_ID_WRITER } from './mock';
 
 import app from '../../../src/app';
 import supertest from 'supertest';
@@ -15,7 +15,7 @@ describe('authentication validation for editor', () => {
 
 	beforeEach(() => {
 		mockRoleRepoFindByCode.mockClear();
-		mockUserFindByIdForWriter.mockClear();
+		mockUserFindById.mockClear();
 	});
 
 	it('Should response with 401 if user do not have editor role', async () => {
@@ -23,7 +23,7 @@ describe('authentication validation for editor', () => {
 		expect(response.status).toBe(401);
 		expect(response.body.message).toMatch(/denied/);
 		expect(mockRoleRepoFindByCode).toBeCalledTimes(1);
-		expect(mockUserFindByIdForWriter).toBeCalledTimes(1);
+		expect(mockUserFindById).toBeCalledTimes(1);
 		expect(mockRoleRepoFindByCode).toBeCalledWith(RoleCode.EDITOR);
 	});
 });
@@ -35,14 +35,14 @@ describe('authentication validation for writer', () => {
 
 	beforeEach(() => {
 		mockRoleRepoFindByCode.mockClear();
-		mockUserFindByIdForWriter.mockClear();
+		mockUserFindById.mockClear();
 	});
 
 	it('Should response with 404 if user have writer role', async () => {
-		const response = await addAuthHeaders(request.get(endpoint));
+		const response = await addAuthHeaders(request.get(endpoint), USER_ID_WRITER);
 		expect(response.status).toBe(404);
 		expect(mockRoleRepoFindByCode).toBeCalledTimes(1);
-		expect(mockUserFindByIdForWriter).toBeCalledTimes(1);
+		expect(mockUserFindById).toBeCalledTimes(1);
 		expect(mockRoleRepoFindByCode).toBeCalledWith(RoleCode.WRITER);
 	});
 });

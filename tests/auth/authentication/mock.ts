@@ -9,7 +9,7 @@ import { IKeystore } from '../../../src/database/model/Keystore';
 
 export const ACCESS_TOKEN = 'xyz';
 
-export const USER_ID = new Types.ObjectId('5e7b95923085872d3c378f35'); // random id with object id format
+export const USER_ID = new Types.ObjectId(); // random id with object id format
 
 export const mockUserFindById = jest.fn(async (id: Types.ObjectId) => {
 	if (USER_ID.equals(id)) return <IUser>{ _id: new Types.ObjectId(id) };
@@ -46,8 +46,8 @@ export const addHeaders = (request: any) => request
 	.set('Content-Type', 'application/json')
 	.set('x-api-key', API_KEY);
 
-export const addAuthHeaders = (request: any) => request
+export const addAuthHeaders = (request: any, userId: Types.ObjectId = USER_ID) => request
 	.set('Content-Type', 'application/json')
 	.set('x-api-key', API_KEY)
 	.set('x-access-token', ACCESS_TOKEN)
-	.set('x-user-id', USER_ID);
+	.set('x-user-id', userId.toHexString());

@@ -5,16 +5,33 @@ import { Types } from 'mongoose';
 import { IUser } from '../../../src/database/model/User';
 import { RoleCode, IRole } from '../../../src/database/model/Role';
 
-const LEARNER_ROLE_ID = new Types.ObjectId('5e7b95923085872d3c378f35'); // RONDOM ID
-const WRITER_ROLE_ID = new Types.ObjectId('56cb91bdc3464f14678934ca'); // RONDOM ID
-const EDITOR_ROLE_ID = new Types.ObjectId('58cd7cfcf9f1150515ee9fb0'); // RONDOM ID
 
-export const mockUserFindByIdForWriter = jest.fn(async (id: Types.ObjectId) => {
+export const LEARNER_ROLE_ID = new Types.ObjectId(); // random id
+export const WRITER_ROLE_ID = new Types.ObjectId(); // random id
+export const EDITOR_ROLE_ID = new Types.ObjectId(); // random id
+
+export const USER_ID_WRITER = new Types.ObjectId(); // random id
+export const USER_ID_EDITOR = new Types.ObjectId(); // random id
+
+export const mockUserFindById = jest.fn(async (id: Types.ObjectId) => {
 	if (USER_ID.equals(id)) return <IUser>{
 		_id: USER_ID,
 		roles: [
 			<IRole>{ _id: LEARNER_ROLE_ID, code: RoleCode.LEARNER },
+		]
+	};
+	if (USER_ID_WRITER.equals(id)) return <IUser>{
+		_id: USER_ID_WRITER,
+		roles: [
+			<IRole>{ _id: LEARNER_ROLE_ID, code: RoleCode.LEARNER },
 			<IRole>{ _id: WRITER_ROLE_ID, code: RoleCode.WRITER },
+		]
+	};
+	if (USER_ID_EDITOR.equals(id)) return <IUser>{
+		_id: USER_ID_EDITOR,
+		roles: [
+			<IRole>{ _id: LEARNER_ROLE_ID, code: RoleCode.LEARNER },
+			<IRole>{ _id: WRITER_ROLE_ID, code: RoleCode.EDITOR },
 		]
 	};
 	else return null;
@@ -43,7 +60,7 @@ export const mockRoleRepoFindByCode = jest.fn(
 	});
 
 jest.mock('../../../src/database/repository/UserRepo', () => ({
-	get findById() { return mockUserFindByIdForWriter; }
+	get findById() { return mockUserFindById; }
 }));
 
 jest.mock('../../../src/database/repository/RoleRepo', () => ({
