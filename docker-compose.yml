@@ -20,10 +20,6 @@ services:
       - "3000:$PORT"
     links:
       - mongo
-    volumes:
-      # This is a bind mount that mounts our application code on the host to the /home/node/app directory on the container.
-      # Any changes you make to your host code will be populated immediately in the container.
-    - ./:/home/node/app
 
   mongo:
     # To create this service, Compose will pull the mongo
