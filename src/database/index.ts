@@ -22,7 +22,10 @@ const options = {
 Logger.debug(dbURI);
 
 // Create the database connection
-mongoose.connect(dbURI, options);
+mongoose.connect(dbURI, options).catch(e => {
+	Logger.info('Mongoose connection error');
+	Logger.error(e);
+});
 
 // CONNECTION EVENTS
 // When successfully connected

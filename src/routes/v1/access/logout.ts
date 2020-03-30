@@ -1,5 +1,5 @@
 import express from 'express';
-import KeystoreRepo from '../../../database/Repository/KeystoreRepo';
+import KeystoreRepo from '../../../database/repository/KeystoreRepo';
 import { ProtectedRequest } from 'app-request';
 import { SuccessMsgResponse } from '../../../core/ApiResponse';
 import asyncHandler from '../../../helpers/asyncHandler';
