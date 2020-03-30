@@ -16,7 +16,7 @@ export const bcryptCompareSpy = jest.spyOn(bcrypt, 'compare');
 export const userFindByEmailSpy = jest.spyOn(UserRepo, 'findByEmail');
 export const keystoreCreateSpy = jest.spyOn(KeystoreRepo, 'create');
 
-describe('Integration Test: Login basic route', () => {
+describe('Login basic route', () => {
 
 	const endpoint = '/v1/login/basic';
 	const request = supertest(app);
