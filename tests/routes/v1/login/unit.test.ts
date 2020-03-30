@@ -9,7 +9,7 @@ import {
 import supertest from 'supertest';
 import app from '../../../../src/app';
 
-describe('Login basic route', () => {
+describe('Unit Test: Login basic route', () => {
 
 	const endpoint = '/v1/login/basic';
 	const request = supertest(app);
