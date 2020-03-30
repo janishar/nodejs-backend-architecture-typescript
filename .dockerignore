@@ -6,17 +6,17 @@
 .vs
 
 # ignore logs
-/logs
+logs
 *.log
 
 # ignore 3rd party lib
-/node_modules
+node_modules
 
 # Ignore built files
 build/**/*
 
 # ignore test converage
-/coverage
+coverage
 
 # git
 .gitignore

@@ -7,6 +7,10 @@ import './database'; // initialize database
 import { NotFoundError, ApiError, InternalError } from './core/ApiError';
 import routesV1 from './routes/v1';
 
+process.on('uncaughtException', e => {
+	Logger.error(e);
+});
+
 const app = express();
 
 app.use(bodyParser.json({ limit: '10mb' }));
