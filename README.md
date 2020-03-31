@@ -24,6 +24,7 @@ Following are the features of this project:
 * **Async execution is adopted**: We have used async/await for the promises and made sure to use non blocking version of all the functions with few exceptions.
 * **Docker compose has been configured**: We Dockerfile has been created to assist in easy deployability without setup and much configurations. 
 * **Unit test is favoured**: The tests has been written to test the functions and routes without the need of the database server. Integration tests has also been done but unit test is favoured.
+* **A pure backend project**: We have experienced that when a backend is developed clubed with a frontend then in the future it become really difficult to scale. We would want to use a single backend project to server many websites and mobile apps.
 
 ## 3RE Architecture: Router, RouteHandler, ResponseHandler, ErrorHandler
 <p align="center">
