@@ -44,7 +44,9 @@ Following are the features of this project:
 <br>
 
 ## You can find the complete API documentation [here](https://documenter.getpostman.com/view/1552895/SzYUZg52?version=latest)
-<a href="https://documenter.getpostman.com/view/1552895/SzYUZg52?version=latest" target="_blank"><img src="https://raw.githubusercontent.com/afteracademy/nodejs-backend-architecture-typescript/master/addons/github_assets/api-doc-button.png" width="200" height="60"/></a>
+<a href="https://documenter.getpostman.com/view/1552895/SzYUZg52?version=latest" target="_blank">
+    <img src="https://raw.githubusercontent.com/afteracademy/nodejs-backend-architecture-typescript/master/addons/github_assets/api-doc-button.png" width="200" height="60"/>
+</a>
 
 ## How to build and run this project
 
@@ -73,4 +75,107 @@ Following are the features of this project:
     * Execute `npm start` and You will be able to access the api from http://localhost:3000
     * To run the tests execute `npm test`.
  
+ ## API Examples
+* Signup
+    * Method and Headers
+    ```
+    POST /v1/signup/basic HTTP/1.1
+    Host: localhost:3000
+    x-api-key: GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj
+    Content-Type: application/json
+    ```
+    * Request Body
+    ```json
+    {
+        "name" : "Janishar Ali",
+        "email": "ali@afteracademy.com",
+        "password": "changeit",
+        "profilePicUrl": "https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4"
+    }
+    ```
+    * Response Body: 200
+    ```json
+    {
+      "statusCode": "10000",
+      "message": "Signup Successful",
+      "data": {
+        "user": {
+          "_id": "5e7c9d32307a223bb8a4b12b",
+          "name": "Janishar Ali",
+          "email": "ali@afteracademy.com",
+          "roles": [
+            "5e7b8acad7aded2407e078d7"
+          ],
+          "profilePicUrl": "https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4"
+        },
+        "tokens": {
+          "accessToken": "some_token",
+          "refreshToken": "some_token"
+        }
+      }
+    }
+    ```
+    * Response Body: 400
+    ```json
+    {
+      "statusCode": "10001",
+      "message": "Bad Parameters"
+    }
+    ```
+* Profile Private
+    * Method and Headers
+    ```
+    GET /v1/profile/my HTTP/1.1
+    Host: localhost:3000
+    x-api-key: GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj
+    Content-Type: application/json
+    x-access-token: your_token_received_from_signup_or_login
+    x-user-id: your_user_id
+    ```
+    * Response Body: 200
+    ```json
+    {
+      "statusCode": "10000",
+      "message": "success",
+      "data": {
+        "name": "Janishar Ali Anwar",
+        "profilePicUrl": "https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4",
+        "roles": [
+          {
+            "_id": "5e7b8acad7aded2407e078d7",
+            "code": "LEARNER"
+          },
+          {
+            "_id": "5e7b8c22d347fc2407c564a6",
+            "code": "WRITER"
+          },
+          {
+            "_id": "5e7b8c2ad347fc2407c564a7",
+            "code": "EDITOR"
+          }
+        ]
+      }
+    }
+    ```
+
+### Find this project useful ? :heart:
+* Support it by clicking the :star: button on the upper right of this page. :v:
+
+### License
+```
+   Copyright (C) 2020 MINDORKS NEXTGEN PRIVATE LIMITED
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+```
+     
  
