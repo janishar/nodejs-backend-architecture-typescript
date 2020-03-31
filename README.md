@@ -75,6 +75,10 @@ Following are the features of this project:
     * Execute `npm start` and You will be able to access the api from http://localhost:3000
     * To run the tests execute `npm test`.
  
+ ## Explore Online Tutorials and Courses To Learn More by AfterAcademy
+ * [Backend Tutorial](https://afteracademy.com/blogs/backend) - All Free Tutorials by AfterAcademy
+ * [Online Courses for Backend](https://afteracademy.com/courses/backend) - Master the skills that companies love to hire.
+ 
  ## API Examples
 * Signup
     * Method and Headers
