@@ -43,7 +43,34 @@ Following are the features of this project:
 </p>
 <br>
 
+## You can find the complete API documentation [here](https://documenter.getpostman.com/view/1552895/SzYUZg52?version=latest)
+<a href="https://documenter.getpostman.com/view/1552895/SzYUZg52?version=latest" target="_blank"><img src="https://raw.githubusercontent.com/afteracademy/nodejs-backend-architecture-typescript/master/addons/github_assets/api-doc-button.png" width="200" height="60"/></a>
 
+## How to build and run this project
 
-### Important
-Use latest version of node on local machine
+* Install using Docker Componse [**Recomended Method**] 
+    * Clone this repo.
+    * Make a copy of **.env.example** file to **.env**.
+    * Make a copy of **keys/private.pem.example** file to **keys/private.pem**.
+    * Make a copy of **keys/public.pem.example** file to **keys/public.pem**.
+    * Make a copy of **tests/.env.test.example** file to **tests/.env.test**.
+    * Install Docker and Docker Compose. [Find Instructions Here](https://docs.docker.com/install/).
+    * Execute `docker-compose up -d` in terminal from the repo directory.
+    * You will be able to access the api from http://localhost:3000
+    * *If having any issue* then make sure 3000 port is not occupied else update a different port in **.env** file.
+    * *If having any issue* then make sure 27017 port is not occupied else update a different port in **.env** file.
+ * Run The Tests
+    * Install nodejs and npm on your local machine.
+    * From the root of the project execute in terminal `npm install`.
+    * *Use latest version of node on local machine if build fails*.
+    * To run the tests execute `npm test`.
+ * Install Without Docker [**2nd Method**]
+    * Install mongodb on your local.
+    * Do step 1 to 5 as listed for **Install using Docker Componse**.
+    * Do step 1 to 3 as listed for **Run The Tests**.
+    * Create users in mongodb and seed the data taking reference from the **addons/init-mongo.js**
+    * Change the `DB_HOST` to `localhost` in **.env** and **tests/.env.test** files.
+    * Execute `npm start` and You will be able to access the api from http://localhost:3000
+    * To run the tests execute `npm test`.
+ 
+ 
