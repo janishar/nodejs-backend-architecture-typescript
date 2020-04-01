@@ -80,6 +80,12 @@ Following are the features of this project:
  * [Backend Tutorial](https://afteracademy.com/blogs/backend) - All Free Tutorials by AfterAcademy
  * [Online Courses for Backend](https://afteracademy.com/courses/backend) - Master the skills that companies love to hire.
  
+  ## Learn Backend Development From Our Videos
+  * [Introduction to Web Backend Development for Beginners](https://youtu.be/Q0nfLi-4GBg)
+  * [Backend System Design for Startups](https://www.youtube.com/playlist?list=PLqOiaH9id5quh5Dph5yuXfdHVGe1LrKvT)
+  * [Practical Javascript for Beginners](https://www.youtube.com/playlist?list=PLqOiaH9id5qtw5MhI-C1G3CS7RVZ8ejct)
+  
+ 
  ## API Examples
 * Signup
     * Method and Headers
