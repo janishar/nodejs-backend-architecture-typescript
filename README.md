@@ -16,15 +16,15 @@ The main focus will be to create a maintainable and highly testable architecture
 <br>
 Following are the features of this project:
 * **This backend in written in Typescript**: The type safety at build time and having intellisense for it in the IDE like vscode is unparallel to productivity. We have found production bug reduced to significant amount, since most of the code vulnarabilties are identified during the build phase itself.
-* **Separation of concern principle is applied**: Each component has been given a particular role. The role of the components are mutually excllusive. This makes the project easy to be unit tested.
-* **Feature enpasulation is adopted**: The files or components those are related to a particular feature has been grouped together unless that components is required in multiple features.This enhances the ability to share code across projects.
-* **Centralised Error handling is done**: We have created a framework where all the error is handled centrally. This reduces the abiguity in the developement when the project grows larger.
+* **Separation of concern principle is applied**: Each component has been given a particular role. The role of the components are mutually exclusive. This makes the project easy to be unit tested.
+* **Feature enpasulation is adopted**: The files or components those are related to a particular feature has been grouped together unless that components is required in multiple features. This enhances the ability to share code across projects.
+* **Centralised Error handling is done**: We have created a framework where all the errors are handled centrally. This reduces the ambiguity in the developement when the project grow larger.
 * **Centralised Response handling is done**: Similar to Error handling we have response handling framework. This makes it very convinient to apply a common API response pattern.
 * **Mongodb is used through Mongoose**: Mongodb really fits very well to the nodejs application. Being nosql, fast, and scalable makes it ideal for the modern web applications.
 * **Async execution is adopted**: We have used async/await for the promises and made sure to use non blocking version of all the functions with few exceptions.
-* **Docker compose has been configured**: We Dockerfile has been created to assist in easy deployability without setup and much configurations. 
+* **Docker compose has been configured**: We have created the Dockerfile to provide the easy deployability without any setup and configurations. 
 * **Unit test is favoured**: The tests has been written to test the functions and routes without the need of the database server. Integration tests has also been done but unit test is favoured.
-* **A pure backend project**: We have experienced that when a backend is developed clubed with a frontend then in the future it become really difficult to scale. We would want to use a single backend project to server many websites and mobile apps.
+* **A pure backend project**: We have experienced that when a backend is developed clubed with a frontend then in the future it become really difficult to scale. We would want to create a separate backend project that servers many websites and mobile apps.
 
 ## 3RE Architecture: Router, RouteHandler, ResponseHandler, ErrorHandler
 <p align="center">
@@ -60,8 +60,8 @@ Following are the features of this project:
     * Install Docker and Docker Compose. [Find Instructions Here](https://docs.docker.com/install/).
     * Execute `docker-compose up -d` in terminal from the repo directory.
     * You will be able to access the api from http://localhost:3000
-    * *If having any issue* then make sure 3000 port is not occupied else update a different port in **.env** file.
-    * *If having any issue* then make sure 27017 port is not occupied else update a different port in **.env** file.
+    * *If having any issue* then make sure 3000 port is not occupied else provide a different port in **.env** file.
+    * *If having any issue* then make sure 27017 port is not occupied else provide a different port in **.env** file.
  * Run The Tests
     * Install nodejs and npm on your local machine.
     * From the root of the project execute in terminal `npm install`.
@@ -77,7 +77,7 @@ Following are the features of this project:
     * To run the tests execute `npm test`.
  
  ## Explore Online Tutorials and Courses To Learn More by AfterAcademy
- * [Backend Tutorial](https://afteracademy.com/blogs/backend) - All Free Tutorials by AfterAcademy
+ * [Backend Tutorial](https://afteracademy.com/blogs/backend) - All free tutorials by AfterAcademy
  * [Online Courses for Backend](https://afteracademy.com/courses/backend) - Master the skills that companies love to hire.
  
   ## Learn Backend Development From Our Videos
