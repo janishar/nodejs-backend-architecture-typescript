@@ -85,6 +85,118 @@ Following are the features of this project:
   * [Backend System Design for Startups](https://www.youtube.com/playlist?list=PLqOiaH9id5quh5Dph5yuXfdHVGe1LrKvT)
   * [Practical Javascript for Beginners](https://www.youtube.com/playlist?list=PLqOiaH9id5qtw5MhI-C1G3CS7RVZ8ejct)
   
+ ## Project Directory Structure
+ ```
+├── src
+│   ├── server.ts
+│   ├── app.ts
+│   ├── config.ts
+│   ├── auth
+│   │   ├── apikey.ts
+│   │   ├── authUtils.ts
+│   │   ├── authentication.ts
+│   │   ├── authorization.ts
+│   │   └── schema.ts
+│   ├── core
+│   │   ├── ApiError.ts
+│   │   ├── ApiResponse.ts
+│   │   ├── JWT.ts
+│   │   └── Logger.ts
+│   ├── database
+│   │   ├── index.ts
+│   │   ├── model
+│   │   │   ├── ApiKey.ts
+│   │   │   ├── Blog.ts
+│   │   │   ├── Keystore.ts
+│   │   │   ├── Role.ts
+│   │   │   └── User.ts
+│   │   └── repository
+│   │       ├── ApiKeyRepo.ts
+│   │       ├── BlogRepo.ts
+│   │       ├── KeystoreRepo.ts
+│   │       ├── RoleRepo.ts
+│   │       └── UserRepo.ts
+│   ├── helpers
+│   │   ├── asyncHandler.ts
+│   │   ├── role.ts
+│   │   └── validator.ts
+│   ├── routes
+│   │   └── v1
+│   │       ├── access
+│   │       │   ├── login.ts
+│   │       │   ├── logout.ts
+│   │       │   ├── schema.ts
+│   │       │   ├── signup.ts
+│   │       │   └── token.ts
+│   │       ├── blog
+│   │       │   ├── blogDetail.ts
+│   │       │   ├── blogList.ts
+│   │       │   ├── editor.ts
+│   │       │   ├── schema.ts
+│   │       │   └── writer.ts
+│   │       ├── index.ts
+│   │       └── profile
+│   │           ├── schema.ts
+│   │           └── user.ts
+│   └── types
+│       └── app-request.d.ts
+├── tests
+│   ├── auth
+│   │   ├── apikey
+│   │   │   ├── mock.ts
+│   │   │   └── unit.test.ts
+│   │   ├── authUtils
+│   │   │   ├── mock.ts
+│   │   │   └── unit.test.ts
+│   │   ├── authentication
+│   │   │   ├── mock.ts
+│   │   │   └── unit.test.ts
+│   │   └── authorization
+│   │       ├── mock.ts
+│   │       └── unit.test.ts
+│   ├── core
+│   │   └── jwt
+│   │       ├── mock.ts
+│   │       └── unit.test.ts
+│   ├── routes
+│   │   └── v1
+│   │       ├── blog
+│   │       │   ├── blogDetail
+│   │       │   │   ├── mock.ts
+│   │       │   │   └── unit.test.ts
+│   │       │   └── writer
+│   │       │       ├── mock.ts
+│   │       │       └── unit.test.ts
+│   │       ├── login
+│   │       │   ├── integration.test.ts
+│   │       │   ├── mock.ts
+│   │       │   └── unit.test.ts
+│   │       └── signup
+│   │           ├── mock.ts
+│   │           └── unit.test.ts
+│   ├── .env.test
+│   └── setup.ts
+├── addons
+│   └── init-mongo.js
+├── keys
+│   ├── private.pem
+│   └── public.pem
+├── .env
+├── .gitignore
+├── .dockerignore
+├── .vscode
+│   └── launch.json
+├── Dockerfile
+├── docker-compose.yml
+├── package-lock.json
+├── package.json
+├── jest.config.js
+├── tsconfig.json
+└── tslint.json
+ ```
+ 
+ ## Directory Traversal for Signup API call
+ `/src → server.ts → app.ts → /routes/v1/index.ts → /auth/apikey.ts → schema.ts → /helpers/validator.ts → asyncHandler.ts → /routes/v1/signup.ts → schema.ts → /helpers/validator.ts → asyncHandler.ts → /database/repository/UserRepo.ts → /database/model/User.ts → /core/ApiResponses.ts`
  
  ## API Examples
 * Signup
