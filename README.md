@@ -1,4 +1,4 @@
-# NodeJs Backend Architecture Typescript Project
+# Node.js Backend Architecture Typescript Project
 Learn to build a Blogging platform like Medium, MindOrks, and FreeCodeCamp - Open-Source Project By AfterAcademy
 
 [![AfterAcademy](https://img.shields.io/badge/AfterAcademy-opensource-blue.svg)](https://afteracademy.com)
@@ -20,7 +20,7 @@ Following are the features of this project:
 * **Feature enpasulation is adopted**: The files or components those are related to a particular feature has been grouped together unless that components is required in multiple features. This enhances the ability to share code across projects.
 * **Centralised Error handling is done**: We have created a framework where all the errors are handled centrally. This reduces the ambiguity in the developement when the project grow larger.
 * **Centralised Response handling is done**: Similar to Error handling we have response handling framework. This makes it very convinient to apply a common API response pattern.
-* **Mongodb is used through Mongoose**: Mongodb really fits very well to the nodejs application. Being nosql, fast, and scalable makes it ideal for the modern web applications.
+* **Mongodb is used through Mongoose**: Mongodb really fits very well to the node.js application. Being nosql, fast, and scalable makes it ideal for the modern web applications.
 * **Async execution is adopted**: We have used async/await for the promises and made sure to use non blocking version of all the functions with few exceptions.
 * **Docker compose has been configured**: We have created the Dockerfile to provide the easy deployability without any setup and configurations. 
 * **Unit test is favoured**: The tests has been written to test the functions and routes without the need of the database server. Integration tests has also been done but unit test is favoured.
