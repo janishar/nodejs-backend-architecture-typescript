@@ -44,6 +44,9 @@ Following are the features of this project:
 </p>
 <br>
 
+## Learn the concepts used in this project
+* [Design Node.js Backend Architecture like a Pro](https://afteracademy.com/blog/design-node-js-backend-architecture-like-a-pro)
+
 ## You can find the complete API documentation [here](https://documenter.getpostman.com/view/1552895/SzYUZg52?version=latest)
 <a href="https://documenter.getpostman.com/view/1552895/SzYUZg52?version=latest" target="_blank">
     <img src="https://raw.githubusercontent.com/afteracademy/nodejs-backend-architecture-typescript/master/addons/github_assets/api-doc-button.png" width="200" height="60"/>
