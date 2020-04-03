@@ -4,12 +4,12 @@ import supertest from 'supertest';
 import app from '../../../../src/app';
 import UserRepo from '../../../../src/database/repository/UserRepo';
 import KeystoreRepo from '../../../../src/database/repository/KeystoreRepo';
-import User, { IUser } from '../../../../src/database/model/User';
+import User, { UserModel } from '../../../../src/database/model/User';
 import bcrypt from 'bcrypt';
 import * as authUtils from '../../../../src/auth/authUtils';
-import { IRole, RoleCode } from '../../../../src/database/model/Role';
+import Role, { RoleCode } from '../../../../src/database/model/Role';
 import { Types } from 'mongoose';
-import ApiKey, { IApiKey } from '../../../../src/database/model/ApiKey';
+import ApiKey, { ApiKeyModel } from '../../../../src/database/model/ApiKey';
 
 export const createTokensSpy = jest.spyOn(authUtils, 'createTokens');
 export const bcryptCompareSpy = jest.spyOn(bcrypt, 'compare');
@@ -22,12 +22,12 @@ describe('Login basic route', () => {
 	const request = supertest(app);
 	const password = '123456';
 
-	let user: IUser;
-	let apikey: IApiKey;
+	let user: User;
+	let apikey: ApiKey;
 
 	beforeAll(async () => {
-		await User.remove({}); // delete all data from user table
-		user = await User.create(<IUser>{
+		await UserModel.remove({}); // delete all data from user table
+		user = await UserModel.create(<User>{
 			name: 'abc',
 			email: 'abc@xyz.com',
 			password: bcrypt.hashSync(password, 10),
@@ -35,13 +35,13 @@ describe('Login basic route', () => {
 			updatedAt: new Date(),
 			createdAt: new Date(),
 			profilePicUrl: 'https:/abc.com/xyz',
-			roles: [<IRole>{ _id: new Types.ObjectId(), code: RoleCode.LEARNER }]
+			roles: [<Role>{ _id: new Types.ObjectId(), code: RoleCode.LEARNER }]
 		});
-		apikey = await ApiKey.findOne({ status: true });
+		apikey = await ApiKeyModel.findOne({ status: true });
 	});
 
 	afterAll(async () => {
-		await User.remove({}); // delete all data from user table
+		await UserModel.remove({}); // delete all data from user table
 	});
 
 	beforeEach(() => {
@@ -178,6 +178,6 @@ describe('Login basic route', () => {
 	});
 });
 
-export const addHeaders = (request: any, apikey: IApiKey) => request
+export const addHeaders = (request: any, apikey: ApiKey) => request
 	.set('Content-Type', 'application/json')
 	.set('x-api-key', apikey.key);

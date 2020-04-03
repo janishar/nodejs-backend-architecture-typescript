@@ -1,11 +1,11 @@
 import { Schema, model, Document } from 'mongoose';
-import { IUser } from './User';
+import User from './User';
 
 export const DOCUMENT_NAME = 'Keystore';
 export const COLLECTION_NAME = 'keystores';
 
-export interface IKeystore extends Document {
-	client: IUser;
+export default interface Keystore extends Document {
+	client: User;
 	primaryKey: string;
 	secondaryKey: string;
 	status?: boolean;
@@ -50,6 +50,4 @@ const schema = new Schema(
 		versionKey: false
 	});
 
-const Keystore = model<IKeystore>(DOCUMENT_NAME, schema, COLLECTION_NAME);
-
-export default Keystore;
+export const KeystoreModel = model<Keystore>(DOCUMENT_NAME, schema, COLLECTION_NAME);

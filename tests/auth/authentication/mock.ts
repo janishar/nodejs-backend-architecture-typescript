@@ -1,18 +1,18 @@
- // all dependent mock should be on the top
+// all dependent mock should be on the top
 import { API_KEY } from '../apikey/mock';
 
-import { IUser } from '../../../src/database/model/User';
+import User from '../../../src/database/model/User';
 import { Types } from 'mongoose';
 import JWT, { ValidationParams, JwtPayload } from '../../../src/core/JWT';
 import { BadTokenError } from '../../../src/core/ApiError';
-import { IKeystore } from '../../../src/database/model/Keystore';
+import Keystore from '../../../src/database/model/Keystore';
 
 export const ACCESS_TOKEN = 'xyz';
 
 export const USER_ID = new Types.ObjectId(); // random id with object id format
 
 export const mockUserFindById = jest.fn(async (id: Types.ObjectId) => {
-	if (USER_ID.equals(id)) return <IUser>{ _id: new Types.ObjectId(id) };
+	if (USER_ID.equals(id)) return <User>{ _id: new Types.ObjectId(id) };
 	else return null;
 });
 
@@ -23,7 +23,7 @@ export const mockJwtValidate = jest.fn(
 	});
 
 export const mockKeystoreFindForKey = jest.fn(
-	async (client: IUser, key: string): Promise<IKeystore> => (<IKeystore>{ client: client, primaryKey: key }));
+	async (client: User, key: string): Promise<Keystore> => (<Keystore>{ client: client, primaryKey: key }));
 
 export const mockValidateTokenData =
 	jest.fn(async (payload: JwtPayload, userId: Types.ObjectId): Promise<JwtPayload> => payload);

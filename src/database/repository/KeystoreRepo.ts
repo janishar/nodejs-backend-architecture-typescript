@@ -1,28 +1,28 @@
-import Keystore, { IKeystore } from '../model/Keystore';
+import Keystore, { KeystoreModel } from '../model/Keystore';
 import { Types } from 'mongoose';
-import { IUser } from '../model/User';
+import User from '../model/User';
 
 export default class KeystoreRepo {
 
-	public static findforKey(client: IUser, key: string): Promise<IKeystore> {
-		return Keystore.findOne({ client: client, primaryKey: key, status: true }).exec();
+	public static findforKey(client: User, key: string): Promise<Keystore> {
+		return KeystoreModel.findOne({ client: client, primaryKey: key, status: true }).exec();
 	}
 
-	public static remove(id: Types.ObjectId): Promise<IKeystore> {
-		return Keystore.findByIdAndRemove(id).lean<IKeystore>().exec();
+	public static remove(id: Types.ObjectId): Promise<Keystore> {
+		return KeystoreModel.findByIdAndRemove(id).lean<Keystore>().exec();
 	}
 
-	public static find(client: IUser, primaryKey: string, secondaryKey: string): Promise<IKeystore> {
-		return Keystore
+	public static find(client: User, primaryKey: string, secondaryKey: string): Promise<Keystore> {
+		return KeystoreModel
 			.findOne({ client: client, primaryKey: primaryKey, secondaryKey: secondaryKey })
-			.lean<IKeystore>()
+			.lean<Keystore>()
 			.exec();
 	}
 
-	public static async create(client: IUser, primaryKey: string, secondaryKey: string)
-		: Promise<IKeystore> {
+	public static async create(client: User, primaryKey: string, secondaryKey: string)
+		: Promise<Keystore> {
 		const now = new Date();
-		const keystore = await Keystore.create(<IKeystore>{
+		const keystore = await KeystoreModel.create(<Keystore>{
 			client: client,
 			primaryKey: primaryKey,
 			secondaryKey: secondaryKey,

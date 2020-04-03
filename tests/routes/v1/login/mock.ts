@@ -1,6 +1,6 @@
 import { USER_ID } from '../../../auth/authentication/mock';
-import { IKeystore } from '../../../../src/database/model/Keystore';
-import { IUser } from '../../../../src/database/model/User';
+import Keystore from '../../../../src/database/model/Keystore';
+import User from '../../../../src/database/model/User';
 import { Types } from 'mongoose';
 import bcrypt from 'bcrypt';
 import * as authUtils from '../../../../src/auth/authUtils';
@@ -15,8 +15,8 @@ export const bcryptCompareSpy = jest.spyOn(bcrypt, 'compare');
 
 export const mockKeystoreCreate =
 	jest.fn(
-		async (client: IUser, primaryKey: string, secondaryKey: string): Promise<IKeystore> => {
-			return <IKeystore>{
+		async (client: User, primaryKey: string, secondaryKey: string): Promise<Keystore> => {
+			return <Keystore>{
 				_id: new Types.ObjectId(),
 				client: client,
 				primaryKey: primaryKey,
@@ -25,8 +25,8 @@ export const mockKeystoreCreate =
 		});
 
 export const mockUserFindByEmail =
-	jest.fn(async (email: string): Promise<IUser> => {
-		if (email === USER_EMAIL) return <IUser>{
+	jest.fn(async (email: string): Promise<User> => {
+		if (email === USER_EMAIL) return <User>{
 			_id: USER_ID,
 			email: USER_EMAIL,
 			password: USER_PASSWORD_HASH,

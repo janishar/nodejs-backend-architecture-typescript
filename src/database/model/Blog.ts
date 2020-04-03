@@ -1,17 +1,16 @@
 import { Schema, model, Document } from 'mongoose';
-import { IUser } from './User';
-import Logger from '../../core/Logger';
+import User from './User';
 
 export const DOCUMENT_NAME = 'Blog';
 export const COLLECTION_NAME = 'blogs';
 
-export interface IBlog extends Document {
+export default interface Blog extends Document {
 	title: string;
 	description: string;
 	text?: string;
 	draftText: string;
 	tags: string[];
-	author: IUser;
+	author: User;
 	imgUrl?: string;
 	blogUrl: string;
 	likes?: number;
@@ -21,8 +20,8 @@ export interface IBlog extends Document {
 	isPublished: boolean;
 	status?: boolean;
 	publishedAt?: Date;
-	createdBy?: IUser;
-	updatedBy?: IUser;
+	createdBy?: User;
+	updatedBy?: User;
 	createdAt?: Date;
 	updatedAt?: Date;
 }
@@ -145,6 +144,4 @@ const schema = new Schema(
 		{ weights: { title: 3, description: 1 }, background: false }
 	);
 
-const Blog = model<IBlog>(DOCUMENT_NAME, schema, COLLECTION_NAME);
-
-export default Blog;
+export const BlogModel = model<Blog>(DOCUMENT_NAME, schema, COLLECTION_NAME);

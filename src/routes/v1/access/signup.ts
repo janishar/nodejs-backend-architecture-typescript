@@ -4,7 +4,7 @@ import { RoleRequest } from 'app-request';
 import crypto from 'crypto';
 import UserRepo from '../../../database/repository/UserRepo';
 import { BadRequestError } from '../../../core/ApiError';
-import { IUser } from '../../../database/model/User';
+import User from '../../../database/model/User';
 import { createTokens } from '../../../auth/authUtils';
 import validator from '../../../helpers/validator';
 import schema from './schema';
@@ -24,7 +24,7 @@ router.post('/basic', validator(schema.signup),
 		const refreshTokenKey = crypto.randomBytes(64).toString('hex');
 		const passwordHash = await bcrypt.hash(req.body.password, 10);
 
-		const { user: createdUser, keystore } = await UserRepo.create(<IUser>{
+		const { user: createdUser, keystore } = await UserRepo.create(<User>{
 			name: req.body.name,
 			email: req.body.email,
 			profilePicUrl: req.body.profilePicUrl,

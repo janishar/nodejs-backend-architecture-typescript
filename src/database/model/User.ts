@@ -1,15 +1,15 @@
 import { model, Schema, Document, Types } from 'mongoose';
-import { IRole } from './Role';
+import Role from './Role';
 
 export const DOCUMENT_NAME = 'User';
 export const COLLECTION_NAME = 'users';
 
-export interface IUser extends Document {
+export default interface User extends Document {
 	name: string;
 	email?: string;
 	password?: string;
 	profilePicUrl?: string;
-	roles: IRole[];
+	roles: Role[];
 	verified?: boolean;
 	status?: boolean;
 	createdAt?: Date;
@@ -70,6 +70,4 @@ const schema = new Schema(
 		versionKey: false
 	});
 
-const User = model<IUser>(DOCUMENT_NAME, schema, COLLECTION_NAME);
-
-export default User;
+export const UserModel = model<User>(DOCUMENT_NAME, schema, COLLECTION_NAME);

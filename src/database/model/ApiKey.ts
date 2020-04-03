@@ -3,7 +3,7 @@ import { Schema, model, Document, Types } from 'mongoose';
 export const DOCUMENT_NAME = 'ApiKey';
 export const COLLECTION_NAME = 'api_keys';
 
-export interface IApiKey extends Document {
+export default interface ApiKey extends Document {
 	key: string;
 	version: number;
 	metadata: string;
@@ -49,6 +49,4 @@ const schema = new Schema(
 		versionKey: false
 	});
 
-const ApiKey = model<IApiKey>(DOCUMENT_NAME, schema, COLLECTION_NAME);
-
-export default ApiKey;
+export const ApiKeyModel = model<ApiKey>(DOCUMENT_NAME, schema, COLLECTION_NAME);

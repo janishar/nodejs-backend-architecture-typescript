@@ -4,7 +4,7 @@ import { JwtPayload } from '../../../src/core/JWT';
 import { tokenInfo } from '../../../src/config';
 import { Types } from 'mongoose';
 import { AuthFailureError } from '../../../src/core/ApiError';
-import { IUser } from '../../../src/database/model/User';
+import User from '../../../src/database/model/User';
 
 describe('authUtils validateTokenData tests', () => {
 
@@ -79,7 +79,7 @@ describe('authUtils createTokens function', () => {
 
 		const userId = new Types.ObjectId('553f8a4286f5c759f36f8e5b'); // Random Key
 
-		const tokens = await createTokens(<IUser>{ _id: userId }, ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY);
+		const tokens = await createTokens(<User>{ _id: userId }, ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY);
 
 		expect(tokens).toHaveProperty('accessToken');
 		expect(tokens).toHaveProperty('refreshToken');
