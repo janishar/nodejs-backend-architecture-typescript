@@ -1,8 +1,8 @@
-import ApiKey, { IApiKey } from '../model/ApiKey';
+import ApiKey, { ApiKeyModel } from '../model/ApiKey';
 
 export default class ApiRepo {
 
-	public static async findByKey(key: string): Promise<IApiKey> {
-		return ApiKey.findOne({ key: key, status: true }).lean<IApiKey>().exec();
+	public static async findByKey(key: string): Promise<ApiKey> {
+		return ApiKeyModel.findOne({ key: key, status: true }).lean<ApiKey>().exec();
 	}
 }

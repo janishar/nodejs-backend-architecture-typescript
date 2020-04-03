@@ -1,6 +1,6 @@
-import Blog, { IBlog } from '../model/Blog';
+import Blog, { BlogModel } from '../model/Blog';
 import { Types } from 'mongoose';
-import { IUser } from '../model/User';
+import User from '../model/User';
 
 export default class BlogRepo {
 
@@ -8,128 +8,128 @@ export default class BlogRepo {
 	private static BLOG_INFO_ADDITIONAL = '+isSubmitted +isDraft +isPublished +createdBy +updatedBy';
 	private static BLOG_ALL_DATA = '+text +draftText +isSubmitted +isDraft +isPublished +status +createdBy +updatedBy';
 
-	public static async create(blog: IBlog): Promise<IBlog> {
+	public static async create(blog: Blog): Promise<Blog> {
 		const now = new Date();
 		blog.createdAt = now;
 		blog.updatedAt = now;
-		const createdBlog = await Blog.create(blog);
+		const createdBlog = await BlogModel.create(blog);
 		return createdBlog.toObject();
 	}
 
-	public static update(blog: IBlog): Promise<any> {
+	public static update(blog: Blog): Promise<any> {
 		blog.updatedAt = new Date();
-		return Blog.updateOne({ _id: blog._id }, { $set: { ...blog } }).lean<IBlog>().exec();
+		return BlogModel.updateOne({ _id: blog._id }, { $set: { ...blog } }).lean<Blog>().exec();
 	}
 
-	public static findInfoById(id: Types.ObjectId): Promise<IBlog> {
-		return Blog.findOne({ _id: id, status: true })
+	public static findInfoById(id: Types.ObjectId): Promise<Blog> {
+		return BlogModel.findOne({ _id: id, status: true })
 			.populate('author', this.AUTHOR_DETAIL)
-			.lean<IBlog>()
+			.lean<Blog>()
 			.exec();
 	}
 
-	public static findInfoWithTextById(id: Types.ObjectId): Promise<IBlog> {
-		return Blog.findOne({ _id: id, status: true })
+	public static findInfoWithTextById(id: Types.ObjectId): Promise<Blog> {
+		return BlogModel.findOne({ _id: id, status: true })
 			.select('+text')
 			.populate('author', this.AUTHOR_DETAIL)
-			.lean<IBlog>()
+			.lean<Blog>()
 			.exec();
 	}
 
-	public static findInfoWithTextAndDraftTextById(id: Types.ObjectId): Promise<IBlog> {
-		return Blog.findOne({ _id: id, status: true })
+	public static findInfoWithTextAndDraftTextById(id: Types.ObjectId): Promise<Blog> {
+		return BlogModel.findOne({ _id: id, status: true })
 			.select('+text +draftText +isSubmitted +isDraft +isPublished +status')
 			.populate('author', this.AUTHOR_DETAIL)
-			.lean<IBlog>()
+			.lean<Blog>()
 			.exec();
 	}
 
-	public static findBlogAllDataById(id: Types.ObjectId): Promise<IBlog> {
-		return Blog.findOne({ _id: id, status: true })
+	public static findBlogAllDataById(id: Types.ObjectId): Promise<Blog> {
+		return BlogModel.findOne({ _id: id, status: true })
 			.select(this.BLOG_ALL_DATA)
 			.populate('author', this.AUTHOR_DETAIL)
-			.lean<IBlog>()
+			.lean<Blog>()
 			.exec();
 	}
 
-	public static findByUrl(blogUrl: string): Promise<IBlog> {
-		return Blog.findOne({ blogUrl: blogUrl, status: true })
+	public static findByUrl(blogUrl: string): Promise<Blog> {
+		return BlogModel.findOne({ blogUrl: blogUrl, status: true })
 			.select('+text')
 			.populate('author', this.AUTHOR_DETAIL)
-			.lean<IBlog>()
+			.lean<Blog>()
 			.exec();
 	}
 
-	public static findUrlIfExists(blogUrl: string): Promise<IBlog> {
-		return Blog.findOne({ blogUrl: blogUrl }).lean<IBlog>().exec();
+	public static findUrlIfExists(blogUrl: string): Promise<Blog> {
+		return BlogModel.findOne({ blogUrl: blogUrl }).lean<Blog>().exec();
 	}
 
-	public static findByTagAndPaginated(tag: string, pageNumber: number, limit: number): Promise<IBlog[]> {
-		return Blog.find({ tags: tag, status: true, isPublished: true })
+	public static findByTagAndPaginated(tag: string, pageNumber: number, limit: number): Promise<Blog[]> {
+		return BlogModel.find({ tags: tag, status: true, isPublished: true })
 			.skip(limit * (pageNumber - 1))
 			.limit(limit)
 			.populate('author', this.AUTHOR_DETAIL)
 			.sort({ updatedAt: -1 })
-			.lean<IBlog>()
+			.lean<Blog>()
 			.exec();
 	}
 
-	public static findAllPublishedForAuthor(user: IUser): Promise<IBlog[]> {
-		return Blog.find({ author: user, status: true, isPublished: true })
+	public static findAllPublishedForAuthor(user: User): Promise<Blog[]> {
+		return BlogModel.find({ author: user, status: true, isPublished: true })
 			.populate('author', this.AUTHOR_DETAIL)
 			.sort({ updatedAt: -1 })
-			.lean<IBlog>()
+			.lean<Blog>()
 			.exec();
 	}
 
-	public static findAllDrafts(): Promise<IBlog[]> {
+	public static findAllDrafts(): Promise<Blog[]> {
 		return this.findDetailedBlogs({ isDraft: true, status: true });
 	}
 
-	public static findAllSubmissions(): Promise<IBlog[]> {
+	public static findAllSubmissions(): Promise<Blog[]> {
 		return this.findDetailedBlogs({ isSubmitted: true, status: true });
 	}
 
-	public static findAllPublished(): Promise<IBlog[]> {
+	public static findAllPublished(): Promise<Blog[]> {
 		return this.findDetailedBlogs({ isPublished: true, status: true });
 	}
 
-	public static findAllSubmissionsForWriter(user: IUser): Promise<IBlog[]> {
+	public static findAllSubmissionsForWriter(user: User): Promise<Blog[]> {
 		return this.findDetailedBlogs({ author: user, status: true, isSubmitted: true });
 	}
 
-	public static findAllPublishedForWriter(user: IUser): Promise<IBlog[]> {
+	public static findAllPublishedForWriter(user: User): Promise<Blog[]> {
 		return this.findDetailedBlogs({ author: user, status: true, isPublished: true });
 	}
 
-	public static findAllDraftsForWriter(user: IUser): Promise<IBlog[]> {
+	public static findAllDraftsForWriter(user: User): Promise<Blog[]> {
 		return this.findDetailedBlogs({ author: user, status: true, isDraft: true });
 	}
 
-	private static findDetailedBlogs(query: Object): Promise<IBlog[]> {
-		return Blog.find(query)
+	private static findDetailedBlogs(query: Object): Promise<Blog[]> {
+		return BlogModel.find(query)
 			.select(this.BLOG_INFO_ADDITIONAL)
 			.populate('author', this.AUTHOR_DETAIL)
 			.populate('createdBy', this.AUTHOR_DETAIL)
 			.populate('updatedBy', this.AUTHOR_DETAIL)
 			.sort({ updatedAt: -1 })
-			.lean<IBlog>()
+			.lean<Blog>()
 			.exec();
 	}
 
-	public static findLatestBlogs(pageNumber: number, limit: number): Promise<IBlog[]> {
-		return Blog.find({ status: true, isPublished: true })
+	public static findLatestBlogs(pageNumber: number, limit: number): Promise<Blog[]> {
+		return BlogModel.find({ status: true, isPublished: true })
 			.skip(limit * (pageNumber - 1))
 			.limit(limit)
 			.populate('author', this.AUTHOR_DETAIL)
 			.sort({ publishedAt: -1 })
-			.lean<IBlog>()
+			.lean<Blog>()
 			.exec();
 	}
 
-	public static searchSimilarBlogs(blog: IBlog, limit: number)
-		: Promise<IBlog[]> {
-		return Blog.find(
+	public static searchSimilarBlogs(blog: Blog, limit: number)
+		: Promise<Blog[]> {
+		return BlogModel.find(
 			{
 				$text: { $search: blog.title, $caseSensitive: false },
 				status: true,
@@ -143,12 +143,12 @@ export default class BlogRepo {
 			.sort({ updatedAt: -1 })
 			.limit(limit)
 			.sort({ similarity: { $meta: 'textScore' } })
-			.lean<IBlog>()
+			.lean<Blog>()
 			.exec();
 	}
 
-	public static search(query: string, limit: number): Promise<IBlog[]> {
-		return Blog.find(
+	public static search(query: string, limit: number): Promise<Blog[]> {
+		return BlogModel.find(
 			{
 				$text: { $search: query, $caseSensitive: false },
 				status: true,
@@ -160,12 +160,12 @@ export default class BlogRepo {
 			.select('-status -description')
 			.limit(limit)
 			.sort({ similarity: { $meta: 'textScore' } })
-			.lean<IBlog>()
+			.lean<Blog>()
 			.exec();
 	}
 
-	public static searchLike(query: string, limit: number): Promise<IBlog[]> {
-		return Blog.find(
+	public static searchLike(query: string, limit: number): Promise<Blog[]> {
+		return BlogModel.find(
 			{
 				title: { $regex: `.*${query}.*`, $options: 'i' },
 				status: true,
@@ -174,7 +174,7 @@ export default class BlogRepo {
 			.select('-status -description')
 			.limit(limit)
 			.sort({ score: -1 })
-			.lean<IBlog>()
+			.lean<Blog>()
 			.exec();
 	}
 }

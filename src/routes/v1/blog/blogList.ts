@@ -6,7 +6,7 @@ import { Types } from 'mongoose';
 import validator, { ValidationSource } from '../../../helpers/validator';
 import schema from './schema';
 import asyncHandler from '../../../helpers/asyncHandler';
-import { IUser } from '../../../database/model/User';
+import User from '../../../database/model/User';
 
 const router = express.Router();
 
@@ -27,7 +27,7 @@ router.get('/tag/:tag',
 
 router.get('/author/id/:id', validator(schema.authorId, ValidationSource.PARAM),
 	asyncHandler(async (req, res, next) => {
-		const blogs = await BlogRepo.findAllPublishedForAuthor(<IUser>{
+		const blogs = await BlogRepo.findAllPublishedForAuthor(<User>{
 			_id: new Types.ObjectId(req.params.id)
 		});
 

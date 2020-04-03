@@ -1,6 +1,6 @@
 import { Request } from 'express';
-import { IUser } from '../database/model/User';
-import { IKeystore } from '../database/model/Keystore';
+import User from '../database/model/User';
+import Keystore from '../database/model/Keystore';
 
 declare interface PublicRequest extends Request {
 	apiKey: string;
@@ -11,9 +11,9 @@ declare interface RoleRequest extends PublicRequest {
 }
 
 declare interface ProtectedRequest extends RoleRequest {
-	user: IUser;
+	user: User;
 	accessToken: string;
-	keystore: IKeystore;
+	keystore: Keystore;
 }
 
 declare interface Tokens {

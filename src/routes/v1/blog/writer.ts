@@ -3,7 +3,7 @@ import { SuccessResponse, SuccessMsgResponse } from '../../../core/ApiResponse'
 import { ProtectedRequest, RoleRequest } from 'app-request';
 import { BadRequestError, ForbiddenError } from '../../../core/ApiError';
 import BlogRepo from '../../../database/repository/BlogRepo';
-import { IBlog } from '../../../database/model/Blog';
+import Blog from '../../../database/model/Blog';
 import { RoleCode } from '../../../database/model/Role';
 import { Types } from 'mongoose';
 import validator, { ValidationSource } from '../../../helpers/validator';
@@ -30,7 +30,7 @@ router.post('/', validator(schema.blogCreate),
 		const blog = await BlogRepo.findUrlIfExists(req.body.blogUrl);
 		if (blog) throw new BadRequestError('Blog with this url already exists');
 
-		const createdBlog = await BlogRepo.create(<IBlog>{
+		const createdBlog = await BlogRepo.create(<Blog>{
 			title: req.body.title,
 			description: req.body.description,
 			draftText: req.body.text,

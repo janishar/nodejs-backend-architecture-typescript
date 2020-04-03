@@ -10,7 +10,7 @@ export const enum RoleCode {
 	ADMIN = 'ADMIN',
 }
 
-export interface IRole extends Document {
+export default interface Role extends Document {
 	code: string;
 	status?: boolean;
 	createdAt?: Date;
@@ -48,6 +48,4 @@ const schema = new Schema(
 		versionKey: false
 	});
 
-const Role = model<IRole>(DOCUMENT_NAME, schema, COLLECTION_NAME);
-
-export default Role;
+export const RoleModel = model<Role>(DOCUMENT_NAME, schema, COLLECTION_NAME);
