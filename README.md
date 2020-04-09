@@ -47,6 +47,7 @@ Following are the features of this project:
 ## Learn the concepts used in this project
 * [Design Node.js Backend Architecture like a Pro](https://afteracademy.com/blog/design-node-js-backend-architecture-like-a-pro)
 * [The video guide to build and run this project](https://youtu.be/Nwh7wTtUV5I)
+* [TypeScript Tutorial For Beginners](https://afteracademy.com/blog/typescript-tutorial-for-beginners)
 
 ## You can find the complete API documentation [here](https://documenter.getpostman.com/view/1552895/SzYUZg52?version=latest)
 <a href="https://documenter.getpostman.com/view/1552895/SzYUZg52?version=latest" target="_blank">
