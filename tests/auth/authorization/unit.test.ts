@@ -2,7 +2,7 @@ import { addAuthHeaders } from '../authentication/mock';
 
 // import the mock for the current test after all other mock imports
 // this will prevent the different implementations by the other mock
-import { mockRoleRepoFindByCode, mockUserFindById, USER_ID_WRITER } from './mock';
+import { mockRoleRepoFindByCode, mockUserFindById } from './mock';
 
 import app from '../../../src/app';
 import supertest from 'supertest';
@@ -39,7 +39,7 @@ describe('authentication validation for writer', () => {
 	});
 
 	it('Should response with 404 if user have writer role', async () => {
-		const response = await addAuthHeaders(request.get(endpoint), USER_ID_WRITER);
+		const response = await addAuthHeaders(request.get(endpoint));
 		expect(response.status).toBe(404);
 		expect(mockRoleRepoFindByCode).toBeCalledTimes(1);
 		expect(mockUserFindById).toBeCalledTimes(1);

@@ -42,33 +42,20 @@ export default class JWT {
 		} catch (e) {
 			Logger.debug(e);
 			if (e && e.name === 'TokenExpiredError') throw new TokenExpiredError();
+			// throws error if the token has not been encrypted by the private key
 			throw new BadTokenError();
 		}
 	}
 
 	/**
-	 * This method checks the token and returns the decoded data even when the token is expired
+	 * Returns the decoded payload without verifying if the signature is valid.
 	 */
-	public static async decode(token: string, validations: ValidationParams): Promise<JwtPayload> {
-		const cert = await this.readPublicKey();
+	public static async decode(token: string): Promise<JwtPayload> {
 		try {
-			// token is verified if it was encrypted by the private key
-			// and if is still not expired then get the payload
-			// @ts-ignore
-			return <JwtPayload>await promisify(verify)(token, cert, validations);
+			return <JwtPayload>decode(token);
 		} catch (e) {
 			Logger.debug(e);
-			if (e && e.name === 'TokenExpiredError') {
-				// if the token has expired but was encryped by the private key
-				// then decode it to get the payload
-				// @ts-ignore
-				return <JwtPayload>decode(token);
-			}
-			else {
-				// throws error if the token has not been encrypted by the private key
-				// or has not been issued for the user
-				throw new BadTokenError();
-			}
+			throw new BadTokenError();
 		}
 	}
 }

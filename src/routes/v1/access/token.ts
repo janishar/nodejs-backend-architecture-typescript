@@ -7,7 +7,7 @@ import { AuthFailureError, } from '../../../core/ApiError';
 import JWT, { ValidationParams } from '../../../core/JWT';
 import KeystoreRepo from '../../../database/repository/KeystoreRepo';
 import crypto from 'crypto';
-import { validateTokenData, createTokens } from '../../../auth/authUtils';
+import { validateTokenData, createTokens, getAccessToken } from '../../../auth/authUtils';
 import validator, { ValidationSource } from '../../../helpers/validator';
 import schema from './schema';
 import asyncHandler from '../../../helpers/asyncHandler';
@@ -18,29 +18,23 @@ const router = express.Router();
 router.post('/refresh',
 	validator(schema.auth, ValidationSource.HEADER), validator(schema.refreshToken),
 	asyncHandler(async (req: ProtectedRequest, res, next) => {
-		req.accessToken = req.headers['x-access-token'].toString();
+		req.accessToken = getAccessToken(req.headers.authorization); // Express headers are auto converted to lowercase
 
-		const user = await UserRepo.findById(new Types.ObjectId(req.headers['x-user-id'].toString()));
+		const accessTokenPayload = await JWT.decode(req.accessToken);
+		if (!accessTokenPayload.sub || !Types.ObjectId.isValid(accessTokenPayload.sub))
+			throw new AuthFailureError('Invalid access token');
+
+		const user = await UserRepo.findById(new Types.ObjectId(accessTokenPayload.sub));
 		if (!user) throw new AuthFailureError('User not registered');
 		req.user = user;
 
-		const accessTokenPayload = await validateTokenData(
-			await JWT.decode(req.accessToken,
-				new ValidationParams(
-					tokenInfo.issuer,
-					tokenInfo.audience,
-					req.user._id.toHexString())),
-			req.user._id
-		);
+		validateTokenData(accessTokenPayload, req.user._id);
 
-		const refreshTokenPayload = await validateTokenData(
-			await JWT.validate(req.body.refreshToken,
-				new ValidationParams(
-					tokenInfo.issuer,
-					tokenInfo.audience,
-					req.user._id.toHexString())),
-			req.user._id
-		);
+		const refreshTokenPayload = await JWT.validate(req.body.refreshToken,
+			new ValidationParams(
+				tokenInfo.issuer,
+				tokenInfo.audience,
+				req.user._id.toHexString()));
 
 		const keystore = await KeystoreRepo.find(
 			req.user._id,

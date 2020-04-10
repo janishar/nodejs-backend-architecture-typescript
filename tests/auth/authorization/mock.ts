@@ -5,7 +5,6 @@ import { Types } from 'mongoose';
 import User from '../../../src/database/model/User';
 import Role, { RoleCode } from '../../../src/database/model/Role';
 
-
 export const LEARNER_ROLE_ID = new Types.ObjectId(); // random id
 export const WRITER_ROLE_ID = new Types.ObjectId(); // random id
 export const EDITOR_ROLE_ID = new Types.ObjectId(); // random id

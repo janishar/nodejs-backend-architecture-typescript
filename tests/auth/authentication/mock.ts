@@ -16,6 +16,11 @@ export const mockUserFindById = jest.fn(async (id: Types.ObjectId) => {
 	else return null;
 });
 
+export const mockJwtDecode = jest.fn(async (token: string): Promise<JwtPayload> => {
+	if (token == ACCESS_TOKEN) return <JwtPayload>{ sub: USER_ID.toHexString() };
+	throw new BadTokenError();
+});
+
 export const mockJwtValidate = jest.fn(
 	async (token: string, validations: ValidationParams): Promise<JwtPayload> => {
 		if (token == ACCESS_TOKEN) return <JwtPayload>{ prm: 'abcdef' };
@@ -24,13 +29,6 @@ export const mockJwtValidate = jest.fn(
 
 export const mockKeystoreFindForKey = jest.fn(
 	async (client: User, key: string): Promise<Keystore> => (<Keystore>{ client: client, primaryKey: key }));
-
-export const mockValidateTokenData =
-	jest.fn(async (payload: JwtPayload, userId: Types.ObjectId): Promise<JwtPayload> => payload);
-
-jest.mock('../../../src/auth/authUtils', () => ({
-	get validateTokenData() { return mockValidateTokenData; }
-}));
 
 jest.mock('../../../src/database/repository/UserRepo', () => ({
 	get findById() { return mockUserFindById; }
@@ -41,13 +39,13 @@ jest.mock('../../../src/database/repository/KeystoreRepo', () => ({
 }));
 
 JWT.validate = mockJwtValidate;
+JWT.decode = mockJwtDecode;
 
 export const addHeaders = (request: any) => request
 	.set('Content-Type', 'application/json')
 	.set('x-api-key', API_KEY);
 
-export const addAuthHeaders = (request: any, userId: Types.ObjectId = USER_ID) => request
+export const addAuthHeaders = (request: any) => request
 	.set('Content-Type', 'application/json')
-	.set('x-api-key', API_KEY)
-	.set('x-access-token', ACCESS_TOKEN)
-	.set('x-user-id', userId.toHexString());
+	.set('Authorization', `Bearer ${ACCESS_TOKEN}`)
+	.set('x-api-key', API_KEY);
