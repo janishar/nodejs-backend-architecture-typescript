@@ -1,6 +1,7 @@
 import {
-	USER_ID, ACCESS_TOKEN, addHeaders, addAuthHeaders,
-	mockUserFindById, mockJwtValidate, mockJwtDecode, mockKeystoreFindForKey
+	ACCESS_TOKEN, addHeaders, addAuthHeaders,
+	mockUserFindById, mockJwtValidate, mockKeystoreFindForKey,
+	getAccessTokenSpy
 } from './mock';
 
 import app from '../../../src/app';
@@ -12,9 +13,9 @@ describe('authentication validation', () => {
 	const request = supertest(app);
 
 	beforeEach(() => {
-		mockUserFindById.mockClear();
+		getAccessTokenSpy.mockClear();
 		mockJwtValidate.mockClear();
-		mockJwtDecode.mockClear();
+		mockUserFindById.mockClear();
 		mockKeystoreFindForKey.mockClear();
 	});
 
@@ -22,8 +23,7 @@ describe('authentication validation', () => {
 		const response = await addHeaders(request.get(endpoint));
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/authorization/);
-		expect(mockJwtDecode).not.toBeCalled();
-		expect(mockUserFindById).not.toBeCalled();
+		expect(getAccessTokenSpy).not.toBeCalled();
 	});
 
 
@@ -32,8 +32,7 @@ describe('authentication validation', () => {
 			.set('Authorization', '123');
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/authorization/);
-		expect(mockJwtDecode).not.toBeCalled();
-		expect(mockUserFindById).not.toBeCalled();
+		expect(getAccessTokenSpy).not.toBeCalled();
 	});
 
 	it('Should response with 401 if wrong Authorization header is provided', async () => {
@@ -41,8 +40,11 @@ describe('authentication validation', () => {
 			.set('Authorization', 'Bearer 123');
 		expect(response.status).toBe(401);
 		expect(response.body.message).toMatch(/token/i);
-		expect(mockJwtDecode).toBeCalledTimes(1);
-		expect(mockJwtDecode).toBeCalledWith('123');
+		expect(getAccessTokenSpy).toBeCalledTimes(1);
+		expect(getAccessTokenSpy).toBeCalledWith('Bearer 123');
+		expect(getAccessTokenSpy).toReturnWith('123');
+		expect(mockJwtValidate).toBeCalledTimes(1);
+		expect(mockJwtValidate).toBeCalledWith('123');
 		expect(mockUserFindById).not.toBeCalled();
 	});
 
@@ -51,9 +53,12 @@ describe('authentication validation', () => {
 		expect(response.body.message).not.toMatch(/not registered/);
 		expect(response.body.message).not.toMatch(/token/i);
 		expect(response.status).toBe(404);
-		expect(mockJwtDecode).toBeCalledTimes(1);
-		expect(mockJwtDecode).toBeCalledWith(ACCESS_TOKEN);
-		expect(mockUserFindById).toBeCalledTimes(1);
+		expect(getAccessTokenSpy).toBeCalledTimes(1);
+		expect(getAccessTokenSpy).toBeCalledWith(`Bearer ${ACCESS_TOKEN}`);
+		expect(getAccessTokenSpy).toReturnWith(ACCESS_TOKEN);
 		expect(mockJwtValidate).toBeCalledTimes(1);
+		expect(mockJwtValidate).toBeCalledWith(ACCESS_TOKEN);
+		expect(mockUserFindById).toBeCalledTimes(1);
+		expect(mockKeystoreFindForKey).toBeCalledTimes(1);
 	});
 });

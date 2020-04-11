@@ -3,27 +3,33 @@ import { API_KEY } from '../apikey/mock';
 
 import User from '../../../src/database/model/User';
 import { Types } from 'mongoose';
-import JWT, { ValidationParams, JwtPayload } from '../../../src/core/JWT';
+import JWT, { JwtPayload } from '../../../src/core/JWT';
 import { BadTokenError } from '../../../src/core/ApiError';
 import Keystore from '../../../src/database/model/Keystore';
+import * as authUtils from '../../../src/auth/authUtils';
+import { tokenInfo } from '../../../src/config';
 
 export const ACCESS_TOKEN = 'xyz';
 
 export const USER_ID = new Types.ObjectId(); // random id with object id format
+
+export const getAccessTokenSpy = jest.spyOn(authUtils, 'getAccessToken');
 
 export const mockUserFindById = jest.fn(async (id: Types.ObjectId) => {
 	if (USER_ID.equals(id)) return <User>{ _id: new Types.ObjectId(id) };
 	else return null;
 });
 
-export const mockJwtDecode = jest.fn(async (token: string): Promise<JwtPayload> => {
-	if (token == ACCESS_TOKEN) return <JwtPayload>{ sub: USER_ID.toHexString() };
-	throw new BadTokenError();
-});
-
 export const mockJwtValidate = jest.fn(
-	async (token: string, validations: ValidationParams): Promise<JwtPayload> => {
-		if (token == ACCESS_TOKEN) return <JwtPayload>{ prm: 'abcdef' };
+	async (token: string): Promise<JwtPayload> => {
+		if (token === ACCESS_TOKEN) return <JwtPayload>{
+			iss: tokenInfo.issuer,
+			aud: tokenInfo.audience,
+			sub: USER_ID.toHexString(),
+			iat: 1,
+			exp: 2,
+			prm: 'abcdef'
+		};
 		throw new BadTokenError();
 	});
 
@@ -39,13 +45,12 @@ jest.mock('../../../src/database/repository/KeystoreRepo', () => ({
 }));
 
 JWT.validate = mockJwtValidate;
-JWT.decode = mockJwtDecode;
 
 export const addHeaders = (request: any) => request
 	.set('Content-Type', 'application/json')
 	.set('x-api-key', API_KEY);
 
-export const addAuthHeaders = (request: any) => request
+export const addAuthHeaders = (request: any, accessToken = ACCESS_TOKEN) => request
 	.set('Content-Type', 'application/json')
-	.set('Authorization', `Bearer ${ACCESS_TOKEN}`)
+	.set('Authorization', `Bearer ${accessToken}`)
 	.set('x-api-key', API_KEY);

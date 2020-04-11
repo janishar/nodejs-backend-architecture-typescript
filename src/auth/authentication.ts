@@ -6,7 +6,6 @@ import JWT from '../core/JWT';
 import KeystoreRepo from '../database/repository/KeystoreRepo';
 import { Types } from 'mongoose';
 import { getAccessToken, validateTokenData } from './authUtils';
-import { tokenInfo } from '../config';
 import validator, { ValidationSource } from '../helpers/validator';
 import schema from './schema';
 import asyncHandler from '../helpers/asyncHandler';
@@ -26,10 +25,7 @@ export default router.use(validator(schema.auth, ValidationSource.HEADER),
 			req.user = user;
 
 			const keystore = await KeystoreRepo.findforKey(req.user._id, payload.prm);
-
-			if (!keystore || keystore.primaryKey !== payload.prm)
-				throw new AuthFailureError('Invalid access token');
-
+			if (!keystore) throw new AuthFailureError('Invalid access token');
 			req.keystore = keystore;
 
 			return next();

@@ -1,5 +1,5 @@
 import { readFileSpy } from './mock';
-import JWT, { JwtPayload, ValidationParams } from '../../../src/core/JWT';
+import JWT, { JwtPayload } from '../../../src/core/JWT';
 import { BadTokenError, TokenExpiredError } from '../../../src/core/ApiError';
 
 describe('JWT class tests', () => {
@@ -17,7 +17,7 @@ describe('JWT class tests', () => {
 		});
 
 		try {
-			await JWT.decode('abc', new ValidationParams(issuer, audience, subject));
+			await JWT.decode('abc');
 		} catch (e) {
 			expect(e).toBeInstanceOf(BadTokenError);
 		}
@@ -46,7 +46,7 @@ describe('JWT class tests', () => {
 
 		const payload = new JwtPayload(issuer, audience, subject, param, validity);
 		const token = await JWT.encode(payload);
-		const decoded = await JWT.decode(token, new ValidationParams(issuer, audience, subject));
+		const decoded = await JWT.decode(token);
 
 		expect(decoded).toMatchObject(payload);
 		expect(readFileSpy).toBeCalledTimes(2);
@@ -69,7 +69,7 @@ describe('JWT class tests', () => {
 			prm: param,
 		};
 		const token = await JWT.encode(payload);
-		const decoded = await JWT.decode(token, new ValidationParams(issuer, audience, subject));
+		const decoded = await JWT.decode(token);
 
 		expect(decoded).toMatchObject(payload);
 		expect(readFileSpy).toBeCalledTimes(2);
@@ -82,7 +82,7 @@ describe('JWT class tests', () => {
 		});
 
 		try {
-			await JWT.validate('abc', new ValidationParams(issuer, audience, subject));
+			await JWT.validate('abc');
 		} catch (e) {
 			expect(e).toBeInstanceOf(BadTokenError);
 		}
@@ -98,7 +98,7 @@ describe('JWT class tests', () => {
 
 		const payload = new JwtPayload(issuer, audience, subject, param, validity);
 		const token = await JWT.encode(payload);
-		const decoded = await JWT.validate(token, new ValidationParams(issuer, audience, subject));
+		const decoded = await JWT.validate(token);
 
 		expect(decoded).toMatchObject(payload);
 		expect(readFileSpy).toBeCalledTimes(2);
@@ -122,7 +122,7 @@ describe('JWT class tests', () => {
 		};
 		const token = await JWT.encode(payload);
 		try {
-			await JWT.validate(token, new ValidationParams(issuer, audience, subject));
+			await JWT.validate(token);
 		} catch (e) {
 			expect(e).toBeInstanceOf(TokenExpiredError);
 		}

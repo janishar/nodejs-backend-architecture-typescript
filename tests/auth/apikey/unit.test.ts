@@ -11,13 +11,13 @@ describe('apikey validation', () => {
 		mockFindApiKey.mockClear();
 	});
 
-	it('Should response with 400 if api-key header is not passed', async () => {
+	it('Should response with 400 if x-api-key header is not passed', async () => {
 		const response = await request.get(endpoint);
 		expect(response.status).toBe(400);
 		expect(mockFindApiKey).not.toBeCalled();
 	});
 
-	it('Should response with 403 if wrong api-key header is passed', async () => {
+	it('Should response with 403 if wrong x-api-key header is passed', async () => {
 		const wrongApiKey = '123';
 		const response = await request
 			.get(endpoint)
@@ -27,7 +27,7 @@ describe('apikey validation', () => {
 		expect(mockFindApiKey).toBeCalledWith(wrongApiKey);
 	});
 
-	it('Should response with 404 if correct api-key header is passed and when route is not handelled', async () => {
+	it('Should response with 404 if correct x-api-key header is passed and when route is not handelled', async () => {
 		const response = await request
 			.get(endpoint)
 			.set('x-api-key', API_KEY);
