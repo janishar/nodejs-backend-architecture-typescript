@@ -1,7 +1,7 @@
 import { addAuthHeaders } from '../../../../auth/authentication/mock';
 
 // this import should be below authentication/mock to override for role validation to work
-import { USER_ID_WRITER } from '../../../../auth/authorization/mock';
+import { WRITER_ACCESS_TOKEN } from '../../../../auth/authorization/mock';
 
 import {
 	BLOG_ID, BLOG_URL, BLOG_ID_2,
@@ -38,7 +38,7 @@ describe('Writer blog create routes', () => {
 				text: 'text',
 				blogUrl: 'blogUrl',
 			}),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/title/i);
@@ -54,7 +54,7 @@ describe('Writer blog create routes', () => {
 				text: 'text',
 				blogUrl: 'blogUrl',
 			}),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/description/i);
@@ -70,7 +70,7 @@ describe('Writer blog create routes', () => {
 				description: 'description',
 				blogUrl: 'blogUrl',
 			}),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/text/i);
@@ -86,7 +86,7 @@ describe('Writer blog create routes', () => {
 				description: 'description',
 				text: 'text',
 			}),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/blogUrl/i);
@@ -103,7 +103,7 @@ describe('Writer blog create routes', () => {
 				text: 'text',
 				blogUrl: 'https://abc.com/xyz'
 			}),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/blogUrl/i);
@@ -121,7 +121,7 @@ describe('Writer blog create routes', () => {
 				blogUrl: 'blogUrl',
 				imgUrl: 'abc'
 			}),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/imgUrl/i);
@@ -139,7 +139,7 @@ describe('Writer blog create routes', () => {
 				blogUrl: 'blogUrl',
 				score: 'abc'
 			}),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/must be a number/i);
@@ -156,7 +156,7 @@ describe('Writer blog create routes', () => {
 				blogUrl: 'blogUrl',
 				tags: 'abc'
 			}),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/must be/i);
@@ -173,7 +173,7 @@ describe('Writer blog create routes', () => {
 				text: 'text',
 				blogUrl: BLOG_URL
 			}),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/already exists/i);
@@ -192,7 +192,7 @@ describe('Writer blog create routes', () => {
 				score: 0.01,
 				tags: ['ABC'],
 			}),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(200);
 		expect(response.body.message).toMatch(/created success/i);
@@ -215,7 +215,7 @@ describe('Writer blog submit routes', () => {
 	it('Should send error if submit blog id is not valid', async () => {
 		const response = await addAuthHeaders(
 			request.put(endpoint + 'abc'),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/id/i);
@@ -227,7 +227,7 @@ describe('Writer blog submit routes', () => {
 	it('Should send error if submit blog do not exist for id', async () => {
 		const response = await addAuthHeaders(
 			request.put(endpoint + new Types.ObjectId().toHexString()),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/not exists/i);
@@ -238,7 +238,7 @@ describe('Writer blog submit routes', () => {
 	it('Should send success if submit blog for id exists', async () => {
 		const response = await addAuthHeaders(
 			request.put(endpoint + BLOG_ID.toHexString()),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(200);
 		expect(response.body.message).toMatch(/submitted success/i);
@@ -260,7 +260,7 @@ describe('Writer blog withdraw routes', () => {
 	it('Should send error if withdraw blog id is not valid', async () => {
 		const response = await addAuthHeaders(
 			request.put(endpoint + 'abc'),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/id/i);
@@ -272,7 +272,7 @@ describe('Writer blog withdraw routes', () => {
 	it('Should send error if withdraw blog do not exist for id', async () => {
 		const response = await addAuthHeaders(
 			request.put(endpoint + new Types.ObjectId().toHexString()),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/not exists/i);
@@ -283,7 +283,7 @@ describe('Writer blog withdraw routes', () => {
 	it('Should send success if withdraw blog for id exists', async () => {
 		const response = await addAuthHeaders(
 			request.put(endpoint + BLOG_ID.toHexString()),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(200);
 		expect(response.body.message).toMatch(/withdrawn success/i);
@@ -305,7 +305,7 @@ describe('Writer blog delete routes', () => {
 	it('Should send error if deleting blog id is not valid', async () => {
 		const response = await addAuthHeaders(
 			request.delete(endpoint + 'abc'),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/id/i);
@@ -317,7 +317,7 @@ describe('Writer blog delete routes', () => {
 	it('Should send error if deleting blog do not exist for id', async () => {
 		const response = await addAuthHeaders(
 			request.delete(endpoint + new Types.ObjectId().toHexString()),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/not exists/i);
@@ -328,7 +328,7 @@ describe('Writer blog delete routes', () => {
 	it('Should send success if deleting blog for id exists', async () => {
 		const response = await addAuthHeaders(
 			request.delete(endpoint + BLOG_ID.toHexString()),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(200);
 		expect(response.body.message).toMatch(/deleted success/i);
@@ -349,7 +349,7 @@ describe('Writer blog get by id routes', () => {
 	it('Should send error if fetching blog id is not valid', async () => {
 		const response = await addAuthHeaders(
 			request.get(endpoint + 'abc'),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/id/i);
@@ -360,7 +360,7 @@ describe('Writer blog get by id routes', () => {
 	it('Should send error if fetching blog do not exist for id', async () => {
 		const response = await addAuthHeaders(
 			request.get(endpoint + new Types.ObjectId().toHexString()),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(400);
 		expect(response.body.message).toMatch(/not exists/i);
@@ -370,7 +370,7 @@ describe('Writer blog get by id routes', () => {
 	it('Should send error if author is different', async () => {
 		const response = await addAuthHeaders(
 			request.get(endpoint + BLOG_ID_2.toHexString()),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(403);
 		expect(response.body.message).toMatch(/don't have/i);
@@ -381,7 +381,7 @@ describe('Writer blog get by id routes', () => {
 	it('Should send success if fetching blog for id exists', async () => {
 		const response = await addAuthHeaders(
 			request.get(endpoint + BLOG_ID.toHexString()),
-			USER_ID_WRITER
+			WRITER_ACCESS_TOKEN
 		);
 		expect(response.status).toBe(200);
 		expect(response.body.message).toMatch(/success/i);
