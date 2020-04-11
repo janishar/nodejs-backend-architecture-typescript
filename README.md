@@ -258,8 +258,7 @@ Following are the features of this project:
     Host: localhost:3000
     x-api-key: GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj
     Content-Type: application/json
-    x-access-token: your_token_received_from_signup_or_login
-    x-user-id: your_user_id
+    Authorization: Bearer <your_token_received_from_signup_or_login>
     ```
     * Response Body: 200
     ```json
