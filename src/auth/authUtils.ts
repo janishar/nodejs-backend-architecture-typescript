@@ -11,11 +11,11 @@ export const getAccessToken = (authorization: string) => {
 	return authorization.split(' ')[1];
 };
 
-export const validateTokenData = (payload: JwtPayload, userId: Types.ObjectId): boolean => {
+export const validateTokenData = (payload: JwtPayload): boolean => {
 	if (!payload || !payload.iss || !payload.sub || !payload.aud || !payload.prm
 		|| payload.iss !== tokenInfo.issuer
 		|| payload.aud !== tokenInfo.audience
-		|| payload.sub !== userId.toHexString())
+		|| !Types.ObjectId.isValid(payload.sub))
 		throw new AuthFailureError('Invalid Access Token');
 	return true;
 };

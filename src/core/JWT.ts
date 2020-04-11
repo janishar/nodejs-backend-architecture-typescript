@@ -34,11 +34,11 @@ export default class JWT {
 	/**
 	 * This method checks the token and returns the decoded data when token is valid in all respect
 	 */
-	public static async validate(token: string, validations: ValidationParams): Promise<JwtPayload> {
+	public static async validate(token: string): Promise<JwtPayload> {
 		const cert = await this.readPublicKey();
 		try {
 			// @ts-ignore
-			return <JwtPayload>await promisify(verify)(token, cert, validations);
+			return <JwtPayload>await promisify(verify)(token, cert);
 		} catch (e) {
 			Logger.debug(e);
 			if (e && e.name === 'TokenExpiredError') throw new TokenExpiredError();
@@ -48,26 +48,17 @@ export default class JWT {
 	}
 
 	/**
-	 * Returns the decoded payload without verifying if the signature is valid.
+	 * Returns the decoded payload if the signature is valid even if it is expired
 	 */
 	public static async decode(token: string): Promise<JwtPayload> {
+		const cert = await this.readPublicKey();
 		try {
-			return <JwtPayload>decode(token);
+			// @ts-ignore
+			return <JwtPayload>await promisify(verify)(token, cert, { ignoreExpiration: true });
 		} catch (e) {
 			Logger.debug(e);
 			throw new BadTokenError();
 		}
-	}
-}
-
-export class ValidationParams {
-	issuer: string;
-	audience: string;
-	subject: string;
-	constructor(issuer: string, audience: string, subject: string) {
-		this.issuer = issuer;
-		this.audience = audience;
-		this.subject = subject;
 	}
 }
 
