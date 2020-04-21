@@ -8,3 +8,4 @@ before_install:
   - cp keys/public.pem.example keys/public.pem
   - cp keys/private.pem.example keys/private.pem
   - cp tests/.env.test.example tests/.env.test
+  - docker-compose up -d
