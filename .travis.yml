@@ -3,3 +3,5 @@ node_js:
   - 13
 services:
   - mongodb
+before_script:
+  - cp tests/.env.test.example tests/.env.test
