@@ -6,4 +6,7 @@ services:
 before_install:
   - docker-compose up -d
 before_script:
+  - cp .env.example .env
+  - cp keys/public.pem.example keys/public.pem
+  - cp keys/private.pem.example keys/private.pem
   - cp tests/.env.test.example tests/.env.test
