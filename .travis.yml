@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - 13
+services:
+  - docker
+before_install:
+  - cp .env.example .env
+  - cp keys/public.pem.example keys/public.pem
+  - cp keys/private.pem.example keys/private.pem
+  - cp tests/.env.test.example tests/.env.test
+  - docker-compose up -d
