@@ -9,18 +9,24 @@ import asyncHandler from '../../../helpers/asyncHandler';
 
 const router = express.Router();
 
-router.get('/url', validator(schema.blogUrl, ValidationSource.QUERY),
-	asyncHandler(async (req, res, next) => {
-		const blog = await BlogRepo.findByUrl(req.query.endpoint);
-		if (!blog) throw new BadRequestError('Blog do not exists');
-		new SuccessResponse('success', blog).send(res);
-	}));
+router.get(
+  '/url',
+  validator(schema.blogUrl, ValidationSource.QUERY),
+  asyncHandler(async (req, res) => {
+    const blog = await BlogRepo.findByUrl(req.query.endpoint);
+    if (!blog) throw new BadRequestError('Blog do not exists');
+    new SuccessResponse('success', blog).send(res);
+  }),
+);
 
-router.get('/id/:id', validator(schema.blogId, ValidationSource.PARAM),
-	asyncHandler(async (req, res, next) => {
-		const blog = await BlogRepo.findInfoWithTextById(new Types.ObjectId(req.params.id));
-		if (!blog) throw new BadRequestError('Blog do not exists');
-		return new SuccessResponse('success', blog).send(res);
-	}));
+router.get(
+  '/id/:id',
+  validator(schema.blogId, ValidationSource.PARAM),
+  asyncHandler(async (req, res) => {
+    const blog = await BlogRepo.findInfoWithTextById(new Types.ObjectId(req.params.id));
+    if (!blog) throw new BadRequestError('Blog do not exists');
+    return new SuccessResponse('success', blog).send(res);
+  }),
+);
 
 export default router;

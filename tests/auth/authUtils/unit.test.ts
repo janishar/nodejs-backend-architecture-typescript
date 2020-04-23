@@ -7,75 +7,68 @@ import { AuthFailureError } from '../../../src/core/ApiError';
 import User from '../../../src/database/model/User';
 
 describe('authUtils validateTokenData tests', () => {
+  beforeAll(() => {
+    jest.resetAllMocks();
+  });
 
-	beforeAll(() => {
-		jest.resetAllMocks();
-	});
+  it('Should throw error when subject in not user id format', async () => {
+    const payload = new JwtPayload(
+      tokenInfo.issuer,
+      tokenInfo.audience,
+      'abc',
+      ACCESS_TOKEN_KEY,
+      tokenInfo.accessTokenValidityDays,
+    );
 
-	it('Should throw error when subject in not user id format', async () => {
+    try {
+      validateTokenData(payload);
+    } catch (e) {
+      expect(e).toBeInstanceOf(AuthFailureError);
+    }
+  });
 
-		const payload = new JwtPayload(
-			tokenInfo.issuer,
-			tokenInfo.audience,
-			'abc',
-			ACCESS_TOKEN_KEY,
-			tokenInfo.accessTokenValidityDays
-		);
+  it('Should throw error when access token key is different', async () => {
+    const payload = new JwtPayload(
+      tokenInfo.issuer,
+      tokenInfo.audience,
+      new Types.ObjectId().toHexString(),
+      '123',
+      tokenInfo.accessTokenValidityDays,
+    );
 
-		try {
-			validateTokenData(payload);
-		} catch (e) {
-			expect(e).toBeInstanceOf(AuthFailureError);
-		}
-	});
+    try {
+      validateTokenData(payload);
+    } catch (e) {
+      expect(e).toBeInstanceOf(AuthFailureError);
+    }
+  });
 
-	it('Should throw error when access token key is different', async () => {
+  it('Should return true if all data is correct', async () => {
+    const payload = new JwtPayload(
+      tokenInfo.issuer,
+      tokenInfo.audience,
+      new Types.ObjectId().toHexString(), // Random Key
+      ACCESS_TOKEN_KEY,
+      tokenInfo.accessTokenValidityDays,
+    );
 
-		const payload = new JwtPayload(
-			tokenInfo.issuer,
-			tokenInfo.audience,
-			new Types.ObjectId().toHexString(),
-			'123',
-			tokenInfo.accessTokenValidityDays
-		);
+    const validatedPayload = validateTokenData(payload);
 
-		try {
-			validateTokenData(payload);
-		} catch (e) {
-			expect(e).toBeInstanceOf(AuthFailureError);
-		}
-	});
-
-	it('Should return true if all data is correct', async () => {
-
-		const payload = new JwtPayload(
-			tokenInfo.issuer,
-			tokenInfo.audience,
-			new Types.ObjectId().toHexString(), // Random Key
-			ACCESS_TOKEN_KEY,
-			tokenInfo.accessTokenValidityDays
-		);
-
-		const validatedPayload = validateTokenData(payload);
-
-		expect(validatedPayload).toBeTruthy();
-	});
+    expect(validatedPayload).toBeTruthy();
+  });
 });
 
-
 describe('authUtils createTokens function', () => {
+  beforeAll(() => {
+    jest.resetAllMocks();
+  });
 
-	beforeAll(() => {
-		jest.resetAllMocks();
-	});
+  it('Should process and return accessToken and refreshToken', async () => {
+    const userId = new Types.ObjectId(); // Random Key
 
-	it('Should process and return accessToken and refreshToken', async () => {
+    const tokens = await createTokens({ _id: userId } as User, ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY);
 
-		const userId = new Types.ObjectId(); // Random Key
-
-		const tokens = await createTokens(<User>{ _id: userId }, ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY);
-
-		expect(tokens).toHaveProperty('accessToken');
-		expect(tokens).toHaveProperty('refreshToken');
-	});
+    expect(tokens).toHaveProperty('accessToken');
+    expect(tokens).toHaveProperty('refreshToken');
+  });
 });

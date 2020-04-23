@@ -3,20 +3,20 @@ import User from '../database/model/User';
 import Keystore from '../database/model/Keystore';
 
 declare interface PublicRequest extends Request {
-	apiKey: string;
+  apiKey: string;
 }
 
 declare interface RoleRequest extends PublicRequest {
-	currentRoleCode: string;
+  currentRoleCode: string;
 }
 
 declare interface ProtectedRequest extends RoleRequest {
-	user: User;
-	accessToken: string;
-	keystore: Keystore;
+  user: User;
+  accessToken: string;
+  keystore: Keystore;
 }
 
 declare interface Tokens {
-	accessToken: string,
-	refreshToken: string,
+  accessToken: string;
+  refreshToken: string;
 }
