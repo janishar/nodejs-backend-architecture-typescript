@@ -1,6 +1,6 @@
 import express from 'express';
 import { SuccessResponse, SuccessMsgResponse } from '../../../core/ApiResponse';
-import { ProtectedRequest, RoleRequest } from 'app-request';
+import { ProtectedRequest } from 'app-request';
 import { BadRequestError, ForbiddenError } from '../../../core/ApiError';
 import BlogRepo from '../../../database/repository/BlogRepo';
 import Blog from '../../../database/model/Blog';
@@ -9,7 +9,6 @@ import { Types } from 'mongoose';
 import validator, { ValidationSource } from '../../../helpers/validator';
 import schema from './schema';
 import asyncHandler from '../../../helpers/asyncHandler';
-import _ from 'lodash';
 import authentication from '../../../auth/authentication';
 import authorization from '../../../auth/authorization';
 import role from '../../../helpers/role';
@@ -26,13 +25,13 @@ const formatEndpoint = (endpoint: string) => endpoint.replace(/\s/g, '').replace
 router.post(
   '/',
   validator(schema.blogCreate),
-  asyncHandler(async (req: ProtectedRequest, res, next) => {
+  asyncHandler(async (req: ProtectedRequest, res) => {
     req.body.blogUrl = formatEndpoint(req.body.blogUrl);
 
     const blog = await BlogRepo.findUrlIfExists(req.body.blogUrl);
     if (blog) throw new BadRequestError('Blog with this url already exists');
 
-    const createdBlog = await BlogRepo.create(<Blog>{
+    const createdBlog = await BlogRepo.create({
       title: req.body.title,
       description: req.body.description,
       draftText: req.body.text,
@@ -43,7 +42,7 @@ router.post(
       score: req.body.score,
       createdBy: req.user,
       updatedBy: req.user,
-    });
+    } as Blog);
 
     new SuccessResponse('Blog created successfully', createdBlog).send(res);
   }),
@@ -53,7 +52,7 @@ router.put(
   '/id/:id',
   validator(schema.blogId, ValidationSource.PARAM),
   validator(schema.blogUpdate),
-  asyncHandler(async (req: ProtectedRequest, res, next) => {
+  asyncHandler(async (req: ProtectedRequest, res) => {
     const blog = await BlogRepo.findBlogAllDataById(new Types.ObjectId(req.params.id));
     if (blog == null) throw new BadRequestError('Blog does not exists');
     if (!blog.author._id.equals(req.user._id))
@@ -81,7 +80,7 @@ router.put(
 router.put(
   '/submit/:id',
   validator(schema.blogId, ValidationSource.PARAM),
-  asyncHandler(async (req: ProtectedRequest, res, next) => {
+  asyncHandler(async (req: ProtectedRequest, res) => {
     const blog = await BlogRepo.findBlogAllDataById(new Types.ObjectId(req.params.id));
     if (!blog) throw new BadRequestError('Blog does not exists');
     if (!blog.author._id.equals(req.user._id))
@@ -98,7 +97,7 @@ router.put(
 router.put(
   '/withdraw/:id',
   validator(schema.blogId, ValidationSource.PARAM),
-  asyncHandler(async (req: ProtectedRequest, res, next) => {
+  asyncHandler(async (req: ProtectedRequest, res) => {
     const blog = await BlogRepo.findBlogAllDataById(new Types.ObjectId(req.params.id));
     if (!blog) throw new BadRequestError('Blog does not exists');
     if (!blog.author._id.equals(req.user._id))
@@ -115,7 +114,7 @@ router.put(
 router.delete(
   '/id/:id',
   validator(schema.blogId, ValidationSource.PARAM),
-  asyncHandler(async (req: ProtectedRequest, res, next) => {
+  asyncHandler(async (req: ProtectedRequest, res) => {
     const blog = await BlogRepo.findBlogAllDataById(new Types.ObjectId(req.params.id));
     if (!blog) throw new BadRequestError('Blog does not exists');
     if (!blog.author._id.equals(req.user._id))
@@ -136,7 +135,7 @@ router.delete(
 
 router.get(
   '/submitted/all',
-  asyncHandler(async (req: ProtectedRequest, res, next) => {
+  asyncHandler(async (req: ProtectedRequest, res) => {
     const blogs = await BlogRepo.findAllSubmissionsForWriter(req.user);
     return new SuccessResponse('success', blogs).send(res);
   }),
@@ -144,7 +143,7 @@ router.get(
 
 router.get(
   '/published/all',
-  asyncHandler(async (req: ProtectedRequest, res, next) => {
+  asyncHandler(async (req: ProtectedRequest, res) => {
     const blogs = await BlogRepo.findAllPublishedForWriter(req.user);
     return new SuccessResponse('success', blogs).send(res);
   }),
@@ -152,7 +151,7 @@ router.get(
 
 router.get(
   '/drafts/all',
-  asyncHandler(async (req: ProtectedRequest, res, next) => {
+  asyncHandler(async (req: ProtectedRequest, res) => {
     const blogs = await BlogRepo.findAllDraftsForWriter(req.user);
     return new SuccessResponse('success', blogs).send(res);
   }),
@@ -161,7 +160,7 @@ router.get(
 router.get(
   '/id/:id',
   validator(schema.blogId, ValidationSource.PARAM),
-  asyncHandler(async (req: ProtectedRequest, res, next) => {
+  asyncHandler(async (req: ProtectedRequest, res) => {
     const blog = await BlogRepo.findBlogAllDataById(new Types.ObjectId(req.params.id));
     if (!blog) throw new BadRequestError('Blog does not exists');
     if (!blog.author._id.equals(req.user._id))

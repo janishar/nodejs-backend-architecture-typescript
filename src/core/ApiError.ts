@@ -56,61 +56,61 @@ export abstract class ApiError extends Error {
 }
 
 export class AuthFailureError extends ApiError {
-  constructor(message: string = 'Invalid Credentials') {
+  constructor(message = 'Invalid Credentials') {
     super(ErrorType.UNAUTHORIZED, message);
   }
 }
 
 export class InternalError extends ApiError {
-  constructor(message: string = 'Internal error') {
+  constructor(message = 'Internal error') {
     super(ErrorType.INTERNAL, message);
   }
 }
 
 export class BadRequestError extends ApiError {
-  constructor(message: string = 'Bad Request') {
+  constructor(message = 'Bad Request') {
     super(ErrorType.BAD_REQUEST, message);
   }
 }
 
 export class NotFoundError extends ApiError {
-  constructor(message: string = 'Not Found') {
+  constructor(message = 'Not Found') {
     super(ErrorType.NOT_FOUND, message);
   }
 }
 
 export class ForbiddenError extends ApiError {
-  constructor(message: string = 'Permission denied') {
+  constructor(message = 'Permission denied') {
     super(ErrorType.FORBIDDEN, message);
   }
 }
 
 export class NoEntryError extends ApiError {
-  constructor(message: string = "Entry don't exists") {
+  constructor(message = "Entry don't exists") {
     super(ErrorType.NO_ENTRY, message);
   }
 }
 
 export class BadTokenError extends ApiError {
-  constructor(message: string = 'Token is not valid') {
+  constructor(message = 'Token is not valid') {
     super(ErrorType.BAD_TOKEN, message);
   }
 }
 
 export class TokenExpiredError extends ApiError {
-  constructor(message: string = 'Token is expired') {
+  constructor(message = 'Token is expired') {
     super(ErrorType.TOKEN_EXPIRED, message);
   }
 }
 
 export class NoDataError extends ApiError {
-  constructor(message: string = 'No data available') {
+  constructor(message = 'No data available') {
     super(ErrorType.NO_DATA, message);
   }
 }
 
 export class AccessTokenError extends ApiError {
-  constructor(message: string = 'Invalid access token') {
+  constructor(message = 'Invalid access token') {
     super(ErrorType.ACCESS_TOKEN, message);
   }
 }

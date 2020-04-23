@@ -16,28 +16,28 @@ export const USER_ID = new Types.ObjectId(); // random id with object id format
 export const getAccessTokenSpy = jest.spyOn(authUtils, 'getAccessToken');
 
 export const mockUserFindById = jest.fn(async (id: Types.ObjectId) => {
-  if (USER_ID.equals(id)) return <User>{ _id: new Types.ObjectId(id) };
+  if (USER_ID.equals(id)) return { _id: new Types.ObjectId(id) } as User;
   else return null;
 });
 
 export const mockJwtValidate = jest.fn(
   async (token: string): Promise<JwtPayload> => {
     if (token === ACCESS_TOKEN)
-      return <JwtPayload>{
+      return {
         iss: tokenInfo.issuer,
         aud: tokenInfo.audience,
         sub: USER_ID.toHexString(),
         iat: 1,
         exp: 2,
         prm: 'abcdef',
-      };
+      } as JwtPayload;
     throw new BadTokenError();
   },
 );
 
 export const mockKeystoreFindForKey = jest.fn(
   async (client: User, key: string): Promise<Keystore> =>
-    <Keystore>{ client: client, primaryKey: key },
+    ({ client: client, primaryKey: key } as Keystore),
 );
 
 jest.mock('../../../src/database/repository/UserRepo', () => ({

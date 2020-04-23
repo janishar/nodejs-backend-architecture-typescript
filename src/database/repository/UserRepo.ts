@@ -73,7 +73,7 @@ export default class UserRepo {
     refreshTokenKey: string,
   ): Promise<{ user: User; keystore: Keystore }> {
     user.updatedAt = new Date();
-    const result = await UserModel.updateOne({ _id: user._id }, { $set: { ...user } })
+    await UserModel.updateOne({ _id: user._id }, { $set: { ...user } })
       .lean()
       .exec();
     const keystore = await KeystoreRepo.create(user._id, accessTokenKey, refreshTokenKey);

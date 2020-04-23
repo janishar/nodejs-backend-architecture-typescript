@@ -26,7 +26,7 @@ describe('Login basic route', () => {
 
   beforeAll(async () => {
     await UserModel.remove({}); // delete all data from user table
-    user = await UserModel.create(<User>{
+    user = await UserModel.create({
       name: 'abc',
       email: 'abc@xyz.com',
       password: bcrypt.hashSync(password, 10),
@@ -34,8 +34,8 @@ describe('Login basic route', () => {
       updatedAt: new Date(),
       createdAt: new Date(),
       profilePicUrl: 'https:/abc.com/xyz',
-      roles: [<Role>{ _id: new Types.ObjectId(), code: RoleCode.LEARNER }],
-    });
+      roles: [{ _id: new Types.ObjectId(), code: RoleCode.LEARNER } as Role],
+    } as User);
     apikey = await ApiKeyModel.findOne({ status: true });
   });
 

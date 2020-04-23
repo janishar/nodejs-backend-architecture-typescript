@@ -9,10 +9,10 @@ export const BLOG_URL = 'abc';
 export const mockBlogFindByUrl = jest.fn(
   async (blogUrl: string): Promise<Blog> => {
     if (blogUrl === BLOG_URL)
-      return <Blog>{
+      return {
         _id: BLOG_ID,
         blogUrl: blogUrl,
-      };
+      } as Blog;
     return null;
   },
 );
@@ -20,10 +20,10 @@ export const mockBlogFindByUrl = jest.fn(
 export const mockFindInfoWithTextById = jest.fn(
   async (id: Types.ObjectId): Promise<Blog> => {
     if (BLOG_ID.equals(id))
-      return <Blog>{
+      return {
         _id: BLOG_ID,
         blogUrl: BLOG_URL,
-      };
+      } as Blog;
     return null;
   },
 );

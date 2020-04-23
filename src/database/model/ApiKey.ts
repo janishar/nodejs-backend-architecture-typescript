@@ -1,4 +1,4 @@
-import { Schema, model, Document, Types } from 'mongoose';
+import { Schema, model, Document } from 'mongoose';
 
 export const DOCUMENT_NAME = 'ApiKey';
 export const COLLECTION_NAME = 'api_keys';

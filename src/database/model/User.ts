@@ -1,4 +1,4 @@
-import { model, Schema, Document, Types } from 'mongoose';
+import { model, Schema, Document } from 'mongoose';
 import Role from './Role';
 
 export const DOCUMENT_NAME = 'User';

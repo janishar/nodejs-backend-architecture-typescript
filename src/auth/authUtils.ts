@@ -55,8 +55,8 @@ export const createTokens = async (
 
   if (!refreshToken) throw new InternalError();
 
-  return <Tokens>{
+  return {
     accessToken: accessToken,
     refreshToken: refreshToken,
-  };
+  } as Tokens;
 };

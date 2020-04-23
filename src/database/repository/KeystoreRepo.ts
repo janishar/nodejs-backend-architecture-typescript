@@ -27,13 +27,13 @@ export default class KeystoreRepo {
     secondaryKey: string,
   ): Promise<Keystore> {
     const now = new Date();
-    const keystore = await KeystoreModel.create(<Keystore>{
+    const keystore = await KeystoreModel.create({
       client: client,
       primaryKey: primaryKey,
       secondaryKey: secondaryKey,
       createdAt: now,
       updatedAt: now,
-    });
+    } as Keystore);
     return keystore.toObject();
   }
 }

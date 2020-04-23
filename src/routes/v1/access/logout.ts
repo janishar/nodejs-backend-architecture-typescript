@@ -14,8 +14,8 @@ router.use('/', authentication);
 
 router.delete(
   '/',
-  asyncHandler(async (req: ProtectedRequest, res, next) => {
-    const keystore = await KeystoreRepo.remove(req.keystore._id);
+  asyncHandler(async (req: ProtectedRequest, res) => {
+    await KeystoreRepo.remove(req.keystore._id);
     new SuccessMsgResponse('Logout success').send(res);
   }),
 );

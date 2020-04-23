@@ -112,7 +112,7 @@ export default class BlogRepo {
     return this.findDetailedBlogs({ author: user, status: true, isDraft: true });
   }
 
-  private static findDetailedBlogs(query: Object): Promise<Blog[]> {
+  private static findDetailedBlogs(query: object): Promise<Blog[]> {
     return BlogModel.find(query)
       .select(this.BLOG_INFO_ADDITIONAL)
       .populate('author', this.AUTHOR_DETAIL)

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { mockUserFindByEmail } from '../login/mock';
 import User from '../../../../src/database/model/User';
 import Keystore from '../../../../src/database/model/Keystore';
@@ -20,12 +21,12 @@ export const mockUserCreate = jest.fn(
     user.roles = [];
     return {
       user: user,
-      keystore: <Keystore>{
+      keystore: {
         _id: new Types.ObjectId(),
         client: user,
         primaryKey: 'abc',
         secondaryKey: 'xyz',
-      },
+      } as Keystore,
     };
   },
 );

@@ -1,5 +1,5 @@
 import express from 'express';
-import { ProtectedRequest, Tokens } from 'app-request';
+import { ProtectedRequest } from 'app-request';
 import UserRepo from '../database/repository/UserRepo';
 import { AuthFailureError, AccessTokenError, TokenExpiredError } from '../core/ApiError';
 import JWT from '../core/JWT';

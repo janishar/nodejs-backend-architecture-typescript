@@ -20,26 +20,26 @@ export const EDITOR_ACCESS_TOKEN = 'ghi';
 
 export const mockUserFindById = jest.fn(async (id: Types.ObjectId) => {
   if (USER_ID.equals(id))
-    return <User>{
+    return {
       _id: USER_ID,
-      roles: [<Role>{ _id: LEARNER_ROLE_ID, code: RoleCode.LEARNER }],
-    };
+      roles: [{ _id: LEARNER_ROLE_ID, code: RoleCode.LEARNER } as Role],
+    } as User;
   if (USER_ID_WRITER.equals(id))
-    return <User>{
+    return {
       _id: USER_ID_WRITER,
       roles: [
-        <Role>{ _id: LEARNER_ROLE_ID, code: RoleCode.LEARNER },
-        <Role>{ _id: WRITER_ROLE_ID, code: RoleCode.WRITER },
+        { _id: LEARNER_ROLE_ID, code: RoleCode.LEARNER } as Role,
+        { _id: WRITER_ROLE_ID, code: RoleCode.WRITER } as Role,
       ],
-    };
+    } as User;
   if (USER_ID_EDITOR.equals(id))
-    return <User>{
+    return {
       _id: USER_ID_EDITOR,
       roles: [
-        <Role>{ _id: LEARNER_ROLE_ID, code: RoleCode.LEARNER },
-        <Role>{ _id: WRITER_ROLE_ID, code: RoleCode.EDITOR },
+        { _id: LEARNER_ROLE_ID, code: RoleCode.LEARNER } as Role,
+        { _id: WRITER_ROLE_ID, code: RoleCode.EDITOR } as Role,
       ],
-    };
+    } as User;
   else return null;
 });
 
@@ -47,23 +47,23 @@ export const mockRoleRepoFindByCode = jest.fn(
   async (code: string): Promise<Role> => {
     switch (code) {
       case RoleCode.WRITER:
-        return <Role>{
+        return {
           _id: WRITER_ROLE_ID,
           code: RoleCode.WRITER,
           status: true,
-        };
+        } as Role;
       case RoleCode.EDITOR:
-        return <Role>{
+        return {
           _id: EDITOR_ROLE_ID,
           code: RoleCode.EDITOR,
           status: true,
-        };
+        } as Role;
       case RoleCode.LEARNER:
-        return <Role>{
+        return {
           _id: LEARNER_ROLE_ID,
           code: RoleCode.LEARNER,
           status: true,
-        };
+        } as Role;
     }
     return null;
   },
@@ -84,14 +84,14 @@ export const mockJwtValidate = jest.fn(
         break;
     }
     if (subject)
-      return <JwtPayload>{
+      return {
         iss: tokenInfo.issuer,
         aud: tokenInfo.audience,
         sub: subject,
         iat: 1,
         exp: 2,
         prm: 'abcdef',
-      };
+      } as JwtPayload;
     throw new BadTokenError();
   },
 );

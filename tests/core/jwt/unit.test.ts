@@ -55,14 +55,14 @@ describe('JWT class tests', () => {
 
     const time = Math.floor(Date.now() / 1000);
 
-    const payload = <JwtPayload>{
+    const payload = {
       aud: audience,
       sub: subject,
       iss: issuer,
       iat: time,
       exp: time,
       prm: param,
-    };
+    } as JwtPayload;
     const token = await JWT.encode(payload);
     const decoded = await JWT.decode(token);
 
@@ -104,14 +104,14 @@ describe('JWT class tests', () => {
 
     const time = Math.floor(Date.now() / 1000);
 
-    const payload = <JwtPayload>{
+    const payload = {
       aud: audience,
       sub: subject,
       iss: issuer,
       iat: time,
       exp: time,
       prm: param,
-    };
+    } as JwtPayload;
     const token = await JWT.encode(payload);
     try {
       await JWT.validate(token);

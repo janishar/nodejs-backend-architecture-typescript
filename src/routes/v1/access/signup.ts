@@ -18,7 +18,7 @@ const router = express.Router();
 router.post(
   '/basic',
   validator(schema.signup),
-  asyncHandler(async (req: RoleRequest, res, next) => {
+  asyncHandler(async (req: RoleRequest, res) => {
     const user = await UserRepo.findByEmail(req.body.email);
     if (user) throw new BadRequestError('User already registered');
 
@@ -27,12 +27,12 @@ router.post(
     const passwordHash = await bcrypt.hash(req.body.password, 10);
 
     const { user: createdUser, keystore } = await UserRepo.create(
-      <User>{
+      {
         name: req.body.name,
         email: req.body.email,
         profilePicUrl: req.body.profilePicUrl,
         password: passwordHash,
-      },
+      } as User,
       accessTokenKey,
       refreshTokenKey,
       RoleCode.LEARNER,

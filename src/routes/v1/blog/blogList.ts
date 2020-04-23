@@ -14,7 +14,7 @@ router.get(
   '/tag/:tag',
   validator(schema.blogTag, ValidationSource.PARAM),
   validator(schema.pagination, ValidationSource.QUERY),
-  asyncHandler(async (req, res, next) => {
+  asyncHandler(async (req, res) => {
     const blogs = await BlogRepo.findByTagAndPaginated(
       req.params.tag,
       parseInt(req.query.pageNumber),
@@ -30,10 +30,10 @@ router.get(
 router.get(
   '/author/id/:id',
   validator(schema.authorId, ValidationSource.PARAM),
-  asyncHandler(async (req, res, next) => {
-    const blogs = await BlogRepo.findAllPublishedForAuthor(<User>{
+  asyncHandler(async (req, res) => {
+    const blogs = await BlogRepo.findAllPublishedForAuthor({
       _id: new Types.ObjectId(req.params.id),
-    });
+    } as User);
 
     if (!blogs || blogs.length < 1) throw new NoDataError();
 
@@ -44,7 +44,7 @@ router.get(
 router.get(
   '/latest',
   validator(schema.pagination, ValidationSource.QUERY),
-  asyncHandler(async (req, res, next) => {
+  asyncHandler(async (req, res) => {
     const blogs = await BlogRepo.findLatestBlogs(
       parseInt(req.query.pageNumber),
       parseInt(req.query.pageItemCount),
@@ -59,7 +59,7 @@ router.get(
 router.get(
   '/similar/id/:id',
   validator(schema.blogId, ValidationSource.PARAM),
-  asyncHandler(async (req, res, next) => {
+  asyncHandler(async (req, res) => {
     const blog = await BlogRepo.findBlogAllDataById(new Types.ObjectId(req.params.id));
     if (!blog || !blog.isPublished) throw new BadRequestError('Blog is not available');
 

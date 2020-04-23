@@ -15,7 +15,7 @@ const router = express.Router();
 router.get(
   '/public/id/:id',
   validator(schema.userId, ValidationSource.PARAM),
-  asyncHandler(async (req: ProtectedRequest, res, next) => {
+  asyncHandler(async (req: ProtectedRequest, res) => {
     const user = await UserRepo.findPublicProfileById(new Types.ObjectId(req.params.id));
     if (!user) throw new BadRequestError('User not registered');
     return new SuccessResponse('success', _.pick(user, ['name', 'profilePicUrl'])).send(res);
@@ -29,7 +29,7 @@ router.use('/', authentication);
 
 router.get(
   '/my',
-  asyncHandler(async (req: ProtectedRequest, res, next) => {
+  asyncHandler(async (req: ProtectedRequest, res) => {
     const user = await UserRepo.findProfileById(req.user._id);
     if (!user) throw new BadRequestError('User not registered');
     return new SuccessResponse('success', _.pick(user, ['name', 'profilePicUrl', 'roles'])).send(
@@ -41,7 +41,7 @@ router.get(
 router.put(
   '/',
   validator(schema.profile),
-  asyncHandler(async (req: ProtectedRequest, res, next) => {
+  asyncHandler(async (req: ProtectedRequest, res) => {
     const user = await UserRepo.findProfileById(req.user._id);
     if (!user) throw new BadRequestError('User not registered');
 

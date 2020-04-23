@@ -15,26 +15,26 @@ export const bcryptCompareSpy = jest.spyOn(bcrypt, 'compare');
 
 export const mockKeystoreCreate = jest.fn(
   async (client: User, primaryKey: string, secondaryKey: string): Promise<Keystore> => {
-    return <Keystore>{
+    return {
       _id: new Types.ObjectId(),
       client: client,
       primaryKey: primaryKey,
       secondaryKey: secondaryKey,
-    };
+    } as Keystore;
   },
 );
 
 export const mockUserFindByEmail = jest.fn(
   async (email: string): Promise<User> => {
     if (email === USER_EMAIL)
-      return <User>{
+      return {
         _id: USER_ID,
         email: USER_EMAIL,
         password: USER_PASSWORD_HASH,
         name: 'abc',
         profilePicUrl: 'abc',
         roles: [],
-      };
+      } as User;
     return null;
   },
 );

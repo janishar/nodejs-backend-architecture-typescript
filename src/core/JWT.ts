@@ -1,7 +1,7 @@
 import path from 'path';
 import { readFile } from 'fs';
 import { promisify } from 'util';
-import { sign, verify, decode } from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 import { InternalError, BadTokenError, TokenExpiredError } from './ApiError';
 import Logger from './Logger';
 
@@ -36,7 +36,7 @@ export default class JWT {
     const cert = await this.readPublicKey();
     try {
       // @ts-ignore
-      return <JwtPayload>await promisify(verify)(token, cert);
+      return (await promisify(verify)(token, cert)) as JwtPayload;
     } catch (e) {
       Logger.debug(e);
       if (e && e.name === 'TokenExpiredError') throw new TokenExpiredError();
@@ -52,7 +52,7 @@ export default class JWT {
     const cert = await this.readPublicKey();
     try {
       // @ts-ignore
-      return <JwtPayload>await promisify(verify)(token, cert, { ignoreExpiration: true });
+      return (await promisify(verify)(token, cert, { ignoreExpiration: true })) as JwtPayload;
     } catch (e) {
       Logger.debug(e);
       throw new BadTokenError();

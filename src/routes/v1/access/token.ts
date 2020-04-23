@@ -18,7 +18,7 @@ router.post(
   '/refresh',
   validator(schema.auth, ValidationSource.HEADER),
   validator(schema.refreshToken),
-  asyncHandler(async (req: ProtectedRequest, res, next) => {
+  asyncHandler(async (req: ProtectedRequest, res) => {
     req.accessToken = getAccessToken(req.headers.authorization); // Express headers are auto converted to lowercase
 
     const accessTokenPayload = await JWT.decode(req.accessToken);

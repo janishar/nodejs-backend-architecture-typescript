@@ -16,7 +16,7 @@ const router = express.Router();
 export default router.post(
   '/basic',
   validator(schema.userCredential),
-  asyncHandler(async (req, res, next) => {
+  asyncHandler(async (req, res) => {
     const user = await UserRepo.findByEmail(req.body.email);
     if (!user) throw new BadRequestError('User not registered');
     if (!user.password) throw new BadRequestError('Credential not set');

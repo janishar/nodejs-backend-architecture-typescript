@@ -1,5 +1,4 @@
 {
-  "plugins": ["react-hooks"],
   "rules": {
     "semi": ["error", "always"],
     "@typescript-eslint/ban-ts-ignore": "off",

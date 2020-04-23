@@ -33,7 +33,7 @@ abstract class ApiResponse {
   }
 
   private static sanitize<T extends ApiResponse>(response: T): T {
-    const clone: T = <T>{};
+    const clone: T = {} as T;
     Object.assign(clone, response);
     // delete {some_field};
     delete clone.status;
@@ -43,7 +43,7 @@ abstract class ApiResponse {
 }
 
 export class AuthFailureResponse extends ApiResponse {
-  constructor(message: string = 'Authentication Failure') {
+  constructor(message = 'Authentication Failure') {
     super(StatusCode.FAILURE, ResponseStatus.UNAUTHORIZED, message);
   }
 }
@@ -51,7 +51,7 @@ export class AuthFailureResponse extends ApiResponse {
 export class NotFoundResponse extends ApiResponse {
   private url: string;
 
-  constructor(message: string = 'Not Found') {
+  constructor(message = 'Not Found') {
     super(StatusCode.FAILURE, ResponseStatus.NOT_FOUND, message);
   }
 
@@ -62,19 +62,19 @@ export class NotFoundResponse extends ApiResponse {
 }
 
 export class ForbiddenResponse extends ApiResponse {
-  constructor(message: string = 'Forbidden') {
+  constructor(message = 'Forbidden') {
     super(StatusCode.FAILURE, ResponseStatus.FORBIDDEN, message);
   }
 }
 
 export class BadRequestResponse extends ApiResponse {
-  constructor(message: string = 'Bad Parameters') {
+  constructor(message = 'Bad Parameters') {
     super(StatusCode.FAILURE, ResponseStatus.BAD_REQUEST, message);
   }
 }
 
 export class InternalErrorResponse extends ApiResponse {
-  constructor(message: string = 'Internal Error') {
+  constructor(message = 'Internal Error') {
     super(StatusCode.FAILURE, ResponseStatus.INTERNAL_ERROR, message);
   }
 }
@@ -104,7 +104,7 @@ export class SuccessResponse<T> extends ApiResponse {
 export class AccessTokenErrorResponse extends ApiResponse {
   private instruction = 'refresh_token';
 
-  constructor(message: string = 'Access token invalid') {
+  constructor(message = 'Access token invalid') {
     super(StatusCode.INVALID_ACCESS_TOKEN, ResponseStatus.UNAUTHORIZED, message);
   }
 
