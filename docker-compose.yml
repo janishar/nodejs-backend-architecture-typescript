@@ -2,7 +2,7 @@ version: '3'
 
 services:
   app:
-    # This defines the configuration options, including the context and dockerfile, 
+    # This defines the configuration options, including the context and dockerfile,
     # that will be applied when Compose builds the application image.
     build:
       # This defines the build context for the image build — in this case, the current project directory.
@@ -11,13 +11,13 @@ services:
       dockerfile: Dockerfile
     image: app
     container_name: app
-    # This defines the restart policy. The default is no, 
+    # This defines the restart policy. The default is no,
     # but we have set the container to restart unless it is stopped.
     restart: unless-stopped
     env_file: .env
     ports:
       # This maps port from .env on the host to same port number on the container.
-      - "3000:$PORT"
+      - '3000:$PORT'
     links:
       - mongo
 
@@ -26,28 +26,28 @@ services:
     image: mongo:4.2.5
     container_name: mongo
     restart: unless-stopped
-    # This tells Compose that we would like to add environment variables 
+    # This tells Compose that we would like to add environment variables
     # from a file called .env, located in our build context.
     env_file: .env
     environment:
       # MONGO_INITDB_ROOT_USERNAME and MONGO_INITDB_ROOT_PASSWORD together create
-      # a root user in the admin authentication database and ensure that authentication is enabled 
-      # when the container starts. We have set MONGO_INITDB_ROOT_USERNAME and MONGO_INITDB_ROOT_PASSWORD 
+      # a root user in the admin authentication database and ensure that authentication is enabled
+      # when the container starts. We have set MONGO_INITDB_ROOT_USERNAME and MONGO_INITDB_ROOT_PASSWORD
       # using the values from our .env file, which we pass to the db service using the env_file option.
       - MONGO_INITDB_ROOT_USERNAME=$DB_ADMIN
       - MONGO_INITDB_ROOT_PASSWORD=$DB_ADMIN_PWD
       - MONGO_INITDB_DATABASE=$DB_NAME
     ports:
-      - "$DB_PORT:27017"
-    volumes:     
-    - ./addons/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
-      # The named volume dbdata will persist the data stored in Mongo’s default data directory, /data/db. 
-      # This will ensure that you don’t lose data in cases where you stop or remove containers.
-    - dbdata:/data/db
+      - '$DB_PORT:27017'
+    volumes:
+      - ./addons/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+        # The named volume dbdata will persist the data stored in Mongo’s default data directory, /data/db.
+        # This will ensure that you don’t lose data in cases where you stop or remove containers.
+      - dbdata:/data/db
 
-# Our top-level volumes key defines the volumes dbdata. 
-# When Docker creates volumes, the contents of the volume are stored in a part of the host filesystem, /var/lib/docker/volumes/, that’s managed by Docker. 
-# The contents of each volume are stored in a directory under /var/lib/docker/volumes/ and get mounted to any container that uses the volume. 
+# Our top-level volumes key defines the volumes dbdata.
+# When Docker creates volumes, the contents of the volume are stored in a part of the host filesystem, /var/lib/docker/volumes/, that’s managed by Docker.
+# The contents of each volume are stored in a directory under /var/lib/docker/volumes/ and get mounted to any container that uses the volume.
 # In this way, the data that our users will create will persist in the dbdata volume even if we remove and recreate the db container.
 volumes:
   dbdata:

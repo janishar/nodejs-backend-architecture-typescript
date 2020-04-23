@@ -9,14 +9,15 @@ import asyncHandler from '../helpers/asyncHandler';
 
 const router = express.Router();
 
-export default router.use(validator(schema.apiKey, ValidationSource.HEADER),
-	asyncHandler(async (req: PublicRequest, res, next) => {
+export default router.use(
+  validator(schema.apiKey, ValidationSource.HEADER),
+  asyncHandler(async (req: PublicRequest, res, next) => {
+    req.apiKey = req.headers['x-api-key'].toString();
 
-		req.apiKey = req.headers['x-api-key'].toString();
+    const apiKey = await ApiKeyRepo.findByKey(req.apiKey);
+    Logger.info(apiKey);
 
-		const apiKey = await ApiKeyRepo.findByKey(req.apiKey);
-		Logger.info(apiKey);
-
-		if (!apiKey) throw new ForbiddenError();
-		return next();
-	}));
+    if (!apiKey) throw new ForbiddenError();
+    return next();
+  }),
+);

@@ -13,23 +13,26 @@ import _ from 'lodash';
 
 const router = express.Router();
 
-export default router.post('/basic', validator(schema.userCredential),
-	asyncHandler(async (req, res, next) => {
-		const user = await UserRepo.findByEmail(req.body.email);
-		if (!user) throw new BadRequestError('User not registered');
-		if (!user.password) throw new BadRequestError('Credential not set');
+export default router.post(
+  '/basic',
+  validator(schema.userCredential),
+  asyncHandler(async (req, res, next) => {
+    const user = await UserRepo.findByEmail(req.body.email);
+    if (!user) throw new BadRequestError('User not registered');
+    if (!user.password) throw new BadRequestError('Credential not set');
 
-		const match = await bcrypt.compare(req.body.password, user.password);
-		if (!match) throw new AuthFailureError('Authentication failure');
+    const match = await bcrypt.compare(req.body.password, user.password);
+    if (!match) throw new AuthFailureError('Authentication failure');
 
-		const accessTokenKey = crypto.randomBytes(64).toString('hex');
-		const refreshTokenKey = crypto.randomBytes(64).toString('hex');
+    const accessTokenKey = crypto.randomBytes(64).toString('hex');
+    const refreshTokenKey = crypto.randomBytes(64).toString('hex');
 
-		await KeystoreRepo.create(user._id, accessTokenKey, refreshTokenKey);
-		const tokens = await createTokens(user, accessTokenKey, refreshTokenKey);
+    await KeystoreRepo.create(user._id, accessTokenKey, refreshTokenKey);
+    const tokens = await createTokens(user, accessTokenKey, refreshTokenKey);
 
-		new SuccessResponse('Login Success', {
-			user: _.pick(user, ['_id', 'name', 'roles', 'profilePicUrl']),
-			tokens: tokens
-		}).send(res);
-	}));
+    new SuccessResponse('Login Success', {
+      user: _.pick(user, ['_id', 'name', 'roles', 'profilePicUrl']),
+      tokens: tokens,
+    }).send(res);
+  }),
+);
