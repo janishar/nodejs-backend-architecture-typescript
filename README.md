@@ -191,6 +191,11 @@ Following are the features of this project:
 ├── .env
 ├── .gitignore
 ├── .dockerignore
+├── .eslintrc
+├── .eslintignore
+├── .prettierrc
+├── .prettierignore
+├── .travis.yml
 ├── .vscode
 │   └── launch.json
 ├── Dockerfile
@@ -198,8 +203,7 @@ Following are the features of this project:
 ├── package-lock.json
 ├── package.json
 ├── jest.config.js
-├── tsconfig.json
-└── tslint.json
+└── tsconfig.json
  ```
  
  ## Directory Traversal for Signup API call

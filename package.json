@@ -11,7 +11,7 @@
     "watch-node": "nodemon -r dotenv/config build/server.js",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
-    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "eslint": "eslint . --ext .js,.ts",
     "test": "jest --forceExit --detectOpenHandles --coverage --verbose"
   },
   "repository": {
