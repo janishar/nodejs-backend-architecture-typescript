@@ -79,8 +79,8 @@ Following are the features of this project:
     * To run the tests execute `npm test`.
  * Install Without Docker [**2nd Method**]
     * Install MongoDB on your local.
-    * Do step 1 to 5 as listed for **Install using Docker Componse**.
-    * Do step 1 to 3 as listed for **Run The Tests**.
+    * Do steps 1 to 5 as listed for **Install using Docker Compose**.
+    * Do steps 1 to 3 as listed for **Run The Tests**.
     * Create users in MongoDB and seed the data taking reference from the **addons/init-mongo.js**
     * Change the `DB_HOST` to `localhost` in **.env** and **tests/.env.test** files.
     * Execute `npm start` and You will be able to access the API from http://localhost:3000
