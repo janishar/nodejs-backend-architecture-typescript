@@ -52,6 +52,7 @@ Following are the features of this project:
 * [The video guide to build and run this project](https://youtu.be/Nwh7wTtUV5I)
 * [Implement JSON Web Token (JWT) Authentication using AccessToken and RefreshToken](https://afteracademy.com/blog/implement-json-web-token-jwt-authentication-using-access-token-and-refresh-token)
 * [TypeScript Tutorial For Beginners](https://afteracademy.com/blog/typescript-tutorial-for-beginners)
+* [From JavaScript to TypeScript](https://afteracademy.com/blog/from-javascript-to-typescript)
 * [Authentication vs Authorization](https://afteracademy.com/blog/authentication-vs-authorization)
 
 ## You can find the complete API documentation [here](https://documenter.getpostman.com/view/1552895/SzYUZg52?version=latest)
