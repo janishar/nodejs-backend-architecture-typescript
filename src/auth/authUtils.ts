@@ -5,39 +5,58 @@ import { Types } from 'mongoose';
 import User from '../database/model/User';
 import { tokenInfo } from '../config';
 
-export const validateTokenData = async (payload: JwtPayload, userId: Types.ObjectId): Promise<JwtPayload> => {
-	if (!payload || !payload.iss || !payload.sub || !payload.aud || !payload.prm
-		|| payload.iss !== tokenInfo.issuer
-		|| payload.aud !== tokenInfo.audience
-		|| payload.sub !== userId.toHexString())
-		throw new AuthFailureError('Invalid Access Token');
-	return payload;
+export const getAccessToken = (authorization: string) => {
+  if (!authorization) throw new AuthFailureError('Invalid Authorization');
+  if (!authorization.startsWith('Bearer ')) throw new AuthFailureError('Invalid Authorization');
+  return authorization.split(' ')[1];
 };
 
-export const createTokens = async (user: User, accessTokenKey: string, refreshTokenKey: string)
-	: Promise<Tokens> => {
-	const accessToken = await JWT.encode(
-		new JwtPayload(
-			tokenInfo.issuer,
-			tokenInfo.audience,
-			user._id.toString(),
-			accessTokenKey,
-			tokenInfo.accessTokenValidityDays));
+export const validateTokenData = (payload: JwtPayload): boolean => {
+  if (
+    !payload ||
+    !payload.iss ||
+    !payload.sub ||
+    !payload.aud ||
+    !payload.prm ||
+    payload.iss !== tokenInfo.issuer ||
+    payload.aud !== tokenInfo.audience ||
+    !Types.ObjectId.isValid(payload.sub)
+  )
+    throw new AuthFailureError('Invalid Access Token');
+  return true;
+};
 
-	if (!accessToken) throw new InternalError();
+export const createTokens = async (
+  user: User,
+  accessTokenKey: string,
+  refreshTokenKey: string,
+): Promise<Tokens> => {
+  const accessToken = await JWT.encode(
+    new JwtPayload(
+      tokenInfo.issuer,
+      tokenInfo.audience,
+      user._id.toString(),
+      accessTokenKey,
+      tokenInfo.accessTokenValidityDays,
+    ),
+  );
 
-	const refreshToken = await JWT.encode(
-		new JwtPayload(
-			tokenInfo.issuer,
-			tokenInfo.audience,
-			user._id.toString(),
-			refreshTokenKey,
-			tokenInfo.refreshTokenValidityDays));
+  if (!accessToken) throw new InternalError();
 
-	if (!refreshToken) throw new InternalError();
+  const refreshToken = await JWT.encode(
+    new JwtPayload(
+      tokenInfo.issuer,
+      tokenInfo.audience,
+      user._id.toString(),
+      refreshTokenKey,
+      tokenInfo.refreshTokenValidityDays,
+    ),
+  );
 
-	return <Tokens>{
-		accessToken: accessToken,
-		refreshToken: refreshToken
-	};
+  if (!refreshToken) throw new InternalError();
+
+  return {
+    accessToken: accessToken,
+    refreshToken: refreshToken,
+  } as Tokens;
 };

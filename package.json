@@ -1,6 +1,6 @@
 {
   "name": "nodejs-backend-architecture",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "The architecture for nodejs backend application. It is build on top of expressjs using typescript.",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "watch-node": "nodemon -r dotenv/config build/server.js",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
-    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "eslint": "eslint . --ext .js,.ts",
     "test": "jest --forceExit --detectOpenHandles --coverage --verbose"
   },
   "repository": {
@@ -49,10 +49,16 @@
     "@types/morgan": "^1.9.0",
     "@types/node": "^13.9.3",
     "@types/supertest": "^2.0.8",
+    "@typescript-eslint/eslint-plugin": "^2.29.0",
+    "@typescript-eslint/parser": "^2.29.0",
     "colors": "^1.4.0",
     "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
     "jest": "^25.2.1",
     "nodemon": "^2.0.2",
+    "prettier": "^2.0.5",
     "supertest": "^4.0.2",
     "ts-jest": "^25.2.1",
     "ts-node": "^8.8.1",

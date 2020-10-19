@@ -15,27 +15,35 @@ import { RoleCode } from '../../../database/model/Role';
 
 const router = express.Router();
 
-router.post('/basic', validator(schema.signup),
-	asyncHandler(async (req: RoleRequest, res, next) => {
-		const user = await UserRepo.findByEmail(req.body.email);
-		if (user) throw new BadRequestError('User already registered');
+router.post(
+  '/basic',
+  validator(schema.signup),
+  asyncHandler(async (req: RoleRequest, res) => {
+    const user = await UserRepo.findByEmail(req.body.email);
+    if (user) throw new BadRequestError('User already registered');
 
-		const accessTokenKey = crypto.randomBytes(64).toString('hex');
-		const refreshTokenKey = crypto.randomBytes(64).toString('hex');
-		const passwordHash = await bcrypt.hash(req.body.password, 10);
+    const accessTokenKey = crypto.randomBytes(64).toString('hex');
+    const refreshTokenKey = crypto.randomBytes(64).toString('hex');
+    const passwordHash = await bcrypt.hash(req.body.password, 10);
 
-		const { user: createdUser, keystore } = await UserRepo.create(<User>{
-			name: req.body.name,
-			email: req.body.email,
-			profilePicUrl: req.body.profilePicUrl,
-			password: passwordHash,
-		}, accessTokenKey, refreshTokenKey, RoleCode.LEARNER);
+    const { user: createdUser, keystore } = await UserRepo.create(
+      {
+        name: req.body.name,
+        email: req.body.email,
+        profilePicUrl: req.body.profilePicUrl,
+        password: passwordHash,
+      } as User,
+      accessTokenKey,
+      refreshTokenKey,
+      RoleCode.LEARNER,
+    );
 
-		const tokens = await createTokens(createdUser, keystore.primaryKey, keystore.secondaryKey);
-		new SuccessResponse('Signup Successful', {
-			user: _.pick(createdUser, ['_id', 'name', 'email', 'roles', 'profilePicUrl']),
-			tokens: tokens,
-		}).send(res);
-	}));
+    const tokens = await createTokens(createdUser, keystore.primaryKey, keystore.secondaryKey);
+    new SuccessResponse('Signup Successful', {
+      user: _.pick(createdUser, ['_id', 'name', 'email', 'roles', 'profilePicUrl']),
+      tokens: tokens,
+    }).send(res);
+  }),
+);
 
 export default router;

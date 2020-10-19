@@ -1,7 +1,7 @@
 # Node.js Backend Architecture Typescript Project
 Learn to build a Blogging platform like Medium, MindOrks, and FreeCodeCamp - Open-Source Project By AfterAcademy
 
-[![AfterAcademy](https://img.shields.io/badge/AfterAcademy-opensource-blue.svg)](https://afteracademy.com)
+[![AfterAcademy](https://img.shields.io/badge/AfterAcademy-opensource-blue.svg)](https://afteracademy.com) [![Build Status](https://travis-ci.org/afteracademy/nodejs-backend-architecture-typescript.svg?branch=master)](https://travis-ci.org/afteracademy/nodejs-backend-architecture-typescript)
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/afteracademy/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png">
@@ -26,6 +26,9 @@ Following are the features of this project:
 * **Unit test is favored**: The tests have been written to test the functions and routes without the need of the database server. Integration tests has also been done but the unit test is favored.
 * **A pure backend project**: We have experienced that when a backend is developed clubbed with a frontend then in the future it becomes really difficult to scale. We would want to create a separate backend project that servers many websites and mobile apps.
 
+## We have also open source a complete blogging website working on this backend project: [Goto Repository](https://github.com/afteracademy/react-app-architecture)
+> In the above repository [**React.js Isomorphic Web Application Architecture**] we will learn and build a React web application for a blogging platform using this project as its API server. [Visit demo website](https://demo.react-app-architecture.afteracademy.com)
+
 ## 3RE Architecture: Router, RouteHandler, ResponseHandler, ErrorHandler
 <p align="center">
     <img src="https://raw.githubusercontent.com/afteracademy/nodejs-backend-architecture-typescript/master/addons/github_assets/3RE.png">
@@ -47,6 +50,10 @@ Following are the features of this project:
 ## Learn the concepts used in this project
 * [Design Node.js Backend Architecture like a Pro](https://afteracademy.com/blog/design-node-js-backend-architecture-like-a-pro)
 * [The video guide to build and run this project](https://youtu.be/Nwh7wTtUV5I)
+* [Implement JSON Web Token (JWT) Authentication using AccessToken and RefreshToken](https://afteracademy.com/blog/implement-json-web-token-jwt-authentication-using-access-token-and-refresh-token)
+* [TypeScript Tutorial For Beginners](https://afteracademy.com/blog/typescript-tutorial-for-beginners)
+* [From JavaScript to TypeScript](https://afteracademy.com/blog/from-javascript-to-typescript)
+* [Authentication vs Authorization](https://afteracademy.com/blog/authentication-vs-authorization)
 
 ## You can find the complete API documentation [here](https://documenter.getpostman.com/view/1552895/SzYUZg52?version=latest)
 <a href="https://documenter.getpostman.com/view/1552895/SzYUZg52?version=latest" target="_blank">
@@ -73,8 +80,8 @@ Following are the features of this project:
     * To run the tests execute `npm test`.
  * Install Without Docker [**2nd Method**]
     * Install MongoDB on your local.
-    * Do step 1 to 5 as listed for **Install using Docker Componse**.
-    * Do step 1 to 3 as listed for **Run The Tests**.
+    * Do steps 1 to 5 as listed for **Install using Docker Compose**.
+    * Do steps 1 to 3 as listed for **Run The Tests**.
     * Create users in MongoDB and seed the data taking reference from the **addons/init-mongo.js**
     * Change the `DB_HOST` to `localhost` in **.env** and **tests/.env.test** files.
     * Execute `npm start` and You will be able to access the API from http://localhost:3000
@@ -188,6 +195,11 @@ Following are the features of this project:
 ├── .env
 ├── .gitignore
 ├── .dockerignore
+├── .eslintrc
+├── .eslintignore
+├── .prettierrc
+├── .prettierignore
+├── .travis.yml
 ├── .vscode
 │   └── launch.json
 ├── Dockerfile
@@ -195,8 +207,7 @@ Following are the features of this project:
 ├── package-lock.json
 ├── package.json
 ├── jest.config.js
-├── tsconfig.json
-└── tslint.json
+└── tsconfig.json
  ```
  
  ## Directory Traversal for Signup API call
@@ -256,8 +267,7 @@ Following are the features of this project:
     Host: localhost:3000
     x-api-key: GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj
     Content-Type: application/json
-    x-access-token: your_token_received_from_signup_or_login
-    x-user-id: your_user_id
+    Authorization: Bearer <your_token_received_from_signup_or_login>
     ```
     * Response Body: 200
     ```json
