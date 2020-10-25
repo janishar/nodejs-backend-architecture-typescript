@@ -13,9 +13,11 @@ router.get(
   '/url',
   validator(schema.blogUrl, ValidationSource.QUERY),
   asyncHandler(async (req, res) => {
-    const blog = await BlogRepo.findByUrl(req.query.endpoint);
-    if (!blog) throw new BadRequestError('Blog do not exists');
-    new SuccessResponse('success', blog).send(res);
+    if (typeof req.query.endpoint === 'string') {
+      const blog = await BlogRepo.findByUrl(req.query.endpoint);
+      if (!blog) throw new BadRequestError('Blog do not exists');
+      new SuccessResponse('success', blog).send(res);
+    }
   }),
 );
 

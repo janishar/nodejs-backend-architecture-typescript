@@ -15,15 +15,17 @@ router.get(
   validator(schema.blogTag, ValidationSource.PARAM),
   validator(schema.pagination, ValidationSource.QUERY),
   asyncHandler(async (req, res) => {
-    const blogs = await BlogRepo.findByTagAndPaginated(
-      req.params.tag,
-      parseInt(req.query.pageNumber),
-      parseInt(req.query.pageItemCount),
-    );
+    if (typeof req.query.pageNumber === 'string' && typeof req.query.pageItemCount === 'string') {
+      const blogs = await BlogRepo.findByTagAndPaginated(
+        req.params.tag,
+        parseInt(req.query.pageNumber),
+        parseInt(req.query.pageItemCount),
+      );
 
-    if (!blogs || blogs.length < 1) throw new NoDataError();
+      if (!blogs || blogs.length < 1) throw new NoDataError();
 
-    return new SuccessResponse('success', blogs).send(res);
+      return new SuccessResponse('success', blogs).send(res);
+    }
   }),
 );
 
@@ -45,14 +47,16 @@ router.get(
   '/latest',
   validator(schema.pagination, ValidationSource.QUERY),
   asyncHandler(async (req, res) => {
-    const blogs = await BlogRepo.findLatestBlogs(
-      parseInt(req.query.pageNumber),
-      parseInt(req.query.pageItemCount),
-    );
+    if (typeof req.query.pageNumber === 'string' && typeof req.query.pageItemCount === 'string') {
+      const blogs = await BlogRepo.findLatestBlogs(
+        parseInt(req.query.pageNumber),
+        parseInt(req.query.pageItemCount),
+      );
 
-    if (!blogs || blogs.length < 1) throw new NoDataError();
+      if (!blogs || blogs.length < 1) throw new NoDataError();
 
-    return new SuccessResponse('success', blogs).send(res);
+      return new SuccessResponse('success', blogs).send(res);
+    }
   }),
 );
 
