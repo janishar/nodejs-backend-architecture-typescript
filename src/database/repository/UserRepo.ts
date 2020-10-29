@@ -7,7 +7,7 @@ import Keystore from '../model/Keystore';
 
 export default class UserRepo {
   // contains critical information of the user
-  public static findById(id: Types.ObjectId): Promise<User> {
+  public static findById(id: Types.ObjectId): Promise<User | null> {
     return UserModel.findOne({ _id: id, status: true })
       .select('+email +password +roles')
       .populate({
@@ -18,7 +18,7 @@ export default class UserRepo {
       .exec();
   }
 
-  public static findByEmail(email: string): Promise<User> {
+  public static findByEmail(email: string): Promise<User | null> {
     return UserModel.findOne({ email: email, status: true })
       .select('+email +password +roles')
       .populate({
@@ -30,7 +30,7 @@ export default class UserRepo {
       .exec();
   }
 
-  public static findProfileById(id: Types.ObjectId): Promise<User> {
+  public static findProfileById(id: Types.ObjectId): Promise<User | null> {
     return UserModel.findOne({ _id: id, status: true })
       .select('+roles')
       .populate({
@@ -42,7 +42,7 @@ export default class UserRepo {
       .exec();
   }
 
-  public static findPublicProfileById(id: Types.ObjectId): Promise<User> {
+  public static findPublicProfileById(id: Types.ObjectId): Promise<User | null> {
     return UserModel.findOne({ _id: id, status: true }).lean<User>().exec();
   }
 

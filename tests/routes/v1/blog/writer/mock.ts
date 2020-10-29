@@ -9,7 +9,7 @@ export const BLOG_ID_2 = new Types.ObjectId();
 export const BLOG_URL = 'abc';
 
 export const mockBlogFindUrlIfExists = jest.fn(
-  async (blogUrl: string): Promise<Blog> => {
+  async (blogUrl: string): Promise<Blog | null> => {
     if (blogUrl === BLOG_URL)
       return {
         _id: BLOG_ID,
@@ -29,7 +29,7 @@ export const mockBlogCreate = jest.fn(
 export const mockBlogUpdate = jest.fn(async (blog: Blog): Promise<Blog> => blog);
 
 export const mockFindBlogAllDataById = jest.fn(
-  async (id: Types.ObjectId): Promise<Blog> => {
+  async (id: Types.ObjectId): Promise<Blog | null> => {
     if (BLOG_ID.equals(id))
       return {
         _id: BLOG_ID,

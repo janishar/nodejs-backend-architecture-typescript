@@ -17,8 +17,8 @@ router.get(
   asyncHandler(async (req, res) => {
     const blogs = await BlogRepo.findByTagAndPaginated(
       req.params.tag,
-      parseInt(req.query.pageNumber),
-      parseInt(req.query.pageItemCount),
+      parseInt(req.query.pageNumber as string),
+      parseInt(req.query.pageItemCount as string),
     );
 
     if (!blogs || blogs.length < 1) throw new NoDataError();
@@ -46,8 +46,8 @@ router.get(
   validator(schema.pagination, ValidationSource.QUERY),
   asyncHandler(async (req, res) => {
     const blogs = await BlogRepo.findLatestBlogs(
-      parseInt(req.query.pageNumber),
-      parseInt(req.query.pageItemCount),
+      parseInt(req.query.pageNumber as string),
+      parseInt(req.query.pageItemCount as string),
     );
 
     if (!blogs || blogs.length < 1) throw new NoDataError();

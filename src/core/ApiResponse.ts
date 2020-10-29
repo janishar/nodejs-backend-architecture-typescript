@@ -35,7 +35,7 @@ abstract class ApiResponse {
   private static sanitize<T extends ApiResponse>(response: T): T {
     const clone: T = {} as T;
     Object.assign(clone, response);
-    // delete {some_field};
+    // @ts-ignore
     delete clone.status;
     for (const i in clone) if (typeof clone[i] === 'undefined') delete clone[i];
     return clone;
@@ -49,14 +49,14 @@ export class AuthFailureResponse extends ApiResponse {
 }
 
 export class NotFoundResponse extends ApiResponse {
-  private url: string;
+  private url: string | undefined;
 
   constructor(message = 'Not Found') {
     super(StatusCode.FAILURE, ResponseStatus.NOT_FOUND, message);
   }
 
   send(res: Response): Response {
-    this.url = res.req.originalUrl;
+    this.url = res.req?.originalUrl;
     return super.prepare<NotFoundResponse>(res, this);
   }
 }

@@ -8,7 +8,7 @@ export default interface Blog extends Document {
   title: string;
   description: string;
   text?: string;
-  draftText: string;
+  draftText?: string;
   tags: string[];
   author: User;
   imgUrl?: string;

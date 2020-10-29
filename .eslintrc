@@ -1,11 +1,10 @@
 {
   "rules": {
-    "semi": ["error", "always"],
-    "@typescript-eslint/ban-ts-ignore": "off",
-    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/naming-convention": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/no-use-before-define": "off"
+    "@typescript-eslint/explicit-function-return-types": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
   },
   "extends": [
     "plugin:@typescript-eslint/recommended", // Uses the recommended rules from the @typescript-eslint/eslint-plugin

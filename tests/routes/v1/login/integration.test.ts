@@ -22,7 +22,7 @@ describe('Login basic route', () => {
   const password = '123456';
 
   let user: User;
-  let apikey: ApiKey;
+  let apikey: ApiKey | null;
 
   beforeAll(async () => {
     await UserModel.remove({}); // delete all data from user table
@@ -168,5 +168,5 @@ describe('Login basic route', () => {
   });
 });
 
-export const addHeaders = (request: any, apikey: ApiKey) =>
-  request.set('Content-Type', 'application/json').set('x-api-key', apikey.key);
+export const addHeaders = (request: any, apikey: ApiKey | null) =>
+  request.set('Content-Type', 'application/json').set('x-api-key', apikey?.key);
