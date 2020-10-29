@@ -4,6 +4,7 @@ import User from '../../../../src/database/model/User';
 import { Types } from 'mongoose';
 import bcrypt from 'bcrypt';
 import * as authUtils from '../../../../src/auth/authUtils';
+import Role from '../../../../src/database/model/Role';
 
 export const USER_EMAIL = 'random@test.com';
 export const USER_PASSWORD = 'abc123';
@@ -33,7 +34,7 @@ export const mockUserFindByEmail = jest.fn(
         password: USER_PASSWORD_HASH,
         name: 'abc',
         profilePicUrl: 'abc',
-        roles: [],
+        roles: [] as Role[],
       } as User;
     return null;
   },
