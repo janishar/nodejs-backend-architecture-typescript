@@ -23,14 +23,14 @@ export default class BlogRepo {
       .exec();
   }
 
-  public static findInfoById(id: Types.ObjectId): Promise<Blog> {
+  public static findInfoById(id: Types.ObjectId): Promise<Blog | null> {
     return BlogModel.findOne({ _id: id, status: true })
       .populate('author', this.AUTHOR_DETAIL)
       .lean<Blog>()
       .exec();
   }
 
-  public static findInfoWithTextById(id: Types.ObjectId): Promise<Blog> {
+  public static findInfoWithTextById(id: Types.ObjectId): Promise<Blog | null> {
     return BlogModel.findOne({ _id: id, status: true })
       .select('+text')
       .populate('author', this.AUTHOR_DETAIL)
@@ -38,7 +38,7 @@ export default class BlogRepo {
       .exec();
   }
 
-  public static findInfoWithTextAndDraftTextById(id: Types.ObjectId): Promise<Blog> {
+  public static findInfoWithTextAndDraftTextById(id: Types.ObjectId): Promise<Blog | null> {
     return BlogModel.findOne({ _id: id, status: true })
       .select('+text +draftText +isSubmitted +isDraft +isPublished +status')
       .populate('author', this.AUTHOR_DETAIL)
@@ -46,7 +46,7 @@ export default class BlogRepo {
       .exec();
   }
 
-  public static findBlogAllDataById(id: Types.ObjectId): Promise<Blog> {
+  public static findBlogAllDataById(id: Types.ObjectId): Promise<Blog | null> {
     return BlogModel.findOne({ _id: id, status: true })
       .select(this.BLOG_ALL_DATA)
       .populate('author', this.AUTHOR_DETAIL)
@@ -54,7 +54,7 @@ export default class BlogRepo {
       .exec();
   }
 
-  public static findByUrl(blogUrl: string): Promise<Blog> {
+  public static findByUrl(blogUrl: string): Promise<Blog | null> {
     return BlogModel.findOne({ blogUrl: blogUrl, status: true })
       .select('+text')
       .populate('author', this.AUTHOR_DETAIL)
@@ -62,7 +62,7 @@ export default class BlogRepo {
       .exec();
   }
 
-  public static findUrlIfExists(blogUrl: string): Promise<Blog> {
+  public static findUrlIfExists(blogUrl: string): Promise<Blog | null> {
     return BlogModel.findOne({ blogUrl: blogUrl }).lean<Blog>().exec();
   }
 
@@ -112,7 +112,7 @@ export default class BlogRepo {
     return this.findDetailedBlogs({ author: user, status: true, isDraft: true });
   }
 
-  private static findDetailedBlogs(query: object): Promise<Blog[]> {
+  private static findDetailedBlogs(query: Record<string, unknown>): Promise<Blog[]> {
     return BlogModel.find(query)
       .select(this.BLOG_INFO_ADDITIONAL)
       .populate('author', this.AUTHOR_DETAIL)

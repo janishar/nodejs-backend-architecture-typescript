@@ -2,7 +2,6 @@
 .idea
 
 # ignore vs code project config files
-.vscode/settings.json
 .vs
 
 # ignore logs
