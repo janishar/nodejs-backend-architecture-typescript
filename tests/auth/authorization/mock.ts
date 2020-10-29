@@ -44,7 +44,7 @@ export const mockUserFindById = jest.fn(async (id: Types.ObjectId) => {
 });
 
 export const mockRoleRepoFindByCode = jest.fn(
-  async (code: string): Promise<Role> => {
+  async (code: string): Promise<Role | null> => {
     switch (code) {
       case RoleCode.WRITER:
         return {

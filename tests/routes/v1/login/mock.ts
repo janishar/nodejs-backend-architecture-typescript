@@ -25,7 +25,7 @@ export const mockKeystoreCreate = jest.fn(
 );
 
 export const mockUserFindByEmail = jest.fn(
-  async (email: string): Promise<User> => {
+  async (email: string): Promise<User | null> => {
     if (email === USER_EMAIL)
       return {
         _id: USER_ID,

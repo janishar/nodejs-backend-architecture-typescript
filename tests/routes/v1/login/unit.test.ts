@@ -112,10 +112,13 @@ describe('Login basic route', () => {
 
   it('Should send success response for correct credentials', async () => {
     const response = await addHeaders(
-      request.post(endpoint).send({
-        email: USER_EMAIL,
-        password: USER_PASSWORD,
-      }),
+      request
+        .post(endpoint)
+        .send({
+          email: USER_EMAIL,
+          password: USER_PASSWORD,
+        })
+        .timeout(5000),
     );
     expect(response.status).toBe(200);
     expect(response.body.message).toMatch(/Success/i);
