@@ -4,7 +4,7 @@ import User from '../model/User';
 
 export default class KeystoreRepo {
   public static findforKey(client: User, key: string): Promise<Keystore | null> {
-    return KeystoreModel.findOne({ client: client, primaryKey: key, status: true }).exec();
+    return KeystoreModel.find({ client: client, primaryKey: key, status: true }).exec();
   }
 
   public static remove(id: Types.ObjectId): Promise<Keystore | null> {
