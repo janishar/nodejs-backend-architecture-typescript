@@ -316,3 +316,8 @@ Following are the features of this project:
 ```
      
  
+
+
+### Infrastructure model
+
+![Infrastructure model](.infragenie/infrastructure_model.png)
