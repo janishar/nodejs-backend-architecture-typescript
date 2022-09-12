@@ -17,7 +17,7 @@ export default class BlogRepo {
   }
 
   public static update(blog: Blog): Promise<any> {
-    // blog.updatedAt = new Date();
+    blog.updatedAt = new Date();
     return BlogModel.updateOne({ _id: blog._id }, { $set: { ...blog } })
       .lean<Blog>()
       .exec();
