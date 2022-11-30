@@ -1,5 +1,5 @@
 # Node.js Backend Architecture Typescript Project
-Learn to build a Blogging platform like Medium, MindOrks, and FreeCodeCamp - Open-Source Project By AfterAcademy
+Learn to build a Blogging platform like Medium, MindOrks, and FreeCodeCamp - Open-Source Project By Janishar Ali
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/afteracademy/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png">
