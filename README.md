@@ -1,15 +1,13 @@
 # Node.js Backend Architecture Typescript Project
 Learn to build a Blogging platform like Medium, MindOrks, and FreeCodeCamp - Open-Source Project By AfterAcademy
 
-[![AfterAcademy](https://img.shields.io/badge/AfterAcademy-opensource-blue.svg)](https://afteracademy.com) [![Build Status](https://travis-ci.org/afteracademy/nodejs-backend-architecture-typescript.svg?branch=master)](https://travis-ci.org/afteracademy/nodejs-backend-architecture-typescript)
-
 <p align="center">
     <img src="https://raw.githubusercontent.com/afteracademy/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png">
 </p>
 <br>
 
 ## About this Open Source Project
-This open-source project is for you(community). Our Team at [AfterAcademy](https://afteracademy.com) has taken this initiative to promote Backend Learning in the best possible way. We are determined to provide quality content for everyone. Let's do it together by learning from this project.
+This open-source project is for you(community). I (https://janisharali.com) have taken this initiative to promote Backend Learning in the best possible way. I am determined to provide quality content for everyone. Let's do it together by learning from this project.
 
 ## We will learn and build the backend application for a blogging platform. 
 The main focus will be to create a maintainable and highly testable architecture.
@@ -37,20 +35,20 @@ Following are the features of this project:
 
 ## Project Outline: Blogging Platform
 <p align="center">
-    <img src="https://raw.githubusercontent.com/afteracademy/nodejs-backend-architecture-typescript/master/addons/github_assets/project-outline.png">
+    <img src="https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/project-outline.png">
 </p>
 <br>
 
 ## Request-Response Handling Schematic Diagram
 <p align="center">
-    <img src="https://raw.githubusercontent.com/afteracademy/nodejs-backend-architecture-typescript/master/addons/github_assets/api-structure.png">
+    <img src="https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/api-structure.png">
 </p>
 <br>
 
 ## Learn the concepts used in this project
-* [Design Node.js Backend Architecture like a Pro](https://afteracademy.com/blog/design-node-js-backend-architecture-like-a-pro)
+* [Design Node.js Backend Architecture like a Pro](https://janisharali.com/blog/design-node-js-backend-architecture-like-a-pro)
 * [The video guide to build and run this project](https://youtu.be/Nwh7wTtUV5I)
-* [Implement JSON Web Token (JWT) Authentication using AccessToken and RefreshToken](https://afteracademy.com/blog/implement-json-web-token-jwt-authentication-using-access-token-and-refresh-token)
+* [Implement JSON Web Token (JWT) Authentication using AccessToken and RefreshToken](https://janisharali.com/blog/implement-json-web-token-jwt-authentication-using-access-token-and-refresh-token)
 * [TypeScript Tutorial For Beginners](https://afteracademy.com/blog/typescript-tutorial-for-beginners)
 * [From JavaScript to TypeScript](https://afteracademy.com/blog/from-javascript-to-typescript)
 * [Authentication vs Authorization](https://afteracademy.com/blog/authentication-vs-authorization)
@@ -86,11 +84,7 @@ Following are the features of this project:
     * Change the `DB_HOST` to `localhost` in **.env** and **tests/.env.test** files.
     * Execute `npm start` and You will be able to access the API from http://localhost:3000
     * To run the tests execute `npm test`.
- 
- ## Explore Online Tutorials and Courses To Learn More by AfterAcademy
- * [Backend Tutorial](https://afteracademy.com/blogs/backend) - All free tutorials by AfterAcademy
- * [Online Courses for Backend](https://afteracademy.com/courses/backend) - Master the skills that companies love to hire.
- 
+  
   ## Learn Backend Development From Our Videos
   * [Introduction to Web Backend Development for Beginners](https://youtu.be/Q0nfLi-4GBg)
   * [Backend System Design for Startups](https://www.youtube.com/playlist?list=PLqOiaH9id5quh5Dph5yuXfdHVGe1LrKvT)
@@ -300,7 +294,7 @@ Following are the features of this project:
 
 ### License
 ```
-   Copyright (C) 2020 MINDORKS NEXTGEN PRIVATE LIMITED
+   Copyright (C) 2022 JANISHAR ALI ANWAR
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
