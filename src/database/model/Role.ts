@@ -17,6 +17,7 @@ export default interface Role extends Document {
   updatedAt?: Date;
 }
 
+Schema.Types.String.set('trim', true);
 const schema = new Schema(
   {
     code: {
@@ -28,20 +29,11 @@ const schema = new Schema(
       type: Schema.Types.Boolean,
       default: true,
     },
-    createdAt: {
-      type: Date,
-      required: true,
-      select: false,
-    },
-    updatedAt: {
-      type: Date,
-      required: true,
-      select: false,
-    },
   },
   {
     versionKey: false,
   },
 );
 
+schema.set('timestamps', true);
 export const RoleModel = model<Role>(DOCUMENT_NAME, schema, COLLECTION_NAME);

@@ -12,6 +12,7 @@ export default interface ApiKey extends Document {
   updatedAt?: Date;
 }
 
+Schema.Types.String.set('trim', true);
 const schema = new Schema(
   {
     key: {
@@ -34,20 +35,11 @@ const schema = new Schema(
       type: Schema.Types.Boolean,
       default: true,
     },
-    createdAt: {
-      type: Date,
-      required: true,
-      select: false,
-    },
-    updatedAt: {
-      type: Date,
-      required: true,
-      select: false,
-    },
   },
   {
     versionKey: false,
   },
 );
 
+schema.set('timestamps', true);
 export const ApiKeyModel = model<ApiKey>(DOCUMENT_NAME, schema, COLLECTION_NAME);

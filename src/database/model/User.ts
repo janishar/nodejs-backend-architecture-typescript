@@ -16,19 +16,18 @@ export default interface User extends Document {
   updatedAt?: Date;
 }
 
+Schema.Types.String.set('trim', true);
 const schema = new Schema(
   {
     name: {
       type: Schema.Types.String,
       required: true,
-      trim: true,
       maxlength: 100,
     },
     email: {
       type: Schema.Types.String,
       required: true,
       unique: true,
-      trim: true,
       select: false,
     },
     password: {
@@ -37,7 +36,6 @@ const schema = new Schema(
     },
     profilePicUrl: {
       type: Schema.Types.String,
-      trim: true,
     },
     roles: {
       type: [
@@ -57,20 +55,11 @@ const schema = new Schema(
       type: Schema.Types.Boolean,
       default: true,
     },
-    createdAt: {
-      type: Date,
-      required: true,
-      select: false,
-    },
-    updatedAt: {
-      type: Date,
-      required: true,
-      select: false,
-    },
   },
   {
     versionKey: false,
   },
 );
 
+schema.set('timestamps', true);
 export const UserModel = model<User>(DOCUMENT_NAME, schema, COLLECTION_NAME);

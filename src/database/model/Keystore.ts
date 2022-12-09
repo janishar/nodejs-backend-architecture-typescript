@@ -13,6 +13,7 @@ export default interface Keystore extends Document {
   updatedAt?: Date;
 }
 
+Schema.Types.String.set('trim', true);
 const schema = new Schema(
   {
     client: {
@@ -32,16 +33,6 @@ const schema = new Schema(
       type: Schema.Types.Boolean,
       default: true,
     },
-    createdAt: {
-      type: Date,
-      required: true,
-      select: false,
-    },
-    updatedAt: {
-      type: Date,
-      required: true,
-      select: false,
-    },
   },
   {
     versionKey: false,
@@ -50,5 +41,5 @@ const schema = new Schema(
 
 schema.index({ client: 1, primaryKey: 1 });
 schema.index({ client: 1, primaryKey: 1, secondaryKey: 1 });
-
+schema.set('timestamps', true);
 export const KeystoreModel = model<Keystore>(DOCUMENT_NAME, schema, COLLECTION_NAME);

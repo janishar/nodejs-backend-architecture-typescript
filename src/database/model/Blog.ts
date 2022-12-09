@@ -26,19 +26,18 @@ export default interface Blog extends Document {
   updatedAt?: Date;
 }
 
+Schema.Types.String.set('trim', true);
 const schema = new Schema(
   {
     title: {
       type: Schema.Types.String,
       required: true,
       maxlength: 500,
-      trim: true,
     },
     description: {
       type: Schema.Types.String,
       required: true,
       maxlength: 2000,
-      trim: true,
     },
     text: {
       type: Schema.Types.String,
@@ -53,7 +52,7 @@ const schema = new Schema(
     tags: [
       {
         type: Schema.Types.String,
-        trim: true,
+
         uppercase: true,
       },
     ],
@@ -67,14 +66,12 @@ const schema = new Schema(
       type: Schema.Types.String,
       required: false,
       maxlength: 500,
-      trim: true,
     },
     blogUrl: {
       type: Schema.Types.String,
       required: true,
       unique: true,
       maxlength: 200,
-      trim: true,
     },
     likes: {
       type: Schema.Types.Number,
@@ -127,16 +124,6 @@ const schema = new Schema(
       required: true,
       select: false,
     },
-    createdAt: {
-      type: Date,
-      required: true,
-      select: false,
-    },
-    updatedAt: {
-      type: Date,
-      required: true,
-      select: false,
-    },
   },
   {
     versionKey: false,
@@ -146,4 +133,5 @@ const schema = new Schema(
   { weights: { title: 3, description: 1 }, background: false },
 );
 
+schema.set('timestamps', true);
 export const BlogModel = model<Blog>(DOCUMENT_NAME, schema, COLLECTION_NAME);
