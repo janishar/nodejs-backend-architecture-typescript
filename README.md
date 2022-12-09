@@ -47,7 +47,7 @@ Following are the features of this project:
 
 ## Learn the concepts used in this project
 * [Design Node.js Backend Architecture like a Pro](https://janisharali.com/blog/design-node-js-backend-architecture-like-a-pro)
-* [The video guide to build and run this project](https://youtu.be/Nwh7wTtUV5I)
+* [The video guide to build and run this project](https://youtu.be/t7blRxqPIMs)
 * [Implement JSON Web Token (JWT) Authentication using AccessToken and RefreshToken](https://janisharali.com/blog/implement-json-web-token-jwt-authentication-using-access-token-and-refresh-token)
 * [TypeScript Tutorial For Beginners](https://afteracademy.com/blog/typescript-tutorial-for-beginners)
 * [From JavaScript to TypeScript](https://afteracademy.com/blog/from-javascript-to-typescript)
@@ -86,9 +86,9 @@ Following are the features of this project:
     * To run the tests execute `npm test`.
   
   ## Learn Backend Development From Our Videos
-  * [Introduction to Web Backend Development for Beginners](https://youtu.be/Q0nfLi-4GBg)
-  * [Backend System Design for Startups](https://www.youtube.com/playlist?list=PLqOiaH9id5quh5Dph5yuXfdHVGe1LrKvT)
-  * [Practical Javascript for Beginners](https://www.youtube.com/playlist?list=PLqOiaH9id5qtw5MhI-C1G3CS7RVZ8ejct)
+  * [Introduction to Web Backend Development for Beginners](https://youtu.be/SikmqyFocKQ)
+  * [Backend System Design for Startups](https://youtube.com/playlist?list=PLuppOTn4pNYeAn-ioA-Meec5I8pQK_gU5)
+  * [Practical Javascript for Beginners](https://youtube.com/playlist?list=PLuppOTn4pNYdowBb05yG2I8wAmHiW7vze)
   
  ## Project Directory Structure
  ```
