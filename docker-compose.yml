@@ -23,7 +23,7 @@ services:
 
   mongo:
     # To create this service, Compose will pull the mongo
-    image: mongo:4.2.5
+    image: mongo:6.0.3
     container_name: mongo
     restart: unless-stopped
     # This tells Compose that we would like to add environment variables
