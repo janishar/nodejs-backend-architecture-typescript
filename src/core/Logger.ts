@@ -15,30 +15,33 @@ if (!fs.existsSync(dir)) {
 
 const logLevel = environment === 'development' ? 'debug' : 'warn';
 
-const options = {
-  file: {
-    level: logLevel,
-    filename: dir + '/%DATE%.log',
-    datePattern: 'YYYY-MM-DD',
-    zippedArchive: true,
-    timestamp: true,
-    handleExceptions: true,
-    humanReadableUnhandledException: true,
-    prettyPrint: true,
-    json: true,
-    maxSize: '20m',
-    colorize: true,
-    maxFiles: '14d',
-  },
-};
+const dailyRotateFile = new DailyRotateFile({
+  level: logLevel,
+  // @ts-ignore
+  filename: dir + '/%DATE%.log',
+  datePattern: 'YYYY-MM-DD',
+  zippedArchive: true,
+  handleExceptions: true,
+  maxSize: '20m',
+  maxFiles: '14d',
+  format: format.combine(
+    format.errors({ stack: true }),
+    format.timestamp(),
+    format.json(),
+  ),
+});
 
 export default createLogger({
   transports: [
     new transports.Console({
       level: logLevel,
-      format: format.combine(format.errors({ stack: true }), format.prettyPrint()),
+      format: format.combine(
+        format.errors({ stack: true }),
+        format.prettyPrint(),
+      ),
     }),
+    dailyRotateFile,
   ],
-  exceptionHandlers: [new DailyRotateFile(options.file)],
+  exceptionHandlers: [dailyRotateFile],
   exitOnError: false, // do not exit on handled exceptions
 });

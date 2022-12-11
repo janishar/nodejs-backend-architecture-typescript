@@ -1,10 +1,11 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
+import { Header } from '../core/utils';
 import { JoiAuthBearer } from '../helpers/validator';
 
 export default {
   apiKey: Joi.object()
     .keys({
-      'x-api-key': Joi.string().required(),
+      [Header.API_KEY]: Joi.string().required(),
     })
     .unknown(true),
   auth: Joi.object()

@@ -1,10 +1,11 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model, Types } from 'mongoose';
 import User from './User';
 
 export const DOCUMENT_NAME = 'Keystore';
 export const COLLECTION_NAME = 'keystores';
 
-export default interface Keystore extends Document {
+export default interface Keystore {
+  _id: Types.ObjectId;
   client: User;
   primaryKey: string;
   secondaryKey: string;
@@ -13,7 +14,7 @@ export default interface Keystore extends Document {
   updatedAt?: Date;
 }
 
-const schema = new Schema(
+const schema = new Schema<Keystore>(
   {
     client: {
       type: Schema.Types.ObjectId,
@@ -23,22 +24,24 @@ const schema = new Schema(
     primaryKey: {
       type: Schema.Types.String,
       required: true,
+      trim: true,
     },
     secondaryKey: {
       type: Schema.Types.String,
       required: true,
+      trim: true,
     },
     status: {
       type: Schema.Types.Boolean,
       default: true,
     },
     createdAt: {
-      type: Date,
+      type: Schema.Types.Date,
       required: true,
       select: false,
     },
     updatedAt: {
-      type: Date,
+      type: Schema.Types.Date,
       required: true,
       select: false,
     },

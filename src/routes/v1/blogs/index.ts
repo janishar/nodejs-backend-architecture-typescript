@@ -1,11 +1,11 @@
 import express from 'express';
 import { SuccessResponse } from '../../../core/ApiResponse';
-import { NoDataError, BadRequestError } from '../../../core/ApiError';
-import BlogRepo from '../../../database/repository/BlogRepo';
-import { Types } from 'mongoose';
+import asyncHandler from '../../../helpers/asyncHandler';
 import validator, { ValidationSource } from '../../../helpers/validator';
 import schema from './schema';
-import asyncHandler from '../../../helpers/asyncHandler';
+import { BadRequestError } from '../../../core/ApiError';
+import BlogRepo from '../../../database/repository/BlogRepo';
+import { Types } from 'mongoose';
 import User from '../../../database/model/User';
 
 const router = express.Router();
@@ -20,9 +20,6 @@ router.get(
       parseInt(req.query.pageNumber as string),
       parseInt(req.query.pageItemCount as string),
     );
-
-    if (!blogs || blogs.length < 1) throw new NoDataError();
-
     return new SuccessResponse('success', blogs).send(res);
   }),
 );
@@ -34,9 +31,6 @@ router.get(
     const blogs = await BlogRepo.findAllPublishedForAuthor({
       _id: new Types.ObjectId(req.params.id),
     } as User);
-
-    if (!blogs || blogs.length < 1) throw new NoDataError();
-
     return new SuccessResponse('success', blogs).send(res);
   }),
 );
@@ -49,9 +43,6 @@ router.get(
       parseInt(req.query.pageNumber as string),
       parseInt(req.query.pageItemCount as string),
     );
-
-    if (!blogs || blogs.length < 1) throw new NoDataError();
-
     return new SuccessResponse('success', blogs).send(res);
   }),
 );
@@ -64,8 +55,6 @@ router.get(
     if (!blog || !blog.isPublished) throw new BadRequestError('Blog is not available');
 
     const blogs = await BlogRepo.searchSimilarBlogs(blog, 6);
-    if (!blogs || blogs.length < 1) throw new NoDataError();
-
     return new SuccessResponse('success', blogs).send(res);
   }),
 );

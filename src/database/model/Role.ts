@@ -1,40 +1,41 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model, Types } from 'mongoose';
 
 export const DOCUMENT_NAME = 'Role';
 export const COLLECTION_NAME = 'roles';
 
-export const enum RoleCode {
+export enum RoleCode {
   LEARNER = 'LEARNER',
   WRITER = 'WRITER',
   EDITOR = 'EDITOR',
   ADMIN = 'ADMIN',
 }
 
-export default interface Role extends Document {
+export default interface Role {
+  _id: Types.ObjectId;
   code: string;
   status?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-const schema = new Schema(
+const schema = new Schema<Role>(
   {
     code: {
       type: Schema.Types.String,
       required: true,
-      enum: [RoleCode.LEARNER, RoleCode.WRITER, RoleCode.EDITOR, RoleCode.ADMIN],
+      enum: Object.values(RoleCode),
     },
     status: {
       type: Schema.Types.Boolean,
       default: true,
     },
     createdAt: {
-      type: Date,
+      type: Schema.Types.Date,
       required: true,
       select: false,
     },
     updatedAt: {
-      type: Date,
+      type: Schema.Types.Date,
       required: true,
       select: false,
     },

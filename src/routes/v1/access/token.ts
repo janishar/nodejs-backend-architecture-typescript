@@ -35,7 +35,7 @@ router.post(
       throw new AuthFailureError('Invalid access token');
 
     const keystore = await KeystoreRepo.find(
-      req.user._id,
+      req.user,
       accessTokenPayload.prm,
       refreshTokenPayload.prm,
     );
@@ -46,7 +46,7 @@ router.post(
     const accessTokenKey = crypto.randomBytes(64).toString('hex');
     const refreshTokenKey = crypto.randomBytes(64).toString('hex');
 
-    await KeystoreRepo.create(req.user._id, accessTokenKey, refreshTokenKey);
+    await KeystoreRepo.create(req.user, accessTokenKey, refreshTokenKey);
     const tokens = await createTokens(req.user, accessTokenKey, refreshTokenKey);
 
     new TokenRefreshResponse('Token Issued', tokens.accessToken, tokens.refreshToken).send(res);

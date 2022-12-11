@@ -37,7 +37,7 @@ export default class JWT {
     try {
       // @ts-ignore
       return (await promisify(verify)(token, cert)) as JwtPayload;
-    } catch (e) {
+    } catch (e: any) {
       Logger.debug(e);
       if (e && e.name === 'TokenExpiredError') throw new TokenExpiredError();
       // throws error if the token has not been encrypted by the private key
@@ -73,7 +73,7 @@ export class JwtPayload {
     this.aud = audience;
     this.sub = subject;
     this.iat = Math.floor(Date.now() / 1000);
-    this.exp = this.iat + validity * 24 * 60 * 60;
+    this.exp = this.iat + validity;
     this.prm = param;
   }
 }

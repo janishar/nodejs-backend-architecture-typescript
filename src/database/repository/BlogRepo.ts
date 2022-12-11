@@ -4,9 +4,6 @@ import User from '../model/User';
 
 export default class BlogRepo {
   private static AUTHOR_DETAIL = 'name profilePicUrl';
-  private static BLOG_INFO_ADDITIONAL = '+isSubmitted +isDraft +isPublished +createdBy +updatedBy';
-  private static BLOG_ALL_DATA =
-    '+text +draftText +isSubmitted +isDraft +isPublished +status +createdBy +updatedBy';
 
   public static async create(blog: Blog): Promise<Blog> {
     const now = new Date();
@@ -16,17 +13,15 @@ export default class BlogRepo {
     return createdBlog.toObject();
   }
 
-  public static update(blog: Blog): Promise<any> {
+  public static update(blog: Blog): Promise<Blog | null> {
     blog.updatedAt = new Date();
-    return BlogModel.updateOne({ _id: blog._id }, { $set: { ...blog } })
-      .lean<Blog>()
-      .exec();
+    return BlogModel.findByIdAndUpdate(blog._id, blog, { new: true }).lean().exec();
   }
 
   public static findInfoById(id: Types.ObjectId): Promise<Blog | null> {
     return BlogModel.findOne({ _id: id, status: true })
       .populate('author', this.AUTHOR_DETAIL)
-      .lean<Blog>()
+      .lean()
       .exec();
   }
 
@@ -34,7 +29,7 @@ export default class BlogRepo {
     return BlogModel.findOne({ _id: id, status: true })
       .select('+text')
       .populate('author', this.AUTHOR_DETAIL)
-      .lean<Blog>()
+      .lean()
       .exec();
   }
 
@@ -42,15 +37,17 @@ export default class BlogRepo {
     return BlogModel.findOne({ _id: id, status: true })
       .select('+text +draftText +isSubmitted +isDraft +isPublished +status')
       .populate('author', this.AUTHOR_DETAIL)
-      .lean<Blog>()
+      .lean()
       .exec();
   }
 
   public static findBlogAllDataById(id: Types.ObjectId): Promise<Blog | null> {
     return BlogModel.findOne({ _id: id, status: true })
-      .select(this.BLOG_ALL_DATA)
+      .select(
+        '+text +draftText +isSubmitted +isDraft +isPublished +status +createdBy +updatedBy',
+      )
       .populate('author', this.AUTHOR_DETAIL)
-      .lean<Blog>()
+      .lean()
       .exec();
   }
 
@@ -58,12 +55,12 @@ export default class BlogRepo {
     return BlogModel.findOne({ blogUrl: blogUrl, status: true })
       .select('+text')
       .populate('author', this.AUTHOR_DETAIL)
-      .lean<Blog>()
+      .lean()
       .exec();
   }
 
   public static findUrlIfExists(blogUrl: string): Promise<Blog | null> {
-    return BlogModel.findOne({ blogUrl: blogUrl }).lean<Blog>().exec();
+    return BlogModel.findOne({ blogUrl: blogUrl }).lean().exec();
   }
 
   public static findByTagAndPaginated(
@@ -76,7 +73,7 @@ export default class BlogRepo {
       .limit(limit)
       .populate('author', this.AUTHOR_DETAIL)
       .sort({ updatedAt: -1 })
-      .lean<Blog>()
+      .lean()
       .exec();
   }
 
@@ -84,7 +81,7 @@ export default class BlogRepo {
     return BlogModel.find({ author: user, status: true, isPublished: true })
       .populate('author', this.AUTHOR_DETAIL)
       .sort({ updatedAt: -1 })
-      .lean<Blog>()
+      .lean()
       .exec();
   }
 
@@ -114,12 +111,12 @@ export default class BlogRepo {
 
   private static findDetailedBlogs(query: Record<string, unknown>): Promise<Blog[]> {
     return BlogModel.find(query)
-      .select(this.BLOG_INFO_ADDITIONAL)
+      .select('+isSubmitted +isDraft +isPublished +createdBy +updatedBy')
       .populate('author', this.AUTHOR_DETAIL)
       .populate('createdBy', this.AUTHOR_DETAIL)
       .populate('updatedBy', this.AUTHOR_DETAIL)
       .sort({ updatedAt: -1 })
-      .lean<Blog>()
+      .lean()
       .exec();
   }
 
@@ -129,7 +126,7 @@ export default class BlogRepo {
       .limit(limit)
       .populate('author', this.AUTHOR_DETAIL)
       .sort({ publishedAt: -1 })
-      .lean<Blog>()
+      .lean()
       .exec();
   }
 
@@ -149,7 +146,7 @@ export default class BlogRepo {
       .sort({ updatedAt: -1 })
       .limit(limit)
       .sort({ similarity: { $meta: 'textScore' } })
-      .lean<Blog>()
+      .lean()
       .exec();
   }
 
@@ -167,7 +164,7 @@ export default class BlogRepo {
       .select('-status -description')
       .limit(limit)
       .sort({ similarity: { $meta: 'textScore' } })
-      .lean<Blog>()
+      .lean()
       .exec();
   }
 
@@ -180,7 +177,7 @@ export default class BlogRepo {
       .select('-status -description')
       .limit(limit)
       .sort({ score: -1 })
-      .lean<Blog>()
+      .lean()
       .exec();
   }
 }

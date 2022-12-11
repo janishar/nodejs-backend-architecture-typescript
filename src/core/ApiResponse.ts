@@ -24,12 +24,17 @@ abstract class ApiResponse {
     protected message: string,
   ) {}
 
-  protected prepare<T extends ApiResponse>(res: Response, response: T): Response {
+  protected prepare<T extends ApiResponse>(
+    res: Response,
+    response: T,
+    headers: { [key: string]: string },
+  ): Response {
+    for (const [key, value] of Object.entries(headers)) res.append(key, value);
     return res.status(this.status).json(ApiResponse.sanitize(response));
   }
 
-  public send(res: Response): Response {
-    return this.prepare<ApiResponse>(res, this);
+  public send(res: Response, headers: { [key: string]: string } = {}): Response {
+    return this.prepare<ApiResponse>(res, this, headers);
   }
 
   private static sanitize<T extends ApiResponse>(response: T): T {
@@ -49,15 +54,12 @@ export class AuthFailureResponse extends ApiResponse {
 }
 
 export class NotFoundResponse extends ApiResponse {
-  private url: string | undefined;
-
   constructor(message = 'Not Found') {
     super(StatusCode.FAILURE, ResponseStatus.NOT_FOUND, message);
   }
 
-  send(res: Response): Response {
-    this.url = res.req?.originalUrl;
-    return super.prepare<NotFoundResponse>(res, this);
+  send(res: Response, headers: { [key: string]: string } = {}): Response {
+    return super.prepare<NotFoundResponse>(res, this, headers);
   }
 }
 
@@ -96,8 +98,8 @@ export class SuccessResponse<T> extends ApiResponse {
     super(StatusCode.SUCCESS, ResponseStatus.SUCCESS, message);
   }
 
-  send(res: Response): Response {
-    return super.prepare<SuccessResponse<T>>(res, this);
+  send(res: Response, headers: { [key: string]: string } = {}): Response {
+    return super.prepare<SuccessResponse<T>>(res, this, headers);
   }
 }
 
@@ -108,9 +110,9 @@ export class AccessTokenErrorResponse extends ApiResponse {
     super(StatusCode.INVALID_ACCESS_TOKEN, ResponseStatus.UNAUTHORIZED, message);
   }
 
-  send(res: Response): Response {
-    res.setHeader('instruction', this.instruction);
-    return super.prepare<AccessTokenErrorResponse>(res, this);
+  send(res: Response, headers: { [key: string]: string } = {}): Response {
+    headers.instruction = this.instruction;
+    return super.prepare<AccessTokenErrorResponse>(res, this, headers);
   }
 }
 
@@ -119,7 +121,7 @@ export class TokenRefreshResponse extends ApiResponse {
     super(StatusCode.SUCCESS, ResponseStatus.SUCCESS, message);
   }
 
-  send(res: Response): Response {
-    return super.prepare<TokenRefreshResponse>(res, this);
+  send(res: Response, headers: { [key: string]: string } = {}): Response {
+    return super.prepare<TokenRefreshResponse>(res, this, headers);
   }
 }

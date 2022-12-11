@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { Request, Response, NextFunction } from 'express';
 import Logger from '../core/Logger';
 import { BadRequestError } from '../core/ApiError';
@@ -30,22 +30,19 @@ export const JoiAuthBearer = () =>
     return value;
   }, 'Authorization Header Validation');
 
-export default (schema: Joi.ObjectSchema, source: ValidationSource = ValidationSource.BODY) => (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
-  try {
-    const { error } = schema.validate(req[source]);
+export default (schema: Joi.AnySchema, source: ValidationSource = ValidationSource.BODY) =>
+  (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { error } = schema.validate(req[source]);
 
-    if (!error) return next();
+      if (!error) return next();
 
-    const { details } = error;
-    const message = details.map((i) => i.message.replace(/['"]+/g, '')).join(',');
-    Logger.error(message);
+      const { details } = error;
+      const message = details.map((i) => i.message.replace(/['"]+/g, '')).join(',');
+      Logger.error(message);
 
-    next(new BadRequestError(message));
-  } catch (error) {
-    next(error);
-  }
-};
+      next(new BadRequestError(message));
+    } catch (error) {
+      next(error);
+    }
+  };

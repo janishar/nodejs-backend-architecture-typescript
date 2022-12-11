@@ -1,24 +1,31 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model, Types } from 'mongoose';
 
 export const DOCUMENT_NAME = 'ApiKey';
 export const COLLECTION_NAME = 'api_keys';
 
-export default interface ApiKey extends Document {
+export enum Permission {
+  GENERAL = 'GENERAL',
+}
+
+export default interface ApiKey {
+  _id: Types.ObjectId;
   key: string;
   version: number;
-  metadata: string;
+  permissions: Permission[];
+  comments: string[];
   status?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-const schema = new Schema(
+const schema = new Schema<ApiKey>(
   {
     key: {
       type: Schema.Types.String,
       required: true,
       unique: true,
       maxlength: 1024,
+      trim: true,
     },
     version: {
       type: Schema.Types.Number,
@@ -26,8 +33,25 @@ const schema = new Schema(
       min: 1,
       max: 100,
     },
-    metadata: {
-      type: Schema.Types.String,
+    permissions: {
+      type: [
+        {
+          type: Schema.Types.String,
+          required: true,
+          enum: Object.values(Permission),
+        },
+      ],
+      required: true,
+    },
+    comments: {
+      type: [
+        {
+          type: Schema.Types.String,
+          required: true,
+          trim: true,
+          maxlength: 1000,
+        },
+      ],
       required: true,
     },
     status: {
@@ -35,12 +59,12 @@ const schema = new Schema(
       default: true,
     },
     createdAt: {
-      type: Date,
+      type: Schema.Types.Date,
       required: true,
       select: false,
     },
     updatedAt: {
-      type: Date,
+      type: Schema.Types.Date,
       required: true,
       select: false,
     },

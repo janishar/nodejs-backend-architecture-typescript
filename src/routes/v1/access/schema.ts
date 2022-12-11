@@ -1,8 +1,8 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { JoiAuthBearer } from '../../../helpers/validator';
 
 export default {
-  userCredential: Joi.object().keys({
+  credential: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required().min(6),
   }),

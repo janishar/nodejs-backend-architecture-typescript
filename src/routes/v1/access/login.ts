@@ -10,13 +10,15 @@ import schema from './schema';
 import asyncHandler from '../../../helpers/asyncHandler';
 import bcrypt from 'bcrypt';
 import _ from 'lodash';
+import { getUserData } from './utils';
+import { PublicRequest } from '../../../types/app-request';
 
 const router = express.Router();
 
-export default router.post(
+router.post(
   '/basic',
-  validator(schema.userCredential),
-  asyncHandler(async (req, res) => {
+  validator(schema.credential),
+  asyncHandler(async (req: PublicRequest, res) => {
     const user = await UserRepo.findByEmail(req.body.email);
     if (!user) throw new BadRequestError('User not registered');
     if (!user.password) throw new BadRequestError('Credential not set');
@@ -27,12 +29,15 @@ export default router.post(
     const accessTokenKey = crypto.randomBytes(64).toString('hex');
     const refreshTokenKey = crypto.randomBytes(64).toString('hex');
 
-    await KeystoreRepo.create(user._id, accessTokenKey, refreshTokenKey);
+    await KeystoreRepo.create(user, accessTokenKey, refreshTokenKey);
     const tokens = await createTokens(user, accessTokenKey, refreshTokenKey);
+    const userData = await getUserData(user);
 
     new SuccessResponse('Login Success', {
-      user: _.pick(user, ['_id', 'name', 'roles', 'profilePicUrl']),
+      user: userData,
       tokens: tokens,
     }).send(res);
   }),
 );
+
+export default router;

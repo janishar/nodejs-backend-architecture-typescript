@@ -8,8 +8,7 @@ import authentication from '../../../auth/authentication';
 const router = express.Router();
 
 /*-------------------------------------------------------------------------*/
-// Below all APIs are private APIs protected for Access Token
-router.use('/', authentication);
+router.use(authentication);
 /*-------------------------------------------------------------------------*/
 
 router.delete(
