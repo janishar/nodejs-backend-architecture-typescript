@@ -1,13 +1,18 @@
 import express from 'express';
 import { SuccessResponse } from '../../../core/ApiResponse';
+import asyncHandler from '../../../helpers/asyncHandler';
+import validator, { ValidationSource } from '../../../helpers/validator';
+import schema from './schema';
 import { BadRequestError } from '../../../core/ApiError';
 import BlogRepo from '../../../database/repository/BlogRepo';
 import { Types } from 'mongoose';
-import validator, { ValidationSource } from '../../../helpers/validator';
-import schema from './schema';
-import asyncHandler from '../../../helpers/asyncHandler';
+import writer from './writer';
+import editor from './editor';
 
 const router = express.Router();
+
+router.use('/writer', writer);
+router.use('/editor', editor);
 
 router.get(
   '/url',

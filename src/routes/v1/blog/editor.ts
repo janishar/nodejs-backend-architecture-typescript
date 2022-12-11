@@ -15,8 +15,7 @@ import role from '../../../helpers/role';
 const router = express.Router();
 
 /*-------------------------------------------------------------------------*/
-// Below all APIs are private APIs protected for Access Token and Editor's Role
-router.use('/', authentication, role(RoleCode.EDITOR), authorization);
+router.use(authentication, role(RoleCode.EDITOR), authorization);
 /*-------------------------------------------------------------------------*/
 
 router.put(

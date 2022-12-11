@@ -1,14 +1,15 @@
-import { model, Schema, Document } from 'mongoose';
+import { model, Schema, Types } from 'mongoose';
 import Role from './Role';
 
 export const DOCUMENT_NAME = 'User';
 export const COLLECTION_NAME = 'users';
 
-export default interface User extends Document {
-  name: string;
+export default interface User {
+  _id: Types.ObjectId;
+  name?: string;
+  profilePicUrl?: string;
   email?: string;
   password?: string;
-  profilePicUrl?: string;
   roles: Role[];
   verified?: boolean;
   status?: boolean;
@@ -16,28 +17,27 @@ export default interface User extends Document {
   updatedAt?: Date;
 }
 
-const schema = new Schema(
+const schema = new Schema<User>(
   {
     name: {
       type: Schema.Types.String,
-      required: true,
       trim: true,
-      maxlength: 100,
+      maxlength: 200,
+    },
+    profilePicUrl: {
+      type: Schema.Types.String,
+      trim: true,
     },
     email: {
       type: Schema.Types.String,
-      required: true,
       unique: true,
+      sparse: true, // allows null
       trim: true,
       select: false,
     },
     password: {
       type: Schema.Types.String,
       select: false,
-    },
-    profilePicUrl: {
-      type: Schema.Types.String,
-      trim: true,
     },
     roles: {
       type: [
@@ -58,12 +58,12 @@ const schema = new Schema(
       default: true,
     },
     createdAt: {
-      type: Date,
+      type: Schema.Types.Date,
       required: true,
       select: false,
     },
     updatedAt: {
-      type: Date,
+      type: Schema.Types.Date,
       required: true,
       select: false,
     },
@@ -72,5 +72,9 @@ const schema = new Schema(
     versionKey: false,
   },
 );
+
+schema.index({ _id: 1, status: 1 });
+schema.index({ status: 1 });
+schema.index({ email: 1, status: 1 });
 
 export const UserModel = model<User>(DOCUMENT_NAME, schema, COLLECTION_NAME);

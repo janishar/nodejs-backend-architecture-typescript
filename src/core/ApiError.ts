@@ -9,7 +9,7 @@ import {
   ForbiddenResponse,
 } from './ApiResponse';
 
-enum ErrorType {
+export enum ErrorType {
   BAD_TOKEN = 'BadTokenError',
   TOKEN_EXPIRED = 'TokenExpiredError',
   UNAUTHORIZED = 'AuthFailureError',

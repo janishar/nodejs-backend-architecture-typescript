@@ -1,10 +1,11 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model, Types } from 'mongoose';
 import User from './User';
 
 export const DOCUMENT_NAME = 'Blog';
 export const COLLECTION_NAME = 'blogs';
 
-export default interface Blog extends Document {
+export default interface Blog {
+  _id: Types.ObjectId;
   title: string;
   description: string;
   text?: string;
@@ -26,7 +27,7 @@ export default interface Blog extends Document {
   updatedAt?: Date;
 }
 
-const schema = new Schema(
+const schema = new Schema<Blog>(
   {
     title: {
       type: Schema.Types.String,

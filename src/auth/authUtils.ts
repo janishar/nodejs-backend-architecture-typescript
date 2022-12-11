@@ -37,7 +37,7 @@ export const createTokens = async (
       tokenInfo.audience,
       user._id.toString(),
       accessTokenKey,
-      tokenInfo.accessTokenValidityDays,
+      tokenInfo.accessTokenValidity,
     ),
   );
 
@@ -49,7 +49,7 @@ export const createTokens = async (
       tokenInfo.audience,
       user._id.toString(),
       refreshTokenKey,
-      tokenInfo.refreshTokenValidityDays,
+      tokenInfo.refreshTokenValidity,
     ),
   );
 

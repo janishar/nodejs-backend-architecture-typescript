@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { JoiObjectId } from '../../../helpers/validator';
 
 export default {
@@ -6,7 +6,7 @@ export default {
     id: JoiObjectId().required(),
   }),
   profile: Joi.object().keys({
-    name: Joi.string().optional().min(1).max(200),
-    profilePicUrl: Joi.string().optional().uri(),
+    name: Joi.string().min(1).max(200).optional(),
+    profilePicUrl: Joi.string().uri().optional(),
   }),
 };

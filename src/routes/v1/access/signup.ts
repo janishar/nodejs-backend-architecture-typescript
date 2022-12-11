@@ -12,6 +12,7 @@ import asyncHandler from '../../../helpers/asyncHandler';
 import bcrypt from 'bcrypt';
 import _ from 'lodash';
 import { RoleCode } from '../../../database/model/Role';
+import { getUserData } from './utils';
 
 const router = express.Router();
 
@@ -39,8 +40,10 @@ router.post(
     );
 
     const tokens = await createTokens(createdUser, keystore.primaryKey, keystore.secondaryKey);
+    const userData = await getUserData(createdUser);
+
     new SuccessResponse('Signup Successful', {
-      user: _.pick(createdUser, ['_id', 'name', 'email', 'roles', 'profilePicUrl']),
+      user: userData,
       tokens: tokens,
     }).send(res);
   }),
