@@ -15,7 +15,7 @@ import role from '../../../helpers/role';
 const router = express.Router();
 
 /*-------------------------------------------------------------------------*/
-router.use(authentication, role(RoleCode.EDITOR), authorization);
+router.use(authentication, role(RoleCode.ADMIN, RoleCode.EDITOR), authorization);
 /*-------------------------------------------------------------------------*/
 
 router.put(

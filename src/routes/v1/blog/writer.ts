@@ -68,7 +68,6 @@ router.put(
     if (req.body.title) blog.title = req.body.title;
     if (req.body.description) blog.description = req.body.description;
     if (req.body.text) blog.draftText = req.body.text;
-    if (req.body.data) blog.draftData = req.body.data;
     if (req.body.tags) blog.tags = req.body.tags;
     if (req.body.imgUrl) blog.imgUrl = req.body.imgUrl;
     if (req.body.score) blog.score = req.body.score;
@@ -125,7 +124,6 @@ router.delete(
       blog.isDraft = false;
       // revert to the original state
       blog.draftText = blog.text;
-      blog.draftData = blog.data;
     } else {
       blog.status = false;
     }
