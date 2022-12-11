@@ -1,0 +1,85 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "vscode: Install Plugins",
+      "type": "shell",
+      "command": "chmod +x ./.vscode/extensions.list | ./.vscode/extensions.list",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Install Dependencies",
+      "type": "shell",
+      "command": "npm install",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Start Prod Server",
+      "type": "npm",
+      "script": "start"
+    },
+    {
+      "label": "Start Dev Server",
+      "type": "npm",
+      "script": "run watch"
+    },
+    {
+      "label": "Template: Generate V1 Route",
+      "type": "shell",
+      "command": "cp",
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared"
+      },
+      "args": [
+        "-r",
+        "${workspaceFolder}/.templates/route",
+        "${workspaceFolder}/src/routes/v1/${input:routeName}"
+      ]
+    },
+    {
+      "label": "Template: Generate Model",
+      "type": "shell",
+      "command": "cp",
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared"
+      },
+      "args": [
+        "${workspaceFolder}/.templates/database/model/Sample.ts",
+        "${workspaceFolder}/src/database/model/${input:modelName}.ts"
+      ]
+    },
+    {
+      "label": "Template: Generate Repo",
+      "type": "shell",
+      "command": "cp",
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared"
+      },
+      "args": [
+        "${workspaceFolder}/.templates/database/repository/SampleRepo.ts",
+        "${workspaceFolder}/src/database/repository/${input:modelName}Repo.ts"
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "routeName",
+      "description": "Route name to create?"
+    },
+    {
+      "type": "promptString",
+      "id": "modelName",
+      "description": "Model name to create?"
+    }
+  ]
+}
