@@ -26,5 +26,5 @@ function seed(dbName, user, password) {
   ]);
 }
 
-seed('afteracademy-blog-db', 'afteracademy-blog-db-user', 'changeit');
-seed('afteracademy-blog-test-db', 'afteracademy-blog-test-db-user', 'changeit');
+seed('blogs-db', 'blogs-db-user', 'changeit');
+seed('blogs-test-db', 'blogs-test-db-user', 'changeit');

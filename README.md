@@ -2,7 +2,7 @@
 Learn to build a Blogging platform like Medium, MindOrks, and FreeCodeCamp - Open-Source Project By Janishar Ali
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/afteracademy/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png">
+    <img src="https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png">
 </p>
 <br>
 
@@ -24,12 +24,12 @@ Following are the features of this project:
 * **Unit test is favored**: The tests have been written to test the functions and routes without the need of the database server. Integration tests has also been done but the unit test is favored.
 * **A pure backend project**: We have experienced that when a backend is developed clubbed with a frontend then in the future it becomes really difficult to scale. We would want to create a separate backend project that servers many websites and mobile apps.
 
-## We have also open source a complete blogging website working on this backend project: [Goto Repository](https://github.com/afteracademy/react-app-architecture)
+## We have also open source a complete blogging website working on this backend project: [Goto Repository](https://github.com/janishar/react-app-architecture)
 > In the above repository [**React.js Isomorphic Web Application Architecture**] we will learn and build a React web application for a blogging platform using this project as its API server. [Visit demo website](https://demo.react-app-architecture.afteracademy.com)
 
 ## 3RE Architecture: Router, RouteHandler, ResponseHandler, ErrorHandler
 <p align="center">
-    <img src="https://raw.githubusercontent.com/afteracademy/nodejs-backend-architecture-typescript/master/addons/github_assets/3RE.png">
+    <img src="https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/3RE.png">
 </p>
 <br>
 
@@ -220,7 +220,7 @@ Following are the features of this project:
     ```json
     {
         "name" : "Janishar Ali",
-        "email": "ali@afteracademy.com",
+        "email": "ali@github.com",
         "password": "changeit",
         "profilePicUrl": "https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4"
     }
@@ -234,7 +234,7 @@ Following are the features of this project:
         "user": {
           "_id": "5e7c9d32307a223bb8a4b12b",
           "name": "Janishar Ali",
-          "email": "ali@afteracademy.com",
+          "email": "ali@github.com",
           "roles": [
             "5e7b8acad7aded2407e078d7"
           ],
