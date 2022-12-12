@@ -20,6 +20,7 @@ services:
       - '$PORT:$PORT'
     links:
       - mongo
+      - redis
 
   mongo:
     # To create this service, Compose will pull the mongo
@@ -45,9 +46,22 @@ services:
         # This will ensure that you don’t lose data in cases where you stop or remove containers.
       - dbdata:/data/db
 
+  redis:
+    image: redis:7.0.5
+    container_name: redis
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - '$REDIS_CACHE_PORT:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass $REDIS_CACHE_PASSWORD
+    volumes: 
+      - cache:/data/cache
+
 # Our top-level volumes key defines the volumes dbdata.
 # When Docker creates volumes, the contents of the volume are stored in a part of the host filesystem, /var/lib/docker/volumes/, that’s managed by Docker.
 # The contents of each volume are stored in a directory under /var/lib/docker/volumes/ and get mounted to any container that uses the volume.
 # In this way, the data that our users will create will persist in the dbdata volume even if we remove and recreate the db container.
 volumes:
   dbdata:
+  cache:
+    driver: local
