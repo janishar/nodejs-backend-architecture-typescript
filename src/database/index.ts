@@ -21,6 +21,8 @@ function setRunValidators() {
   this.setOptions({ runValidators: true });
 }
 
+mongoose.set('strictQuery', true);
+
 // Create the database connection
 mongoose
   .plugin((schema: any) => {
