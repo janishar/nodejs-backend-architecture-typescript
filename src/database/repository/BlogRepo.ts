@@ -43,9 +43,7 @@ export default class BlogRepo {
 
   public static findBlogAllDataById(id: Types.ObjectId): Promise<Blog | null> {
     return BlogModel.findOne({ _id: id, status: true })
-      .select(
-        '+text +draftText +isSubmitted +isDraft +isPublished +status +createdBy +updatedBy',
-      )
+      .select('+text +draftText +isSubmitted +isDraft +isPublished +status +createdBy +updatedBy')
       .populate('author', this.AUTHOR_DETAIL)
       .lean()
       .exec();

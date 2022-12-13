@@ -10,7 +10,6 @@ import validator from '../../../helpers/validator';
 import schema from './schema';
 import asyncHandler from '../../../helpers/asyncHandler';
 import bcrypt from 'bcrypt';
-import _ from 'lodash';
 import { RoleCode } from '../../../database/model/Role';
 import { getUserData } from './utils';
 

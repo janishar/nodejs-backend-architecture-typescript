@@ -29,7 +29,7 @@ function seed(dbName, user, password) {
   db.users.insert({
     name: 'Admin',
     email: 'admin@xyz.com',
-    password: '$2a$10$psWmSrmtyZYvtIt/FuJL1OLqsK3iR1fZz5.wUYFuSNkkt.EOX9mLa' // hash of password: changeit
+    password: '$2a$10$psWmSrmtyZYvtIt/FuJL1OLqsK3iR1fZz5.wUYFuSNkkt.EOX9mLa', // hash of password: changeit
   });
 }
 

@@ -25,20 +25,18 @@ export const mockKeystoreCreate = jest.fn(
   },
 );
 
-export const mockUserFindByEmail = jest.fn(
-  async (email: string): Promise<User | null> => {
-    if (email === USER_EMAIL)
-      return {
-        _id: USER_ID,
-        email: USER_EMAIL,
-        password: USER_PASSWORD_HASH,
-        name: 'abc',
-        profilePicUrl: 'abc',
-        roles: [] as Role[],
-      } as User;
-    return null;
-  },
-);
+export const mockUserFindByEmail = jest.fn(async (email: string): Promise<User | null> => {
+  if (email === USER_EMAIL)
+    return {
+      _id: USER_ID,
+      email: USER_EMAIL,
+      password: USER_PASSWORD_HASH,
+      name: 'abc',
+      profilePicUrl: 'abc',
+      roles: [] as Role[],
+    } as User;
+  return null;
+});
 
 jest.mock('../../../../src/database/repository/KeystoreRepo', () => ({
   get create() {

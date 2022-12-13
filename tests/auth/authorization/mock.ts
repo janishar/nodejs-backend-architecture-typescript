@@ -43,58 +43,54 @@ export const mockUserFindById = jest.fn(async (id: Types.ObjectId) => {
   else return null;
 });
 
-export const mockRoleRepoFindByCode = jest.fn(
-  async (code: string): Promise<Role | null> => {
-    switch (code) {
-      case RoleCode.WRITER:
-        return {
-          _id: WRITER_ROLE_ID,
-          code: RoleCode.WRITER,
-          status: true,
-        } as Role;
-      case RoleCode.EDITOR:
-        return {
-          _id: EDITOR_ROLE_ID,
-          code: RoleCode.EDITOR,
-          status: true,
-        } as Role;
-      case RoleCode.LEARNER:
-        return {
-          _id: LEARNER_ROLE_ID,
-          code: RoleCode.LEARNER,
-          status: true,
-        } as Role;
-    }
-    return null;
-  },
-);
-
-export const mockJwtValidate = jest.fn(
-  async (token: string): Promise<JwtPayload> => {
-    let subject = null;
-    switch (token) {
-      case ACCESS_TOKEN:
-        subject = USER_ID.toHexString();
-        break;
-      case WRITER_ACCESS_TOKEN:
-        subject = USER_ID_WRITER.toHexString();
-        break;
-      case EDITOR_ACCESS_TOKEN:
-        subject = USER_ID_EDITOR.toHexString();
-        break;
-    }
-    if (subject)
+export const mockRoleRepoFindByCode = jest.fn(async (code: string): Promise<Role | null> => {
+  switch (code) {
+    case RoleCode.WRITER:
       return {
-        iss: tokenInfo.issuer,
-        aud: tokenInfo.audience,
-        sub: subject,
-        iat: 1,
-        exp: 2,
-        prm: 'abcdef',
-      } as JwtPayload;
-    throw new BadTokenError();
-  },
-);
+        _id: WRITER_ROLE_ID,
+        code: RoleCode.WRITER,
+        status: true,
+      } as Role;
+    case RoleCode.EDITOR:
+      return {
+        _id: EDITOR_ROLE_ID,
+        code: RoleCode.EDITOR,
+        status: true,
+      } as Role;
+    case RoleCode.LEARNER:
+      return {
+        _id: LEARNER_ROLE_ID,
+        code: RoleCode.LEARNER,
+        status: true,
+      } as Role;
+  }
+  return null;
+});
+
+export const mockJwtValidate = jest.fn(async (token: string): Promise<JwtPayload> => {
+  let subject = null;
+  switch (token) {
+    case ACCESS_TOKEN:
+      subject = USER_ID.toHexString();
+      break;
+    case WRITER_ACCESS_TOKEN:
+      subject = USER_ID_WRITER.toHexString();
+      break;
+    case EDITOR_ACCESS_TOKEN:
+      subject = USER_ID_EDITOR.toHexString();
+      break;
+  }
+  if (subject)
+    return {
+      iss: tokenInfo.issuer,
+      aud: tokenInfo.audience,
+      sub: subject,
+      iat: 1,
+      exp: 2,
+      prm: 'abcdef',
+    } as JwtPayload;
+  throw new BadTokenError();
+});
 
 jest.mock('../../../src/database/repository/UserRepo', () => ({
   get findById() {

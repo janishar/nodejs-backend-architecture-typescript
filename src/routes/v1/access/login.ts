@@ -9,7 +9,6 @@ import validator from '../../../helpers/validator';
 import schema from './schema';
 import asyncHandler from '../../../helpers/asyncHandler';
 import bcrypt from 'bcrypt';
-import _ from 'lodash';
 import { getUserData } from './utils';
 import { PublicRequest } from '../../../types/app-request';
 
