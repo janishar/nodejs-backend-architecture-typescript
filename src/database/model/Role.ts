@@ -45,4 +45,6 @@ const schema = new Schema<Role>(
   },
 );
 
+schema.index({ code: 1, status: 1 });
+
 export const RoleModel = model<Role>(DOCUMENT_NAME, schema, COLLECTION_NAME);

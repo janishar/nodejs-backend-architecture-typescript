@@ -24,17 +24,9 @@ async function findInfoById(id: Types.ObjectId): Promise<Blog | null> {
     .exec();
 }
 
-async function findInfoWithTextById(id: Types.ObjectId): Promise<Blog | null> {
-  return BlogModel.findOne({ _id: id, status: true })
+async function findInfoForPublishedById(id: Types.ObjectId): Promise<Blog | null> {
+  return BlogModel.findOne({ _id: id, isPublished: true, status: true })
     .select('+text')
-    .populate('author', AUTHOR_DETAIL)
-    .lean()
-    .exec();
-}
-
-async function findInfoWithTextAndDraftTextById(id: Types.ObjectId): Promise<Blog | null> {
-  return BlogModel.findOne({ _id: id, status: true })
-    .select('+text +draftText +isSubmitted +isDraft +isPublished +status')
     .populate('author', AUTHOR_DETAIL)
     .lean()
     .exec();
@@ -48,8 +40,8 @@ async function findBlogAllDataById(id: Types.ObjectId): Promise<Blog | null> {
     .exec();
 }
 
-async function findByUrl(blogUrl: string): Promise<Blog | null> {
-  return BlogModel.findOne({ blogUrl: blogUrl, status: true })
+async function findPublishedByUrl(blogUrl: string): Promise<Blog | null> {
+  return BlogModel.findOne({ blogUrl: blogUrl, isPublished: true, status: true })
     .select('+text')
     .populate('author', AUTHOR_DETAIL)
     .lean()
@@ -182,10 +174,9 @@ export default {
   create,
   update,
   findInfoById,
-  findInfoWithTextById,
-  findInfoWithTextAndDraftTextById,
+  findInfoForPublishedById,
   findBlogAllDataById,
-  findByUrl,
+  findPublishedByUrl,
   findUrlIfExists,
   findByTagAndPaginated,
   findAllPublishedForAuthor,

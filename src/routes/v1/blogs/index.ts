@@ -7,6 +7,7 @@ import { BadRequestError } from '../../../core/ApiError';
 import BlogRepo from '../../../database/repository/BlogRepo';
 import { Types } from 'mongoose';
 import User from '../../../database/model/User';
+import BlogsCache from '../../../cache/repository/BlogsCache';
 
 const router = express.Router();
 
@@ -51,11 +52,18 @@ router.get(
   '/similar/id/:id',
   validator(schema.blogId, ValidationSource.PARAM),
   asyncHandler(async (req, res) => {
-    const blog = await BlogRepo.findBlogAllDataById(new Types.ObjectId(req.params.id));
-    if (!blog || !blog.isPublished) throw new BadRequestError('Blog is not available');
+    const blogId = new Types.ObjectId(req.params.id);
+    let blogs = await BlogsCache.fetchSimilarBlogs(blogId);
 
-    const blogs = await BlogRepo.searchSimilarBlogs(blog, 6);
-    return new SuccessResponse('success', blogs).send(res);
+    if (!blogs) {
+      const blog = await BlogRepo.findInfoForPublishedById(new Types.ObjectId(req.params.id));
+      if (!blog) throw new BadRequestError('Blog is not available');
+      blogs = await BlogRepo.searchSimilarBlogs(blog, 6);
+
+      if (blogs && blogs.length > 0) await BlogsCache.saveSimilarBlogs(blogId, blogs);
+    }
+
+    return new SuccessResponse('success', blogs ? blogs : []).send(res);
   }),
 );
 

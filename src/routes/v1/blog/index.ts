@@ -8,6 +8,7 @@ import BlogRepo from '../../../database/repository/BlogRepo';
 import { Types } from 'mongoose';
 import writer from './writer';
 import editor from './editor';
+import BlogCache from '../../../cache/repository/BlogCache';
 
 const router = express.Router();
 
@@ -18,9 +19,16 @@ router.get(
   '/url',
   validator(schema.blogUrl, ValidationSource.QUERY),
   asyncHandler(async (req, res) => {
-    const blog = await BlogRepo.findByUrl(req.query.endpoint as string);
-    if (!blog) throw new BadRequestError('Blog do not exists');
-    new SuccessResponse('success', blog).send(res);
+    const blogUrl = req.query.endpoint as string;
+    let blog = await BlogCache.fetchByUrl(blogUrl);
+   
+    if (!blog) {
+      blog = await BlogRepo.findPublishedByUrl(blogUrl);
+      if (blog) await BlogCache.save(blog);
+    }
+    
+    if (!blog) throw new BadRequestError('Blog not found');
+    return new SuccessResponse('success', blog).send(res);
   }),
 );
 
@@ -28,8 +36,15 @@ router.get(
   '/id/:id',
   validator(schema.blogId, ValidationSource.PARAM),
   asyncHandler(async (req, res) => {
-    const blog = await BlogRepo.findInfoWithTextById(new Types.ObjectId(req.params.id));
-    if (!blog) throw new BadRequestError('Blog do not exists');
+    const blogId = new Types.ObjectId(req.params.id);
+    let blog = await BlogCache.fetchById(blogId);
+
+    if (!blog) {
+      blog = await BlogRepo.findInfoForPublishedById(new Types.ObjectId(req.params.id));
+      if (blog) await BlogCache.save(blog);
+    }
+
+    if (!blog) throw new BadRequestError('Blog not found');
     return new SuccessResponse('success', blog).send(res);
   }),
 );

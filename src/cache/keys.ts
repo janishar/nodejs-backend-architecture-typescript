@@ -3,7 +3,7 @@ export enum Key {
 }
 
 export enum DynamicKey {
-  BLOGS_TAG = 'BLOGS_TAG',
+  BLOGS_SIMILAR = 'BLOGS_SIMILAR',
   BLOG = 'BLOG',
 }
 
