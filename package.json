@@ -36,6 +36,7 @@
     "multer": "^1.4.5-lts.1",
     "newrelic": "^9.7.2",
     "qs": "^6.11.0",
+    "redis": "^4.5.1",
     "winston": "^3.8.2",
     "winston-daily-rotate-file": "^4.7.1"
   },
