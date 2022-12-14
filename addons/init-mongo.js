@@ -30,6 +30,13 @@ function seed(dbName, user, password) {
     name: 'Admin',
     email: 'admin@xyz.com',
     password: '$2a$10$psWmSrmtyZYvtIt/FuJL1OLqsK3iR1fZz5.wUYFuSNkkt.EOX9mLa', // hash of password: changeit
+    roles: db.roles
+      .find({})
+      .toArray()
+      .map((role) => role._id),
+    status: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
   });
 }
 
