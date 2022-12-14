@@ -142,9 +142,16 @@ const schema = new Schema<Blog>(
   {
     versionKey: false,
   },
-).index(
+);
+
+schema.index(
   { title: 'text', description: 'text' },
   { weights: { title: 3, description: 1 }, background: false },
 );
+schema.index({ _id: 1, status: 1 });
+schema.index({ blogUrl: 1, status: 1 });
+schema.index({ isPublished: 1, status: 1 });
+schema.index({ _id: 1, isPublished: 1, status: 1 });
+schema.index({ tag: 1, isPublished: 1, status: 1 });
 
 export const BlogModel = model<Blog>(DOCUMENT_NAME, schema, COLLECTION_NAME);

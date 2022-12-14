@@ -1,20 +1,27 @@
 import { getListRange, setList } from '../query';
 import Blog from '../../database/model/Blog';
 import { DynamicKey, getDynamicKey } from '../keys';
+import { addMillisToCurrentDate } from '../../helpers/utils';
+import { caching } from '../../config';
+import { Types } from 'mongoose';
 
-function getTagKey(tag: string) {
-  return getDynamicKey(DynamicKey.BLOGS_TAG, tag);
+function getKeyForSimilar(blogId: Types.ObjectId) {
+  return getDynamicKey(DynamicKey.BLOGS_SIMILAR, blogId.toHexString());
 }
 
-async function saveForTag(tag: string, blogs: Blog[], expireAt: Date) {
-  return setList(getTagKey(tag), blogs, expireAt);
+async function saveSimilarBlogs(blogId: Types.ObjectId, blogs: Blog[]) {
+  return setList(
+    getKeyForSimilar(blogId),
+    blogs,
+    addMillisToCurrentDate(caching.contentCacheDuration),
+  );
 }
 
-async function fetch(tag: string) {
-  return getListRange<Blog>(getTagKey(tag));
+async function fetchSimilarBlogs(blogId: Types.ObjectId) {
+  return getListRange<Blog>(getKeyForSimilar(blogId));
 }
 
 export default {
-  saveForTag,
-  fetch,
+  saveSimilarBlogs,
+  fetchSimilarBlogs,
 };

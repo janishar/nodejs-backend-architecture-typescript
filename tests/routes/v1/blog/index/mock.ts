@@ -30,7 +30,7 @@ jest.mock('../../../../../src/database/repository/BlogRepo', () => ({
   get findByUrl() {
     return mockBlogFindByUrl;
   },
-  get findInfoWithTextById() {
+  get findInfoForPublishedById() {
     return mockFindInfoWithTextById;
   },
 }));

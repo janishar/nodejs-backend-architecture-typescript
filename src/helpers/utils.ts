@@ -1,4 +1,5 @@
 import { Request } from 'express';
+import moment from 'moment';
 import Logger from '../core/Logger';
 
 export function findIpAddress(req: Request) {
@@ -13,4 +14,8 @@ export function findIpAddress(req: Request) {
     Logger.error(e);
     return undefined;
   }
+}
+
+export function addMillisToCurrentDate(millis: number) {
+  return moment().add(millis, 'ms').toDate();
 }
