@@ -26,7 +26,7 @@ This project is designed for a production ready environment. It can handle the s
 It is suitable for Web Apps, Mobile Apps, and other API services.
 
 # About The Author
-I, [Janishar Ali](https://janisharali.com) have created this project using my 10 years of experience in tech industry working for top companies. I enjoy sharing my learnings with the community. You can connect with me here:
+I [Janishar Ali](https://janisharali.com) have created this project using my 10 years of experience in tech industry working for top companies. I enjoy sharing my learnings with the community. You can connect with me here:
 * [Twitter](https://twitter.com/janisharali)
 * [LinkedIn](https://www.linkedin.com/in/janishar-ali)
 * [Instagram](https://www.instagram.com/janisharali)
