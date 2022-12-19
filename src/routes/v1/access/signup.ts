@@ -38,7 +38,11 @@ router.post(
       RoleCode.LEARNER,
     );
 
-    const tokens = await createTokens(createdUser, keystore.primaryKey, keystore.secondaryKey);
+    const tokens = await createTokens(
+      createdUser,
+      keystore.primaryKey,
+      keystore.secondaryKey,
+    );
     const userData = await getUserData(createdUser);
 
     new SuccessResponse('Signup Successful', {

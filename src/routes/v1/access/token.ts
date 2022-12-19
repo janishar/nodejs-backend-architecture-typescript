@@ -7,7 +7,11 @@ import { AuthFailureError } from '../../../core/ApiError';
 import JWT from '../../../core/JWT';
 import KeystoreRepo from '../../../database/repository/KeystoreRepo';
 import crypto from 'crypto';
-import { validateTokenData, createTokens, getAccessToken } from '../../../auth/authUtils';
+import {
+  validateTokenData,
+  createTokens,
+  getAccessToken,
+} from '../../../auth/authUtils';
 import validator, { ValidationSource } from '../../../helpers/validator';
 import schema from './schema';
 import asyncHandler from '../../../helpers/asyncHandler';
@@ -24,7 +28,9 @@ router.post(
     const accessTokenPayload = await JWT.decode(req.accessToken);
     validateTokenData(accessTokenPayload);
 
-    const user = await UserRepo.findById(new Types.ObjectId(accessTokenPayload.sub));
+    const user = await UserRepo.findById(
+      new Types.ObjectId(accessTokenPayload.sub),
+    );
     if (!user) throw new AuthFailureError('User not registered');
     req.user = user;
 
@@ -47,9 +53,17 @@ router.post(
     const refreshTokenKey = crypto.randomBytes(64).toString('hex');
 
     await KeystoreRepo.create(req.user, accessTokenKey, refreshTokenKey);
-    const tokens = await createTokens(req.user, accessTokenKey, refreshTokenKey);
+    const tokens = await createTokens(
+      req.user,
+      accessTokenKey,
+      refreshTokenKey,
+    );
 
-    new TokenRefreshResponse('Token Issued', tokens.accessToken, tokens.refreshToken).send(res);
+    new TokenRefreshResponse(
+      'Token Issued',
+      tokens.accessToken,
+      tokens.refreshToken,
+    ).send(res);
   }),
 );
 

@@ -66,7 +66,11 @@ describe('authUtils createTokens function', () => {
   it('Should process and return accessToken and refreshToken', async () => {
     const userId = new Types.ObjectId(); // Random Key
 
-    const tokens = await createTokens({ _id: userId } as User, ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY);
+    const tokens = await createTokens(
+      { _id: userId } as User,
+      ACCESS_TOKEN_KEY,
+      REFRESH_TOKEN_KEY,
+    );
 
     expect(tokens).toHaveProperty('accessToken');
     expect(tokens).toHaveProperty('refreshToken');

@@ -72,7 +72,11 @@ export async function addToList(key: Key | DynamicKeyType, value: any) {
   return await cache.rPushX(key, item);
 }
 
-export async function getListRange<T>(key: Key | DynamicKeyType, start = 0, end = -1) {
+export async function getListRange<T>(
+  key: Key | DynamicKeyType,
+  start = 0,
+  end = -1,
+) {
   const type = await cache.type(key);
   if (type !== TYPES.LIST) return null;
 
@@ -98,7 +102,10 @@ export async function setOrderedSet(
   return await multi.exec();
 }
 
-export async function addToOrderedSet(key: Key, items: Array<{ score: number; value: any }>) {
+export async function addToOrderedSet(
+  key: Key,
+  items: Array<{ score: number; value: any }>,
+) {
   const type = await cache.type(key);
   if (type !== TYPES.ZSET) return null;
 

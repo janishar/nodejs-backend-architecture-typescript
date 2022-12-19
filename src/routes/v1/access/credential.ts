@@ -37,7 +37,10 @@ router.post(
 
     await KeystoreRepo.removeAllForClient(user);
 
-    new SuccessResponse('User password updated', _.pick(user, ['_id', 'name', 'email'])).send(res);
+    new SuccessResponse(
+      'User password updated',
+      _.pick(user, ['_id', 'name', 'email']),
+    ).send(res);
   }),
 );
 

@@ -40,7 +40,9 @@ router.get(
     let blog = await BlogCache.fetchById(blogId);
 
     if (!blog) {
-      blog = await BlogRepo.findInfoForPublishedById(new Types.ObjectId(req.params.id));
+      blog = await BlogRepo.findInfoForPublishedById(
+        new Types.ObjectId(req.params.id),
+      );
       if (blog) await BlogCache.save(blog);
     }
 

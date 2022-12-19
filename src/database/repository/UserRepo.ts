@@ -10,7 +10,9 @@ async function exists(id: Types.ObjectId): Promise<boolean> {
   return user !== null && user !== undefined;
 }
 
-async function findPrivateProfileById(id: Types.ObjectId): Promise<User | null> {
+async function findPrivateProfileById(
+  id: Types.ObjectId,
+): Promise<User | null> {
   return UserModel.findOne({ _id: id, status: true })
     .select('+email')
     .populate({
@@ -48,7 +50,10 @@ async function findByEmail(email: string): Promise<User | null> {
     .exec();
 }
 
-async function findFieldsById(id: Types.ObjectId, ...fields: string[]): Promise<User | null> {
+async function findFieldsById(
+  id: Types.ObjectId,
+  ...fields: string[]
+): Promise<User | null> {
   return UserModel.findOne({ _id: id, status: true }, [...fields])
     .lean()
     .exec();
@@ -66,13 +71,20 @@ async function create(
 ): Promise<{ user: User; keystore: Keystore }> {
   const now = new Date();
 
-  const role = await RoleModel.findOne({ code: roleCode }).select('+code').lean().exec();
+  const role = await RoleModel.findOne({ code: roleCode })
+    .select('+code')
+    .lean()
+    .exec();
   if (!role) throw new InternalError('Role must be defined');
 
   user.roles = [role];
   user.createdAt = user.updatedAt = now;
   const createdUser = await UserModel.create(user);
-  const keystore = await KeystoreRepo.create(createdUser, accessTokenKey, refreshTokenKey);
+  const keystore = await KeystoreRepo.create(
+    createdUser,
+    accessTokenKey,
+    refreshTokenKey,
+  );
   return {
     user: { ...createdUser.toObject(), roles: user.roles },
     keystore: keystore,
@@ -88,7 +100,11 @@ async function update(
   await UserModel.updateOne({ _id: user._id }, { $set: { ...user } })
     .lean()
     .exec();
-  const keystore = await KeystoreRepo.create(user, accessTokenKey, refreshTokenKey);
+  const keystore = await KeystoreRepo.create(
+    user,
+    accessTokenKey,
+    refreshTokenKey,
+  );
   return { user: user, keystore: keystore };
 }
 

@@ -3,7 +3,13 @@ import { Types } from 'mongoose';
 import User from '../model/User';
 
 async function findforKey(client: User, key: string): Promise<Keystore | null> {
-  return KeystoreModel.findOne({ client: client, primaryKey: key, status: true }).lean().exec();
+  return KeystoreModel.findOne({
+    client: client,
+    primaryKey: key,
+    status: true,
+  })
+    .lean()
+    .exec();
 }
 
 async function remove(id: Types.ObjectId): Promise<Keystore | null> {
@@ -28,7 +34,11 @@ async function find(
     .exec();
 }
 
-async function create(client: User, primaryKey: string, secondaryKey: string): Promise<Keystore> {
+async function create(
+  client: User,
+  primaryKey: string,
+  secondaryKey: string,
+): Promise<Keystore> {
   const now = new Date();
   const keystore = await KeystoreModel.create({
     client: client,

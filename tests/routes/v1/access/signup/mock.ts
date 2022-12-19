@@ -10,12 +10,7 @@ export const USER_PROFILE_PIC = 'https://abc.com/xyz';
 export const bcryptHashSpy = jest.spyOn(bcrypt, 'hash');
 
 export const mockUserCreate = jest.fn(
-  async (
-    user: User,
-    accessTokenKey: string,
-    refreshTokenKey: string,
-    roleCode: string,
-  ): Promise<{ user: User; keystore: Keystore }> => {
+  async (user: User): Promise<{ user: User; keystore: Keystore }> => {
     user._id = new Types.ObjectId();
     user.roles = [];
     return {

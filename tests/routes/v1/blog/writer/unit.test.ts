@@ -217,7 +217,10 @@ describe('Writer blog submit routes', () => {
   const endpoint = '/v1/blog/writer/submit/';
 
   it('Should send error if submit blog id is not valid', async () => {
-    const response = await addAuthHeaders(request.put(endpoint + 'abc'), WRITER_ACCESS_TOKEN);
+    const response = await addAuthHeaders(
+      request.put(endpoint + 'abc'),
+      WRITER_ACCESS_TOKEN,
+    );
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/id/i);
     expect(response.body.message).toMatch(/invalid/i);
@@ -258,7 +261,10 @@ describe('Writer blog withdraw routes', () => {
   const endpoint = '/v1/blog/writer/withdraw/';
 
   it('Should send error if withdraw blog id is not valid', async () => {
-    const response = await addAuthHeaders(request.put(endpoint + 'abc'), WRITER_ACCESS_TOKEN);
+    const response = await addAuthHeaders(
+      request.put(endpoint + 'abc'),
+      WRITER_ACCESS_TOKEN,
+    );
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/id/i);
     expect(response.body.message).toMatch(/invalid/i);
@@ -299,7 +305,10 @@ describe('Writer blog delete routes', () => {
   const endpoint = '/v1/blog/writer/id/';
 
   it('Should send error if deleting blog id is not valid', async () => {
-    const response = await addAuthHeaders(request.delete(endpoint + 'abc'), WRITER_ACCESS_TOKEN);
+    const response = await addAuthHeaders(
+      request.delete(endpoint + 'abc'),
+      WRITER_ACCESS_TOKEN,
+    );
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/id/i);
     expect(response.body.message).toMatch(/invalid/i);
@@ -339,7 +348,10 @@ describe('Writer blog get by id routes', () => {
   const endpoint = '/v1/blog/writer/id/';
 
   it('Should send error if fetching blog id is not valid', async () => {
-    const response = await addAuthHeaders(request.get(endpoint + 'abc'), WRITER_ACCESS_TOKEN);
+    const response = await addAuthHeaders(
+      request.get(endpoint + 'abc'),
+      WRITER_ACCESS_TOKEN,
+    );
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/id/i);
     expect(response.body.message).toMatch(/invalid/i);

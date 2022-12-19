@@ -64,7 +64,10 @@ describe('Login basic route', () => {
   });
 
   it('Should send error when email is only sent', async () => {
-    const response = await addHeaders(request.post(endpoint).send({ email: user.email }), apikey);
+    const response = await addHeaders(
+      request.post(endpoint).send({ email: user.email }),
+      apikey,
+    );
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/password/);
     expect(userFindByEmailSpy).not.toBeCalled();
@@ -74,7 +77,10 @@ describe('Login basic route', () => {
   });
 
   it('Should send error when password is only sent', async () => {
-    const response = await addHeaders(request.post(endpoint).send({ password: password }), apikey);
+    const response = await addHeaders(
+      request.post(endpoint).send({ password: password }),
+      apikey,
+    );
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/email/);
     expect(userFindByEmailSpy).not.toBeCalled();
@@ -84,7 +90,10 @@ describe('Login basic route', () => {
   });
 
   it('Should send error when email is not valid format', async () => {
-    const response = await addHeaders(request.post(endpoint).send({ email: '123' }), apikey);
+    const response = await addHeaders(
+      request.post(endpoint).send({ email: '123' }),
+      apikey,
+    );
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/valid email/);
     expect(userFindByEmailSpy).not.toBeCalled();

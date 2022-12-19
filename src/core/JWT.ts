@@ -21,7 +21,13 @@ export class JwtPayload {
   exp: number;
   prm: string;
 
-  constructor(issuer: string, audience: string, subject: string, param: string, validity: number) {
+  constructor(
+    issuer: string,
+    audience: string,
+    subject: string,
+    param: string,
+    validity: number,
+  ) {
     this.iss = issuer;
     this.aud = audience;
     this.sub = subject;
@@ -32,11 +38,17 @@ export class JwtPayload {
 }
 
 async function readPublicKey(): Promise<string> {
-  return promisify(readFile)(path.join(__dirname, '../../keys/public.pem'), 'utf8');
+  return promisify(readFile)(
+    path.join(__dirname, '../../keys/public.pem'),
+    'utf8',
+  );
 }
 
 async function readPrivateKey(): Promise<string> {
-  return promisify(readFile)(path.join(__dirname, '../../keys/private.pem'), 'utf8');
+  return promisify(readFile)(
+    path.join(__dirname, '../../keys/private.pem'),
+    'utf8',
+  );
 }
 
 async function encode(payload: JwtPayload): Promise<string> {
@@ -69,7 +81,9 @@ async function decode(token: string): Promise<JwtPayload> {
   const cert = await readPublicKey();
   try {
     // @ts-ignore
-    return (await promisify(verify)(token, cert, { ignoreExpiration: true })) as JwtPayload;
+    return (await promisify(verify)(token, cert, {
+      ignoreExpiration: true,
+    })) as JwtPayload;
   } catch (e) {
     Logger.debug(e);
     throw new BadTokenError();

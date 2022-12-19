@@ -55,4 +55,8 @@ schema.index({ client: 1 });
 schema.index({ client: 1, primaryKey: 1, status: 1 });
 schema.index({ client: 1, primaryKey: 1, secondaryKey: 1 });
 
-export const KeystoreModel = model<Keystore>(DOCUMENT_NAME, schema, COLLECTION_NAME);
+export const KeystoreModel = model<Keystore>(
+  DOCUMENT_NAME,
+  schema,
+  COLLECTION_NAME,
+);

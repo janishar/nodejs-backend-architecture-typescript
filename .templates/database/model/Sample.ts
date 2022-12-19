@@ -43,4 +43,8 @@ const schema = new Schema<Sample>(
   },
 );
 
-export const SampleModel = model<Sample>(DOCUMENT_NAME, schema, COLLECTION_NAME);
+export const SampleModel = model<Sample>(
+  DOCUMENT_NAME,
+  schema,
+  COLLECTION_NAME,
+);

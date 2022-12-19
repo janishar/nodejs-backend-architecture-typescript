@@ -20,10 +20,30 @@ function seed(dbName, user, password) {
   });
 
   db.roles.insertMany([
-    { code: 'LEARNER', status: true, createdAt: new Date(), updatedAt: new Date() },
-    { code: 'WRITER', status: true, createdAt: new Date(), updatedAt: new Date() },
-    { code: 'EDITOR', status: true, createdAt: new Date(), updatedAt: new Date() },
-    { code: 'ADMIN', status: true, createdAt: new Date(), updatedAt: new Date() },
+    {
+      code: 'LEARNER',
+      status: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      code: 'WRITER',
+      status: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      code: 'EDITOR',
+      status: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      code: 'ADMIN',
+      status: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
   ]);
 
   db.users.insert({

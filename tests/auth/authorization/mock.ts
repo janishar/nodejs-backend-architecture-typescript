@@ -43,61 +43,65 @@ export const mockUserFindById = jest.fn(async (id: Types.ObjectId) => {
   else return null;
 });
 
-export const mockRoleRepoFindByCodes = jest.fn(async (codes: string[]): Promise<Role[]> => {
-  const results: Role[] = [];
-  for (const code of codes) {
-    switch (code) {
-      case RoleCode.WRITER:
-        results.push({
-          _id: WRITER_ROLE_ID,
-          code: RoleCode.WRITER,
-          status: true,
-        } as Role);
-        break;
-      case RoleCode.EDITOR:
-        results.push({
-          _id: EDITOR_ROLE_ID,
-          code: RoleCode.EDITOR,
-          status: true,
-        } as Role);
-         break;
-      case RoleCode.LEARNER:
-        results.push({
-          _id: LEARNER_ROLE_ID,
-          code: RoleCode.LEARNER,
-          status: true,
-        } as Role);
-         break;
+export const mockRoleRepoFindByCodes = jest.fn(
+  async (codes: string[]): Promise<Role[]> => {
+    const results: Role[] = [];
+    for (const code of codes) {
+      switch (code) {
+        case RoleCode.WRITER:
+          results.push({
+            _id: WRITER_ROLE_ID,
+            code: RoleCode.WRITER,
+            status: true,
+          } as Role);
+          break;
+        case RoleCode.EDITOR:
+          results.push({
+            _id: EDITOR_ROLE_ID,
+            code: RoleCode.EDITOR,
+            status: true,
+          } as Role);
+          break;
+        case RoleCode.LEARNER:
+          results.push({
+            _id: LEARNER_ROLE_ID,
+            code: RoleCode.LEARNER,
+            status: true,
+          } as Role);
+          break;
+      }
     }
-  }
 
-  return results;
-});
+    return results;
+  },
+);
 
-export const mockJwtValidate = jest.fn(async (token: string): Promise<JwtPayload> => {
-  let subject: null | string = null;
-  switch (token) {
-    case ACCESS_TOKEN:
-      subject = USER_ID.toHexString();
-      break;
-    case WRITER_ACCESS_TOKEN:
-      subject = USER_ID_WRITER.toHexString();
-      break;
-    case EDITOR_ACCESS_TOKEN:
-      subject = USER_ID_EDITOR.toHexString();
-      break;
-  }
-  if (subject)
-    return {
-      iss: tokenInfo.issuer,
-      aud: tokenInfo.audience,
-      sub: subject,
-      iat: 1,
-      exp: 2,
-      prm: 'abcdef',
-    } as JwtPayload;
-  throw new BadTokenError();
-});
+export const mockJwtValidate = jest.fn(
+  async (token: string): Promise<JwtPayload> => {
+    let subject: null | string = null;
+    switch (token) {
+      case ACCESS_TOKEN:
+        subject = USER_ID.toHexString();
+        break;
+      case WRITER_ACCESS_TOKEN:
+        subject = USER_ID_WRITER.toHexString();
+        break;
+      case EDITOR_ACCESS_TOKEN:
+        subject = USER_ID_EDITOR.toHexString();
+        break;
+    }
+    if (subject)
+      return {
+        iss: tokenInfo.issuer,
+        aud: tokenInfo.audience,
+        sub: subject,
+        iat: 1,
+        exp: 2,
+        prm: 'abcdef',
+      } as JwtPayload;
+    throw new BadTokenError();
+  },
+);
 
 jest.mock('../../../src/database/repository/UserRepo', () => ({
   findById: mockUserFindById,

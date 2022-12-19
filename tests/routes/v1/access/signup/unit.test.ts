@@ -2,10 +2,20 @@
 import '../../../../database/mock';
 import '../../../../cache/mock';
 import { addHeaders } from '../../../../auth/authentication/mock';
-import { mockUserFindByEmail, createTokensSpy, USER_EMAIL, USER_PASSWORD } from '../login/mock';
+import {
+  mockUserFindByEmail,
+  createTokensSpy,
+  USER_EMAIL,
+  USER_PASSWORD,
+} from '../login/mock';
 
 // import the mock for this file below all mock imports
-import { mockUserCreate, bcryptHashSpy, USER_NAME, USER_PROFILE_PIC } from './mock';
+import {
+  mockUserCreate,
+  bcryptHashSpy,
+  USER_NAME,
+  USER_PROFILE_PIC,
+} from './mock';
 
 import supertest from 'supertest';
 import app from '../../../../../src/app';

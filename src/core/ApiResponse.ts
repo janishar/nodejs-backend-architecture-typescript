@@ -33,7 +33,10 @@ abstract class ApiResponse {
     return res.status(this.status).json(ApiResponse.sanitize(response));
   }
 
-  public send(res: Response, headers: { [key: string]: string } = {}): Response {
+  public send(
+    res: Response,
+    headers: { [key: string]: string } = {},
+  ): Response {
     return this.prepare<ApiResponse>(res, this, headers);
   }
 
@@ -107,7 +110,11 @@ export class AccessTokenErrorResponse extends ApiResponse {
   private instruction = 'refresh_token';
 
   constructor(message = 'Access token invalid') {
-    super(StatusCode.INVALID_ACCESS_TOKEN, ResponseStatus.UNAUTHORIZED, message);
+    super(
+      StatusCode.INVALID_ACCESS_TOKEN,
+      ResponseStatus.UNAUTHORIZED,
+      message,
+    );
   }
 
   send(res: Response, headers: { [key: string]: string } = {}): Response {
@@ -117,7 +124,11 @@ export class AccessTokenErrorResponse extends ApiResponse {
 }
 
 export class TokenRefreshResponse extends ApiResponse {
-  constructor(message: string, private accessToken: string, private refreshToken: string) {
+  constructor(
+    message: string,
+    private accessToken: string,
+    private refreshToken: string,
+  ) {
     super(StatusCode.SUCCESS, ResponseStatus.SUCCESS, message);
   }
 

@@ -1,7 +1,11 @@
 import express from 'express';
 import { ProtectedRequest } from 'app-request';
 import UserRepo from '../database/repository/UserRepo';
-import { AuthFailureError, AccessTokenError, TokenExpiredError } from '../core/ApiError';
+import {
+  AuthFailureError,
+  AccessTokenError,
+  TokenExpiredError,
+} from '../core/ApiError';
 import JWT from '../core/JWT';
 import KeystoreRepo from '../database/repository/KeystoreRepo';
 import { Types } from 'mongoose';
