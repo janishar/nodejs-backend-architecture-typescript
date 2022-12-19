@@ -1,7 +1,7 @@
 # Node.js Backend Architecture Typescript Project
-A complete project to build a blogging platform like Medium, and FreeCodeCamp
+### A complete project to build a blogging platform like Medium, and FreeCodeCamp
 
-> Note: This is the **latest (version 2)** of the project. If you are using **version 1** then checkout the branch [**version-1**](https://github.com/janishar/nodejs-backend-architecture-typescript/tree/version-1)
+Note: This is the **latest (version 2)** of the project. If you are using **version 1** then checkout the branch [**version-1**](https://github.com/janishar/nodejs-backend-architecture-typescript/tree/version-1)
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png">
@@ -21,12 +21,12 @@ A complete project to build a blogging platform like Medium, and FreeCodeCamp
 10. JWT
 
 # About The Project
-This project is designed to be used in a production ready environment. It will handle the scale and complexity of very demanding applications. This project is used by companies like Mindorks, AfterAcademy, and CuriousJr, having 10+ million usebase.
+This project is designed for a production ready environment. It can handle the scale and complexity of a very demanding application. This project is being used by companies like MindOrks, AfterAcademy, and CuriousJr. Apps/Websites having 10+ million usebase.
 
-It can be used to serve websites, mobile apps, and other API services.
+It is suitable for Web Apps, Mobile Apps, and other API services.
 
 # About The Author
-I, [Janishar Ali](https://janisharali.com) have created this project using my 10 years of experience in developing software for top tech companies. I enjoy sharing my learnings with the community. You can connect with me here:
+I, [Janishar Ali](https://janisharali.com) have created this project using my 10 years of experience in tech industry working for top companies. I enjoy sharing my learnings with the community. You can connect with me here:
 * [Twitter](https://twitter.com/janisharali)
 * [LinkedIn](https://www.linkedin.com/in/janishar-ali)
 * [Instagram](https://www.instagram.com/janisharali)
