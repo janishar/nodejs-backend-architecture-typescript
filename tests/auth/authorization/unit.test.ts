@@ -1,3 +1,5 @@
+import '../../database/mock';
+import '../../cache/mock';
 import { addAuthHeaders } from '../authentication/mock';
 
 // import the mock for the current test after all other mock imports

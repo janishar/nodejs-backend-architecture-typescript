@@ -1,3 +1,5 @@
+import '../../../../database/mock';
+import '../../../../cache/mock';
 import { addAuthHeaders } from '../../../../auth/authentication/mock';
 
 // this import should be below authentication/mock to override for role validation to work

@@ -1,4 +1,6 @@
 // importing any mock file let the jest load all the mocks defined in that file
+import '../../../../database/mock';
+import '../../../../cache/mock';
 import { addHeaders } from '../../../auth/authentication/mock';
 import { mockUserFindByEmail, createTokensSpy, USER_EMAIL, USER_PASSWORD } from '../login/mock';
 
