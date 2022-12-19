@@ -17,7 +17,7 @@ describe('authUtils validateTokenData tests', () => {
       tokenInfo.audience,
       'abc',
       ACCESS_TOKEN_KEY,
-      tokenInfo.accessTokenValidityDays,
+      tokenInfo.accessTokenValidity,
     );
 
     try {
@@ -33,7 +33,7 @@ describe('authUtils validateTokenData tests', () => {
       tokenInfo.audience,
       new Types.ObjectId().toHexString(),
       '123',
-      tokenInfo.accessTokenValidityDays,
+      tokenInfo.accessTokenValidity,
     );
 
     try {
@@ -49,7 +49,7 @@ describe('authUtils validateTokenData tests', () => {
       tokenInfo.audience,
       new Types.ObjectId().toHexString(), // Random Key
       ACCESS_TOKEN_KEY,
-      tokenInfo.accessTokenValidityDays,
+      tokenInfo.accessTokenValidity,
     );
 
     const validatedPayload = validateTokenData(payload);
