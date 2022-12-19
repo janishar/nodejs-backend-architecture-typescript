@@ -3,7 +3,7 @@ import { SuccessResponse } from '../../../core/ApiResponse';
 import asyncHandler from '../../../helpers/asyncHandler';
 import validator, { ValidationSource } from '../../../helpers/validator';
 import schema from './schema';
-import { BadRequestError } from '../../../core/ApiError';
+import { NotFoundError } from '../../../core/ApiError';
 import BlogRepo from '../../../database/repository/BlogRepo';
 import { Types } from 'mongoose';
 import writer from './writer';
@@ -21,13 +21,13 @@ router.get(
   asyncHandler(async (req, res) => {
     const blogUrl = req.query.endpoint as string;
     let blog = await BlogCache.fetchByUrl(blogUrl);
-   
+
     if (!blog) {
       blog = await BlogRepo.findPublishedByUrl(blogUrl);
       if (blog) await BlogCache.save(blog);
     }
-    
-    if (!blog) throw new BadRequestError('Blog not found');
+
+    if (!blog) throw new NotFoundError('Blog not found');
     return new SuccessResponse('success', blog).send(res);
   }),
 );
@@ -44,7 +44,7 @@ router.get(
       if (blog) await BlogCache.save(blog);
     }
 
-    if (!blog) throw new BadRequestError('Blog not found');
+    if (!blog) throw new NotFoundError('Blog not found');
     return new SuccessResponse('success', blog).send(res);
   }),
 );
