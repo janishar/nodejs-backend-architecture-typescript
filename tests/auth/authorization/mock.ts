@@ -43,28 +43,35 @@ export const mockUserFindById = jest.fn(async (id: Types.ObjectId) => {
   else return null;
 });
 
-export const mockRoleRepoFindByCode = jest.fn(async (code: string): Promise<Role | null> => {
-  switch (code) {
-    case RoleCode.WRITER:
-      return {
-        _id: WRITER_ROLE_ID,
-        code: RoleCode.WRITER,
-        status: true,
-      } as Role;
-    case RoleCode.EDITOR:
-      return {
-        _id: EDITOR_ROLE_ID,
-        code: RoleCode.EDITOR,
-        status: true,
-      } as Role;
-    case RoleCode.LEARNER:
-      return {
-        _id: LEARNER_ROLE_ID,
-        code: RoleCode.LEARNER,
-        status: true,
-      } as Role;
+export const mockRoleRepoFindByCodes = jest.fn(async (codes: string[]): Promise<Role[]> => {
+  const results: Role[] = [];
+  for (const code of codes) {
+    switch (code) {
+      case RoleCode.WRITER:
+        results.push({
+          _id: WRITER_ROLE_ID,
+          code: RoleCode.WRITER,
+          status: true,
+        } as Role);
+        break;
+      case RoleCode.EDITOR:
+        results.push({
+          _id: EDITOR_ROLE_ID,
+          code: RoleCode.EDITOR,
+          status: true,
+        } as Role);
+         break;
+      case RoleCode.LEARNER:
+        results.push({
+          _id: LEARNER_ROLE_ID,
+          code: RoleCode.LEARNER,
+          status: true,
+        } as Role);
+         break;
+    }
   }
-  return null;
+
+  return results;
 });
 
 export const mockJwtValidate = jest.fn(async (token: string): Promise<JwtPayload> => {
@@ -97,7 +104,7 @@ jest.mock('../../../src/database/repository/UserRepo', () => ({
 }));
 
 jest.mock('../../../src/database/repository/RoleRepo', () => ({
-  findByCode: mockRoleRepoFindByCode,
+  findByCodes: mockRoleRepoFindByCodes,
 }));
 
 JWT.validate = mockJwtValidate;
