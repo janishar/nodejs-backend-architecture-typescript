@@ -45,16 +45,8 @@ export const mockFindBlogAllDataById = jest.fn(async (id: Types.ObjectId): Promi
 });
 
 jest.mock('../../../../../src/database/repository/BlogRepo', () => ({
-  get findUrlIfExists() {
-    return mockBlogFindUrlIfExists;
-  },
-  get create() {
-    return mockBlogCreate;
-  },
-  get update() {
-    return mockBlogUpdate;
-  },
-  get findBlogAllDataById() {
-    return mockFindBlogAllDataById;
-  },
+  findUrlIfExists: mockBlogFindUrlIfExists,
+  create: mockBlogCreate,
+  update: mockBlogUpdate,
+  findBlogAllDataById: mockFindBlogAllDataById,
 }));

@@ -32,10 +32,6 @@ export const mockUserCreate = jest.fn(
 );
 
 jest.mock('../../../../src/database/repository/UserRepo', () => ({
-  get findByEmail() {
-    return mockUserFindByEmail;
-  }, // utilising already defined mock
-  get create() {
-    return mockUserCreate;
-  },
+  findByEmail: mockUserFindByEmail, // utilising already defined mock
+  create: mockUserCreate,
 }));

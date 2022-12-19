@@ -27,10 +27,6 @@ export const mockFindInfoWithTextById = jest.fn(
 );
 
 jest.mock('../../../../../src/database/repository/BlogRepo', () => ({
-  get findByUrl() {
-    return mockBlogFindByUrl;
-  },
-  get findInfoForPublishedById() {
-    return mockFindInfoWithTextById;
-  },
+  findByUrl: mockBlogFindByUrl,
+  findInfoForPublishedById: mockFindInfoWithTextById,
 }));

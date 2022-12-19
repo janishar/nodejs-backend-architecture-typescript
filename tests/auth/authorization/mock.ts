@@ -68,7 +68,7 @@ export const mockRoleRepoFindByCode = jest.fn(async (code: string): Promise<Role
 });
 
 export const mockJwtValidate = jest.fn(async (token: string): Promise<JwtPayload> => {
-  let subject = null;
+  let subject: null | string = null;
   switch (token) {
     case ACCESS_TOKEN:
       subject = USER_ID.toHexString();
@@ -93,15 +93,11 @@ export const mockJwtValidate = jest.fn(async (token: string): Promise<JwtPayload
 });
 
 jest.mock('../../../src/database/repository/UserRepo', () => ({
-  get findById() {
-    return mockUserFindById;
-  },
+  findById: mockUserFindById,
 }));
 
 jest.mock('../../../src/database/repository/RoleRepo', () => ({
-  get findByCode() {
-    return mockRoleRepoFindByCode;
-  },
+  findByCode: mockRoleRepoFindByCode,
 }));
 
 JWT.validate = mockJwtValidate;
