@@ -20,18 +20,20 @@ export const mockUserFindById = jest.fn(async (id: Types.ObjectId) => {
   else return null;
 });
 
-export const mockJwtValidate = jest.fn(async (token: string): Promise<JwtPayload> => {
-  if (token === ACCESS_TOKEN)
-    return {
-      iss: tokenInfo.issuer,
-      aud: tokenInfo.audience,
-      sub: USER_ID.toHexString(),
-      iat: 1,
-      exp: 2,
-      prm: 'abcdef',
-    } as JwtPayload;
-  throw new BadTokenError();
-});
+export const mockJwtValidate = jest.fn(
+  async (token: string): Promise<JwtPayload> => {
+    if (token === ACCESS_TOKEN)
+      return {
+        iss: tokenInfo.issuer,
+        aud: tokenInfo.audience,
+        sub: USER_ID.toHexString(),
+        iat: 1,
+        exp: 2,
+        prm: 'abcdef',
+      } as JwtPayload;
+    throw new BadTokenError();
+  },
+);
 
 export const mockKeystoreFindForKey = jest.fn(
   async (client: User, key: string): Promise<Keystore> =>
@@ -49,7 +51,10 @@ jest.mock('../../../src/database/repository/KeystoreRepo', () => ({
 JWT.validate = mockJwtValidate;
 
 export const addHeaders = (request: any) =>
-  request.set('Content-Type', 'application/json').set('x-api-key', API_KEY).timeout(2000);
+  request
+    .set('Content-Type', 'application/json')
+    .set('x-api-key', API_KEY)
+    .timeout(2000);
 
 export const addAuthHeaders = (request: any, accessToken = ACCESS_TOKEN) =>
   request

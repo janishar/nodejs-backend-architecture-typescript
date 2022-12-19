@@ -4,7 +4,12 @@ import cors from 'cors';
 import { corsUrl, environment } from './config';
 import './database'; // initialize database
 import './cache'; // initialize cache
-import { NotFoundError, ApiError, InternalError, ErrorType } from './core/ApiError';
+import {
+  NotFoundError,
+  ApiError,
+  InternalError,
+  ErrorType,
+} from './core/ApiError';
 import routesV1 from './routes/v1';
 
 process.on('uncaughtException', (e) => {
@@ -14,7 +19,9 @@ process.on('uncaughtException', (e) => {
 const app = express();
 
 app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ limit: '10mb', extended: true, parameterLimit: 50000 }));
+app.use(
+  express.urlencoded({ limit: '10mb', extended: true, parameterLimit: 50000 }),
+);
 app.use(cors({ origin: corsUrl, optionsSuccessStatus: 200 }));
 
 // Routes
@@ -29,9 +36,13 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof ApiError) {
     ApiError.handle(err, res);
     if (err.type === ErrorType.INTERNAL)
-      Logger.error(`500 - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+      Logger.error(
+        `500 - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`,
+      );
   } else {
-    Logger.error(`500 - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+    Logger.error(
+      `500 - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`,
+    );
     Logger.error(err);
     if (environment === 'development') {
       return res.status(500).send(err);

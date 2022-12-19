@@ -76,4 +76,8 @@ const schema = new Schema<ApiKey>(
 
 schema.index({ key: 1, status: 1 });
 
-export const ApiKeyModel = model<ApiKey>(DOCUMENT_NAME, schema, COLLECTION_NAME);
+export const ApiKeyModel = model<ApiKey>(
+  DOCUMENT_NAME,
+  schema,
+  COLLECTION_NAME,
+);

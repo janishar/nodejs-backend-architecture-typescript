@@ -38,7 +38,9 @@ describe('BlogDetail by URL route', () => {
 
   it('Should send error when url endpoint is more that 200 chars', async () => {
     const param = new Array(201).fill('a').join('');
-    const response = await addHeaders(request.get(endpoint).query({ endpoint: param }));
+    const response = await addHeaders(
+      request.get(endpoint).query({ endpoint: param }),
+    );
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/length must/);
     expect(response.body.message).toMatch(/200/);
@@ -46,7 +48,9 @@ describe('BlogDetail by URL route', () => {
   });
 
   it('Should send error when blog do not exists for url', async () => {
-    const response = await addHeaders(request.get(endpoint).query({ endpoint: 'xyz' }));
+    const response = await addHeaders(
+      request.get(endpoint).query({ endpoint: 'xyz' }),
+    );
     expect(response.status).toBe(404);
     expect(response.body.message).toMatch(/not found/);
     expect(mockBlogCacheFetchByUrl).toBeCalledTimes(1);
@@ -57,7 +61,9 @@ describe('BlogDetail by URL route', () => {
   });
 
   it('Should send cache data when blog exists for url in cache', async () => {
-    const response = await addHeaders(request.get(endpoint).query({ endpoint: BLOG_URL }));
+    const response = await addHeaders(
+      request.get(endpoint).query({ endpoint: BLOG_URL }),
+    );
     expect(response.status).toBe(200);
     expect(response.body.message).toMatch(/success/);
     expect(response.body.data).toBeDefined();
@@ -72,7 +78,9 @@ describe('BlogDetail by URL route', () => {
   });
 
   it('Should send database data when blog dont exists for url in cache', async () => {
-    const response = await addHeaders(request.get(endpoint).query({ endpoint: BLOG_2_URL }));
+    const response = await addHeaders(
+      request.get(endpoint).query({ endpoint: BLOG_2_URL }),
+    );
     expect(response.status).toBe(200);
     expect(response.body.message).toMatch(/success/);
     expect(response.body.data).toBeDefined();
@@ -109,14 +117,18 @@ describe('BlogDetail by id route', () => {
   });
 
   it('Should send error when blog do not exists for id', async () => {
-    const response = await addHeaders(request.get(endpoint + new Types.ObjectId().toHexString()));
+    const response = await addHeaders(
+      request.get(endpoint + new Types.ObjectId().toHexString()),
+    );
     expect(response.status).toBe(404);
     expect(response.body.message).toMatch(/not found/);
     expect(mockPublishedBlogFindById).toBeCalledTimes(1);
   });
 
   it('Should send cache data when blog exists for id in cache', async () => {
-    const response = await addHeaders(request.get(endpoint + BLOG_ID.toHexString()));
+    const response = await addHeaders(
+      request.get(endpoint + BLOG_ID.toHexString()),
+    );
     expect(response.status).toBe(200);
     expect(response.body.message).toMatch(/success/);
     expect(response.body.data).toBeDefined();
@@ -131,7 +143,9 @@ describe('BlogDetail by id route', () => {
   });
 
   it('Should send database data when blog dont exists for url in cache', async () => {
-    const response = await addHeaders(request.get(endpoint + BLOG_2_ID.toHexString()));
+    const response = await addHeaders(
+      request.get(endpoint + BLOG_2_ID.toHexString()),
+    );
     expect(response.status).toBe(200);
     expect(response.body.message).toMatch(/success/);
     expect(response.body.data).toBeDefined();

@@ -56,11 +56,14 @@ router.get(
     let blogs = await BlogsCache.fetchSimilarBlogs(blogId);
 
     if (!blogs) {
-      const blog = await BlogRepo.findInfoForPublishedById(new Types.ObjectId(req.params.id));
+      const blog = await BlogRepo.findInfoForPublishedById(
+        new Types.ObjectId(req.params.id),
+      );
       if (!blog) throw new BadRequestError('Blog is not available');
       blogs = await BlogRepo.searchSimilarBlogs(blog, 6);
 
-      if (blogs && blogs.length > 0) await BlogsCache.saveSimilarBlogs(blogId, blogs);
+      if (blogs && blogs.length > 0)
+        await BlogsCache.saveSimilarBlogs(blogId, blogs);
     }
 
     return new SuccessResponse('success', blogs ? blogs : []).send(res);

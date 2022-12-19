@@ -15,14 +15,20 @@ import role from '../../../helpers/role';
 const router = express.Router();
 
 /*-------------------------------------------------------------------------*/
-router.use(authentication, role(RoleCode.ADMIN, RoleCode.EDITOR), authorization);
+router.use(
+  authentication,
+  role(RoleCode.ADMIN, RoleCode.EDITOR),
+  authorization,
+);
 /*-------------------------------------------------------------------------*/
 
 router.put(
   '/publish/:id',
   validator(schema.blogId, ValidationSource.PARAM),
   asyncHandler(async (req: ProtectedRequest, res) => {
-    const blog = await BlogRepo.findBlogAllDataById(new Types.ObjectId(req.params.id));
+    const blog = await BlogRepo.findBlogAllDataById(
+      new Types.ObjectId(req.params.id),
+    );
     if (!blog) throw new BadRequestError('Blog does not exists');
 
     blog.isDraft = false;
@@ -40,7 +46,9 @@ router.put(
   '/unpublish/:id',
   validator(schema.blogId, ValidationSource.PARAM),
   asyncHandler(async (req: ProtectedRequest, res) => {
-    const blog = await BlogRepo.findBlogAllDataById(new Types.ObjectId(req.params.id));
+    const blog = await BlogRepo.findBlogAllDataById(
+      new Types.ObjectId(req.params.id),
+    );
     if (!blog) throw new BadRequestError('Blog does not exists');
 
     blog.isDraft = true;
@@ -56,7 +64,9 @@ router.delete(
   '/id/:id',
   validator(schema.blogId, ValidationSource.PARAM),
   asyncHandler(async (req: ProtectedRequest, res) => {
-    const blog = await BlogRepo.findBlogAllDataById(new Types.ObjectId(req.params.id));
+    const blog = await BlogRepo.findBlogAllDataById(
+      new Types.ObjectId(req.params.id),
+    );
     if (!blog) throw new BadRequestError('Blog does not exists');
 
     blog.status = false;
@@ -94,10 +104,13 @@ router.get(
   '/id/:id',
   validator(schema.blogId, ValidationSource.PARAM),
   asyncHandler(async (req: ProtectedRequest, res) => {
-    const blog = await BlogRepo.findBlogAllDataById(new Types.ObjectId(req.params.id));
+    const blog = await BlogRepo.findBlogAllDataById(
+      new Types.ObjectId(req.params.id),
+    );
 
     if (!blog) throw new BadRequestError('Blog does not exists');
-    if (!blog.isSubmitted && !blog.isPublished) throw new ForbiddenError('This blog is private');
+    if (!blog.isSubmitted && !blog.isPublished)
+      throw new ForbiddenError('This blog is private');
 
     new SuccessResponse('success', blog).send(res);
   }),

@@ -15,7 +15,9 @@ async function create(sample: Sample): Promise<Sample> {
 
 async function update(sample: Sample): Promise<Sample | null> {
   sample.updatedAt = new Date();
-  return SampleModel.findByIdAndUpdate(sample._id, sample, { new: true }).lean().exec();
+  return SampleModel.findByIdAndUpdate(sample._id, sample, { new: true })
+    .lean()
+    .exec();
 }
 
 export default {

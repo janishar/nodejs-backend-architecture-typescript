@@ -15,7 +15,11 @@ export const createTokensSpy = jest.spyOn(authUtils, 'createTokens');
 export const bcryptCompareSpy = jest.spyOn(bcrypt, 'compare');
 
 export const mockKeystoreCreate = jest.fn(
-  async (client: User, primaryKey: string, secondaryKey: string): Promise<Keystore> => {
+  async (
+    client: User,
+    primaryKey: string,
+    secondaryKey: string,
+  ): Promise<Keystore> => {
     return {
       _id: new Types.ObjectId(),
       client: client,
@@ -25,18 +29,20 @@ export const mockKeystoreCreate = jest.fn(
   },
 );
 
-export const mockUserFindByEmail = jest.fn(async (email: string): Promise<User | null> => {
-  if (email === USER_EMAIL)
-    return {
-      _id: USER_ID,
-      email: USER_EMAIL,
-      password: USER_PASSWORD_HASH,
-      name: 'abc',
-      profilePicUrl: 'abc',
-      roles: [] as Role[],
-    } as User;
-  return null;
-});
+export const mockUserFindByEmail = jest.fn(
+  async (email: string): Promise<User | null> => {
+    if (email === USER_EMAIL)
+      return {
+        _id: USER_ID,
+        email: USER_EMAIL,
+        password: USER_PASSWORD_HASH,
+        name: 'abc',
+        profilePicUrl: 'abc',
+        roles: [] as Role[],
+      } as User;
+    return null;
+  },
+);
 
 jest.mock('../../../../../src/database/repository/KeystoreRepo', () => ({
   create: mockKeystoreCreate,

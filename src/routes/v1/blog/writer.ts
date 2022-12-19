@@ -53,7 +53,9 @@ router.put(
   validator(schema.blogId, ValidationSource.PARAM),
   validator(schema.blogUpdate),
   asyncHandler(async (req: ProtectedRequest, res) => {
-    const blog = await BlogRepo.findBlogAllDataById(new Types.ObjectId(req.params.id));
+    const blog = await BlogRepo.findBlogAllDataById(
+      new Types.ObjectId(req.params.id),
+    );
     if (blog == null) throw new BadRequestError('Blog does not exists');
     if (!blog.author._id.equals(req.user._id))
       throw new ForbiddenError("You don't have necessary permissions");
@@ -81,7 +83,9 @@ router.put(
   '/submit/:id',
   validator(schema.blogId, ValidationSource.PARAM),
   asyncHandler(async (req: ProtectedRequest, res) => {
-    const blog = await BlogRepo.findBlogAllDataById(new Types.ObjectId(req.params.id));
+    const blog = await BlogRepo.findBlogAllDataById(
+      new Types.ObjectId(req.params.id),
+    );
     if (!blog) throw new BadRequestError('Blog does not exists');
     if (!blog.author._id.equals(req.user._id))
       throw new ForbiddenError("You don't have necessary permissions");
@@ -98,7 +102,9 @@ router.put(
   '/withdraw/:id',
   validator(schema.blogId, ValidationSource.PARAM),
   asyncHandler(async (req: ProtectedRequest, res) => {
-    const blog = await BlogRepo.findBlogAllDataById(new Types.ObjectId(req.params.id));
+    const blog = await BlogRepo.findBlogAllDataById(
+      new Types.ObjectId(req.params.id),
+    );
     if (!blog) throw new BadRequestError('Blog does not exists');
     if (!blog.author._id.equals(req.user._id))
       throw new ForbiddenError("You don't have necessary permissions");
@@ -115,7 +121,9 @@ router.delete(
   '/id/:id',
   validator(schema.blogId, ValidationSource.PARAM),
   asyncHandler(async (req: ProtectedRequest, res) => {
-    const blog = await BlogRepo.findBlogAllDataById(new Types.ObjectId(req.params.id));
+    const blog = await BlogRepo.findBlogAllDataById(
+      new Types.ObjectId(req.params.id),
+    );
     if (!blog) throw new BadRequestError('Blog does not exists');
     if (!blog.author._id.equals(req.user._id))
       throw new ForbiddenError("You don't have necessary permissions");
@@ -161,7 +169,9 @@ router.get(
   '/id/:id',
   validator(schema.blogId, ValidationSource.PARAM),
   asyncHandler(async (req: ProtectedRequest, res) => {
-    const blog = await BlogRepo.findBlogAllDataById(new Types.ObjectId(req.params.id));
+    const blog = await BlogRepo.findBlogAllDataById(
+      new Types.ObjectId(req.params.id),
+    );
     if (!blog) throw new BadRequestError('Blog does not exists');
     if (!blog.author._id.equals(req.user._id))
       throw new ForbiddenError("You don't have necessary permissions");

@@ -14,7 +14,9 @@ async function create(blog: Blog): Promise<Blog> {
 
 async function update(blog: Blog): Promise<Blog | null> {
   blog.updatedAt = new Date();
-  return BlogModel.findByIdAndUpdate(blog._id, blog, { new: true }).lean().exec();
+  return BlogModel.findByIdAndUpdate(blog._id, blog, { new: true })
+    .lean()
+    .exec();
 }
 
 async function findInfoById(id: Types.ObjectId): Promise<Blog | null> {
@@ -24,7 +26,9 @@ async function findInfoById(id: Types.ObjectId): Promise<Blog | null> {
     .exec();
 }
 
-async function findInfoForPublishedById(id: Types.ObjectId): Promise<Blog | null> {
+async function findInfoForPublishedById(
+  id: Types.ObjectId,
+): Promise<Blog | null> {
   return BlogModel.findOne({ _id: id, isPublished: true, status: true })
     .select('+text')
     .populate('author', AUTHOR_DETAIL)
@@ -34,14 +38,20 @@ async function findInfoForPublishedById(id: Types.ObjectId): Promise<Blog | null
 
 async function findBlogAllDataById(id: Types.ObjectId): Promise<Blog | null> {
   return BlogModel.findOne({ _id: id, status: true })
-    .select('+text +draftText +isSubmitted +isDraft +isPublished +status +createdBy +updatedBy')
+    .select(
+      '+text +draftText +isSubmitted +isDraft +isPublished +status +createdBy +updatedBy',
+    )
     .populate('author', AUTHOR_DETAIL)
     .lean()
     .exec();
 }
 
 async function findPublishedByUrl(blogUrl: string): Promise<Blog | null> {
-  return BlogModel.findOne({ blogUrl: blogUrl, isPublished: true, status: true })
+  return BlogModel.findOne({
+    blogUrl: blogUrl,
+    isPublished: true,
+    status: true,
+  })
     .select('+text')
     .populate('author', AUTHOR_DETAIL)
     .lean()
@@ -98,7 +108,9 @@ async function findAllDraftsForWriter(user: User): Promise<Blog[]> {
   return findDetailedBlogs({ author: user, status: true, isDraft: true });
 }
 
-async function findDetailedBlogs(query: Record<string, unknown>): Promise<Blog[]> {
+async function findDetailedBlogs(
+  query: Record<string, unknown>,
+): Promise<Blog[]> {
   return BlogModel.find(query)
     .select('+isSubmitted +isDraft +isPublished +createdBy +updatedBy')
     .populate('author', AUTHOR_DETAIL)
@@ -109,7 +121,10 @@ async function findDetailedBlogs(query: Record<string, unknown>): Promise<Blog[]
     .exec();
 }
 
-async function findLatestBlogs(pageNumber: number, limit: number): Promise<Blog[]> {
+async function findLatestBlogs(
+  pageNumber: number,
+  limit: number,
+): Promise<Blog[]> {
   return BlogModel.find({ status: true, isPublished: true })
     .skip(limit * (pageNumber - 1))
     .limit(limit)
