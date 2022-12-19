@@ -1,3 +1,5 @@
+import '../../database/mock';
+import '../../cache/mock';
 import { API_KEY, mockFindApiKey } from './mock'; // mock should be imported on the top
 import app from '../../../src/app';
 import supertest from 'supertest';

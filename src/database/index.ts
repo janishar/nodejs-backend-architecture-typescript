@@ -63,3 +63,5 @@ process.on('SIGINT', () => {
     process.exit(0);
   });
 });
+
+export const connection = mongoose.connection;

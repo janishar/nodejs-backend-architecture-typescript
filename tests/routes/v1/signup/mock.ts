@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { mockUserFindByEmail } from '../login/mock';
 import User from '../../../../src/database/model/User';
 import Keystore from '../../../../src/database/model/Keystore';

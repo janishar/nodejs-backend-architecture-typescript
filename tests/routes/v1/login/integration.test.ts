@@ -10,6 +10,8 @@ import * as authUtils from '../../../../src/auth/authUtils';
 import Role, { RoleCode } from '../../../../src/database/model/Role';
 import { Types } from 'mongoose';
 import ApiKey, { ApiKeyModel } from '../../../../src/database/model/ApiKey';
+import { connection } from '../../../../src/database';
+import cache from '../../../../src/cache';
 
 export const createTokensSpy = jest.spyOn(authUtils, 'createTokens');
 export const bcryptCompareSpy = jest.spyOn(bcrypt, 'compare');
@@ -41,6 +43,8 @@ describe('Login basic route', () => {
 
   afterAll(async () => {
     await UserModel.remove({}); // delete all data from user table
+    connection.close();
+    cache.disconnect();
   });
 
   beforeEach(() => {

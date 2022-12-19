@@ -1,3 +1,6 @@
+import '../../database/mock';
+import '../../cache/mock';
+
 import {
   ACCESS_TOKEN,
   addHeaders,

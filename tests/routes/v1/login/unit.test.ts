@@ -1,3 +1,5 @@
+import '../../../../database/mock';
+import '../../../../cache/mock';
 import { addHeaders } from '../../../auth/authentication/mock';
 
 // the mock for this class should be below all other mock imports
