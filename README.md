@@ -1,62 +1,7 @@
-# Node.js Backend Architecture Typescript Project
+# New Version 2 is available in the [Master branch](https://github.com/janishar/nodejs-backend-architecture-typescript).
+
+## Node.js Backend Architecture Typescript Project
 Learn to build a Blogging platform like Medium, MindOrks, and FreeCodeCamp - Open-Source Project By Janishar Ali
-
-<p align="center">
-    <img src="https://raw.githubusercontent.com/afteracademy/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png">
-</p>
-<br>
-
-## About this Open Source Project
-This open-source project is for you(community). I (https://janisharali.com) have taken this initiative to promote Backend Learning in the best possible way. I am determined to provide quality content for everyone. Let's do it together by learning from this project.
-
-## We will learn and build the backend application for a blogging platform. 
-The main focus will be to create a maintainable and highly testable architecture.
-<br>
-Following are the features of this project:
-* **This backend is written in Typescript**: The type safety at build time and having intellisense for it in the IDE like vscode is unparalleled to productivity. We have found production bug reduced to a significant amount since most of the code vulnerabilities are identified during the build phase itself.
-* **Separation of concern principle is applied**: Each component has been given a particular role. The role of the components is mutually exclusive. This makes the project easy to be unit tested.
-* **Feature encapsulation is adopted**: The files or components that are related to a particular feature have been grouped unless those components are required in multiple features. This enhances the ability to share code across projects.
-* **Centralised Error handling is done**: We have created a framework where all the errors are handled centrally. This reduces the ambiguity in the development when the project grows larger.
-* **Centralised Response handling is done**: Similar to Error handling we have a response handling framework. This makes it very convenient to apply a common API response pattern.
-* **Mongodb is used through Mongoose**: Mongodb fits very well to the node.js application. Being NoSQL, fast, and scalable makes it ideal for modern web applications.
-* **Async execution is adopted**: We have used async/await for the promises and made sure to use the non-blocking version of all the functions with few exceptions.
-* **Docker compose has been configured**: We have created the Dockerfile to provide the easy deployability without any setup and configurations. 
-* **Unit test is favored**: The tests have been written to test the functions and routes without the need of the database server. Integration tests has also been done but the unit test is favored.
-* **A pure backend project**: We have experienced that when a backend is developed clubbed with a frontend then in the future it becomes really difficult to scale. We would want to create a separate backend project that servers many websites and mobile apps.
-
-## We have also open source a complete blogging website working on this backend project: [Goto Repository](https://github.com/afteracademy/react-app-architecture)
-> In the above repository [**React.js Isomorphic Web Application Architecture**] we will learn and build a React web application for a blogging platform using this project as its API server. [Visit demo website](https://demo.react-app-architecture.afteracademy.com)
-
-## 3RE Architecture: Router, RouteHandler, ResponseHandler, ErrorHandler
-<p align="center">
-    <img src="https://raw.githubusercontent.com/afteracademy/nodejs-backend-architecture-typescript/master/addons/github_assets/3RE.png">
-</p>
-<br>
-
-## Project Outline: Blogging Platform
-<p align="center">
-    <img src="https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/project-outline.png">
-</p>
-<br>
-
-## Request-Response Handling Schematic Diagram
-<p align="center">
-    <img src="https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/api-structure.png">
-</p>
-<br>
-
-## Learn the concepts used in this project
-* [Design Node.js Backend Architecture like a Pro](https://janisharali.com/blog/design-node-js-backend-architecture-like-a-pro)
-* [The video guide to build and run this project](https://youtu.be/t7blRxqPIMs)
-* [Implement JSON Web Token (JWT) Authentication using AccessToken and RefreshToken](https://janisharali.com/blog/implement-json-web-token-jwt-authentication-using-access-token-and-refresh-token)
-* [TypeScript Tutorial For Beginners](https://afteracademy.com/blog/typescript-tutorial-for-beginners)
-* [From JavaScript to TypeScript](https://afteracademy.com/blog/from-javascript-to-typescript)
-* [Authentication vs Authorization](https://afteracademy.com/blog/authentication-vs-authorization)
-
-## You can find the complete API documentation [here](https://documenter.getpostman.com/view/1552895/SzYUZg52?version=latest)
-<a href="https://documenter.getpostman.com/view/1552895/SzYUZg52?version=latest" target="_blank">
-    <img src="https://raw.githubusercontent.com/afteracademy/nodejs-backend-architecture-typescript/master/addons/github_assets/api-doc-button.png" width="200" height="60"/>
-</a>
 
 ## How to build and run this project
 
