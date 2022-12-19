@@ -9,11 +9,11 @@ describe('JWT class tests', () => {
   const param = 'param';
   const validity = 1;
 
-  it('Should throw error for invalid token in JWT.decode', async () => {
-    beforeEach(() => {
-      readFileSpy.mockClear();
-    });
+  beforeEach(() => {
+    readFileSpy.mockClear();
+  });
 
+  it('Should throw error for invalid token in JWT.decode', async () => {
     try {
       await JWT.decode('abc');
     } catch (e) {
@@ -24,10 +24,6 @@ describe('JWT class tests', () => {
   });
 
   it('Should generate a token for JWT.encode', async () => {
-    beforeEach(() => {
-      readFileSpy.mockClear();
-    });
-
     const payload = new JwtPayload(issuer, audience, subject, param, validity);
     const token = await JWT.encode(payload);
 
@@ -36,10 +32,6 @@ describe('JWT class tests', () => {
   });
 
   it('Should decode a valid token for JWT.decode', async () => {
-    beforeEach(() => {
-      readFileSpy.mockClear();
-    });
-
     const payload = new JwtPayload(issuer, audience, subject, param, validity);
     const token = await JWT.encode(payload);
     const decoded = await JWT.decode(token);
@@ -49,10 +41,6 @@ describe('JWT class tests', () => {
   });
 
   it('Should parse an expired token for JWT.decode', async () => {
-    beforeEach(() => {
-      readFileSpy.mockClear();
-    });
-
     const time = Math.floor(Date.now() / 1000);
 
     const payload = {
@@ -71,10 +59,6 @@ describe('JWT class tests', () => {
   });
 
   it('Should throw error for invalid token in JWT.validate', async () => {
-    beforeEach(() => {
-      readFileSpy.mockClear();
-    });
-
     try {
       await JWT.validate('abc');
     } catch (e) {
@@ -85,10 +69,6 @@ describe('JWT class tests', () => {
   });
 
   it('Should validate a valid token for JWT.validate', async () => {
-    beforeEach(() => {
-      readFileSpy.mockClear();
-    });
-
     const payload = new JwtPayload(issuer, audience, subject, param, validity);
     const token = await JWT.encode(payload);
     const decoded = await JWT.validate(token);
@@ -98,10 +78,6 @@ describe('JWT class tests', () => {
   });
 
   it('Should validate a token expiry for JWT.validate', async () => {
-    beforeEach(() => {
-      readFileSpy.mockClear();
-    });
-
     const time = Math.floor(Date.now() / 1000);
 
     const payload = {
