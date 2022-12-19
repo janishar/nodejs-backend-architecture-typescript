@@ -39,15 +39,11 @@ export const mockKeystoreFindForKey = jest.fn(
 );
 
 jest.mock('../../../src/database/repository/UserRepo', () => ({
-  get findById() {
-    return mockUserFindById;
-  },
+  findById: mockUserFindById,
 }));
 
 jest.mock('../../../src/database/repository/KeystoreRepo', () => ({
-  get findforKey() {
-    return mockKeystoreFindForKey;
-  },
+  findforKey: mockKeystoreFindForKey,
 }));
 
 JWT.validate = mockJwtValidate;

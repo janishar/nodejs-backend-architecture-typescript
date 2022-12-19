@@ -39,15 +39,11 @@ export const mockUserFindByEmail = jest.fn(async (email: string): Promise<User |
 });
 
 jest.mock('../../../../src/database/repository/KeystoreRepo', () => ({
-  get create() {
-    return mockKeystoreCreate;
-  },
+  create: mockKeystoreCreate,
 }));
 
 jest.mock('../../../../src/database/repository/UserRepo', () => ({
-  get findByEmail() {
-    return mockUserFindByEmail;
-  },
+  findByEmail: mockUserFindByEmail,
 }));
 
 jest.unmock('../../../../src/auth/authUtils'); // remove any override made anywhere
