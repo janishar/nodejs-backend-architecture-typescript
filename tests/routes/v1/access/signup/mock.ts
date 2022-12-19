@@ -1,6 +1,6 @@
 import { mockUserFindByEmail } from '../login/mock';
-import User from '../../../../src/database/model/User';
-import Keystore from '../../../../src/database/model/Keystore';
+import User from '../../../../../src/database/model/User';
+import Keystore from '../../../../../src/database/model/Keystore';
 import { Types } from 'mongoose';
 import bcrypt from 'bcrypt';
 
@@ -30,7 +30,7 @@ export const mockUserCreate = jest.fn(
   },
 );
 
-jest.mock('../../../../src/database/repository/UserRepo', () => ({
+jest.mock('../../../../../src/database/repository/UserRepo', () => ({
   findByEmail: mockUserFindByEmail, // utilising already defined mock
   create: mockUserCreate,
 }));

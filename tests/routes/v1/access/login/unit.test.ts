@@ -1,6 +1,6 @@
 import '../../../../database/mock';
 import '../../../../cache/mock';
-import { addHeaders } from '../../../auth/authentication/mock';
+import { addHeaders } from '../../../../auth/authentication/mock';
 
 // the mock for this class should be below all other mock imports
 import {
@@ -14,7 +14,7 @@ import {
 } from './mock';
 
 import supertest from 'supertest';
-import app from '../../../../src/app';
+import app from '../../../../../src/app';
 
 describe('Login basic route', () => {
   const endpoint = '/v1/login/basic';

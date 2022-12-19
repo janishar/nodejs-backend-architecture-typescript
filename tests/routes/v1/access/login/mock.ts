@@ -1,10 +1,10 @@
-import { USER_ID } from '../../../auth/authentication/mock';
-import Keystore from '../../../../src/database/model/Keystore';
-import User from '../../../../src/database/model/User';
+import { USER_ID } from '../../../../auth/authentication/mock';
+import Keystore from '../../../../../src/database/model/Keystore';
+import User from '../../../../../src/database/model/User';
 import { Types } from 'mongoose';
 import bcrypt from 'bcrypt';
-import * as authUtils from '../../../../src/auth/authUtils';
-import Role from '../../../../src/database/model/Role';
+import * as authUtils from '../../../../../src/auth/authUtils';
+import Role from '../../../../../src/database/model/Role';
 
 export const USER_EMAIL = 'random@test.com';
 export const USER_PASSWORD = 'abc123';
@@ -38,12 +38,12 @@ export const mockUserFindByEmail = jest.fn(async (email: string): Promise<User |
   return null;
 });
 
-jest.mock('../../../../src/database/repository/KeystoreRepo', () => ({
+jest.mock('../../../../../src/database/repository/KeystoreRepo', () => ({
   create: mockKeystoreCreate,
 }));
 
-jest.mock('../../../../src/database/repository/UserRepo', () => ({
+jest.mock('../../../../../src/database/repository/UserRepo', () => ({
   findByEmail: mockUserFindByEmail,
 }));
 
-jest.unmock('../../../../src/auth/authUtils'); // remove any override made anywhere
+jest.unmock('../../../../../src/auth/authUtils'); // remove any override made anywhere
