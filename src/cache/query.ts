@@ -51,12 +51,13 @@ export async function getJson<T>(key: Key | DynamicKeyType) {
 
 export async function setList(
   key: Key | DynamicKeyType,
-  values: any[],
+  list: any[],
   expireAt: Date | null = null,
 ) {
   const multi = cache.multi();
-  for (const i in values) {
-    values[i] = JSON.stringify(values[i]);
+  const values: any[] = []
+  for (const i in list) {
+    values[i] = JSON.stringify(list[i]);
   }
   multi.del(key);
   multi.rPush(key, values);
