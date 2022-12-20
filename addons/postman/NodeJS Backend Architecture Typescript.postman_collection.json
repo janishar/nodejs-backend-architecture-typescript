@@ -1,0 +1,3279 @@
+{
+	"info": {
+		"_postman_id": "83732ee0-c1be-4747-860a-4df0e3475941",
+		"name": "NodeJS Backend Architecture Typescript",
+		"description": "# Janishar Ali Open Source Project\n\n###### GitHub Repository Link: [https://github.com/janishar/nodejs-backend-architecture-typescript](https://github.com/janishar/nodejs-backend-architecture-typescript)\n\n###### Website: [https://janisharali.com](https://janisharali.com)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1552895"
+	},
+	"item": [
+		{
+			"name": "Signup Basic",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"Janishar Ali\",\n\t\"email\": \"ali@github.com\",\n\t\"password\": \"changeit\",\n\t\"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/v1/signup/basic",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"signup",
+						"basic"
+					]
+				},
+				"description": "The Api to create a user in the system"
+			},
+			"response": [
+				{
+					"name": "Signup Basic",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Janishar Ali\",\n\t\"email\": \"ali@github.com\",\n\t\"password\": \"changeit\",\n\t\"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/signup/basic",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"signup",
+								"basic"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1270"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4f6-GXO8jjGI8w2J6i6uswKo7ocjos0\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 11:36:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"Signup Successful\",\n    \"data\": {\n        \"user\": {\n            \"_id\": \"63a19e5ba2730d1599d46c0b\",\n            \"name\": \"Janishar Ali\",\n            \"roles\": [\n                {\n                    \"_id\": \"63a197b39e07f859826e6626\",\n                    \"code\": \"LEARNER\",\n                    \"status\": true\n                }\n            ],\n            \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n        },\n        \"tokens\": {\n            \"accessToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcGkuZGV2Lnh5ei5jb20iLCJhdWQiOiJ4eXouY29tIiwic3ViIjoiNjNhMTllNWJhMjczMGQxNTk5ZDQ2YzBiIiwiaWF0IjoxNjcxNTM2MjE5LCJleHAiOjE2NzE3MDkwMTksInBybSI6ImIwM2QxZTk2ZmFmYmQwNjBjMmRlYTA2Y2UyNzgwZjNmM2RjNzk2N2JkNzRhYWVjYTIyNTEwMzA0MWI1YWM0MWY5ZThjMzVkZGNhMGM5MzNjMmI4NDcxZWZlNzY5MmZmYzBiNGE5ZjliODY2MDliYjhmNGNhMTc3OTIxM2U5Y2UzIn0.m0KpxUsLJ3HrgsgvjUu1qZy4AljExY4eblPE288zatz4JdqoQ6mbHlYCG2c2c1Qos2e_XI5pMUToGFd39T_rCQ\",\n            \"refreshToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcGkuZGV2Lnh5ei5jb20iLCJhdWQiOiJ4eXouY29tIiwic3ViIjoiNjNhMTllNWJhMjczMGQxNTk5ZDQ2YzBiIiwiaWF0IjoxNjcxNTM2MjE5LCJleHAiOjE2NzIxNDEwMTksInBybSI6IjZlNzVjNjZiZWY1ZmJlM2M0YjlkOGQ5ZjFmYjgzY2U2NGJjZDJhZTZhYjMxNTI2YWYzYjI3MDY3ODVmMTRmMzEwZjFlZmJlMmYyNGY4MTk2YzVkOWExNTliZDliMGY0ZTJkNGQ2MTAzYjliNzdhMmVmNGRhYTgwODc0MDgyZDgyIn0.ChW8GlgrCeD_Z6rOKFTaPlZ2-KsxCaRU1Nwmre7xvXtPMMNH4iMzGseI5wYGSc1NqR5OWOoCl1vo2tnBjHaF9A\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Login Basic",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"{{ADMIN_EMAIL}}\",\n\t\"password\": \"changeit\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/v1/login/basic",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"login",
+						"basic"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Login Basic",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"{{ADMIN_EMAIL}}\",\n\t\"password\": \"changeit\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/login/basic",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"login",
+								"basic"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1276"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4fc-dqoPSmhl/ZrrV+qe/K+1PmL5ovk\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 11:38:31 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"Login Success\",\n    \"data\": {\n        \"user\": {\n            \"_id\": \"63a197b39e07f859826e662a\",\n            \"name\": \"Admin\",\n            \"roles\": [\n                {\n                    \"_id\": \"63a197b39e07f859826e6626\",\n                    \"code\": \"LEARNER\"\n                },\n                {\n                    \"_id\": \"63a197b39e07f859826e6627\",\n                    \"code\": \"WRITER\"\n                },\n                {\n                    \"_id\": \"63a197b39e07f859826e6628\",\n                    \"code\": \"EDITOR\"\n                },\n                {\n                    \"_id\": \"63a197b39e07f859826e6629\",\n                    \"code\": \"ADMIN\"\n                }\n            ]\n        },\n        \"tokens\": {\n            \"accessToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcGkuZGV2Lnh5ei5jb20iLCJhdWQiOiJ4eXouY29tIiwic3ViIjoiNjNhMTk3YjM5ZTA3Zjg1OTgyNmU2NjJhIiwiaWF0IjoxNjcxNTM2MzExLCJleHAiOjE2NzE3MDkxMTEsInBybSI6ImZmNTUwNDNkMTc3NzZhYjA1MTQ1NjViYzYxYWYzM2I0ODg0YTFkZmU2M2RiOTdjYjI3YWM1ODA4ZjU4OGIyMzRjMmYxMzNmMmJmZTFlYzBkZGI2YjI1YzQ4YmIyODE0NmE2ZmFjZWI4ZmNkM2NmOGM3NGM5NmFkZmFlMTdmOTQ5In0.Khn9_6C7B0zjFyazdaORf2z6PL4T5GiDYV_ELxOwu4ILYBla7gqrWMhxoNLZO9QvvcOwvIiGoemdo3CR37ThHw\",\n            \"refreshToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcGkuZGV2Lnh5ei5jb20iLCJhdWQiOiJ4eXouY29tIiwic3ViIjoiNjNhMTk3YjM5ZTA3Zjg1OTgyNmU2NjJhIiwiaWF0IjoxNjcxNTM2MzExLCJleHAiOjE2NzIxNDExMTEsInBybSI6Ijk5Y2MyODZhODc2YzMxZTQ5MTAyNDZkNmQ4MThiZWI2ZGIzZmY2OGRkMmUxM2MwM2IzMzAwNzZmOGYyZmYyMzhmZGVjODE3ZTlmNDdiODJlNGI3ZjAzNDYzMGIxZmIwNWI3ZGM3NWY1NTcyZDcwMzE4ODBmMmYyZmU0N2FkYjdiIn0.T13Cw96Up6DdDyY10wdvKv65BY00lU1X1Rhc_GoTMx_4RpPQX0EwFJlwoIbOUsyg6qmjTG0MdI0gDL1H6D9UmQ\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Logout Current",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/v1/logout",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"logout"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Logout Current",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/logout",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"logout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"31-yQ9pei48Nn+TPvgEsVtjDLBwzpc\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 11:43:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"Logout success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Token Refresh",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"refreshToken\" : \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcGkuZGV2Lnh5ei5jb20iLCJhdWQiOiJ4eXouY29tIiwic3ViIjoiNjNhMTk3YjM5ZTA3Zjg1OTgyNmU2NjJhIiwiaWF0IjoxNjcxNTM2NzE5LCJleHAiOjE2NzIxNDE1MTksInBybSI6IjI0NGFiMGU1ZTNjZTQ3YTgwMzM3NjZiMmJkOGFjZjRkMTg5NTY2OThlZjY4MGE5OWM3Yzg4ZTFiYWE4YzA5MjZjMTI2OWI1NTcyNDgyZjYwYzU0ZmRkZTZiYTRlOTBkODZiYzE0YzQ0MTc1NzM5NTEyNDIyZjM3NzhkNmUyMTlmIn0.VAPfM9NPuVzL6jbNmTcdPcc-kA8MwVpHjgPj8jHzi9ml-pw5WM6XSNfi4qd9dHfw8xVw599zQSvoYs7xNPtobw\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/v1/token/refresh",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"token",
+						"refresh"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Token Refresh",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"refreshToken\" : \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcGkuZGV2Lnh5ei5jb20iLCJhdWQiOiJ4eXouY29tIiwic3ViIjoiNjNhMTk3YjM5ZTA3Zjg1OTgyNmU2NjJhIiwiaWF0IjoxNjcxNTM2NzE5LCJleHAiOjE2NzIxNDE1MTksInBybSI6IjI0NGFiMGU1ZTNjZTQ3YTgwMzM3NjZiMmJkOGFjZjRkMTg5NTY2OThlZjY4MGE5OWM3Yzg4ZTFiYWE4YzA5MjZjMTI2OWI1NTcyNDgyZjYwYzU0ZmRkZTZiYTRlOTBkODZiYzE0YzQ0MTc1NzM5NTEyNDIyZjM3NzhkNmUyMTlmIn0.VAPfM9NPuVzL6jbNmTcdPcc-kA8MwVpHjgPj8jHzi9ml-pw5WM6XSNfi4qd9dHfw8xVw599zQSvoYs7xNPtobw\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/token/refresh",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"token",
+								"refresh"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "984"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3d8-fcmypfXmnpRwpwFRl2ueir+NiLE\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 11:45:40 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"Token Issued\",\n    \"accessToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcGkuZGV2Lnh5ei5jb20iLCJhdWQiOiJ4eXouY29tIiwic3ViIjoiNjNhMTk3YjM5ZTA3Zjg1OTgyNmU2NjJhIiwiaWF0IjoxNjcxNTM2NzQwLCJleHAiOjE2NzE3MDk1NDAsInBybSI6Ijk1M2E5ZTFkOTAwM2JhNzgxMjlkNDU1M2VkYzBhZjk2MDc0ZWZkMTUzNjMyMjIzZjUxNjBkZDk4MmI3NThlODAyNTFlY2Y1YTZhMmQ5OTM4MGExNjM5Y2Q5MTcxYzY4ZDVjMGQ0ZDdmOTNhZjU3MzIxY2M0NjRmYWQyZWZlNjY2In0.MvEmm8C_pwjV9O4sIPOGi-w0WDvLxISEOAIlu6kqX8dS-Sc98cZFtEZ3ccmLJrf6ELzzEx55Fb9Ds3xID7i24Q\",\n    \"refreshToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcGkuZGV2Lnh5ei5jb20iLCJhdWQiOiJ4eXouY29tIiwic3ViIjoiNjNhMTk3YjM5ZTA3Zjg1OTgyNmU2NjJhIiwiaWF0IjoxNjcxNTM2NzQwLCJleHAiOjE2NzIxNDE1NDAsInBybSI6ImQ2MTBlZGQyODJhZDlkYWRmYzQwNzU5YmZiODdjN2JhNGUzZTA3MjZmYWE2NTYwNmY0NzEzOGFlOWIwYjZmMjM0YzU2Yjg0OGU0OThiMTc4ZjExNjM3NTE4ZGQyN2NlMzZhOTcyMGYxZDEwY2NiZGNhZjJiYmU1M2YwZDI1NGQ2In0.dP4ZH2zrZp85GmA8YYJ5rjBZvuhnntkKX9AP_fADFda6GLDFDKz3ib8kSD2FlNKd2PMWJH__Ec0PjsZwFxoFHw\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Profile Public",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/profile/public/id/63a197b39e07f859826e662a",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"profile",
+						"public",
+						"id",
+						"63a197b39e07f859826e662a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Profile Private",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/profile/my",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"profile",
+						"my"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Profile Private",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/profile/my",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"profile",
+								"my"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "304"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"130-QKstTctG1b8avJ/tVxy0BJzLTno\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 11:48:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"success\",\n    \"data\": {\n        \"name\": \"Admin\",\n        \"email\": \"admin@xyz.com\",\n        \"roles\": [\n            {\n                \"_id\": \"63a197b39e07f859826e6626\",\n                \"code\": \"LEARNER\"\n            },\n            {\n                \"_id\": \"63a197b39e07f859826e6627\",\n                \"code\": \"WRITER\"\n            },\n            {\n                \"_id\": \"63a197b39e07f859826e6628\",\n                \"code\": \"EDITOR\"\n            },\n            {\n                \"_id\": \"63a197b39e07f859826e6629\",\n                \"code\": \"ADMIN\"\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Profile Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Janishar Ali - Coding Guru\",\n\t\"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/v1/profile",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"profile"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Profile Update",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Janishar Ali - Coding Guru\",\n\t\"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/profile",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"profile"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "216"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d8-GjpUnWfcPsP6RKAQnkaoNYm7Jrw\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 11:49:17 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"Profile updated\",\n    \"data\": {\n        \"name\": \"Janishar Ali - Coding Guru\",\n        \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Writer Blog Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Introduction to Node.js and How Node.js works?\",\n\t\"description\" : \"Node.js is a popular framework for building backend systems (network applications) which can scale very well. Node.js is a Javascript runtime i.e. it runs the javascript codes.\",\n\t\"text\": \"<p>This will depend on how you render the blog. It can be html text or plain text.</p>\",\n\t\"blogUrl\": \"introduction-to-node-js-and-how-node-js-works-2\",\n\t\"imgUrl\": \"https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png\",\n\t\"score\": 0.9,\n\t\"tags\" : [\"NODEJS\", \"BACKEND\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blog/writer",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blog",
+						"writer"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Writer Blog Create",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Introduction to Node.js and How Node.js works?\",\n\t\"description\" : \"Node.js is a popular framework for building backend systems (network applications) which can scale very well. Node.js is a Javascript runtime i.e. it runs the javascript codes.\",\n\t\"text\": \"<p>This will depend on how you render the blog. It can be html text or plain text.</p>\",\n\t\"blogUrl\": \"introduction-to-node-js-and-how-node-js-works\",\n\t\"imgUrl\": \"https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png\",\n\t\"score\": 0.9,\n\t\"tags\" : [\"NODEJS\", \"BACKEND\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blog/writer",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"writer"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "968"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3c8-do8r+tkE2LDIjmiR32CCAWkQHQE\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 11:51:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"Blog created successfully\",\n    \"data\": {\n        \"title\": \"Introduction to Node.js and How Node.js works?\",\n        \"description\": \"Node.js is a popular framework for building backend systems (network applications) which can scale very well. Node.js is a Javascript runtime i.e. it runs the javascript codes.\",\n        \"draftText\": \"<p>This will depend on how you render the blog. It can be html text or plain text.</p>\",\n        \"tags\": [\n            \"NODEJS\",\n            \"BACKEND\"\n        ],\n        \"author\": \"63a197b39e07f859826e662a\",\n        \"imgUrl\": \"https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png\",\n        \"blogUrl\": \"introduction-to-node-js-and-how-node-js-works\",\n        \"likes\": 0,\n        \"score\": 0.9,\n        \"isSubmitted\": false,\n        \"isDraft\": true,\n        \"isPublished\": false,\n        \"status\": true,\n        \"createdBy\": \"63a197b39e07f859826e662a\",\n        \"updatedBy\": \"63a197b39e07f859826e662a\",\n        \"createdAt\": \"2022-12-20T11:51:13.420Z\",\n        \"updatedAt\": \"2022-12-20T11:51:13.420Z\",\n        \"_id\": \"63a1a1b1a2730d1599d46c55\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Writer Blog Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"Node.js is a popular framework for building backend systems (network applications) which can scale very well. Node.js is a Javascript runtime i.e. it runs the javascript codes.\",\n    \"score\": 0.95,\n    \"tags\": [\n        \"NODEJS\",\n        \"BACKEND\",\n        \"API\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blog/writer/id/63a1a1b1a2730d1599d46c55",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blog",
+						"writer",
+						"id",
+						"63a1a1b1a2730d1599d46c55"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Writer Blog Update",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Node.js is a popular framework for building backend systems (network applications) which can scale very well. Node.js is a Javascript runtime i.e. it runs the javascript codes.\",\n    \"score\": 0.95,\n    \"tags\": [\n        \"NODEJS\",\n        \"BACKEND\",\n        \"API\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blog/writer/id/63a1a1b1a2730d1599d46c55",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"writer",
+								"id",
+								"63a1a1b1a2730d1599d46c55"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1101"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"44d-HQm2UZrdaU6r2F1wZaPn0Z/wOsA\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 11:54:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"Blog updated successfully\",\n    \"data\": {\n        \"_id\": \"63a1a1b1a2730d1599d46c55\",\n        \"title\": \"Introduction to Node.js and How Node.js works?\",\n        \"description\": \"Node.js is a popular framework for building backend systems (network applications) which can scale very well. Node.js is a Javascript runtime i.e. it runs the javascript codes.\",\n        \"draftText\": \"<p>This will depend on how you render the blog. It can be html text or plain text.</p>\",\n        \"tags\": [\n            \"NODEJS\",\n            \"BACKEND\",\n            \"API\"\n        ],\n        \"author\": {\n            \"_id\": \"63a197b39e07f859826e662a\",\n            \"name\": \"Janishar Ali - Coding Guru\",\n            \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n        },\n        \"imgUrl\": \"https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png\",\n        \"blogUrl\": \"introduction-to-node-js-and-how-node-js-works\",\n        \"likes\": 0,\n        \"score\": 0.95,\n        \"isSubmitted\": false,\n        \"isDraft\": true,\n        \"isPublished\": false,\n        \"status\": true,\n        \"createdBy\": \"63a197b39e07f859826e662a\",\n        \"updatedBy\": \"63a197b39e07f859826e662a\",\n        \"updatedAt\": \"2022-12-20T11:54:30.045Z\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Writer Blog Submit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blog/writer/submit/63a1a1b1a2730d1599d46c55",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blog",
+						"writer",
+						"submit",
+						"63a1a1b1a2730d1599d46c55"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Writer Blog Submit",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blog/writer/submit/63a1a1b1a2730d1599d46c55",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"writer",
+								"submit",
+								"63a1a1b1a2730d1599d46c55"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "62"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3e-39J0YnAlnn2UiIKYkHoo3xUhlKI\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 11:55:51 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"Blog submitted successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Writer Blog Withdraw",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blog/writer/withdraw/63a1a1b1a2730d1599d46c55",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blog",
+						"writer",
+						"withdraw",
+						"63a1a1b1a2730d1599d46c55"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Writer Blog Withdraw",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blog/writer/withdraw/63a1a1b1a2730d1599d46c55",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"writer",
+								"withdraw",
+								"63a1a1b1a2730d1599d46c55"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "62"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3e-w/ALfAtLUbFlQ4pUjmypPlL9GYA\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 11:57:27 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"Blog withdrawn successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Writer Blog Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blog/writer/id/63a1a3a2a2730d1599d46c83",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blog",
+						"writer",
+						"id",
+						"63a1a3a2a2730d1599d46c83"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Writer Blog Delete",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blog/writer/id/63a1a3a2a2730d1599d46c83",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"writer",
+								"id",
+								"63a1a3a2a2730d1599d46c83"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "60"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3c-wbrpP0AmlOuBAG/R/L7tYz62FAg\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 11:59:53 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"Blog deleted successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Writer Get One Blog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blog/writer/id/63a1a1b1a2730d1599d46c55",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blog",
+						"writer",
+						"id",
+						"63a1a1b1a2730d1599d46c55"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Writer Get One Blog",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blog/writer/id/63a1a1b1a2730d1599d46c55",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"writer",
+								"id",
+								"63a1a1b1a2730d1599d46c55"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1044"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"414-sh/NFrhe6om55fBnVpIKV33eoR8\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 12:00:50 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"success\",\n    \"data\": {\n        \"_id\": \"63a1a1b1a2730d1599d46c55\",\n        \"title\": \"Introduction to Node.js and How Node.js works?\",\n        \"description\": \"Node.js is a popular framework for building backend systems (network applications) which can scale very well. Node.js is a Javascript runtime i.e. it runs the javascript codes.\",\n        \"draftText\": \"<p>This will depend on how you render the blog. It can be html text or plain text.</p>\",\n        \"tags\": [\n            \"NODEJS\",\n            \"BACKEND\",\n            \"API\"\n        ],\n        \"author\": {\n            \"_id\": \"63a197b39e07f859826e662a\",\n            \"name\": \"Janishar Ali - Coding Guru\",\n            \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n        },\n        \"imgUrl\": \"https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png\",\n        \"blogUrl\": \"introduction-to-node-js-and-how-node-js-works\",\n        \"likes\": 0,\n        \"score\": 0.95,\n        \"isSubmitted\": false,\n        \"isDraft\": true,\n        \"isPublished\": false,\n        \"status\": true,\n        \"createdBy\": \"63a197b39e07f859826e662a\",\n        \"updatedBy\": \"63a197b39e07f859826e662a\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Writer Get All Drafts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blog/writer/drafts/all",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blog",
+						"writer",
+						"drafts",
+						"all"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Writer Get All Drafts",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blog/writer/drafts/all",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"writer",
+								"drafts",
+								"all"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1261"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4ed-mznGzV5v0KaIkzFhl9xU30Px/bQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 12:01:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"_id\": \"63a1a1b1a2730d1599d46c55\",\n            \"title\": \"Introduction to Node.js and How Node.js works?\",\n            \"description\": \"Node.js is a popular framework for building backend systems (network applications) which can scale very well. Node.js is a Javascript runtime i.e. it runs the javascript codes.\",\n            \"tags\": [\n                \"NODEJS\",\n                \"BACKEND\",\n                \"API\"\n            ],\n            \"author\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            },\n            \"imgUrl\": \"https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png\",\n            \"blogUrl\": \"introduction-to-node-js-and-how-node-js-works\",\n            \"likes\": 0,\n            \"score\": 0.95,\n            \"isSubmitted\": false,\n            \"isDraft\": true,\n            \"isPublished\": false,\n            \"createdBy\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            },\n            \"updatedBy\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            }\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Writer Get All Submissions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blog/writer/submitted/all",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blog",
+						"writer",
+						"submitted",
+						"all"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Writer Get All Submissions",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blog/writer/submitted/all",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"writer",
+								"submitted",
+								"all"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1261"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4ed-/cybb+yCfFO5SsNSFoZXb5Z+0OY\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 12:03:07 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"_id\": \"63a1a1b1a2730d1599d46c55\",\n            \"title\": \"Introduction to Node.js and How Node.js works?\",\n            \"description\": \"Node.js is a popular framework for building backend systems (network applications) which can scale very well. Node.js is a Javascript runtime i.e. it runs the javascript codes.\",\n            \"tags\": [\n                \"NODEJS\",\n                \"BACKEND\",\n                \"API\"\n            ],\n            \"author\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            },\n            \"imgUrl\": \"https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png\",\n            \"blogUrl\": \"introduction-to-node-js-and-how-node-js-works\",\n            \"likes\": 0,\n            \"score\": 0.95,\n            \"isSubmitted\": true,\n            \"isDraft\": false,\n            \"isPublished\": false,\n            \"createdBy\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            },\n            \"updatedBy\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            }\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Writer Get All Published",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blog/writer/published/all",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blog",
+						"writer",
+						"published",
+						"all"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Writer Get All Published",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blog/writer/published/all",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"writer",
+								"published",
+								"all"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1302"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"516-SmaAPnIRZ9lRfu3P0j5K63wjGso\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 12:05:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"_id\": \"63a1a1b1a2730d1599d46c55\",\n            \"title\": \"Introduction to Node.js and How Node.js works?\",\n            \"description\": \"Node.js is a popular framework for building backend systems (network applications) which can scale very well. Node.js is a Javascript runtime i.e. it runs the javascript codes.\",\n            \"tags\": [\n                \"NODEJS\",\n                \"BACKEND\",\n                \"API\"\n            ],\n            \"author\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            },\n            \"imgUrl\": \"https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png\",\n            \"blogUrl\": \"introduction-to-node-js-and-how-node-js-works\",\n            \"likes\": 0,\n            \"score\": 0.95,\n            \"isSubmitted\": false,\n            \"isDraft\": false,\n            \"isPublished\": true,\n            \"createdBy\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            },\n            \"updatedBy\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            },\n            \"publishedAt\": \"2022-12-20T12:04:26.548Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Editor Blog Publish",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blog/editor/publish/63a1a1b1a2730d1599d46c55",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blog",
+						"editor",
+						"publish",
+						"63a1a1b1a2730d1599d46c55"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Editor Blog Publish",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blog/editor/publish/63a1a1b1a2730d1599d46c55",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"editor",
+								"publish",
+								"63a1a1b1a2730d1599d46c55"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "62"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3e-Y0e+tK8p//jCTWc7iE+uVhGcqKo\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 12:04:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"Blog published successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Editor Blog Unpublish",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blog/editor/unpublish/63a1a1b1a2730d1599d46c55",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blog",
+						"editor",
+						"unpublish",
+						"63a1a1b1a2730d1599d46c55"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Editor Blog Unpublish",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blog/editor/unpublish/63a1a1b1a2730d1599d46c55",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"editor",
+								"unpublish",
+								"63a1a1b1a2730d1599d46c55"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "64"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"40-BH7b2ZtsfXoRl5e75Y2PyOP+Ff0\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 12:06:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"Blog unpublished successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Editor Blog Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blog/editor/id/63a1a569a2730d1599d46cdd",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blog",
+						"editor",
+						"id",
+						"63a1a569a2730d1599d46cdd"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Editor Blog Delete",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blog/editor/id/63a1a569a2730d1599d46cdd",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"editor",
+								"id",
+								"63a1a569a2730d1599d46cdd"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "60"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3c-wbrpP0AmlOuBAG/R/L7tYz62FAg\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 12:07:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"Blog deleted successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Editor Get All Published",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blog/editor/published/all",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blog",
+						"editor",
+						"published",
+						"all"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Editor Get All Published",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blog/editor/published/all",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"editor",
+								"published",
+								"all"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1302"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"516-SmaAPnIRZ9lRfu3P0j5K63wjGso\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 12:08:28 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"_id\": \"63a1a1b1a2730d1599d46c55\",\n            \"title\": \"Introduction to Node.js and How Node.js works?\",\n            \"description\": \"Node.js is a popular framework for building backend systems (network applications) which can scale very well. Node.js is a Javascript runtime i.e. it runs the javascript codes.\",\n            \"tags\": [\n                \"NODEJS\",\n                \"BACKEND\",\n                \"API\"\n            ],\n            \"author\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            },\n            \"imgUrl\": \"https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png\",\n            \"blogUrl\": \"introduction-to-node-js-and-how-node-js-works\",\n            \"likes\": 0,\n            \"score\": 0.95,\n            \"isSubmitted\": false,\n            \"isDraft\": false,\n            \"isPublished\": true,\n            \"createdBy\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            },\n            \"updatedBy\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            },\n            \"publishedAt\": \"2022-12-20T12:04:26.548Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Editor Get All Submissions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blog/editor/submitted/all",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blog",
+						"editor",
+						"submitted",
+						"all"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Editor Get All Submissions",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blog/editor/submitted/all",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"editor",
+								"submitted",
+								"all"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1302"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"516-i6JuGnHxxRQM7U8k4y+JtdQ6aKE\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 12:09:53 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"_id\": \"63a1a1b1a2730d1599d46c55\",\n            \"title\": \"Introduction to Node.js and How Node.js works?\",\n            \"description\": \"Node.js is a popular framework for building backend systems (network applications) which can scale very well. Node.js is a Javascript runtime i.e. it runs the javascript codes.\",\n            \"tags\": [\n                \"NODEJS\",\n                \"BACKEND\",\n                \"API\"\n            ],\n            \"author\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            },\n            \"imgUrl\": \"https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png\",\n            \"blogUrl\": \"introduction-to-node-js-and-how-node-js-works\",\n            \"likes\": 0,\n            \"score\": 0.95,\n            \"isSubmitted\": true,\n            \"isDraft\": false,\n            \"isPublished\": false,\n            \"createdBy\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            },\n            \"updatedBy\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            },\n            \"publishedAt\": \"2022-12-20T12:04:26.548Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Editor Get All Drafts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blog/editor/drafts/all",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blog",
+						"editor",
+						"drafts",
+						"all"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Editor Get All Drafts",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blog/editor/drafts/all",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"editor",
+								"drafts",
+								"all"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1256"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4e8-5pFdl/OSrlNotzN+IMKORdoQF80\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 12:11:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"_id\": \"63a1a659a2730d1599d46d33\",\n            \"title\": \"Introduction to Node.js and How Node.js works?\",\n            \"description\": \"Node.js is a popular framework for building backend systems (network applications) which can scale very well. Node.js is a Javascript runtime i.e. it runs the javascript codes.\",\n            \"tags\": [\n                \"NODEJS\",\n                \"BACKEND\"\n            ],\n            \"author\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            },\n            \"imgUrl\": \"https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png\",\n            \"blogUrl\": \"introduction-to-node-js-and-how-node-js-works-4\",\n            \"likes\": 0,\n            \"score\": 0.9,\n            \"isSubmitted\": false,\n            \"isDraft\": true,\n            \"isPublished\": false,\n            \"createdBy\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            },\n            \"updatedBy\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            }\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Editor Get One Blog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blog/editor/id/63a1a1b1a2730d1599d46c55",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blog",
+						"editor",
+						"id",
+						"63a1a1b1a2730d1599d46c55"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Editor Get One Blog",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blog/editor/id/63a1a1b1a2730d1599d46c55",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"editor",
+								"id",
+								"63a1a1b1a2730d1599d46c55"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1181"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"49d-LKExpZvr1nICsaRxbNN8GTTgpsI\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 12:12:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"success\",\n    \"data\": {\n        \"_id\": \"63a1a1b1a2730d1599d46c55\",\n        \"title\": \"Introduction to Node.js and How Node.js works?\",\n        \"description\": \"Node.js is a popular framework for building backend systems (network applications) which can scale very well. Node.js is a Javascript runtime i.e. it runs the javascript codes.\",\n        \"draftText\": \"<p>This will depend on how you render the blog. It can be html text or plain text.</p>\",\n        \"tags\": [\n            \"NODEJS\",\n            \"BACKEND\",\n            \"API\"\n        ],\n        \"author\": {\n            \"_id\": \"63a197b39e07f859826e662a\",\n            \"name\": \"Janishar Ali - Coding Guru\",\n            \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n        },\n        \"imgUrl\": \"https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png\",\n        \"blogUrl\": \"introduction-to-node-js-and-how-node-js-works\",\n        \"likes\": 0,\n        \"score\": 0.95,\n        \"isSubmitted\": true,\n        \"isDraft\": false,\n        \"isPublished\": false,\n        \"status\": true,\n        \"createdBy\": \"63a197b39e07f859826e662a\",\n        \"updatedBy\": \"63a197b39e07f859826e662a\",\n        \"publishedAt\": \"2022-12-20T12:04:26.548Z\",\n        \"text\": \"<p>This will depend on how you render the blog. It can be html text or plain text.</p>\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Blog Detail By Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blog/id/63a1a1b1a2730d1599d46c55",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blog",
+						"id",
+						"63a1a1b1a2730d1599d46c55"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Blog Detail By Id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blog/id/63a1a1b1a2730d1599d46c55",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"id",
+								"63a1a1b1a2730d1599d46c55"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "933"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3a5-SdLdjQYTfAvAWc8JE3mnIeq0b40\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 12:13:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"success\",\n    \"data\": {\n        \"_id\": \"63a1a1b1a2730d1599d46c55\",\n        \"title\": \"Introduction to Node.js and How Node.js works?\",\n        \"description\": \"Node.js is a popular framework for building backend systems (network applications) which can scale very well. Node.js is a Javascript runtime i.e. it runs the javascript codes.\",\n        \"tags\": [\n            \"NODEJS\",\n            \"BACKEND\",\n            \"API\"\n        ],\n        \"author\": {\n            \"_id\": \"63a197b39e07f859826e662a\",\n            \"name\": \"Janishar Ali - Coding Guru\",\n            \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n        },\n        \"imgUrl\": \"https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png\",\n        \"blogUrl\": \"introduction-to-node-js-and-how-node-js-works\",\n        \"likes\": 0,\n        \"score\": 0.95,\n        \"publishedAt\": \"2022-12-20T12:04:26.548Z\",\n        \"text\": \"<p>This will depend on how you render the blog. It can be html text or plain text.</p>\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Blog Detail By Endpoint",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blog/url?endpoint=introduction-to-node-js-and-how-node-js-works",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blog",
+						"url"
+					],
+					"query": [
+						{
+							"key": "endpoint",
+							"value": "introduction-to-node-js-and-how-node-js-works"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Blog Detail By Endpoint",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blog/url?endpoint=introduction-to-node-js-and-how-node-js-works",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"url"
+							],
+							"query": [
+								{
+									"key": "endpoint",
+									"value": "introduction-to-node-js-and-how-node-js-works"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "933"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3a5-SdLdjQYTfAvAWc8JE3mnIeq0b40\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 12:13:57 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"success\",\n    \"data\": {\n        \"_id\": \"63a1a1b1a2730d1599d46c55\",\n        \"title\": \"Introduction to Node.js and How Node.js works?\",\n        \"description\": \"Node.js is a popular framework for building backend systems (network applications) which can scale very well. Node.js is a Javascript runtime i.e. it runs the javascript codes.\",\n        \"tags\": [\n            \"NODEJS\",\n            \"BACKEND\",\n            \"API\"\n        ],\n        \"author\": {\n            \"_id\": \"63a197b39e07f859826e662a\",\n            \"name\": \"Janishar Ali - Coding Guru\",\n            \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n        },\n        \"imgUrl\": \"https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png\",\n        \"blogUrl\": \"introduction-to-node-js-and-how-node-js-works\",\n        \"likes\": 0,\n        \"score\": 0.95,\n        \"publishedAt\": \"2022-12-20T12:04:26.548Z\",\n        \"text\": \"<p>This will depend on how you render the blog. It can be html text or plain text.</p>\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Blogs By Tag",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blogs/tag/BACKEND?pageNumber=1&pageItemCount=10",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blogs",
+						"tag",
+						"BACKEND"
+					],
+					"query": [
+						{
+							"key": "pageNumber",
+							"value": "1"
+						},
+						{
+							"key": "pageItemCount",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Blogs By Tag",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blogs/tag/BACKEND?pageNumber=1&pageItemCount=10",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blogs",
+								"tag",
+								"BACKEND"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "pageItemCount",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "839"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"347-R/kDFEA6c/TTmuVijb/O8c+7kjc\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 12:14:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"_id\": \"63a1a1b1a2730d1599d46c55\",\n            \"title\": \"Introduction to Node.js and How Node.js works?\",\n            \"description\": \"Node.js is a popular framework for building backend systems (network applications) which can scale very well. Node.js is a Javascript runtime i.e. it runs the javascript codes.\",\n            \"tags\": [\n                \"NODEJS\",\n                \"BACKEND\",\n                \"API\"\n            ],\n            \"author\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            },\n            \"imgUrl\": \"https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png\",\n            \"blogUrl\": \"introduction-to-node-js-and-how-node-js-works\",\n            \"likes\": 0,\n            \"score\": 0.95,\n            \"publishedAt\": \"2022-12-20T12:04:26.548Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Blogs Latest",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blogs/latest?pageNumber=1&pageItemCount=10",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blogs",
+						"latest"
+					],
+					"query": [
+						{
+							"key": "pageNumber",
+							"value": "1"
+						},
+						{
+							"key": "pageItemCount",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Blogs Latest",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blogs/latest?pageNumber=1&pageItemCount=10",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blogs",
+								"latest"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "pageItemCount",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "839"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"347-R/kDFEA6c/TTmuVijb/O8c+7kjc\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 12:15:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"_id\": \"63a1a1b1a2730d1599d46c55\",\n            \"title\": \"Introduction to Node.js and How Node.js works?\",\n            \"description\": \"Node.js is a popular framework for building backend systems (network applications) which can scale very well. Node.js is a Javascript runtime i.e. it runs the javascript codes.\",\n            \"tags\": [\n                \"NODEJS\",\n                \"BACKEND\",\n                \"API\"\n            ],\n            \"author\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            },\n            \"imgUrl\": \"https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png\",\n            \"blogUrl\": \"introduction-to-node-js-and-how-node-js-works\",\n            \"likes\": 0,\n            \"score\": 0.95,\n            \"publishedAt\": \"2022-12-20T12:04:26.548Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Blogs Author",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blogs/author/id/63a197b39e07f859826e662a",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blogs",
+						"author",
+						"id",
+						"63a197b39e07f859826e662a"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Blogs Author",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blogs/author/id/63a197b39e07f859826e662a",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blogs",
+								"author",
+								"id",
+								"63a197b39e07f859826e662a"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "839"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"347-R/kDFEA6c/TTmuVijb/O8c+7kjc\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 12:16:20 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"_id\": \"63a1a1b1a2730d1599d46c55\",\n            \"title\": \"Introduction to Node.js and How Node.js works?\",\n            \"description\": \"Node.js is a popular framework for building backend systems (network applications) which can scale very well. Node.js is a Javascript runtime i.e. it runs the javascript codes.\",\n            \"tags\": [\n                \"NODEJS\",\n                \"BACKEND\",\n                \"API\"\n            ],\n            \"author\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            },\n            \"imgUrl\": \"https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png\",\n            \"blogUrl\": \"introduction-to-node-js-and-how-node-js-works\",\n            \"likes\": 0,\n            \"score\": 0.95,\n            \"publishedAt\": \"2022-12-20T12:04:26.548Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Blogs Similar",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/blogs/similar/id/63a1a1b1a2730d1599d46c55",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"blogs",
+						"similar",
+						"id",
+						"63a1a1b1a2730d1599d46c55"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Blogs Similar",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/v1/blogs/similar/id/63a1a1b1a2730d1599d46c55",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"v1",
+								"blogs",
+								"similar",
+								"id",
+								"63a1a1b1a2730d1599d46c55"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "868"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"364-6ld8n0Y6P/suggRINuLidaxpAWc\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Dec 2022 12:28:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": \"10000\",\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"_id\": \"63a1a7dda2730d1599d46d6e\",\n            \"title\": \"Introduction to Node.js and How Node.js works 5?\",\n            \"description\": \"Node.js is a popular framework for building backend systems (network applications) which can scale very well. Node.js is a Javascript runtime i.e. it runs the javascript codes.\",\n            \"tags\": [\n                \"NODEJS\",\n                \"BACKEND\"\n            ],\n            \"author\": {\n                \"_id\": \"63a197b39e07f859826e662a\",\n                \"name\": \"Janishar Ali - Coding Guru\",\n                \"profilePicUrl\": \"https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4\"\n            },\n            \"imgUrl\": \"https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png\",\n            \"blogUrl\": \"introduction-to-node-js-and-how-node-js-works-5\",\n            \"likes\": 0,\n            \"score\": 0.9,\n            \"publishedAt\": \"2022-12-20T12:18:01.304Z\",\n            \"similarity\": 10.864285714285712\n        }\n    ]\n}"
+				}
+			]
+		}
+	]
+}
