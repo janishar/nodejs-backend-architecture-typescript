@@ -109,6 +109,9 @@ The repository [**React.js Isomorphic Web Application Architecture**] has a comp
     * Change the `DB_HOST` to `localhost` in **.env** and **tests/.env.test** files.
     * Execute `npm start` and You will be able to access the API from http://localhost:3000
     * To run the tests execute `npm test`.
+
+  * Postman APIs Here: 
+    [addons/postman](https://github.com/janishar/nodejs-backend-architecture-typescript/tree/master/addons/postman)
   
   ## Learn Backend Development From Our Videos
   * [Introduction to Web Backend Development for Beginners](https://youtu.be/SikmqyFocKQ)
@@ -280,12 +283,15 @@ The repository [**React.js Isomorphic Web Application Architecture**] has a comp
       "message": "Signup Successful",
       "data": {
         "user": {
-          "_id": "5e7c9d32307a223bb8a4b12b",
+          "_id": "63a19e5ba2730d1599d46c0b",
           "name": "Janishar Ali",
-          "email": "ali@github.com",
           "roles": [
-            "5e7b8acad7aded2407e078d7"
-          ],
+             {
+               "_id": "63a197b39e07f859826e6626",
+               "code": "LEARNER",
+               "status": true
+             }
+            ],
           "profilePicUrl": "https://avatars1.githubusercontent.com/u/11065002?s=460&u=1e8e42bda7e6f579a2b216767b2ed986619bbf78&v=4"
         },
         "tokens": {
