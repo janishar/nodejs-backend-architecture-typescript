@@ -78,8 +78,8 @@ The repository [**React.js Isomorphic Web Application Architecture**] has a comp
 * [From JavaScript to TypeScript](https://afteracademy.com/blog/from-javascript-to-typescript)
 
 
-## You can find the complete API documentation [here](https://documenter.getpostman.com/view/1552895/SzYUZg52?version=latest)
-<a href="https://documenter.getpostman.com/view/1552895/SzYUZg52?version=latest" target="_blank">
+## You can find the complete API documentation [here](https://documenter.getpostman.com/view/1552895/2s8Z6saap1)
+<a href="https://documenter.getpostman.com/view/1552895/2s8Z6saap1" target="_blank">
     <img src="https://raw.githubusercontent.com/afteracademy/nodejs-backend-architecture-typescript/master/addons/github_assets/api-doc-button.png" width="200" height="60"/>
 </a>
 
