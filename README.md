@@ -37,19 +37,19 @@ I [Janishar Ali](https://janisharali.com) have created this project using my 10 
 We will learn and build the backend application for a blogging platform. The main focus will be to create a maintainable and highly testable architecture.
 <br>
 Following are the features of this project:
-* **This backend is written in Typescript**: The type safety at build time and having intellisense for it in the IDE like vscode is unparalleled to productivity. We have found production bug reduced to a significant amount since most of the code vulnerabilities are identified during the build phase itself.
+* **This backend is written in Typescript**: The type safety at build time and having intellisense for it in the IDE like vscode is unparalleled to productivity. I have found production bug reduced to a significant amount since most of the code vulnerabilities are identified during the build phase itself.
 * **Separation of concern principle**: Each component has been given a particular role. The role of the components is mutually exclusive. This makes the project easy to be unit tested.
 * **Feature encapsulation**: The files or components that are related to a particular feature have been grouped unless those components are required in multiple features. This enhances the ability to share code across projects.
-* **Centralised Error handling**: We have created a framework where all the errors are handled centrally. This reduces the ambiguity in the development when the project grows larger.
+* **Centralised Error handling**: I have created a framework where all the errors are handled centrally. This reduces the ambiguity in the development when the project grows larger.
 * **Centralised Response handling**: Similar to Error handling we have a response handling framework. This makes it very convenient to apply a common API response pattern.
 * **Mongodb is used through Mongoose**: Mongodb fits very well to the node.js application. Being NoSQL, fast, and scalable makes it ideal for modern web applications.
-* **Redis Memcache**: We have used the redis server for caching the items which does not change frequently. It will boost the performance of our system.
-* **Async execution**: We have used async/await for the promises and made sure to use the non-blocking version of all the functions with few exceptions.
-* **Docker compose has been configured**: We have created the Dockerfile to provide the easy deployability without any setup and configurations. 
+* **Redis Memcache**: I have used the redis server for caching the items which does not change frequently. It will boost the performance of our system.
+* **Async execution**: I have used async/await for the promises and made sure to use the non-blocking version of all the functions with few exceptions.
+* **Docker compose has been configured**: I have created the Dockerfile to provide the easy deployability without any setup and configurations. 
 * **Unit test is favored**: The tests have been written to test the functions and routes without the need of the database server. Integration tests has also been done but the unit test is favored.
-* **A pure backend project**: We have experienced that when a backend is developed clubbed with a frontend then in the future it becomes really difficult to scale. We would want to create a separate backend project that servers many websites and mobile apps.
+* **A pure backend project**: I have experienced that when a backend is developed clubbed with a frontend then in the future it becomes really difficult to scale. We would want to create a separate backend project that servers many websites and mobile apps.
 
-> We have also open source a complete blogging website working on this backend project: [Goto Repository](https://github.com/janishar/react-app-architecture)
+> I have also open source a complete blogging website working on this backend project: [Goto Repository](https://github.com/janishar/react-app-architecture)
 The repository [**React.js Isomorphic Web Application Architecture**] has a complete React.js web application implemented for a blogging platform which is using this project as its API server.
 
 ## 3RE Architecture: Router, RouteHandler, ResponseHandler, ErrorHandler
