@@ -256,13 +256,13 @@ The repository [**React.js Isomorphic Web Application Architecture**] has a comp
  ```
  
  ## Directory Traversal for Signup API call
- `/src → server.ts → app.ts → /routes/v1/index.ts → /auth/apikey.ts → schema.ts → /helpers/validator.ts → asyncHandler.ts → /routes/v1/access/signup.ts → schema.ts → /helpers/validator.ts → asyncHandler.ts → /database/repository/UserRepo.ts → /database/model/User.ts → /core/ApiResponses.ts`
+ `/src → server.ts → app.ts → /routes/index.ts → /auth/apikey.ts → schema.ts → /helpers/validator.ts → asyncHandler.ts → /routes/access/signup.ts → schema.ts → /helpers/validator.ts → asyncHandler.ts → /database/repository/UserRepo.ts → /database/model/User.ts → /core/ApiResponses.ts`
  
  ## API Examples
 * Signup
     * Method and Headers
     ```
-    POST /v1/signup/basic HTTP/1.1
+    POST /signup/basic HTTP/1.1
     Host: localhost:3000
     x-api-key: GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj
     Content-Type: application/json
@@ -311,7 +311,7 @@ The repository [**React.js Isomorphic Web Application Architecture**] has a comp
 * Profile Private
     * Method and Headers
     ```
-    GET /v1/profile/my HTTP/1.1
+    GET /profile/my HTTP/1.1
     Host: localhost:3000
     x-api-key: GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj
     Content-Type: application/json

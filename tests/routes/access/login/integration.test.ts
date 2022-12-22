@@ -19,7 +19,7 @@ export const userFindByEmailSpy = jest.spyOn(UserRepo, 'findByEmail');
 export const keystoreCreateSpy = jest.spyOn(KeystoreRepo, 'create');
 
 describe('Login basic route', () => {
-  const endpoint = '/v1/login/basic';
+  const endpoint = '/login/basic';
   const request = supertest(app);
   const password = '123456';
 

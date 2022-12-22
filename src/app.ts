@@ -10,7 +10,7 @@ import {
   InternalError,
   ErrorType,
 } from './core/ApiError';
-import routesV1 from './routes';
+import routes from './routes';
 
 process.on('uncaughtException', (e) => {
   Logger.error(e);
@@ -25,7 +25,7 @@ app.use(
 app.use(cors({ origin: corsUrl, optionsSuccessStatus: 200 }));
 
 // Routes
-app.use('/v1', routesV1);
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => next(new NotFoundError()));

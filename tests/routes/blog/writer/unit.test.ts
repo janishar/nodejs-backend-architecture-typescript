@@ -26,7 +26,7 @@ describe('Writer blog create routes', () => {
   });
 
   const request = supertest(app);
-  const endpoint = '/v1/blog/writer';
+  const endpoint = '/blog/writer';
 
   it('Should send error if the user do have writer role', async () => {
     const response = await addAuthHeaders(request.post(endpoint));
@@ -214,7 +214,7 @@ describe('Writer blog submit routes', () => {
   });
 
   const request = supertest(app);
-  const endpoint = '/v1/blog/writer/submit/';
+  const endpoint = '/blog/writer/submit/';
 
   it('Should send error if submit blog id is not valid', async () => {
     const response = await addAuthHeaders(
@@ -258,7 +258,7 @@ describe('Writer blog withdraw routes', () => {
   });
 
   const request = supertest(app);
-  const endpoint = '/v1/blog/writer/withdraw/';
+  const endpoint = '/blog/writer/withdraw/';
 
   it('Should send error if withdraw blog id is not valid', async () => {
     const response = await addAuthHeaders(
@@ -302,7 +302,7 @@ describe('Writer blog delete routes', () => {
   });
 
   const request = supertest(app);
-  const endpoint = '/v1/blog/writer/id/';
+  const endpoint = '/blog/writer/id/';
 
   it('Should send error if deleting blog id is not valid', async () => {
     const response = await addAuthHeaders(
@@ -345,7 +345,7 @@ describe('Writer blog get by id routes', () => {
   });
 
   const request = supertest(app);
-  const endpoint = '/v1/blog/writer/id/';
+  const endpoint = '/blog/writer/id/';
 
   it('Should send error if fetching blog id is not valid', async () => {
     const response = await addAuthHeaders(
