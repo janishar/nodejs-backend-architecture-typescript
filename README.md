@@ -170,27 +170,26 @@ The repository [**React.js Isomorphic Web Application Architecture**] has a comp
 │   │   ├── utils.ts
 │   │   └── validator.ts
 │   ├── routes
-│   │   └── v1
-│   │       ├── access
-│   │       │   ├── credential.ts
-│   │       │   ├── login.ts
-│   │       │   ├── logout.ts
-│   │       │   ├── schema.ts
-│   │       │   ├── signup.ts
-│   │       │   ├── token.ts
-│   │       │   └── utils.ts
-│   │       ├── blog
-│   │       │   ├── editor.ts
-│   │       │   ├── index.ts
-│   │       │   ├── schema.ts
-│   │       │   └── writer.ts
-│   │       ├── blogs
-│   │       │   ├── index.ts
-│   │       │   └── schema.ts
-│   │       ├── index.ts
-│   │       └── profile
-│   │           ├── schema.ts
-│   │           └── user.ts
+│   │   ├── access
+│   │   │   ├── credential.ts
+│   │   │   ├── login.ts
+│   │   │   ├── logout.ts
+│   │   │   ├── schema.ts
+│   │   │   ├── signup.ts
+│   │   │   ├── token.ts
+│   │   │   └── utils.ts
+│   │   ├── blog
+│   │   │   ├── editor.ts
+│   │   │   ├── index.ts
+│   │   │   ├── schema.ts
+│   │   │   └── writer.ts
+│   │   ├── blogs
+│   │   │   ├── index.ts
+│   │   │   └── schema.ts
+│   │   ├── index.ts
+│   │   └── profile
+│   │       ├── schema.ts
+│   │       └── user.ts
 │   └── types
 │       └── app-request.d.ts
 ├── tests
@@ -216,22 +215,21 @@ The repository [**React.js Isomorphic Web Application Architecture**] has a comp
 │   ├── database
 │   │   └── mock.ts
 │   ├── routes
-│   │   └── v1
-│   │       ├── access
-│   │       │   ├── login
-│   │       │   │   ├── integration.test.ts
-│   │       │   │   ├── mock.ts
-│   │       │   │   └── unit.test.ts
-│   │       │   └── signup
-│   │       │       ├── mock.ts
-│   │       │       └── unit.test.ts
-│   │       └── blog
-│   │           ├── index
-│   │           │   ├── mock.ts
-│   │           │   └── unit.test.ts
-│   │           └── writer
-│   │               ├── mock.ts
-│   │               └── unit.test.ts
+│   │   ├── access
+│   │   │   ├── login
+│   │   │   │   ├── integration.test.ts
+│   │   │   │   ├── mock.ts
+│   │   │   │   └── unit.test.ts
+│   │   │   └── signup
+│   │   │       ├── mock.ts
+│   │   │       └── unit.test.ts
+│   │   └── blog
+│   │       ├── index
+│   │       │   ├── mock.ts
+│   │       │   └── unit.test.ts
+│   │       └── writer
+│   │           ├── mock.ts
+│   │           └── unit.test.ts
 │   ├── .env.test
 │   └── setup.ts
 ├── addons
