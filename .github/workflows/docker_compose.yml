@@ -12,6 +12,14 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+    - name: Create .env
+      run: cp .env.example .env
+    - name: Create public.pem
+      run: cp keys/public.pem.example keys/public.pem
+    - name: Create private.pem
+      run: cp keys/private.pem.example keys/private.pem
+    - name: Create tests .env
+      run: cp tests/.env.test.example tests/.env.test
     - name: Build docker images
       run: docker-compose build
     - name: Enter node app container
