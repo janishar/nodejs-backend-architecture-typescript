@@ -13,7 +13,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
     - name: Build docker images
-      run: docker-compose build -d
+      run: docker-compose build
     - name: Enter node app container
       run: docker exec -it app bash
     - name: Run tests
