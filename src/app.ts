@@ -10,7 +10,7 @@ import {
   InternalError,
   ErrorType,
 } from './core/ApiError';
-import routesV1 from './routes/v1';
+import routesV1 from './routes';
 
 process.on('uncaughtException', (e) => {
   Logger.error(e);
