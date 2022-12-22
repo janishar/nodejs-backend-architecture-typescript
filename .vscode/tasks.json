@@ -40,7 +40,7 @@
       "args": [
         "-r",
         "${workspaceFolder}/.templates/route",
-        "${workspaceFolder}/src/routes/v1/${input:routeName}"
+        "${workspaceFolder}/src/routes/${input:routeName}"
       ]
     },
     {

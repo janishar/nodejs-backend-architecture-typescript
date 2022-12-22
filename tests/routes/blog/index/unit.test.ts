@@ -26,7 +26,7 @@ describe('BlogDetail by URL route', () => {
   });
 
   const request = supertest(app);
-  const endpoint = '/v1/blog/url';
+  const endpoint = '/blog/url';
 
   it('Should send error when endpoint query is not passed', async () => {
     const response = await addHeaders(request.get(endpoint));
@@ -107,7 +107,7 @@ describe('BlogDetail by id route', () => {
   });
 
   const request = supertest(app);
-  const endpoint = '/v1/blog/id/';
+  const endpoint = '/blog/id/';
 
   it('Should send error when invalid id is passed', async () => {
     const response = await addHeaders(request.get(endpoint + 'abc'));

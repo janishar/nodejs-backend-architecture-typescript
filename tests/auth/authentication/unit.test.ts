@@ -15,7 +15,7 @@ import app from '../../../src/app';
 import supertest from 'supertest';
 
 describe('authentication validation', () => {
-  const endpoint = '/v1/profile/my/test';
+  const endpoint = '/profile/my/test';
   const request = supertest(app);
 
   beforeEach(() => {

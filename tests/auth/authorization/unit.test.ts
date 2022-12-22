@@ -15,7 +15,7 @@ import supertest from 'supertest';
 import { RoleCode } from '../../../src/database/model/Role';
 
 describe('authentication validation for editor', () => {
-  const endpoint = '/v1/blog/editor/test';
+  const endpoint = '/blog/editor/test';
   const request = supertest(app);
 
   beforeEach(() => {
@@ -37,7 +37,7 @@ describe('authentication validation for editor', () => {
 });
 
 describe('authentication validation for writer', () => {
-  const endpoint = '/v1/blog/writer/test';
+  const endpoint = '/blog/writer/test';
   const request = supertest(app);
 
   beforeEach(() => {
