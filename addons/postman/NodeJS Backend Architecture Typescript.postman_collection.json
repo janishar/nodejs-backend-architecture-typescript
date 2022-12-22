@@ -34,12 +34,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{BASE_URL}}/v1/signup/basic",
+					"raw": "{{BASE_URL}}/signup/basic",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"signup",
 						"basic"
 					]
@@ -74,12 +73,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/v1/signup/basic",
+							"raw": "{{BASE_URL}}/signup/basic",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"signup",
 								"basic"
 							]
@@ -154,12 +152,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{BASE_URL}}/v1/login/basic",
+					"raw": "{{BASE_URL}}/login/basic",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"login",
 						"basic"
 					]
@@ -193,12 +190,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/v1/login/basic",
+							"raw": "{{BASE_URL}}/login/basic",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"login",
 								"basic"
 							]
@@ -282,12 +278,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{BASE_URL}}/v1/logout",
+					"raw": "{{BASE_URL}}/logout",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"logout"
 					]
 				}
@@ -319,12 +314,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/v1/logout",
+							"raw": "{{BASE_URL}}/logout",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"logout"
 							]
 						}
@@ -407,12 +401,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{BASE_URL}}/v1/token/refresh",
+					"raw": "{{BASE_URL}}/token/refresh",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"token",
 						"refresh"
 					]
@@ -445,12 +438,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/v1/token/refresh",
+							"raw": "{{BASE_URL}}/token/refresh",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"token",
 								"refresh"
 							]
@@ -516,12 +508,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/profile/public/id/63a197b39e07f859826e662a",
+					"raw": "{{BASE_URL}}/profile/public/id/63a197b39e07f859826e662a",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"profile",
 						"public",
 						"id",
@@ -558,12 +549,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/profile/my",
+					"raw": "{{BASE_URL}}/profile/my",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"profile",
 						"my"
 					]
@@ -587,12 +577,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/profile/my",
+							"raw": "{{BASE_URL}}/profile/my",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"profile",
 								"my"
 							]
@@ -676,12 +665,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{BASE_URL}}/v1/profile",
+					"raw": "{{BASE_URL}}/profile",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"profile"
 					]
 				}
@@ -713,12 +701,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/v1/profile",
+							"raw": "{{BASE_URL}}/profile",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"profile"
 							]
 						}
@@ -801,12 +788,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blog/writer",
+					"raw": "{{BASE_URL}}/blog/writer",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blog",
 						"writer"
 					]
@@ -839,12 +825,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blog/writer",
+							"raw": "{{BASE_URL}}/blog/writer",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blog",
 								"writer"
 							]
@@ -928,12 +913,11 @@
 					}
 				},
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blog/writer/id/63a1a1b1a2730d1599d46c55",
+					"raw": "{{BASE_URL}}/blog/writer/id/63a1a1b1a2730d1599d46c55",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blog",
 						"writer",
 						"id",
@@ -968,12 +952,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blog/writer/id/63a1a1b1a2730d1599d46c55",
+							"raw": "{{BASE_URL}}/blog/writer/id/63a1a1b1a2730d1599d46c55",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blog",
 								"writer",
 								"id",
@@ -1050,12 +1033,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blog/writer/submit/63a1a1b1a2730d1599d46c55",
+					"raw": "{{BASE_URL}}/blog/writer/submit/63a1a1b1a2730d1599d46c55",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blog",
 						"writer",
 						"submit",
@@ -1081,12 +1063,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blog/writer/submit/63a1a1b1a2730d1599d46c55",
+							"raw": "{{BASE_URL}}/blog/writer/submit/63a1a1b1a2730d1599d46c55",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blog",
 								"writer",
 								"submit",
@@ -1163,12 +1144,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blog/writer/withdraw/63a1a1b1a2730d1599d46c55",
+					"raw": "{{BASE_URL}}/blog/writer/withdraw/63a1a1b1a2730d1599d46c55",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blog",
 						"writer",
 						"withdraw",
@@ -1194,12 +1174,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blog/writer/withdraw/63a1a1b1a2730d1599d46c55",
+							"raw": "{{BASE_URL}}/blog/writer/withdraw/63a1a1b1a2730d1599d46c55",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blog",
 								"writer",
 								"withdraw",
@@ -1276,12 +1255,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blog/writer/id/63a1a3a2a2730d1599d46c83",
+					"raw": "{{BASE_URL}}/blog/writer/id/63a1a3a2a2730d1599d46c83",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blog",
 						"writer",
 						"id",
@@ -1307,12 +1285,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blog/writer/id/63a1a3a2a2730d1599d46c83",
+							"raw": "{{BASE_URL}}/blog/writer/id/63a1a3a2a2730d1599d46c83",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blog",
 								"writer",
 								"id",
@@ -1389,12 +1366,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blog/writer/id/63a1a1b1a2730d1599d46c55",
+					"raw": "{{BASE_URL}}/blog/writer/id/63a1a1b1a2730d1599d46c55",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blog",
 						"writer",
 						"id",
@@ -1420,12 +1396,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blog/writer/id/63a1a1b1a2730d1599d46c55",
+							"raw": "{{BASE_URL}}/blog/writer/id/63a1a1b1a2730d1599d46c55",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blog",
 								"writer",
 								"id",
@@ -1502,12 +1477,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blog/writer/drafts/all",
+					"raw": "{{BASE_URL}}/blog/writer/drafts/all",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blog",
 						"writer",
 						"drafts",
@@ -1533,12 +1507,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blog/writer/drafts/all",
+							"raw": "{{BASE_URL}}/blog/writer/drafts/all",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blog",
 								"writer",
 								"drafts",
@@ -1615,12 +1588,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blog/writer/submitted/all",
+					"raw": "{{BASE_URL}}/blog/writer/submitted/all",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blog",
 						"writer",
 						"submitted",
@@ -1646,12 +1618,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blog/writer/submitted/all",
+							"raw": "{{BASE_URL}}/blog/writer/submitted/all",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blog",
 								"writer",
 								"submitted",
@@ -1728,12 +1699,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blog/writer/published/all",
+					"raw": "{{BASE_URL}}/blog/writer/published/all",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blog",
 						"writer",
 						"published",
@@ -1759,12 +1729,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blog/writer/published/all",
+							"raw": "{{BASE_URL}}/blog/writer/published/all",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blog",
 								"writer",
 								"published",
@@ -1841,12 +1810,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blog/editor/publish/63a1a1b1a2730d1599d46c55",
+					"raw": "{{BASE_URL}}/blog/editor/publish/63a1a1b1a2730d1599d46c55",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blog",
 						"editor",
 						"publish",
@@ -1872,12 +1840,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blog/editor/publish/63a1a1b1a2730d1599d46c55",
+							"raw": "{{BASE_URL}}/blog/editor/publish/63a1a1b1a2730d1599d46c55",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blog",
 								"editor",
 								"publish",
@@ -1954,12 +1921,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blog/editor/unpublish/63a1a1b1a2730d1599d46c55",
+					"raw": "{{BASE_URL}}/blog/editor/unpublish/63a1a1b1a2730d1599d46c55",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blog",
 						"editor",
 						"unpublish",
@@ -1985,12 +1951,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blog/editor/unpublish/63a1a1b1a2730d1599d46c55",
+							"raw": "{{BASE_URL}}/blog/editor/unpublish/63a1a1b1a2730d1599d46c55",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blog",
 								"editor",
 								"unpublish",
@@ -2067,12 +2032,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blog/editor/id/63a1a569a2730d1599d46cdd",
+					"raw": "{{BASE_URL}}/blog/editor/id/63a1a569a2730d1599d46cdd",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blog",
 						"editor",
 						"id",
@@ -2098,12 +2062,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blog/editor/id/63a1a569a2730d1599d46cdd",
+							"raw": "{{BASE_URL}}/blog/editor/id/63a1a569a2730d1599d46cdd",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blog",
 								"editor",
 								"id",
@@ -2180,12 +2143,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blog/editor/published/all",
+					"raw": "{{BASE_URL}}/blog/editor/published/all",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blog",
 						"editor",
 						"published",
@@ -2211,12 +2173,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blog/editor/published/all",
+							"raw": "{{BASE_URL}}/blog/editor/published/all",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blog",
 								"editor",
 								"published",
@@ -2293,12 +2254,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blog/editor/submitted/all",
+					"raw": "{{BASE_URL}}/blog/editor/submitted/all",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blog",
 						"editor",
 						"submitted",
@@ -2324,12 +2284,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blog/editor/submitted/all",
+							"raw": "{{BASE_URL}}/blog/editor/submitted/all",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blog",
 								"editor",
 								"submitted",
@@ -2406,12 +2365,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blog/editor/drafts/all",
+					"raw": "{{BASE_URL}}/blog/editor/drafts/all",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blog",
 						"editor",
 						"drafts",
@@ -2437,12 +2395,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blog/editor/drafts/all",
+							"raw": "{{BASE_URL}}/blog/editor/drafts/all",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blog",
 								"editor",
 								"drafts",
@@ -2519,12 +2476,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blog/editor/id/63a1a1b1a2730d1599d46c55",
+					"raw": "{{BASE_URL}}/blog/editor/id/63a1a1b1a2730d1599d46c55",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blog",
 						"editor",
 						"id",
@@ -2550,12 +2506,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blog/editor/id/63a1a1b1a2730d1599d46c55",
+							"raw": "{{BASE_URL}}/blog/editor/id/63a1a1b1a2730d1599d46c55",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blog",
 								"editor",
 								"id",
@@ -2623,12 +2578,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blog/id/63a1a1b1a2730d1599d46c55",
+					"raw": "{{BASE_URL}}/blog/id/63a1a1b1a2730d1599d46c55",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blog",
 						"id",
 						"63a1a1b1a2730d1599d46c55"
@@ -2654,12 +2608,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blog/id/63a1a1b1a2730d1599d46c55",
+							"raw": "{{BASE_URL}}/blog/id/63a1a1b1a2730d1599d46c55",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blog",
 								"id",
 								"63a1a1b1a2730d1599d46c55"
@@ -2726,12 +2679,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blog/url?endpoint=introduction-to-node-js-and-how-node-js-works",
+					"raw": "{{BASE_URL}}/blog/url?endpoint=introduction-to-node-js-and-how-node-js-works",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blog",
 						"url"
 					],
@@ -2762,12 +2714,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blog/url?endpoint=introduction-to-node-js-and-how-node-js-works",
+							"raw": "{{BASE_URL}}/blog/url?endpoint=introduction-to-node-js-and-how-node-js-works",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blog",
 								"url"
 							],
@@ -2839,12 +2790,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blogs/tag/BACKEND?pageNumber=1&pageItemCount=10",
+					"raw": "{{BASE_URL}}/blogs/tag/BACKEND?pageNumber=1&pageItemCount=10",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blogs",
 						"tag",
 						"BACKEND"
@@ -2880,12 +2830,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blogs/tag/BACKEND?pageNumber=1&pageItemCount=10",
+							"raw": "{{BASE_URL}}/blogs/tag/BACKEND?pageNumber=1&pageItemCount=10",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blogs",
 								"tag",
 								"BACKEND"
@@ -2962,12 +2911,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blogs/latest?pageNumber=1&pageItemCount=10",
+					"raw": "{{BASE_URL}}/blogs/latest?pageNumber=1&pageItemCount=10",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blogs",
 						"latest"
 					],
@@ -3002,12 +2950,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blogs/latest?pageNumber=1&pageItemCount=10",
+							"raw": "{{BASE_URL}}/blogs/latest?pageNumber=1&pageItemCount=10",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blogs",
 								"latest"
 							],
@@ -3083,12 +3030,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blogs/author/id/63a197b39e07f859826e662a",
+					"raw": "{{BASE_URL}}/blogs/author/id/63a197b39e07f859826e662a",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blogs",
 						"author",
 						"id",
@@ -3115,12 +3061,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blogs/author/id/63a197b39e07f859826e662a",
+							"raw": "{{BASE_URL}}/blogs/author/id/63a197b39e07f859826e662a",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blogs",
 								"author",
 								"id",
@@ -3188,12 +3133,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/v1/blogs/similar/id/63a1a1b1a2730d1599d46c55",
+					"raw": "{{BASE_URL}}/blogs/similar/id/63a1a1b1a2730d1599d46c55",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"v1",
 						"blogs",
 						"similar",
 						"id",
@@ -3220,12 +3164,11 @@
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/v1/blogs/similar/id/63a1a1b1a2730d1599d46c55",
+							"raw": "{{BASE_URL}}/blogs/similar/id/63a1a1b1a2730d1599d46c55",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"v1",
 								"blogs",
 								"similar",
 								"id",
