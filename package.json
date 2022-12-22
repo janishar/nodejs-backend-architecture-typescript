@@ -1,6 +1,6 @@
 {
   "name": "nodejs-backend-architecture",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "The architecture for nodejs backend application. It is build on top of expressjs using typescript.",
   "main": "index.js",
   "scripts": {
