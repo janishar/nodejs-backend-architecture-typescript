@@ -21,7 +21,7 @@ jobs:
     - name: Create tests .env
       run: cp tests/.env.test.example tests/.env.test
     - name: Build docker images
-      run: docker-compose build
+      run: docker-compose up -d
     - name: Enter node app container
       run: docker exec -it app bash
     - name: Run tests
