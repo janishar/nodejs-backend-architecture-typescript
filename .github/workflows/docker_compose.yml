@@ -12,9 +12,20 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+    - name: Create .env
+      run: cp .env.example .env
+    - name: Create public.pem
+      run: cp keys/public.pem.example keys/public.pem
+    - name: Create private.pem
+      run: cp keys/private.pem.example keys/private.pem
+    - name: Create tests .env
+      run: cp tests/.env.test.example tests/.env.test
     - name: Build docker images
-      run: docker-compose build -d
-    - name: Enter node app container
-      run: docker exec -it app bash
+      run: docker-compose build
+    - name: Run docker images
+      run: docker-compose up -d
     - name: Run tests
-      run: npm test
+      run: docker exec -t app npm test
+    - name: Clean up
+      if: success() || failure()
+      run: docker-compose down --rmi all -v --remove-orphans
