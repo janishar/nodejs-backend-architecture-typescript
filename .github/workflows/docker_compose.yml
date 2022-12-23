@@ -23,7 +23,7 @@ jobs:
     - name: Build docker images
       run: docker-compose build
     - name: Run docker images
-      run: docker-compose up -d && docker exec app /bin/bash
+      run: docker-compose up -d && docker exec -ti app /bin/bash
     - name: Run tests
       run: npm test
     - name: Clean Up
