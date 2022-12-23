@@ -23,8 +23,9 @@ jobs:
     - name: Build docker images
       run: docker-compose build
     - name: Run docker images
-      run: docker-compose up -d
-    - name: Enter node app container
-      run: docker exec --tty app /bin/bash
+      run: docker-compose up && docker exec app /bin/bash
     - name: Run tests
       run: npm test
+    - name: Clean Up
+      if: success() || failure()
+      run: docker-compose down --rmi all -v --remove-orphans
