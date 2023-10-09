@@ -28,12 +28,11 @@ This project is designed for a production ready environment. It can handle the s
 It is suitable for Web Apps, Mobile Apps, and other API services.
 
 # About The Author
-I [Janishar Ali](https://janisharali.com) have created this project using my 10 years of experience in tech industry working for top companies. I enjoy sharing my learnings with the community. You can connect with me here:
+You can connect with me here:
 * [Twitter](https://twitter.com/janisharali)
+* [YouTube Channel](https://www.youtube.com/@unusualcode)
 * [LinkedIn](https://www.linkedin.com/in/janishar-ali)
 * [Instagram](https://www.instagram.com/janisharali)
-
-[Learn from My YouTube Channel](https://www.youtube.com/@janisharali)
 
 # Project Instructions
 We will learn and build the backend application for a blogging platform. The main focus will be to create a maintainable and highly testable architecture.
