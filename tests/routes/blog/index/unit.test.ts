@@ -33,7 +33,7 @@ describe('BlogDetail by URL route', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/endpoint/);
     expect(response.body.message).toMatch(/required/);
-    expect(mockPublishedBlogFindByUrl).not.toBeCalled();
+    expect(mockPublishedBlogFindByUrl).not.toHaveBeenCalled();
   });
 
   it('Should send error when url endpoint is more that 200 chars', async () => {
@@ -44,7 +44,7 @@ describe('BlogDetail by URL route', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/length must/);
     expect(response.body.message).toMatch(/200/);
-    expect(mockPublishedBlogFindByUrl).not.toBeCalled();
+    expect(mockPublishedBlogFindByUrl).not.toHaveBeenCalled();
   });
 
   it('Should send error when blog do not exists for url', async () => {
@@ -53,11 +53,11 @@ describe('BlogDetail by URL route', () => {
     );
     expect(response.status).toBe(404);
     expect(response.body.message).toMatch(/not found/);
-    expect(mockBlogCacheFetchByUrl).toBeCalledTimes(1);
-    expect(mockBlogCacheFetchByUrl).toBeCalledWith('xyz');
-    expect(mockBlogCacheSave).not.toBeCalled();
-    expect(mockPublishedBlogFindByUrl).toBeCalledTimes(1);
-    expect(mockPublishedBlogFindByUrl).toBeCalledWith('xyz');
+    expect(mockBlogCacheFetchByUrl).toHaveBeenCalledTimes(1);
+    expect(mockBlogCacheFetchByUrl).toHaveBeenCalledWith('xyz');
+    expect(mockBlogCacheSave).not.toHaveBeenCalled();
+    expect(mockPublishedBlogFindByUrl).toHaveBeenCalledTimes(1);
+    expect(mockPublishedBlogFindByUrl).toHaveBeenCalledWith('xyz');
   });
 
   it('Should send cache data when blog exists for url in cache', async () => {
@@ -69,12 +69,12 @@ describe('BlogDetail by URL route', () => {
     expect(response.body.data).toBeDefined();
     expect(response.body.data).toHaveProperty('_id');
 
-    expect(mockBlogCacheFetchByUrl).toBeCalledTimes(1);
-    expect(mockBlogCacheFetchByUrl).toBeCalledWith(BLOG_URL);
+    expect(mockBlogCacheFetchByUrl).toHaveBeenCalledTimes(1);
+    expect(mockBlogCacheFetchByUrl).toHaveBeenCalledWith(BLOG_URL);
     expect(mockBlogCacheFetchByUrl).toReturnTimes(1);
 
-    expect(mockPublishedBlogFindByUrl).not.toBeCalled();
-    expect(mockBlogCacheSave).not.toBeCalled();
+    expect(mockPublishedBlogFindByUrl).not.toHaveBeenCalled();
+    expect(mockBlogCacheSave).not.toHaveBeenCalled();
   });
 
   it('Should send database data when blog dont exists for url in cache', async () => {
@@ -86,15 +86,15 @@ describe('BlogDetail by URL route', () => {
     expect(response.body.data).toBeDefined();
     expect(response.body.data).toHaveProperty('_id');
 
-    expect(mockBlogCacheFetchByUrl).toBeCalledTimes(1);
-    expect(mockBlogCacheFetchByUrl).toBeCalledWith(BLOG_2_URL);
+    expect(mockBlogCacheFetchByUrl).toHaveBeenCalledTimes(1);
+    expect(mockBlogCacheFetchByUrl).toHaveBeenCalledWith(BLOG_2_URL);
     expect(mockBlogCacheFetchByUrl).toReturnTimes(1);
 
-    expect(mockPublishedBlogFindByUrl).toBeCalledTimes(1);
-    expect(mockPublishedBlogFindByUrl).toBeCalledWith(BLOG_2_URL);
+    expect(mockPublishedBlogFindByUrl).toHaveBeenCalledTimes(1);
+    expect(mockPublishedBlogFindByUrl).toHaveBeenCalledWith(BLOG_2_URL);
     expect(mockPublishedBlogFindByUrl).toReturnTimes(1);
 
-    expect(mockBlogCacheSave).toBeCalledTimes(1);
+    expect(mockBlogCacheSave).toHaveBeenCalledTimes(1);
     expect(mockBlogCacheSave).toReturnTimes(1);
   });
 });
@@ -113,7 +113,7 @@ describe('BlogDetail by id route', () => {
     const response = await addHeaders(request.get(endpoint + 'abc'));
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/invalid/);
-    expect(mockPublishedBlogFindById).not.toBeCalled();
+    expect(mockPublishedBlogFindById).not.toHaveBeenCalled();
   });
 
   it('Should send error when blog do not exists for id', async () => {
@@ -122,7 +122,7 @@ describe('BlogDetail by id route', () => {
     );
     expect(response.status).toBe(404);
     expect(response.body.message).toMatch(/not found/);
-    expect(mockPublishedBlogFindById).toBeCalledTimes(1);
+    expect(mockPublishedBlogFindById).toHaveBeenCalledTimes(1);
   });
 
   it('Should send cache data when blog exists for id in cache', async () => {
@@ -134,12 +134,12 @@ describe('BlogDetail by id route', () => {
     expect(response.body.data).toBeDefined();
     expect(response.body.data).toHaveProperty('_id');
 
-    expect(mockBlogCacheFetchById).toBeCalledTimes(1);
-    expect(mockBlogCacheFetchById).toBeCalledWith(BLOG_ID);
+    expect(mockBlogCacheFetchById).toHaveBeenCalledTimes(1);
+    expect(mockBlogCacheFetchById).toHaveBeenCalledWith(BLOG_ID);
     expect(mockBlogCacheFetchById).toReturnTimes(1);
 
-    expect(mockPublishedBlogFindById).not.toBeCalled();
-    expect(mockBlogCacheSave).not.toBeCalled();
+    expect(mockPublishedBlogFindById).not.toHaveBeenCalled();
+    expect(mockBlogCacheSave).not.toHaveBeenCalled();
   });
 
   it('Should send database data when blog dont exists for url in cache', async () => {
@@ -151,15 +151,15 @@ describe('BlogDetail by id route', () => {
     expect(response.body.data).toBeDefined();
     expect(response.body.data).toHaveProperty('_id');
 
-    expect(mockBlogCacheFetchById).toBeCalledTimes(1);
-    expect(mockBlogCacheFetchById).toBeCalledWith(BLOG_2_ID);
+    expect(mockBlogCacheFetchById).toHaveBeenCalledTimes(1);
+    expect(mockBlogCacheFetchById).toHaveBeenCalledWith(BLOG_2_ID);
     expect(mockBlogCacheFetchById).toReturnTimes(1);
 
-    expect(mockPublishedBlogFindById).toBeCalledTimes(1);
-    expect(mockPublishedBlogFindById).toBeCalledWith(BLOG_2_ID);
+    expect(mockPublishedBlogFindById).toHaveBeenCalledTimes(1);
+    expect(mockPublishedBlogFindById).toHaveBeenCalledWith(BLOG_2_ID);
     expect(mockPublishedBlogFindById).toReturnTimes(1);
 
-    expect(mockBlogCacheSave).toBeCalledTimes(1);
+    expect(mockBlogCacheSave).toHaveBeenCalledTimes(1);
     expect(mockBlogCacheSave).toReturnTimes(1);
   });
 });

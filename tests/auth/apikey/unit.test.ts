@@ -15,7 +15,7 @@ describe('apikey validation', () => {
   it('Should response with 400 if x-api-key header is not passed', async () => {
     const response = await request.get(endpoint).timeout(2000);
     expect(response.status).toBe(400);
-    expect(mockFindApiKey).not.toBeCalled();
+    expect(mockFindApiKey).not.toHaveBeenCalled();
   });
 
   it('Should response with 403 if wrong x-api-key header is passed', async () => {
@@ -25,8 +25,8 @@ describe('apikey validation', () => {
       .set('x-api-key', wrongApiKey)
       .timeout(2000);
     expect(response.status).toBe(403);
-    expect(mockFindApiKey).toBeCalledTimes(1);
-    expect(mockFindApiKey).toBeCalledWith(wrongApiKey);
+    expect(mockFindApiKey).toHaveBeenCalledTimes(1);
+    expect(mockFindApiKey).toHaveBeenCalledWith(wrongApiKey);
   });
 
   it('Should response with 404 if correct x-api-key header is passed and when route is not handelled', async () => {
@@ -35,7 +35,7 @@ describe('apikey validation', () => {
       .set('x-api-key', API_KEY)
       .timeout(2000);
     expect(response.status).toBe(404);
-    expect(mockFindApiKey).toBeCalledTimes(1);
-    expect(mockFindApiKey).toBeCalledWith(API_KEY);
+    expect(mockFindApiKey).toHaveBeenCalledTimes(1);
+    expect(mockFindApiKey).toHaveBeenCalledWith(API_KEY);
   });
 });
