@@ -27,7 +27,7 @@ describe('Login basic route', () => {
   let apikey: ApiKey | null;
 
   beforeAll(async () => {
-    await UserModel.remove({}); // delete all data from user table
+    await UserModel.deleteOne({}); // delete all data from user table
     user = await UserModel.create({
       name: 'abc',
       email: 'abc@xyz.com',
@@ -42,7 +42,7 @@ describe('Login basic route', () => {
   });
 
   afterAll(async () => {
-    await UserModel.remove({}); // delete all data from user table
+    await UserModel.deleteOne({}); // delete all data from user table
     connection.close();
     cache.disconnect();
   });
