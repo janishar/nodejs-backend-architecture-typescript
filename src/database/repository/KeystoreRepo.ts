@@ -13,7 +13,7 @@ async function findforKey(client: User, key: string): Promise<Keystore | null> {
 }
 
 async function remove(id: Types.ObjectId): Promise<Keystore | null> {
-  return KeystoreModel.findByIdAndRemove(id).lean().exec();
+  return KeystoreModel.findByIdAndDelete(id).lean().exec();
 }
 
 async function removeAllForClient(client: User) {
