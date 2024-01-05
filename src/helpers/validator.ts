@@ -44,7 +44,7 @@ export default (
       const message = details
         .map((i) => i.message.replace(/['"]+/g, ''))
         .join(',');
-      Logger.error(message);
+      Logger.info(message);
 
       next(new BadRequestError(message));
     } catch (error) {
