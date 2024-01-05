@@ -1,6 +1,5 @@
 import Joi from 'joi';
 import { Request, Response, NextFunction } from 'express';
-import Logger from '../core/Logger';
 import { BadRequestError } from '../core/ApiError';
 import { Types } from 'mongoose';
 
@@ -44,7 +43,6 @@ export default (
       const message = details
         .map((i) => i.message.replace(/['"]+/g, ''))
         .join(',');
-      Logger.info(message);
 
       next(new BadRequestError(message));
     } catch (error) {
