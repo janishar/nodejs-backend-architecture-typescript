@@ -3,7 +3,6 @@ import { readFile } from 'fs';
 import { promisify } from 'util';
 import { sign, verify } from 'jsonwebtoken';
 import { InternalError, BadTokenError, TokenExpiredError } from './ApiError';
-import Logger from './Logger';
 
 /*
  * issuer 		— Software organization who issues the token.
@@ -67,7 +66,6 @@ async function validate(token: string): Promise<JwtPayload> {
     // @ts-ignore
     return (await promisify(verify)(token, cert)) as JwtPayload;
   } catch (e: any) {
-    Logger.debug(e);
     if (e && e.name === 'TokenExpiredError') throw new TokenExpiredError();
     // throws error if the token has not been encrypted by the private key
     throw new BadTokenError();
@@ -85,7 +83,6 @@ async function decode(token: string): Promise<JwtPayload> {
       ignoreExpiration: true,
     })) as JwtPayload;
   } catch (e) {
-    Logger.debug(e);
     throw new BadTokenError();
   }
 }

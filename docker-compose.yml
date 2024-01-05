@@ -27,7 +27,7 @@ services:
 
   mongo:
     # To create this service, Compose will pull the mongo
-    image: mongo:6.0.3
+    image: mongo:7.0.4
     container_name: mongo
     restart: unless-stopped
     # This tells Compose that we would like to add environment variables
@@ -50,7 +50,7 @@ services:
       - dbdata:/data/db
 
   redis:
-    image: redis:7.0.5
+    image: redis:7.2.3
     container_name: redis
     restart: unless-stopped
     env_file: .env
