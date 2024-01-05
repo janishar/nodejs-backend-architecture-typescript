@@ -36,10 +36,10 @@ describe('Signup basic route', () => {
   it('Should send error when empty body is sent', async () => {
     const response = await addHeaders(request.post(endpoint));
     expect(response.status).toBe(400);
-    expect(mockUserFindByEmail).not.toBeCalled();
-    expect(bcryptHashSpy).not.toBeCalled();
-    expect(mockUserCreate).not.toBeCalled();
-    expect(createTokensSpy).not.toBeCalled();
+    expect(mockUserFindByEmail).not.toHaveBeenCalled();
+    expect(bcryptHashSpy).not.toHaveBeenCalled();
+    expect(mockUserCreate).not.toHaveBeenCalled();
+    expect(createTokensSpy).not.toHaveBeenCalled();
   });
 
   it('Should send error when email is not sent', async () => {
@@ -53,10 +53,10 @@ describe('Signup basic route', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/email/);
     expect(response.body.message).toMatch(/required/);
-    expect(mockUserFindByEmail).not.toBeCalled();
-    expect(bcryptHashSpy).not.toBeCalled();
-    expect(mockUserCreate).not.toBeCalled();
-    expect(createTokensSpy).not.toBeCalled();
+    expect(mockUserFindByEmail).not.toHaveBeenCalled();
+    expect(bcryptHashSpy).not.toHaveBeenCalled();
+    expect(mockUserCreate).not.toHaveBeenCalled();
+    expect(createTokensSpy).not.toHaveBeenCalled();
   });
 
   it('Should send error when password is not sent', async () => {
@@ -70,10 +70,10 @@ describe('Signup basic route', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/password/);
     expect(response.body.message).toMatch(/required/);
-    expect(mockUserFindByEmail).not.toBeCalled();
-    expect(bcryptHashSpy).not.toBeCalled();
-    expect(mockUserCreate).not.toBeCalled();
-    expect(createTokensSpy).not.toBeCalled();
+    expect(mockUserFindByEmail).not.toHaveBeenCalled();
+    expect(bcryptHashSpy).not.toHaveBeenCalled();
+    expect(mockUserCreate).not.toHaveBeenCalled();
+    expect(createTokensSpy).not.toHaveBeenCalled();
   });
 
   it('Should send error when name is not sent', async () => {
@@ -87,10 +87,10 @@ describe('Signup basic route', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/name/);
     expect(response.body.message).toMatch(/required/);
-    expect(mockUserFindByEmail).not.toBeCalled();
-    expect(bcryptHashSpy).not.toBeCalled();
-    expect(mockUserCreate).not.toBeCalled();
-    expect(createTokensSpy).not.toBeCalled();
+    expect(mockUserFindByEmail).not.toHaveBeenCalled();
+    expect(bcryptHashSpy).not.toHaveBeenCalled();
+    expect(mockUserCreate).not.toHaveBeenCalled();
+    expect(createTokensSpy).not.toHaveBeenCalled();
   });
 
   it('Should send error when email is not valid format', async () => {
@@ -104,10 +104,10 @@ describe('Signup basic route', () => {
     );
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/valid email/);
-    expect(mockUserFindByEmail).not.toBeCalled();
-    expect(bcryptHashSpy).not.toBeCalled();
-    expect(mockUserCreate).not.toBeCalled();
-    expect(createTokensSpy).not.toBeCalled();
+    expect(mockUserFindByEmail).not.toHaveBeenCalled();
+    expect(bcryptHashSpy).not.toHaveBeenCalled();
+    expect(mockUserCreate).not.toHaveBeenCalled();
+    expect(createTokensSpy).not.toHaveBeenCalled();
   });
 
   it('Should send error when password is not valid format', async () => {
@@ -122,10 +122,10 @@ describe('Signup basic route', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/password length/);
     expect(response.body.message).toMatch(/6 char/);
-    expect(mockUserFindByEmail).not.toBeCalled();
-    expect(bcryptHashSpy).not.toBeCalled();
-    expect(mockUserCreate).not.toBeCalled();
-    expect(createTokensSpy).not.toBeCalled();
+    expect(mockUserFindByEmail).not.toHaveBeenCalled();
+    expect(bcryptHashSpy).not.toHaveBeenCalled();
+    expect(mockUserCreate).not.toHaveBeenCalled();
+    expect(createTokensSpy).not.toHaveBeenCalled();
   });
 
   it('Should send error when user is registered for email', async () => {
@@ -140,10 +140,10 @@ describe('Signup basic route', () => {
 
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/already registered/);
-    expect(mockUserFindByEmail).toBeCalledTimes(1);
-    expect(bcryptHashSpy).not.toBeCalled();
-    expect(mockUserCreate).not.toBeCalled();
-    expect(createTokensSpy).not.toBeCalled();
+    expect(mockUserFindByEmail).toHaveBeenCalledTimes(1);
+    expect(bcryptHashSpy).not.toHaveBeenCalled();
+    expect(mockUserCreate).not.toHaveBeenCalled();
+    expect(createTokensSpy).not.toHaveBeenCalled();
   });
 
   it('Should send success response for correct data', async () => {
@@ -168,11 +168,11 @@ describe('Signup basic route', () => {
     expect(response.body.data.tokens).toHaveProperty('accessToken');
     expect(response.body.data.tokens).toHaveProperty('refreshToken');
 
-    expect(mockUserFindByEmail).toBeCalledTimes(1);
-    expect(bcryptHashSpy).toBeCalledTimes(1);
-    expect(mockUserCreate).toBeCalledTimes(1);
-    expect(createTokensSpy).toBeCalledTimes(1);
+    expect(mockUserFindByEmail).toHaveBeenCalledTimes(1);
+    expect(bcryptHashSpy).toHaveBeenCalledTimes(1);
+    expect(mockUserCreate).toHaveBeenCalledTimes(1);
+    expect(createTokensSpy).toHaveBeenCalledTimes(1);
 
-    expect(bcryptHashSpy).toBeCalledWith(USER_PASSWORD, 10);
+    expect(bcryptHashSpy).toHaveBeenCalledWith(USER_PASSWORD, 10);
   });
 });
