@@ -1,3 +1,8 @@
+---
+### :tada: Announcement
+#### A new repository based on Nest.js is also available here [Modern Backend Development - WhereIsMyMotivation](https://github.com/janishar/wimm-node-app) :confetti_ball:
+---
+
 # Node.js Backend Architecture Typescript Project
 ### A complete project to build a blogging platform like Medium, and FreeCodeCamp
 
