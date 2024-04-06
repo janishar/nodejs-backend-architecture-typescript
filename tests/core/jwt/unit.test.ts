@@ -20,7 +20,7 @@ describe('JWT class tests', () => {
       expect(e).toBeInstanceOf(BadTokenError);
     }
 
-    expect(readFileSpy).toBeCalledTimes(1);
+    expect(readFileSpy).toHaveBeenCalledTimes(1);
   });
 
   it('Should generate a token for JWT.encode', async () => {
@@ -28,7 +28,7 @@ describe('JWT class tests', () => {
     const token = await JWT.encode(payload);
 
     expect(typeof token).toBe('string');
-    expect(readFileSpy).toBeCalledTimes(1);
+    expect(readFileSpy).toHaveBeenCalledTimes(1);
   });
 
   it('Should decode a valid token for JWT.decode', async () => {
@@ -37,7 +37,7 @@ describe('JWT class tests', () => {
     const decoded = await JWT.decode(token);
 
     expect(decoded).toMatchObject(payload);
-    expect(readFileSpy).toBeCalledTimes(2);
+    expect(readFileSpy).toHaveBeenCalledTimes(2);
   });
 
   it('Should parse an expired token for JWT.decode', async () => {
@@ -55,7 +55,7 @@ describe('JWT class tests', () => {
     const decoded = await JWT.decode(token);
 
     expect(decoded).toMatchObject(payload);
-    expect(readFileSpy).toBeCalledTimes(2);
+    expect(readFileSpy).toHaveBeenCalledTimes(2);
   });
 
   it('Should throw error for invalid token in JWT.validate', async () => {
@@ -65,7 +65,7 @@ describe('JWT class tests', () => {
       expect(e).toBeInstanceOf(BadTokenError);
     }
 
-    expect(readFileSpy).toBeCalledTimes(1);
+    expect(readFileSpy).toHaveBeenCalledTimes(1);
   });
 
   it('Should validate a valid token for JWT.validate', async () => {
@@ -74,7 +74,7 @@ describe('JWT class tests', () => {
     const decoded = await JWT.validate(token);
 
     expect(decoded).toMatchObject(payload);
-    expect(readFileSpy).toBeCalledTimes(2);
+    expect(readFileSpy).toHaveBeenCalledTimes(2);
   });
 
   it('Should validate a token expiry for JWT.validate', async () => {
@@ -94,6 +94,6 @@ describe('JWT class tests', () => {
     } catch (e) {
       expect(e).toBeInstanceOf(TokenExpiredError);
     }
-    expect(readFileSpy).toBeCalledTimes(2);
+    expect(readFileSpy).toHaveBeenCalledTimes(2);
   });
 });

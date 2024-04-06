@@ -27,9 +27,9 @@ describe('authentication validation for editor', () => {
     const response = await addAuthHeaders(request.get(endpoint));
     expect(response.status).toBe(401);
     expect(response.body.message).toMatch(/denied/);
-    expect(mockRoleRepoFindByCodes).toBeCalledTimes(1);
-    expect(mockUserFindById).toBeCalledTimes(1);
-    expect(mockRoleRepoFindByCodes).toBeCalledWith([
+    expect(mockRoleRepoFindByCodes).toHaveBeenCalledTimes(1);
+    expect(mockUserFindById).toHaveBeenCalledTimes(1);
+    expect(mockRoleRepoFindByCodes).toHaveBeenCalledWith([
       RoleCode.ADMIN,
       RoleCode.EDITOR,
     ]);
@@ -51,8 +51,8 @@ describe('authentication validation for writer', () => {
       EDITOR_ACCESS_TOKEN,
     );
     expect(response.status).toBe(404);
-    expect(mockRoleRepoFindByCodes).toBeCalledTimes(1);
-    expect(mockUserFindById).toBeCalledTimes(1);
-    expect(mockRoleRepoFindByCodes).toBeCalledWith([RoleCode.WRITER]);
+    expect(mockRoleRepoFindByCodes).toHaveBeenCalledTimes(1);
+    expect(mockUserFindById).toHaveBeenCalledTimes(1);
+    expect(mockRoleRepoFindByCodes).toHaveBeenCalledWith([RoleCode.WRITER]);
   });
 });

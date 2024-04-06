@@ -1,3 +1,8 @@
+---
+### :tada: Announcement
+#### A new repository based on Nest.js is also available here [Modern Backend Development - WhereIsMyMotivation](https://github.com/janishar/wimm-node-app) :confetti_ball:
+---
+
 # Node.js Backend Architecture Typescript Project
 ### A complete project to build a blogging platform like Medium, and FreeCodeCamp
 
@@ -94,6 +99,7 @@ The repository [**React.js Isomorphic Web Application Architecture**] has a comp
     * Install Docker and Docker Compose. [Find Instructions Here](https://docs.docker.com/install/).
     * Execute `docker-compose up -d` in terminal from the repo directory.
     * You will be able to access the api from http://localhost:3000
+    * Run Tests: `docker exec -t app npm test`
     * *If having any issue* then make sure 3000 port is not occupied else provide a different port in **.env** file.
     * *If having any issue* then make sure 27017 port is not occupied else provide a different port in **.env** file.
  * Run The Tests
@@ -346,7 +352,7 @@ The repository [**React.js Isomorphic Web Application Architecture**] has a comp
 
 ### License
 ```
-   Copyright (C) 2023 JANISHAR ALI ANWAR
+   Copyright (C) 2024 JANISHAR ALI ANWAR
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.

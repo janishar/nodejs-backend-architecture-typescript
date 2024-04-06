@@ -27,7 +27,7 @@ describe('Login basic route', () => {
   let apikey: ApiKey | null;
 
   beforeAll(async () => {
-    await UserModel.remove({}); // delete all data from user table
+    await UserModel.deleteOne({}); // delete all data from user table
     user = await UserModel.create({
       name: 'abc',
       email: 'abc@xyz.com',
@@ -42,7 +42,7 @@ describe('Login basic route', () => {
   });
 
   afterAll(async () => {
-    await UserModel.remove({}); // delete all data from user table
+    await UserModel.deleteOne({}); // delete all data from user table
     connection.close();
     cache.disconnect();
   });
@@ -57,10 +57,10 @@ describe('Login basic route', () => {
   it('Should send error when empty body is sent', async () => {
     const response = await addHeaders(request.post(endpoint), apikey);
     expect(response.status).toBe(400);
-    expect(userFindByEmailSpy).not.toBeCalled();
-    expect(bcryptCompareSpy).not.toBeCalled();
-    expect(keystoreCreateSpy).not.toBeCalled();
-    expect(createTokensSpy).not.toBeCalled();
+    expect(userFindByEmailSpy).not.toHaveBeenCalled();
+    expect(bcryptCompareSpy).not.toHaveBeenCalled();
+    expect(keystoreCreateSpy).not.toHaveBeenCalled();
+    expect(createTokensSpy).not.toHaveBeenCalled();
   });
 
   it('Should send error when email is only sent', async () => {
@@ -70,10 +70,10 @@ describe('Login basic route', () => {
     );
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/password/);
-    expect(userFindByEmailSpy).not.toBeCalled();
-    expect(bcryptCompareSpy).not.toBeCalled();
-    expect(keystoreCreateSpy).not.toBeCalled();
-    expect(createTokensSpy).not.toBeCalled();
+    expect(userFindByEmailSpy).not.toHaveBeenCalled();
+    expect(bcryptCompareSpy).not.toHaveBeenCalled();
+    expect(keystoreCreateSpy).not.toHaveBeenCalled();
+    expect(createTokensSpy).not.toHaveBeenCalled();
   });
 
   it('Should send error when password is only sent', async () => {
@@ -83,10 +83,10 @@ describe('Login basic route', () => {
     );
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/email/);
-    expect(userFindByEmailSpy).not.toBeCalled();
-    expect(bcryptCompareSpy).not.toBeCalled();
-    expect(keystoreCreateSpy).not.toBeCalled();
-    expect(createTokensSpy).not.toBeCalled();
+    expect(userFindByEmailSpy).not.toHaveBeenCalled();
+    expect(bcryptCompareSpy).not.toHaveBeenCalled();
+    expect(keystoreCreateSpy).not.toHaveBeenCalled();
+    expect(createTokensSpy).not.toHaveBeenCalled();
   });
 
   it('Should send error when email is not valid format', async () => {
@@ -96,10 +96,10 @@ describe('Login basic route', () => {
     );
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/valid email/);
-    expect(userFindByEmailSpy).not.toBeCalled();
-    expect(bcryptCompareSpy).not.toBeCalled();
-    expect(keystoreCreateSpy).not.toBeCalled();
-    expect(createTokensSpy).not.toBeCalled();
+    expect(userFindByEmailSpy).not.toHaveBeenCalled();
+    expect(bcryptCompareSpy).not.toHaveBeenCalled();
+    expect(keystoreCreateSpy).not.toHaveBeenCalled();
+    expect(createTokensSpy).not.toHaveBeenCalled();
   });
 
   it('Should send error when password is not valid format', async () => {
@@ -113,10 +113,10 @@ describe('Login basic route', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/password length/);
     expect(response.body.message).toMatch(/6 char/);
-    expect(userFindByEmailSpy).not.toBeCalled();
-    expect(bcryptCompareSpy).not.toBeCalled();
-    expect(keystoreCreateSpy).not.toBeCalled();
-    expect(createTokensSpy).not.toBeCalled();
+    expect(userFindByEmailSpy).not.toHaveBeenCalled();
+    expect(bcryptCompareSpy).not.toHaveBeenCalled();
+    expect(keystoreCreateSpy).not.toHaveBeenCalled();
+    expect(createTokensSpy).not.toHaveBeenCalled();
   });
 
   it('Should send error when user not registered for email', async () => {
@@ -129,10 +129,10 @@ describe('Login basic route', () => {
     );
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/not registered/);
-    expect(userFindByEmailSpy).toBeCalledTimes(1);
-    expect(bcryptCompareSpy).not.toBeCalled();
-    expect(keystoreCreateSpy).not.toBeCalled();
-    expect(createTokensSpy).not.toBeCalled();
+    expect(userFindByEmailSpy).toHaveBeenCalledTimes(1);
+    expect(bcryptCompareSpy).not.toHaveBeenCalled();
+    expect(keystoreCreateSpy).not.toHaveBeenCalled();
+    expect(createTokensSpy).not.toHaveBeenCalled();
   });
 
   it('Should send error for wrong password', async () => {
@@ -145,10 +145,10 @@ describe('Login basic route', () => {
     );
     expect(response.status).toBe(401);
     expect(response.body.message).toMatch(/authentication failure/i);
-    expect(userFindByEmailSpy).toBeCalledTimes(1);
-    expect(bcryptCompareSpy).toBeCalledTimes(1);
-    expect(keystoreCreateSpy).not.toBeCalled();
-    expect(createTokensSpy).not.toBeCalled();
+    expect(userFindByEmailSpy).toHaveBeenCalledTimes(1);
+    expect(bcryptCompareSpy).toHaveBeenCalledTimes(1);
+    expect(keystoreCreateSpy).not.toHaveBeenCalled();
+    expect(createTokensSpy).not.toHaveBeenCalled();
   });
 
   it('Should send success response for correct credentials', async () => {
@@ -172,12 +172,12 @@ describe('Login basic route', () => {
     expect(response.body.data.tokens).toHaveProperty('accessToken');
     expect(response.body.data.tokens).toHaveProperty('refreshToken');
 
-    expect(userFindByEmailSpy).toBeCalledTimes(1);
-    expect(keystoreCreateSpy).toBeCalledTimes(1);
-    expect(bcryptCompareSpy).toBeCalledTimes(1);
-    expect(createTokensSpy).toBeCalledTimes(1);
+    expect(userFindByEmailSpy).toHaveBeenCalledTimes(1);
+    expect(keystoreCreateSpy).toHaveBeenCalledTimes(1);
+    expect(bcryptCompareSpy).toHaveBeenCalledTimes(1);
+    expect(createTokensSpy).toHaveBeenCalledTimes(1);
 
-    expect(bcryptCompareSpy).toBeCalledWith(password, user.password);
+    expect(bcryptCompareSpy).toHaveBeenCalledWith(password, user.password);
   });
 });
 

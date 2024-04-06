@@ -4,7 +4,7 @@
     // Import non-ES modules as default imports.
     "esModuleInterop": true,
     // Target latest version of ECMAScript.
-    "target": "ES2019",
+    "target": "ES2022",
     // Process & infer types from .js files.
     "allowJs": false,
     // Enable strictNullChecks & noImplicitAny.

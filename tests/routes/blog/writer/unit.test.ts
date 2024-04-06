@@ -32,8 +32,8 @@ describe('Writer blog create routes', () => {
     const response = await addAuthHeaders(request.post(endpoint));
     expect(response.status).toBe(401);
     expect(response.body.message).toMatch(/permission denied/i);
-    expect(mockBlogFindUrlIfExists).not.toBeCalled();
-    expect(mockBlogCreate).not.toBeCalled();
+    expect(mockBlogFindUrlIfExists).not.toHaveBeenCalled();
+    expect(mockBlogCreate).not.toHaveBeenCalled();
   });
 
   it('Should send error if blog title not sent', async () => {
@@ -48,8 +48,8 @@ describe('Writer blog create routes', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/title/i);
     expect(response.body.message).toMatch(/required/i);
-    expect(mockBlogFindUrlIfExists).not.toBeCalled();
-    expect(mockBlogCreate).not.toBeCalled();
+    expect(mockBlogFindUrlIfExists).not.toHaveBeenCalled();
+    expect(mockBlogCreate).not.toHaveBeenCalled();
   });
 
   it('Should send error if blog description not sent', async () => {
@@ -64,8 +64,8 @@ describe('Writer blog create routes', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/description/i);
     expect(response.body.message).toMatch(/required/i);
-    expect(mockBlogFindUrlIfExists).not.toBeCalled();
-    expect(mockBlogCreate).not.toBeCalled();
+    expect(mockBlogFindUrlIfExists).not.toHaveBeenCalled();
+    expect(mockBlogCreate).not.toHaveBeenCalled();
   });
 
   it('Should send error if blog text not sent', async () => {
@@ -80,8 +80,8 @@ describe('Writer blog create routes', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/text/i);
     expect(response.body.message).toMatch(/required/i);
-    expect(mockBlogFindUrlIfExists).not.toBeCalled();
-    expect(mockBlogCreate).not.toBeCalled();
+    expect(mockBlogFindUrlIfExists).not.toHaveBeenCalled();
+    expect(mockBlogCreate).not.toHaveBeenCalled();
   });
 
   it('Should send error if blog blogUrl not sent', async () => {
@@ -96,8 +96,8 @@ describe('Writer blog create routes', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/blogUrl/i);
     expect(response.body.message).toMatch(/required/i);
-    expect(mockBlogFindUrlIfExists).not.toBeCalled();
-    expect(mockBlogCreate).not.toBeCalled();
+    expect(mockBlogFindUrlIfExists).not.toHaveBeenCalled();
+    expect(mockBlogCreate).not.toHaveBeenCalled();
   });
 
   it('Should send error if blog blogUrl is not in accepted format', async () => {
@@ -113,8 +113,8 @@ describe('Writer blog create routes', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/blogUrl/i);
     expect(response.body.message).toMatch(/invalid/i);
-    expect(mockBlogFindUrlIfExists).not.toBeCalled();
-    expect(mockBlogCreate).not.toBeCalled();
+    expect(mockBlogFindUrlIfExists).not.toHaveBeenCalled();
+    expect(mockBlogCreate).not.toHaveBeenCalled();
   });
 
   it('Should send error if blog imgUrl is not an url', async () => {
@@ -131,8 +131,8 @@ describe('Writer blog create routes', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/imgUrl/i);
     expect(response.body.message).toMatch(/valid uri/i);
-    expect(mockBlogFindUrlIfExists).not.toBeCalled();
-    expect(mockBlogCreate).not.toBeCalled();
+    expect(mockBlogFindUrlIfExists).not.toHaveBeenCalled();
+    expect(mockBlogCreate).not.toHaveBeenCalled();
   });
 
   it('Should send error if blog score is invalid', async () => {
@@ -148,8 +148,8 @@ describe('Writer blog create routes', () => {
     );
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/must be a number/i);
-    expect(mockBlogFindUrlIfExists).not.toBeCalled();
-    expect(mockBlogCreate).not.toBeCalled();
+    expect(mockBlogFindUrlIfExists).not.toHaveBeenCalled();
+    expect(mockBlogCreate).not.toHaveBeenCalled();
   });
 
   it('Should send error if blog tags is invalid', async () => {
@@ -166,8 +166,8 @@ describe('Writer blog create routes', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/must be/i);
     expect(response.body.message).toMatch(/array/i);
-    expect(mockBlogFindUrlIfExists).not.toBeCalled();
-    expect(mockBlogCreate).not.toBeCalled();
+    expect(mockBlogFindUrlIfExists).not.toHaveBeenCalled();
+    expect(mockBlogCreate).not.toHaveBeenCalled();
   });
 
   it('Should send error if blog already exists for blogUrl', async () => {
@@ -182,8 +182,8 @@ describe('Writer blog create routes', () => {
     );
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/already exists/i);
-    expect(mockBlogFindUrlIfExists).toBeCalledTimes(1);
-    expect(mockBlogCreate).not.toBeCalled();
+    expect(mockBlogFindUrlIfExists).toHaveBeenCalledTimes(1);
+    expect(mockBlogCreate).not.toHaveBeenCalled();
   });
 
   it('Should send success if blog data is correct', async () => {
@@ -201,8 +201,8 @@ describe('Writer blog create routes', () => {
     );
     expect(response.status).toBe(200);
     expect(response.body.message).toMatch(/created success/i);
-    expect(mockBlogFindUrlIfExists).toBeCalledTimes(1);
-    expect(mockBlogCreate).toBeCalledTimes(1);
+    expect(mockBlogFindUrlIfExists).toHaveBeenCalledTimes(1);
+    expect(mockBlogCreate).toHaveBeenCalledTimes(1);
     expect(response.body.data).toMatchObject({ _id: BLOG_ID.toHexString() });
   });
 });
@@ -224,8 +224,8 @@ describe('Writer blog submit routes', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/id/i);
     expect(response.body.message).toMatch(/invalid/i);
-    expect(mockFindBlogAllDataById).not.toBeCalled();
-    expect(mockBlogUpdate).not.toBeCalled();
+    expect(mockFindBlogAllDataById).not.toHaveBeenCalled();
+    expect(mockBlogUpdate).not.toHaveBeenCalled();
   });
 
   it('Should send error if submit blog do not exist for id', async () => {
@@ -235,8 +235,8 @@ describe('Writer blog submit routes', () => {
     );
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/not exists/i);
-    expect(mockFindBlogAllDataById).toBeCalledTimes(1);
-    expect(mockBlogUpdate).not.toBeCalled();
+    expect(mockFindBlogAllDataById).toHaveBeenCalledTimes(1);
+    expect(mockBlogUpdate).not.toHaveBeenCalled();
   });
 
   it('Should send success if submit blog for id exists', async () => {
@@ -246,8 +246,8 @@ describe('Writer blog submit routes', () => {
     );
     expect(response.status).toBe(200);
     expect(response.body.message).toMatch(/submitted success/i);
-    expect(mockFindBlogAllDataById).toBeCalledTimes(1);
-    expect(mockBlogUpdate).toBeCalledTimes(1);
+    expect(mockFindBlogAllDataById).toHaveBeenCalledTimes(1);
+    expect(mockBlogUpdate).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -268,8 +268,8 @@ describe('Writer blog withdraw routes', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/id/i);
     expect(response.body.message).toMatch(/invalid/i);
-    expect(mockFindBlogAllDataById).not.toBeCalled();
-    expect(mockBlogUpdate).not.toBeCalled();
+    expect(mockFindBlogAllDataById).not.toHaveBeenCalled();
+    expect(mockBlogUpdate).not.toHaveBeenCalled();
   });
 
   it('Should send error if withdraw blog do not exist for id', async () => {
@@ -279,8 +279,8 @@ describe('Writer blog withdraw routes', () => {
     );
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/not exists/i);
-    expect(mockFindBlogAllDataById).toBeCalledTimes(1);
-    expect(mockBlogUpdate).not.toBeCalled();
+    expect(mockFindBlogAllDataById).toHaveBeenCalledTimes(1);
+    expect(mockBlogUpdate).not.toHaveBeenCalled();
   });
 
   it('Should send success if withdraw blog for id exists', async () => {
@@ -290,8 +290,8 @@ describe('Writer blog withdraw routes', () => {
     );
     expect(response.status).toBe(200);
     expect(response.body.message).toMatch(/withdrawn success/i);
-    expect(mockFindBlogAllDataById).toBeCalledTimes(1);
-    expect(mockBlogUpdate).toBeCalledTimes(1);
+    expect(mockFindBlogAllDataById).toHaveBeenCalledTimes(1);
+    expect(mockBlogUpdate).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -312,8 +312,8 @@ describe('Writer blog delete routes', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/id/i);
     expect(response.body.message).toMatch(/invalid/i);
-    expect(mockFindBlogAllDataById).not.toBeCalled();
-    expect(mockBlogUpdate).not.toBeCalled();
+    expect(mockFindBlogAllDataById).not.toHaveBeenCalled();
+    expect(mockBlogUpdate).not.toHaveBeenCalled();
   });
 
   it('Should send error if deleting blog do not exist for id', async () => {
@@ -323,8 +323,8 @@ describe('Writer blog delete routes', () => {
     );
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/not exists/i);
-    expect(mockFindBlogAllDataById).toBeCalledTimes(1);
-    expect(mockBlogUpdate).not.toBeCalled();
+    expect(mockFindBlogAllDataById).toHaveBeenCalledTimes(1);
+    expect(mockBlogUpdate).not.toHaveBeenCalled();
   });
 
   it('Should send success if deleting blog for id exists', async () => {
@@ -334,8 +334,8 @@ describe('Writer blog delete routes', () => {
     );
     expect(response.status).toBe(200);
     expect(response.body.message).toMatch(/deleted success/i);
-    expect(mockFindBlogAllDataById).toBeCalledTimes(1);
-    expect(mockBlogUpdate).toBeCalledTimes(1);
+    expect(mockFindBlogAllDataById).toHaveBeenCalledTimes(1);
+    expect(mockBlogUpdate).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -355,7 +355,7 @@ describe('Writer blog get by id routes', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/id/i);
     expect(response.body.message).toMatch(/invalid/i);
-    expect(mockFindBlogAllDataById).not.toBeCalled();
+    expect(mockFindBlogAllDataById).not.toHaveBeenCalled();
   });
 
   it('Should send error if fetching blog do not exist for id', async () => {
@@ -365,7 +365,7 @@ describe('Writer blog get by id routes', () => {
     );
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/not exists/i);
-    expect(mockFindBlogAllDataById).toBeCalledTimes(1);
+    expect(mockFindBlogAllDataById).toHaveBeenCalledTimes(1);
   });
 
   it('Should send error if author is different', async () => {
@@ -376,7 +376,7 @@ describe('Writer blog get by id routes', () => {
     expect(response.status).toBe(403);
     expect(response.body.message).toMatch(/don't have/i);
     expect(response.body.message).toMatch(/permission/i);
-    expect(mockFindBlogAllDataById).toBeCalledTimes(1);
+    expect(mockFindBlogAllDataById).toHaveBeenCalledTimes(1);
   });
 
   it('Should send success if fetching blog for id exists', async () => {
@@ -386,7 +386,7 @@ describe('Writer blog get by id routes', () => {
     );
     expect(response.status).toBe(200);
     expect(response.body.message).toMatch(/success/i);
-    expect(mockFindBlogAllDataById).toBeCalledTimes(1);
+    expect(mockFindBlogAllDataById).toHaveBeenCalledTimes(1);
     expect(response.body.data).toMatchObject({ _id: BLOG_ID.toHexString() });
   });
 });
