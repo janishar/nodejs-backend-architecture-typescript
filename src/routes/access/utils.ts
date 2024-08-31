@@ -6,7 +6,7 @@ export const enum AccessMode {
   SIGNUP = 'SIGNUP',
 }
 
-export async function getUserData(user: User) {
+export function getUserData(user: User) {
   const data = _.pick(user, ['_id', 'name', 'roles', 'profilePicUrl']);
   return data;
 }

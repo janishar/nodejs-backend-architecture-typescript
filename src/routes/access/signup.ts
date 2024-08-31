@@ -43,7 +43,7 @@ router.post(
       keystore.primaryKey,
       keystore.secondaryKey,
     );
-    const userData = await getUserData(createdUser);
+    const userData = getUserData(createdUser);
 
     new SuccessResponse('Signup Successful', {
       user: userData,
