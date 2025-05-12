@@ -1,17 +1,12 @@
----
-### :tada: Announcement
-#### A new repository based on Nest.js is also available here [Modern Backend Development - WhereIsMyMotivation](https://github.com/unusualcodeorg/wimm-node-app) :confetti_ball:
----
-
 # Node.js Backend Architecture Typescript Project
 ### A complete project to build a blogging platform like Medium, and FreeCodeCamp
 
-[![Docker Compose CI](https://github.com/janishar/nodejs-backend-architecture-typescript/actions/workflows/docker_compose.yml/badge.svg)](https://github.com/janishar/nodejs-backend-architecture-typescript/actions/workflows/docker_compose.yml)
+[![Docker Compose CI](https://github.com/fifocode/nodejs-backend-architecture-typescript/actions/workflows/docker_compose.yml/badge.svg)](https://github.com/fifocode/nodejs-backend-architecture-typescript/actions/workflows/docker_compose.yml)
 
-Note: This is the **latest (version 2)** of the project. If you are using **version 1** then checkout the branch [**version-1**](https://github.com/janishar/nodejs-backend-architecture-typescript/tree/version-1)
+Note: This is the **latest (version 2)** of the project. If you are using **version 1** then checkout the branch [**version-1**](https://github.com/fifocode/nodejs-backend-architecture-typescript/tree/version-1)
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/cover-nodejs-backend.png">
+    <img src="https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/main/addons/github_assets/cover-nodejs-backend.png">
 </p>
 <br>
 
@@ -33,10 +28,10 @@ This project is designed for a production ready environment. It can handle the s
 It is suitable for Web Apps, Mobile Apps, and other API services.
 
 # About The Author
-You can connect with me here:
-* [Janishar Ali](https://janisharali.com)
-* [Twitter](https://twitter.com/janisharali)
-* [YouTube Channel](https://www.youtube.com/@unusualcode)
+You can connect with us here:
+* [Website](https://fifocode.com)
+* [Twitter](https://twitter.com/fifocode)
+* [YouTube Channel](https://www.youtube.com/@fifocode)
 
 # Project Instructions
 We will learn and build the backend application for a blogging platform. The main focus will be to create a maintainable and highly testable architecture.
@@ -54,77 +49,108 @@ Following are the features of this project:
 * **Unit test is favored**: The tests have been written to test the functions and routes without the need of the database server. Integration tests has also been done but the unit test is favored.
 * **A pure backend project**: I have experienced that when a backend is developed clubbed with a frontend then in the future it becomes really difficult to scale. We would want to create a separate backend project that servers many websites and mobile apps.
 
-> I have also open source a complete blogging website working on this backend project: [Goto Repository](https://github.com/janishar/react-app-architecture)
-The repository [**React.js Isomorphic Web Application Architecture**] has a complete React.js web application implemented for a blogging platform which is using this project as its API server.
 
 ## 3RE Architecture: Router, RouteHandler, ResponseHandler, ErrorHandler
 <p align="center">
-    <img src="https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/3RE.png">
+    <img src="https://raw.githubusercontent.com/fifocode/nodejs-backend-architecture-typescript/main/addons/github_assets/3RE.png">
 </p>
 <br>
 
 ## Project Outline: Blogging Platform
 <p align="center">
-    <img src="https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/project-outline.png">
+    <img src="https://raw.githubusercontent.com/fifocode/nodejs-backend-architecture-typescript/main/addons/github_assets/project-outline.png">
 </p>
 <br>
 
 ## Request-Response Handling Schematic Diagram
 <p align="center">
-    <img src="https://raw.githubusercontent.com/janishar/nodejs-backend-architecture-typescript/master/addons/github_assets/api-structure.png">
+    <img src="https://raw.githubusercontent.com/fifocode/nodejs-backend-architecture-typescript/main/addons/github_assets/api-structure.png">
 </p>
 <br>
 
 ## Learn the concepts used in this project
-* [Design Node.js Backend Architecture like a Pro](https://janisharali.com/blog/design-node-js-backend-architecture-like-a-pro)
+* [Design Node.js Backend Architecture like a Pro](https://fifocode.com/article/design-node-js-backend-architecture-like-a-pro)
 * [The video guide to build and run this project](https://youtu.be/t7blRxqPIMs)
-* [Implement JSON Web Token (JWT) Authentication using AccessToken and RefreshToken](https://janisharali.com/blog/implement-json-web-token-jwt-authentication-using-access-token-and-refresh-token)
-* [TypeScript Tutorial For Beginners](https://afteracademy.com/blog/typescript-tutorial-for-beginners)
-* [From JavaScript to TypeScript](https://afteracademy.com/blog/from-javascript-to-typescript)
+* [Implement JSON Web Token (JWT) Authentication using AccessToken and RefreshToken](https://fifocode.com/article/implement-json-web-token-jwt-authentication-using-access-token-and-refresh-token)
+* [TypeScript Tutorial For Beginners](https://fifocode.com/article/typescript-tutorial-for-beginners)
+* [From JavaScript to TypeScript](https://fifocode.com/article/from-javascript-to-typescript)
 
 
-## You can find the complete API documentation [here](https://documenter.getpostman.com/view/1552895/2s8Z6u4a6N)
-<a href="https://documenter.getpostman.com/view/1552895/2s8Z6u4a6N" target="_blank">
-    <img src="https://raw.githubusercontent.com/afteracademy/nodejs-backend-architecture-typescript/master/addons/github_assets/api-doc-button.png" width="200" height="60"/>
-</a>
+# How to build and run this project
+vscode is the recommended editor - dark theme 
 
-## How to build and run this project
+### Get the repo 
+```bash
+# clone repository recursively
+git clone https://github.com/fifocode/nodejs-backend-architecture-typescript.git
+```
 
-* Install using Docker Compose [**Recommended Method**] 
-    * Clone this repo.
-    * Make a copy of **.env.example** file to **.env**.
-    * Make a copy of **keys/private.pem.example** file to **keys/private.pem**.
-    * Make a copy of **keys/public.pem.example** file to **keys/public.pem**.
-    * Make a copy of **tests/.env.test.example** file to **tests/.env.test**.
-    * Install Docker and Docker Compose. [Find Instructions Here](https://docs.docker.com/install/).
-    * Execute `docker-compose up -d` in terminal from the repo directory.
-    * You will be able to access the api from http://localhost:3000
-    * Run Tests: `docker exec -t app npm test`
-    * *If having any issue* then make sure 3000 port is not occupied else provide a different port in **.env** file.
-    * *If having any issue* then make sure 27017 port is not occupied else provide a different port in **.env** file.
- * Run The Tests
-    * Install node.js and npm on your local machine.
-    * From the root of the project executes in terminal `npm install`.
-    * *Use the latest version of node on the local machine if the build fails*.
-    * To run the tests execute `npm test`.
- * Install Without Docker [**2nd Method**]
-    * Install MongoDB on your local.
-    * Do steps 1 to 5 as listed for **Install using Docker Compose**.
-    * Do steps 1 to 3 as listed for **Run The Tests**.
-    * Create users in MongoDB and seed the data taking reference from the **addons/init-mongo.js**
-    * Change the `DB_HOST` to `localhost` in **.env** and **tests/.env.test** files.
-    * Execute `npm start` and You will be able to access the API from http://localhost:3000
-    * To run the tests execute `npm test`.
+### Run Docker Compose
+- Install Docker and Docker Compose. [Find Instructions Here](https://docs.docker.com/install/).
 
-  * Postman APIs Here: 
-    [addons/postman](https://github.com/janishar/nodejs-backend-architecture-typescript/tree/master/addons/postman)
+```bash
+# install and start docker containers
+docker-compose up --build
+```
+
+-  You will be able to access the api from http://localhost:3000
+
+### Run Tests
+```bash
+docker exec -t blogs-tester npm run test
+```
+
+If having any issue
+- Make sure 3000 port is not occupied else change PORT in **.env** file.
+- Make sure 27017 port is not occupied else change DB_PORT in **.env** file.
+- Make sure 6379 port is not occupied else change REDIS_PORT in **.env** file.
+
+## Run on the local machine
+Change the following hosts in the **.env** and **.env.test**
+- DB_HOST=localhost
+- REDIS_HOST=localhost
+
+Best way to run this project is to use the vscode `Run and Debug` button. Scripts are available for debugging and template generation on vscode.
+
+- Install node.js and npm on your local machine.
+
+```bash
+# From the root of the project executes
+$ npm install
+```
+
+### Stop the app and tester docker container
+```bash
+$ docker compose stop tester
+$ docker compose stop app 
+```
+
+### Run the app
+
+```bash
+# production mode
+$ npm start
+or
+# watch mode
+$ npm run watch
+```
+
+### Test
+
+```bash
+# unit and integration tests
+$ npm test
+```
+
+## API DOC
+[![API Documentation](https://img.shields.io/badge/API%20Documentation-View%20Here-blue?style=for-the-badge)](https://documenter.getpostman.com/view/1552895/2s8Z6u4a6N)
   
-  ## Learn Backend Development From Our Videos
+## Learn Backend Development From Our Videos
   * [Introduction to Web Backend Development for Beginners](https://youtu.be/SikmqyFocKQ)
   * [Backend System Design for Startups](https://youtube.com/playlist?list=PLuppOTn4pNYeAn-ioA-Meec5I8pQK_gU5)
   * [Practical Javascript for Beginners](https://youtube.com/playlist?list=PLuppOTn4pNYdowBb05yG2I8wAmHiW7vze)
   
- ## Project Directory Structure
+## Project Directory Structure
  ```
 ├── .vscode
 │   ├── settings.json
@@ -236,7 +262,6 @@ The repository [**React.js Isomorphic Web Application Architecture**] has a comp
 │   │       └── writer
 │   │           ├── mock.ts
 │   │           └── unit.test.ts
-│   ├── .env.test
 │   └── setup.ts
 ├── addons
 │   └── init-mongo.js
@@ -244,6 +269,7 @@ The repository [**React.js Isomorphic Web Application Architecture**] has a comp
 │   ├── private.pem
 │   └── public.pem
 ├── .env
+├── .env.test
 ├── .gitignore
 ├── .dockerignore
 ├── .eslintrc
@@ -259,10 +285,10 @@ The repository [**React.js Isomorphic Web Application Architecture**] has a comp
 └── tsconfig.json
  ```
  
- ## Directory Traversal for Signup API call
+## Directory Traversal for Signup API call
  `/src → server.ts → app.ts → /routes/index.ts → /auth/apikey.ts → schema.ts → /helpers/validator.ts → asyncHandler.ts → /routes/access/signup.ts → schema.ts → /helpers/validator.ts → asyncHandler.ts → /database/repository/UserRepo.ts → /database/model/User.ts → /core/ApiResponses.ts`
  
- ## API Examples
+## API Examples
 * Signup
     * Method and Headers
     ```
@@ -352,7 +378,7 @@ The repository [**React.js Isomorphic Web Application Architecture**] has a comp
 
 ### License
 ```
-   Copyright (C) 2024 JANISHAR ALI ANWAR
+   Copyright (C) 2025 FIFOCODE
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
