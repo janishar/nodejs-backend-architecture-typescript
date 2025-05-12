@@ -1,6 +1,18 @@
-version: '3.9'
-
 services:
+  tester:
+    # This defines the configuration options, including the context and dockerfile,
+    # that will be applied when Compose builds the application image.
+    build:
+      # This defines the build context for the image build — in this case, the current project directory.
+      context: .
+      # This specifies the Dockerfile in your current project directory as the file
+      dockerfile: Dockerfile.test
+    image: blogs-tester:latest
+    container_name: blogs-tester
+    env_file: .env.test
+    depends_on:
+      - mongo
+      - redis
   app:
     # This defines the configuration options, including the context and dockerfile,
     # that will be applied when Compose builds the application image.
@@ -9,18 +21,15 @@ services:
       context: .
       # This specifies the Dockerfile in your current project directory as the file
       dockerfile: Dockerfile
-    image: app
-    container_name: app
+    image: blogs-app:latest
+    container_name: blogs-app
     # This defines the restart policy. The default is no,
     # but we have set the container to restart unless it is stopped.
     restart: unless-stopped
     env_file: .env
     ports:
       # This maps port from .env on the host to same port number on the container.
-      - '$PORT:$PORT'
-    links:
-      - mongo
-      - redis
+      - '${PORT}:${PORT}'
     depends_on:
       - mongo
       - redis
@@ -28,7 +37,7 @@ services:
   mongo:
     # To create this service, Compose will pull the mongo
     image: mongo:7.0.4
-    container_name: mongo
+    container_name: blogs-mongo
     restart: unless-stopped
     # This tells Compose that we would like to add environment variables
     # from a file called .env, located in our build context.
@@ -38,11 +47,11 @@ services:
       # a root user in the admin authentication database and ensure that authentication is enabled
       # when the container starts. We have set MONGO_INITDB_ROOT_USERNAME and MONGO_INITDB_ROOT_PASSWORD
       # using the values from our .env file, which we pass to the db service using the env_file option.
-      - MONGO_INITDB_ROOT_USERNAME=$DB_ADMIN
-      - MONGO_INITDB_ROOT_PASSWORD=$DB_ADMIN_PWD
-      - MONGO_INITDB_DATABASE=$DB_NAME
+      - MONGO_INITDB_ROOT_USERNAME=${DB_ADMIN}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_ADMIN_PWD}
+      - MONGO_INITDB_DATABASE=${DB_NAME}
     ports:
-      - '$DB_PORT:27017'
+      - '${DB_PORT}:27017'
     volumes:
       - ./addons/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
         # The named volume dbdata will persist the data stored in Mongo’s default data directory, /data/db.
@@ -51,12 +60,12 @@ services:
 
   redis:
     image: redis:7.2.3
-    container_name: redis
+    container_name: blogs-redis
     restart: unless-stopped
     env_file: .env
     ports:
-      - '$REDIS_PORT:6379'
-    command: redis-server --save 20 1 --loglevel warning --requirepass $REDIS_PASSWORD
+      - '${REDIS_PORT}:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}
     volumes:
       - cache:/data/cache
 
