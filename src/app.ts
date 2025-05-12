@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from 'express';
+import express, { ErrorRequestHandler } from 'express';
 import Logger from './core/Logger';
 import cors from 'cors';
 import { corsUrl, environment } from './config';
@@ -31,8 +31,7 @@ app.use('/', routes);
 app.use((req, res, next) => next(new NotFoundError()));
 
 // Middleware Error Handler
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
   if (err instanceof ApiError) {
     ApiError.handle(err, res);
     if (err.type === ErrorType.INTERNAL)
@@ -45,10 +44,12 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     );
     Logger.error(err);
     if (environment === 'development') {
-      return res.status(500).send(err);
+      res.status(500).send(err);
     }
     ApiError.handle(new InternalError(), res);
   }
-});
+};
+
+app.use(errorHandler);
 
 export default app;

@@ -18,7 +18,7 @@ client.on('error', (e) => Logger.error(e));
 
 // If the Node process ends, close the Cache connection
 process.on('SIGINT', async () => {
-  await client.disconnect();
+  client.destroy();
 });
 
 export default client;
