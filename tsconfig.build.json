@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": [
+    ".github",
+    ".templates",
+    ".vscode",
+    "addons",
+    "build",
+    "coverage",
+    "keys",
+    "logs",
+    "node_modules",
+    "tests"
+  ]
+}

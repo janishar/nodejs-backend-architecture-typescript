@@ -1,9 +1,10 @@
 {
-  "name": "nodejs-backend-architecture",
-  "version": "2.0.1",
+  "name": "nodejs-backend-architecture-typescript",
+  "version": "2.1.0",
   "description": "The architecture for nodejs backend application. It is build on top of expressjs using typescript.",
   "main": "index.js",
   "scripts": {
+    "postinstall": "ts-node ./addons/init-project.ts",
     "start": "npm run build && npm run serve",
     "serve": "node -r dotenv/config build/server.js",
     "build": "npm run clean && npm run build-ts",
@@ -22,7 +23,7 @@
     "type": "git",
     "url": "https://github.com/janishar/nodejs-backend-architecture-typescript.git"
   },
-  "author": "Janishar Ali",
+  "author": "fifocode",
   "license": "Apache-2.0",
   "dependencies": {
     "axios": "^1.6.5",
