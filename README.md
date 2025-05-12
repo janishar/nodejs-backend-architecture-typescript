@@ -69,7 +69,7 @@ Following are the features of this project:
 <br>
 
 ## Learn the concepts used in this project
-* [Design Node.js Backend Architecture like a Pro](https://janisharali.com/blog/design-node-js-backend-architecture-like-a-pro)
+* [Design Node.js Backend Architecture like a Pro](https://fifocode.com/article/design-node-js-backend-architecture-like-a-pro)
 * [The video guide to build and run this project](https://youtu.be/t7blRxqPIMs)
 * [Implement JSON Web Token (JWT) Authentication using AccessToken and RefreshToken](https://janisharali.com/blog/implement-json-web-token-jwt-authentication-using-access-token-and-refresh-token)
 * [TypeScript Tutorial For Beginners](https://afteracademy.com/blog/typescript-tutorial-for-beginners)
