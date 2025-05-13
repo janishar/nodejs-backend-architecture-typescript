@@ -21,11 +21,11 @@ jobs:
     - name: Create private.pem
       run: cp keys/private.pem.example keys/private.pem
     - name: Build docker images
-      run: docker-compose build
+      run: docker compose build
     - name: Run docker images
-      run: docker-compose up -d
+      run: docker compose up -d
     - name: Run tests
-      run: docker exec -t blogs-tester npm test
+      run: docker exec -t blogs-tester npm run test
     - name: Clean up
       if: success() || failure()
-      run: docker-compose down --rmi all -v --remove-orphans
+      run: docker compose down --rmi all -v --remove-orphans
